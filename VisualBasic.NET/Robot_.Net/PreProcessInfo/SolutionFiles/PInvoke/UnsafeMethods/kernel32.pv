@@ -1,0 +1,1 @@
+(%unit (%imports) (%package "UnsafeNative") (%module (%attribute-list (%attribute (%id "System.Security.SuppressUnmanagedCodeSecurity"))) "kernel32" (%public) (%declare (%method "Sleep" (%void) (%args (%variable (%byval) (%var "dwMilliseconds") (%int))) nil) "kernel32")))

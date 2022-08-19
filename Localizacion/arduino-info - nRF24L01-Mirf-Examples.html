@@ -1,0 +1,1325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0058)https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="search" href="https://arduino-info.wikispaces.com/space/opensearch" type="application/opensearchdescription+xml" title="Búsqueda de Wikispaces (arduino-info Wiki)">
+<link rel="alternate" type="application/x-wiki" title="Edit This Page" href="https://arduino-info.wikispaces.com/page/edit/nRF24L01-Mirf-Examples">
+<link rel="alternate" title="arduino-info - All Changes" href="https://arduino-info.wikispaces.com/wiki/xmla?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="arduino-info : nRF24L01-Mirf-Examples - Discussion" href="https://arduino-info.wikispaces.com/message/xml/nRF24L01-Mirf-Examples?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="arduino-info : nRF24L01-Mirf-Examples - Edits" href="https://arduino-info.wikispaces.com/page/xml/nRF24L01-Mirf-Examples?v=rss_2_0" type="application/rss+xml">
+<link rel="microsummary" href="https://arduino-info.wikispaces.com/page/microsummary/nRF24L01-Mirf-Examples/edits">
+<link rel="microsummary" href="https://arduino-info.wikispaces.com/page/microsummary/nRF24L01-Mirf-Examples/messages">
+<script type="text/javascript" async="" src="./arduino-info - nRF24L01-Mirf-Examples_files/ga.js"></script><script type="text/javascript">
+  
+if (typeof ws === 'undefined') ws = {};
+ws.context = {
+  instance: {
+    id: '1',
+    url: 'wikispaces.com',
+    isMain: true,
+    supportsGoogleDocs: false,
+    isTesClassroom: false,
+  },
+  user: {
+    id: '',
+    username: '',
+    status: '',
+    locale: 'es_ES',
+    imageUrlPrefix: 'https://ssl.wikicdn.com/i/user_none_',
+    isTeacher: false,
+    canAdministerWiki: false,
+  },
+  wiki: {
+    id: '6378028',
+    name: 'arduino-info',
+    text: 'arduino-info',
+    module: 'B',
+    isClassroom: false,
+    isTesClassroom: false
+    ,defaultSpaceId: 6378028
+    ,isWwwWiki: false
+  },
+  project: {
+    id: '6378028',
+    name: ''
+  },
+  space: {
+    id: '6378028',
+    name: 'arduino-info',
+    isDefaultSpace: true,
+    isDefaultTemplate: false
+  },
+
+  environment_name: 'prod',
+
+  path: {
+    object: 'page',
+    method: 'view',
+    page: 'nRF24L01-Mirf-Examples',
+    id: ''
+  },
+
+  settings: {
+    main_domain: 'wikispaces.com',
+    session_url: 'https://session.wikispaces.com/1/',
+    asset_url_prefix: 'https://ssl.wikicdn.com',
+    beta_features: false,
+    isMobileSite: false,
+    isUploadCapable: true,
+    can_discuss: false,
+    has_gdocs: false,
+    isDialog: false,
+    pwin: ''
+  },
+  clockSkewMillis: 1433521194879 - ((window.performance && window.performance.timing.responseStart > 0) ? window.performance.timing.responseStart : (new Date()).getTime())
+}
+
+
+// legacy javascript API variables, use the above instead
+var wikispaces_isUserLoggedIn = !!ws.context.user.id;
+var wikispaces_isMain = ws.context.instance.isMain;
+var wikispaces_username = ws.context.user.username;
+var wikispaces_spaceName = ws.context.space.name;
+var wikispaces_projectName = ws.context.project.name;
+var wikispaces_wikiName = ws.context.wiki.name;
+var wikispaces_wikiText = ws.context.wiki.text;
+var wikispaces_isDefaultSpace = ws.context.space.isDefaultSpace;
+var wikispaces_method = ws.context.path.method;
+var wikispaces_object = ws.context.path.object;
+var wikispaces_page = ws.context.path.page;
+var wikispaces_id = ws.context.path.id;
+var wikispaces_domain = ws.context.instance.url;
+var wikispaces_isUserOrganizer = false;
+var wikispaces_main_domain = ws.context.settings.asset_url_prefix;
+var wikispaces_asset_url_prefix = ws.context.settings.asset_url_prefix;
+var wikispaces_beta_features = ws.context.settings.beta_features;
+var wikispaces_isMobileSite = ws.context.settings.isMobileSite;
+var wikispaces_isUploadCapable = ws.context.settings.isUploadCapable;
+var wikispaces_can_discuss = ws.context.settings.can_discuss;
+var wikispaces_has_gdocs = ws.context.settings.has_gdocs;
+
+</script><title>arduino-info - nRF24L01-Mirf-Examples</title>
+<meta charset="utf-8">
+<link rel="apple-touch-icon" sizes="144x144" href="https://ssl.wikicdn.com/_/z6371z4x/i/logo-144.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://ssl.wikicdn.com/_/j5j77xz3/i/logo-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://ssl.wikicdn.com/_/vq8j5432/i/logo-72.png">
+<link rel="apple-touch-icon" href="https://ssl.wikicdn.com/_/38515190/i/logo-57.png">
+<link rel="shortcut icon" href="https://ssl.wikicdn.com/_/55v9k02z/i/logo-16.png">
+<style type="text/css">
+/* Standard theme styles */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+.ws-theme-header-inner,
+.ws-theme-body-inner,
+.ws-theme-footer-inner,
+.ws-theme-content-inner,
+.ws-theme-sidebar-inner {
+  position: relative;
+}
+.ws-theme-header-inner:after,
+.ws-theme-body-inner:after,
+.ws-theme-footer-inner:after,
+.ws-theme-content-inner:after,
+.ws-theme-sidebar-inner:after,
+.ws-theme-menu-inner:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.ws-theme-content, .ws-theme-sidebar {
+  overflow-x: auto;
+}
+.ws-theme-footer {
+  text-align: right;
+}
+.ws-theme-footer a, .ws-theme-footer a:hover {
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  .ws-theme-container {
+    width: 750px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .ws-theme-content {
+    width: 550px;
+    min-height: 384px;
+    float: right;
+  }
+  .ws-theme-sidebar {
+    width: 200px;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .ws-theme-container {
+    width: 970px;
+  }
+  .ws-theme-content {
+    width: 770px;
+    min-height: 496px;
+  }
+}
+@media (min-width: 1200px) {
+  .ws-theme-container {
+    width: 1170px;
+  }
+  .ws-theme-content {
+    width: 970px;
+    min-height: 600px;
+  }
+}
+/* End standard theme styles */
+</style>
+<style type="text/css">
+/* Theme-specific styles */
+body {
+  background: #DDA;
+}
+
+.ws-theme-container {
+  margin: 0 5px;
+}
+
+.ws-theme-header .WikiSearch .WikiSearchInput,
+.ws-theme-sidebar .WikiSearch .WikiSearchInput,
+.ws-theme-footer .WikiSearch .WikiSearchInput {
+  width: 100%;
+}
+
+.ws-theme-header a,
+.ws-theme-header a:hover,
+.ws-theme-sidebar a,
+.ws-theme-footer a {
+  text-decoration: none;
+}
+.ws-theme-header a,
+.ws-theme-header a:hover,
+.ws-theme-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.ws-theme-header .ws-theme-menu a:hover,
+.ws-theme-sidebar a:hover,
+.ws-theme-footer a:hover {
+  text-decoration: underline;
+}
+.ws-theme-header img,
+.ws-theme-sidebar img,
+.ws-theme-footer img {
+  border: none;
+}
+
+.ws-theme-header,
+.ws-theme-footer {
+  color: #444444;
+}
+
+.ws-theme-header,
+.ws-theme-sidebar {
+  display: none;
+}
+
+.ws-theme-content,
+.ws-theme-sidebar {
+  overflow-x: visible;
+}
+.ws-theme-content-inner,
+.ws-theme-sidebar-inner {
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.ws-theme-body {
+  padding-top: 15px;
+}
+
+.ws-theme-content-inner {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #FFF;
+}
+
+.ws-theme-footer {
+  text-align: center;
+}
+.ws-theme-footer-inner {
+  padding: 15px;
+}
+.ws-theme-footer .WikiLicense img {
+  vertical-align: text-bottom;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: url(https://ssl.wikicdn.com/_/2537888v/i/theme_wood.jpg);
+  }
+
+  .ws-theme-container {
+    width: auto;
+  }
+
+  .ws-theme-header,
+  .ws-theme-sidebar {
+    display: block;
+  }
+
+  .ws-theme-header .ws-theme-menu {
+    background: #80A7D9 url(https://ssl.wikicdn.com/_/4qkjx897/i/theme_header_overlay.png) repeat-x;
+    border-bottom: 1px solid #BBB;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+  }
+  .ws-theme-header .ws-theme-menu-inner {
+    padding: 10px 0;
+  }
+  .ws-theme-header .WikiActions {
+    margin: 0 0 0 12px;
+    padding: 0;
+  }
+  .ws-theme-header .WikiActions li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 15px;
+    white-space: nowrap;
+  }
+  .ws-theme-header .WikiActions div {
+    display: inline-block;
+  }
+  .ws-theme-header .WikiActionSupplemental {
+    margin-left: 4px;
+  }
+  .ws-theme-header-inner {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+    font-size: 1.5em !important;
+    font-weight: normal !important;
+  }
+  .ws-theme-header-inner a {
+    font-size: inherit !important;
+  }
+
+  .ws-theme-content {
+    width: auto;
+    margin-right: 200px;
+    padding-right: 5px;
+    padding-left: 73px;
+    float: none;
+  }
+  .ws-theme-content-inner {
+    float: left;
+    width: 100%;
+  }
+  .ws-theme-content-inner:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -73px;
+    width: 73px;
+    background: url(https://ssl.wikicdn.com/_/q85x653j/i/theme_spiral.png) repeat-y 0 -6px;
+  }
+
+  .ws-theme-sidebar {
+    float: right;
+  }
+  .ws-theme-sidebar a {
+    color: #0000FF;
+  }
+  .ws-theme-sidebar-inner {
+    padding: 10px;
+    background-color: #EDEDE6;
+    border: 1px solid #BFBA96;
+  }
+  .ws-theme-sidebar .WikiCustomNav ol {
+    padding-left: 16px;
+  }
+  .ws-theme-sidebar .WikiCustomNav ol.includePageList {
+    padding-left: 0;
+  }
+  .ws-theme-sidebar .WikispacesNavbar {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+  .ws-theme-sidebar .ws-theme-nav-edit {
+    color: #666;
+    text-align: center;
+  }
+  .ws-theme-sidebar .ws-theme-nav-edit a {
+    color: inherit;
+  }
+}
+/* End theme-specific styles */
+</style>
+<link rel="stylesheet" href="./arduino-info - nRF24L01-Mirf-Examples_files/221909772-217420326D.gz.css" type="text/css">
+<link rel="stylesheet" href="./arduino-info - nRF24L01-Mirf-Examples_files/9q897620-internal-bootstrap.css" type="text/css">
+<link rel="stylesheet" href="./arduino-info - nRF24L01-Mirf-Examples_files/vz033906-internal.css" type="text/css">
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/j91xzz3x-top.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+
+  var wsGoogleAccount = 'UA-80504-1';
+  _gaq.push(['_setAccount', wsGoogleAccount]);
+  _gaq.push(['_gat._anonymizeIp']);
+  _gaq.push(['_setDomainName', 'wikispaces.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_setCustomVar', 2, 'Authenticated', 'Guest', 2]);
+  _gaq.push(['_trackPageview']);
+</script><style type="text/css" id="js-fixed-header-a-style">.wiki a[name]:before { content: "\00A0"; display: inline-block; visibility: hidden; width: 0; padding-top: 28px; margin-top: -28px; }</style><script type="text/javascript" src="./arduino-info - nRF24L01-Mirf-Examples_files/07z93j80.gz.js"></script></head>
+<body><a href="https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples#WikiContent" class="hidden sr-only sr-only-focusable">Skip to main content</a><div id="js-fixed-header-holder" class="fixed"><div class="WikispacesContent WikispacesBs3" role="banner">
+      <div id="WikispacesBanner" class="BannerDisplayed" style="">You are not a member of this wiki. <a href="https://arduino-info.wikispaces.com/space/join"> Join now</a>
+<script type="text/javascript">
+function dismissJoinWiki() {
+  ws.common.displayBanner(false);
+  jQuery.post("https://arduino-info.wikispaces.com/wiki/dismissjoin");
+}
+</script> &nbsp;<a href="https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples#" onclick="dismissJoinWiki(); return false;">Dismiss</a></div>
+    <div class="ws-main-top-nav visible-xs">
+    <div class="navbar navbar-static-top" style="margin-bottom: 0;">
+      <div class="container">
+                <div class="navbar-header">
+          <div class="visible-xs pull-left">
+            <a href="https://arduino-info.wikispaces.com/space/menu" class="WikispacesDialogLink btn navbar-btn">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+          <div class="visible-xs pull-right js-globalnav-popover-container">
+                        <a href="https://www.wikispaces.com/site/signin?goto=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples" class="btn navbar-btn ws-mobile-guest-username js-globalnav-popover-trigger" data-original-title="" title="">
+              guest
+            </a>
+                        <div class="hidden js-globalnav-popover-content">
+              <div class="WikispacesContent WikispacesBs3">
+                <div class="WikiInternalHeaderNav noHide">
+  <div class="WikiInternalHeaderNavMenu">
+                          
+                  <span class="WikiInternalHeaderNavMenuArea"><a href="https://www.wikispaces.com/user/join?goto=https%3A%2F%2Farduino-info.wikispaces.com%2Fspace%2Fjoin" rel="nofollow" class="WikispacesXDomainDialogLink">Únete</a></span>
+
+          <span class="divider">|</span>
+        
+        <span class="WikiInternalHeaderNavMenuArea"><a class="js-help-trigger" rel="nofollow" href="https://help.wikispaces.com/">Ayuda</a></span>
+
+        <span class="divider">|</span>
+      
+      <span class="WikiInternalHeaderNavMenuArea"><a href="https://www.wikispaces.com/site/signin?goto=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples" rel="nofollow" class="WikispacesXDomainDialogLink">Iniciar Sesión</a></span>
+      </div>
+<div id="NoticeTool" class="headerPanel hidden" style="display: none;"><div id="NoticeToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last text-center"><a href="https://www.wikispaces.com/mail/list/?folder=Inbox">View All Messages</a></li></ol></div></div><div id="WikiTool" class="headerPanel hidden" style="display: none;"><div id="WikiToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"></ol></div></div><div id="HelpTool" class="headerPanel hidden" style="display: none;"><div id="HelpToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last divider hidden"></li><li><a class="js-help-trigger" rel="nofollow" href="https://help.wikispaces.com/">Help Wiki</a></li></ol></div></div></div>              </div>
+            </div>
+          </div>
+          <div class="ws-navbar-middle-xs">
+            <div class="navbar-brand" role="navigation">
+              <a href="https://www.wikispaces.com/" class="ws-logo"></a>
+              <i class="fa fa-angle-right"></i>
+              <a href="https://arduino-info.wikispaces.com/">arduino-info</a>
+                              <i class="fa fa-angle-right"></i> <a href="https://arduino-info.wikispaces.com/home">Página de inicio</a>
+              
+            </div>
+          </div>
+                    <form action="https://arduino-info.wikispaces.com/search/view" method="post" class="navbar-form ws-include-xs pull-left ws-navbar-search hidden-xs" role="search"><input type="hidden" name="wikispacesFormToken" value="708f720e9c93e28afecfa85f58da83eff6bee78a"><input type="text" class="form-control search-query" name="q" value="" placeholder="Búsqueda"> </form>
+                  </div>
+      </div>
+    </div>
+  </div>
+      <div class="hidden-xs"><div class="WikiInternalHeaderNav WikiElement floating" style="right: -199px;">
+  <div class="WikiInternalHeaderNavMenu">
+                                    <span class="WikiInternalHeaderNavMenuArea guestUserName">guest</span><span class="slideMarker divider">|</span>
+        
+                  <span class="WikiInternalHeaderNavMenuArea"><a href="https://www.wikispaces.com/user/join?goto=https%3A%2F%2Farduino-info.wikispaces.com%2Fspace%2Fjoin" rel="nofollow" class="WikispacesXDomainDialogLink">Únete</a></span>
+
+          <span class="divider">|</span>
+        
+        <span class="WikiInternalHeaderNavMenuArea"><a class="js-help-trigger" rel="nofollow" href="https://help.wikispaces.com/">Ayuda</a></span>
+
+        <span class="divider">|</span>
+      
+      <span class="WikiInternalHeaderNavMenuArea"><a href="https://www.wikispaces.com/site/signin?goto=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples" rel="nofollow" class="WikispacesXDomainDialogLink">Iniciar Sesión</a></span>
+      </div>
+<div id="NoticeTool" class="headerPanel hidden" style="display: none;"><div id="NoticeToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last text-center"><a href="https://www.wikispaces.com/mail/list/?folder=Inbox">View All Messages</a></li></ol></div></div><div id="WikiTool" class="headerPanel hidden" style="display: none;"><div id="WikiToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"></ol></div></div><div id="HelpTool" class="headerPanel hidden" style="display: none;"><div id="HelpToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last divider hidden"></li><li><a class="js-help-trigger" rel="nofollow" href="https://help.wikispaces.com/">Help Wiki</a></li></ol></div></div></div></div>
+  </div></div><div id="js-fixed-header-offset" style="margin-top: 28px;">
+<header class="ws-theme-header" role="banner">
+  <nav class="ws-theme-menu" role="navigation">
+    <div class="ws-theme-container">
+      <div class="ws-theme-menu-inner">
+        <ul class="WikiActions WikiElement WikiControls">
+    <li id="WikiActionHome"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="https://arduino-info.wikispaces.com/"><i class="fa fa-home fa-fw"></i></a><a href="https://arduino-info.wikispaces.com/">Inicio del wiki</a></div></li>
+    <li id="WikiActionChanges"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="https://arduino-info.wikispaces.com/wiki/changes"><i class="fa fa-clock-o fa-fw"></i></a><a href="https://arduino-info.wikispaces.com/wiki/changes">Cambios Recientes</a></div></li>
+    <li id="WikiActionPagesAndFiles"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="https://arduino-info.wikispaces.com/space/content"><i class="fa fa-file-text-o fa-fw"></i></a><a href="https://arduino-info.wikispaces.com/space/content">Pages and Files</a></div></li>
+    <li id="WikiActionMembers"><div class="js-member-link"><span class="WikiActionSupplemental" style="float: right;"></span><a href="https://arduino-info.wikispaces.com/wiki/members"><i class="fa fa-user fa-fw"></i></a><a href="https://arduino-info.wikispaces.com/wiki/members">Miembros</a></div></li>
+</ul>
+      </div>
+    </div>
+  </nav>
+  <div class="ws-theme-container">
+    <div class="ws-theme-header-inner">
+      <a href="https://arduino-info.wikispaces.com/" class="WikiLogo WikiElement"><img src="./arduino-info - nRF24L01-Mirf-Examples_files/logo.jpg" alt="arduino-info"></a>    </div>
+  </div>
+</header>
+
+<div class="ws-theme-body">
+  <div class="ws-theme-container">
+    <div class="ws-theme-body-inner">
+      <nav class="ws-theme-sidebar" role="navigation">
+        <div class="ws-theme-sidebar-inner">
+          <div class="ws-theme-menu">
+            <div class="ws-theme-menu-inner">
+              <form action="https://arduino-info.wikispaces.com/search/view" method="post" class="WikiSearch WikiElement" role="search"><input type="text" class="form-control WikiSearchInput" name="q" value="" placeholder="Búsqueda"> </form>              <div class="WikiCustomNav WikiElement wiki"><h2><a class="wiki_link" href="https://arduino-info.wikispaces.com/HOME">HOME</a></h2>
+ <h2><a class="wiki_link" href="http://arduino-info.wikispaces.com/About-Contact">ABOUT US!</a></h2>
+ <h3><span style="color: #ff0037;"><a class="wiki_link_ext" href="http://yourduino.com/sunshop2/" rel="nofollow">YourDuinoShop</a></span></h3>
+ <h3><span style="color: #ff0000;"><a class="wiki_link" href="http://arduino-info.wikispaces.com/Newsletters">NEWSLETTERS</a></span></h3>
+ <h2><a class="wiki_link_ext" href="http://arduinoinfo.info/blog/" rel="nofollow">BLOG</a></h2>
+ <h2><a class="wiki_link" href="https://arduino-info.wikispaces.com/WikiFolk">THIS WIKI:</a></h2>
+ <hr>
+<hr>
+<span style="font-size: 26px; line-height: 30px;"><strong><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-What-IS-it">WHAT IS Arduino?</a></strong></span><br>
+<hr>
+<span style="font-size: 26px; line-height: 30px;"><strong>LEARNING Arduino:</strong></span><br>
+<ul><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-What-IS-it">Arduino: WhatIsIt?</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/YourDuinoStarter">Hands-On Learning</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/YourDuinoStarterSoftwareSketches">Example Sketches</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-Libraries">Arduino Libraries</a></li></ul><hr>
+<strong><span style="font-size: 26px;">ARDUINO HOWTO:</span></strong><br>
+<ul><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Cables">CABLES, WIRES and PINS</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/SensorShield">SENSOR SHIELD</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/ArduinoPower">ARDUINO POWER</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Servos">SERVO MOTORS</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo">WIRELESS nRF24L01</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/LCD-Blue-I2C">LCD DISPLAYS</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/SD-Cards">SD CARDS</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/UltraSonicDistance">Ultrasonic Sensors</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Brick-Temperature-DS18B20">TemperatureSensor</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/IR-RemoteControl">IR Remotes</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/StepperMotors">Stepper Motors</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/DS1307_RealTime_Clock_Brick">RealTimeClock</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/Keyboards-MultipleButtons">Keyboards/Buttons</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/Arduino-PWM-Frequency">PWM Frequencies</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/Analog-Output">Analog Output</a></li><li><a class="wiki_link" href="https://arduino-info.wikispaces.com/TUTORIALS">TUTORIALS</a></li></ul><br>
+<a class="wiki_link" href="https://arduino-info.wikispaces.com/Collaborate">BJK</a><br>
+<a class="wiki_link" href="http://arduino-info.wikispaces.com/Listing_File_List">C</a></div>              <div class="ws-theme-nav-edit">
+                              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main class="ws-theme-content" role="main">
+        <div class="ws-theme-content-inner">
+          <div class="contentBox"><div class="innerContentBox" id="WikiContent">
+
+<script type="text/template" id="comment-footer-template">
+
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</script>
+
+<script type="text/template" id="comment-content-template">
+<div class="ws-box commentView">
+  <div class="comment-close">
+    <button type="button" class="closeme close" aria-hidden="true"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="commentHeader">
+    <p class="ws-stream-meta command-context">
+      <a class="userLink userLinkPicture" href="<%= userCreated.url %>"><img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16"></a>
+      <a href="<%= userCreated.url %>"><%= userCreated.username %></a>
+      <% if (smartDate == '__live__') { %>
+      <abbr class="timeago" title="<%= (new Date(parseInt(dateCreated, 10) * 1000)).toISOString() %>">
+        <%= dateCreated %>
+      </abbr>
+      <% } else { %>
+        <%- smartDate %>
+      <% } %>
+      <% if (ws.context.user.canAdministerWiki && ws.comments.Manager.readOnly) { %>
+        <i class="fa fa-trash-o contextual-command delete ws-tip" title="Delete Comment"></i>
+      <% } %>
+    </p>
+  </div>
+
+  <div class="commentBody">
+    <div class="commentContent">
+      <%= description %>
+    </div>
+
+      <% for(i = 0; i < replyPages.length; i++) { %>
+        <% for(var j = 0; j < replyPages[i].digests.length; j++) { %>
+      <div class="commentReply" data-id="<%= replyPages[i].digests[j].id %>">
+        <p class="ws-stream-meta command-context">
+          <a class="userLink userLinkPicture" href="<%= replyPages[i].digests[j].userCreated.url %>"><img class="userPicture" src="<%= replyPages[i].digests[j].userCreated.imageUrl %>" width="16" height="16"></a>
+          <a href="<%= replyPages[i].digests[j].userCreated.url %>"><%= replyPages[i].digests[j].userCreated.username %></a>
+          <% if (smartDate == '__live__') { %>
+          <abbr class="timeago" title="<%= (new Date(parseInt(replyPages[i].digests[j].dateCreated, 10) * 1000)).toISOString() %>">
+            <%= new Date(parseInt(replyPages[i].digests[j].dateCreated, 10) * 1000).toLocaleString() %>
+          </abbr>
+          <% } else { %>
+            <%- smartDate %>
+          <% } %>
+          <% if (ws.context.user.canAdministerWiki) { %>
+          <i class="fa fa-trash-o contextual-command delete-reply ws-tip" title="Delete Reply"></i>
+          <% } %>
+          </p>
+        <div class="commentContent"><%= replyPages[i].digests[j].body %></div>
+      </div>
+        <% } %>
+      <% } %>
+
+      <form class="reply commentReply">
+        <div class="form-group">
+          <textarea name="reply" placeholder="Reply" class="form-control" /></textarea>
+        </div>
+        <div class="btn-toolbar">
+          <button type="submit" class="btn btn-primary btn-sm" name="go" value="1">Post</button>
+
+          <% if (ws.context.user.id) { %>
+            <% if (monitored) { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-monitor ws-tip active" title="You are monitoring replies."><i class="fa fa-eye"></i></button>
+            <% } else { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-monitor ws-tip" title="You are not monitoring replies."><i class="fa fa-eye"></i></button>
+            <% } %>
+          <% } %>
+          <% if (ws.context.user.canAdministerWiki) { %>
+            <% if (locked) { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-lock ws-tip active" title="Replies are not allowed."><i class="fa fa-lock"></i></button>
+            <% } else { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-lock ws-tip" title="Replies are allowed."><i class="fa fa-lock"></i></button>
+            <% } %>
+          <% } %>
+
+          <i class="fa fa-spinner fa-spin spinner pull-right hidden"></i>
+        </div>
+      </form>
+   </div>
+
+   
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</div>
+</script>
+
+<script type="text/template" id="comment-composer-template">
+<div class="ws-box commentView">
+  <div class="commentComposer">
+    <div class="comment-close">
+      &nbsp;<button type="button" class="close closeme" aria-hidden="true"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="commentHeader">
+      <p class="ws-stream-meta command-context">
+        <img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16">
+        <a href="#" onclick="return false;"><%= userCreated.username %></a>
+      </p>
+    </div>
+    <div class="commentBody">
+      <textarea name="comment" class="compose form-control" placeholder="Comment"/></textarea><br/>
+      <div class="btn-toolbar">
+        <button type="button" class="btn btn-default btn-sm monitored active pull-right" style="margin-left: 6px" onclick="jQuery(this).toggleClass('active')"><i class="fa fa-eye"></i></button>
+        <button type="button" class="btn btn-default btn-sm locked btn-toggle pull-right" onclick="jQuery(this).toggleClass('active')"><i class="fa fa-lock"></i></button>
+        <button type="button" class="btn btn-primary btn-sm closeme">Save</button>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</div>
+</script>
+
+<script type="text/template" id="comment-proxy-template">
+<div class="comment-proxy">
+  <span class="commentUser">
+  <% if (userCreated) { %>
+    <img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16">
+  <% } else { %>
+    <img class="userPicture" src="<%= ws.context.user.imageUrlPrefix %>sm.jpg" width="16" height="16">
+  <% } %>
+  </span>
+  <span class="commentReplies"><%= 1 + _(replyPages).reduce(function(memo, page){ return memo + page.digests.length; }, 0) %></span>
+</div>
+</script>
+
+<div class="ws-menu-bar WikiControls WikispacesContent WikispacesBs3">
+  
+    <h1 class="pageTitle"><a href="./arduino-info - nRF24L01-Mirf-Examples_files/arduino-info - nRF24L01-Mirf-Examples.html">nRF24L01-Mirf-Examples</a></h1>
+      <div class="btn-group pull-right">
+          <span class="btn btn-default disabled tipme" title="" data-original-title="you do not have permission to edit this page"><i class="fa fa-pencil fa-fw"></i> Editar</span>          <a class="btn btn-default tipme" title="" href="https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples#discussion" data-original-title="no discussion posts"><i class="fa fa-comments fa-fw"></i> 0</a>          <a class="btn btn-default tipme" title="" href="https://arduino-info.wikispaces.com/page/history/nRF24L01-Mirf-Examples" data-original-title="view 17 revisions"><i class="fa fa-clock-o fa-fw"></i> 17</a>          <a class="btn btn-default ws-btn-more dropdown-toggle tipme" title="" href="https://arduino-info.wikispaces.com/page/menu/nRF24L01-Mirf-Examples" data-original-title="more options"><i class="icon-height-only fa-fw"></i>…</a>        <ul class="ws-more-menu dropdown-menu dropdown-menu-right">
+              <li class=" dropdown"><a class=" ws-tag-dropdown-toggle" href="https://arduino-info.wikispaces.com/page/tags/nRF24L01-Mirf-Examples"><span class="pull-right">0</span> <i class="fa fa-tag fa-fw"></i> Etiquetas</a>
+          <div class="dropdown-menu dropdown-menu-right ws-tag-dropdown-menu">
+          
+
+
+
+<form action="https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples#" name="WikiTagForm" class="WikiTagForm"><input type="hidden" name="wikispacesFormToken" value="26254432be7f1471b2c18af038efb69934219106"><input type="hidden" name="wikispacesFormToken" value="26254432be7f1471b2c18af038efb69934219106">
+  <div class="WikiTagList">
+    <i class="fa fa-tag ws-action"></i>
+        <ul class="list-unstyled">
+          <li>No tags</li>
+        </ul>
+      </div>
+  </form>      </div>
+    </li>
+              <li class="divider"></li>
+            <li class=""><a class=" WikispacesDialogLink" href="https://arduino-info.wikispaces.com/wiki/addmonitor?monitorLink=page%3AnRF24L01-Mirf-Examples"><i class="fa fa-eye fa-fw"></i> Notify</a>
+    </li>
+        <li class=""><a class=" WikispacesDialogLink" href="https://arduino-info.wikispaces.com/page/rss/nRF24L01-Mirf-Examples"><i class="fa fa-rss fa-fw"></i> RSS</a>
+    </li>
+        <li class=""><a class="" href="https://arduino-info.wikispaces.com/page/links/nRF24L01-Mirf-Examples"><i class="fa fa-link fa-fw"></i> Enlaces inversos</a>
+    </li>
+              <li class="divider"></li>
+            <li class=""><a class="" href="https://arduino-info.wikispaces.com/page/code/nRF24L01-Mirf-Examples"><i class="fa fa-code fa-fw"></i> Source</a>
+    </li>
+        <li class=""><a class="" href="https://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples?f=print"><i class="fa fa-print fa-fw"></i> Print</a>
+    </li>
+        <li class=""><a class="" href="https://arduino-info.wikispaces.com/page/pdf/nRF24L01-Mirf-Examples"><i class="fa fa-cloud-download fa-fw"></i> Export (PDF)</a>
+    </li>
+      </ul>  </div>
+  </div>
+
+
+
+
+  <textarea class="form-control" id="autosaveContent" style="display:none;" rows="1" cols="1"></textarea>
+  <div id="autosavePrompt" style="display:none;"></div>
+
+<div class="commentContainer">
+  <div class="commentSubject">
+  <div class="wiki wikiPage" id="content_view">
+  <!-- ws:start:WikiTextHeadingRule:2:&lt;h1&gt; --><h1 id="toc0"><a name="Mirf Library: nRF24L01 Test"></a><!-- ws:end:WikiTextHeadingRule:2 -->Mirf Library: nRF24L01 Test</h1>
+ <br>
+See the Arduino Playground page about the <strong>Mirf library</strong>:<br>
+<a class="wiki_link_ext" href="http://www.arduino.cc/playground/InterfacingWithHardware/Nrf24L01" rel="nofollow">http://www.arduino.cc/playground/InterfacingWithHardware/Nrf24L01</a><br>
+<br>
+Here's an example of using the Mirf library. It's basically an implementation of transmitting information from one Arduino moving around the environment (the "sensor") to a stationary base station. For simplicity, they opted for the following approach:<br>
+<br>
+<ul><li>The data is transmitted from the sensor in the form of simple ASCII strings.</li><li>Each character of the ASCII is transmitted indiviually (very inefficient, but really simple).</li><li>The base station just pipes the received data via the serial port to the PC.</li><li>The PC is running software (for example based on Processing) which reads, error-checks and displays the received data.</li></ul><br>
+Thus, it is a kind of a very simple "wireless serial link" between a sensor (transmitting only) and a base station (receiving only).<br>
+<br>
+Here's the pinout of the Modules we have (<span style="color: #ff0000;">TOP VIEW</span>):<br>
+<br>
+<!-- ws:start:WikiTextLocalImageRule:25:&lt;img src=&quot;/file/view/24L01Pinout-800.jpg/243330999/24L01Pinout-800.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - nRF24L01-Mirf-Examples_files/24L01Pinout-800.jpg" alt="24L01Pinout-800.jpg" title="24L01Pinout-800.jpg"><!-- ws:end:WikiTextLocalImageRule:25 --><br>
+<br>
+Here's the code for the base station. The code simply pushes every character value it receives from the nRF24L01 to the serial port. It's up to the PC-program to error-check and analyze what is received.<br>
+<br>
+<!-- ws:start:WikiTextMediaRule:0:&lt;img src=&quot;http://www.wikispaces.com/site/embedthumbnail/custom/9523328?h=0&amp;w=0&quot; class=&quot;WikiMedia WikiMediaCustom&quot; id=&quot;wikitext@@media@@type=&amp;quot;custom&amp;quot; key=&amp;quot;9523328&amp;quot;&quot; title=&quot;Custom Media&quot;/&gt; --><pre>
+<span style="color: #7E7E7E;"><b>Code:</b></span>
+#include &lt;Spi.h&gt;
+#include &lt;mirf.h&gt;
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>setup</b></span>()
+{
+  <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">begin</span>(57600);
+  
+  Mirf.<span style="color: #CC6600;">init</span>();
+  
+  <span style="color: #7E7E7E;">// name the receiving channel - must match tranmitter setting!</span>
+  Mirf.setRADDR((<span style="color: #CC6600;">byte</span> *)<span style="color: #006699;">"TX_01"</span>);
+  
+  <span style="color: #7E7E7E;">// just a single byte is transmitted</span>
+  Mirf.payload = 1;
+
+  <span style="color: #7E7E7E;">// we use channel 90 as it is outside of WLAN bands </span>
+  <span style="color: #7E7E7E;">// or channels used by wireless surveillance cameras </span>
+  Mirf.channel = 90;
+  
+  <span style="color: #7E7E7E;">// now config the device.... </span>
+  Mirf.config();  
+  
+  <span style="color: #7E7E7E;">// Set 1MHz data rate - this increases the range slightly</span>
+  Mirf.configRegister(RF_SETUP,0x06);
+}
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;">loop</span>()
+{
+
+  <span style="color: #CC6600;">byte</span> c; 
+
+  <span style="color: #7E7E7E;">// is there any data pending? </span>
+  <span style="color: #CC6600;">if</span>( Mirf.dataReady() )
+  {
+     <span style="color: #7E7E7E;">// well, get it</span>
+     Mirf.getData(&amp;c);
+
+    <span style="color: #7E7E7E;">// ... and write it out to the PC</span>
+     <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">print</span>(c);
+  }
+}
+
+</pre><!-- ws:end:WikiTextMediaRule:0 --><br>
+<br>
+Sensor:<br>
+<br>
+<!-- ws:start:WikiTextMediaRule:1:&lt;img src=&quot;http://www.wikispaces.com/site/embedthumbnail/custom/9523340?h=0&amp;w=0&quot; class=&quot;WikiMedia WikiMediaCustom&quot; id=&quot;wikitext@@media@@type=&amp;quot;custom&amp;quot; key=&amp;quot;9523340&amp;quot;&quot; title=&quot;Custom Media&quot;/&gt; --><pre>#include &lt;Spi.h&gt;
+#include &lt;mirf.h&gt;
+
+<span style="color: #7E7E7E;">// converts a float into a char </span>
+<span style="color: #7E7E7E;">// and sends it via nRF24L01</span>
+<span style="color: #CC6600;">void</span> transmit( <span style="color: #CC6600;">float</span> v)
+{
+  <span style="color: #CC6600;">byte</span> c; 
+  <span style="color: #CC6600;">char</span> buf[10];
+  
+  dtostrf(v,9,3,buf);
+
+  <span style="color: #CC6600;">for</span>( <span style="color: #CC6600;">int</span> i=0 ; i&lt;8 ; i++ )
+  { 
+    c = buf[i];
+    Mirf.<span style="color: #CC6600;">send</span>(&amp;c);
+    <span style="color: #CC6600;">while</span>( Mirf.isSending() ) ;
+  }
+}
+
+<span style="color: #7E7E7E;">// sends a string via the nRF24L01</span>
+<span style="color: #CC6600;">void</span> transmit(const <span style="color: #CC6600;">char</span> *string)
+{
+  <span style="color: #CC6600;">byte</span> c; 
+  
+  <span style="color: #CC6600;">for</span>( <span style="color: #CC6600;">int</span> i=0 ; string[i]!=0x00 ; i++ )
+  { 
+    c = string[i];
+    Mirf.<span style="color: #CC6600;">send</span>(&amp;c);
+    <span style="color: #CC6600;">while</span>( Mirf.isSending() ) ;
+  }
+}
+
+<span style="color: #7E7E7E;">// send a CR/LF sequence via the nRF24L01</span>
+<span style="color: #CC6600;">void</span> transmitlf(<span style="color: #CC6600;">void</span>)
+{
+  <span style="color: #CC6600;">byte</span> c;
+  
+  c = <span style="color: #006699;">'\r'</span>;
+  Mirf.<span style="color: #CC6600;">send</span>(&amp;c);
+    <span style="color: #CC6600;">while</span>( Mirf.isSending() ) ;
+  
+  c = <span style="color: #006699;">'\n'</span>;
+  Mirf.<span style="color: #CC6600;">send</span>(&amp;c);
+    <span style="color: #CC6600;">while</span>( Mirf.isSending() ) ;
+}
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>setup</b></span>()
+{
+  
+  <span style="color: #7E7E7E;">// init the transceiver</span>
+  Mirf.<span style="color: #CC6600;">init</span>();
+  
+  <span style="color: #7E7E7E;">// we transmit only a single byte each time</span>
+  Mirf.payload = 1;
+  
+  <span style="color: #7E7E7E;">// selecting a channel which is not too noisy</span>
+  Mirf.channel = 90;
+  Mirf.config();
+ 
+  <span style="color: #7E7E7E;">// Set 1MHz data rate</span>
+  Mirf.configRegister(RF_SETUP,0x06);
+  
+  <span style="color: #7E7E7E;">// Set address - this one must match the </span>
+  <span style="color: #7E7E7E;">// address the receiver is using!</span>
+  Mirf.setTADDR((<span style="color: #CC6600;">byte</span> *)<span style="color: #006699;">"TX_01"</span>);
+}
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;">loop</span>() 
+{
+  <span style="color: #CC6600;">float</span> v01,v02; 
+  
+  <span style="color: #7E7E7E;">// read in some values</span>
+  v01 = <span style="color: #CC6600;">analogRead</span>(0);
+  v02 = <span style="color: #CC6600;">analogRead</span>(1);
+  
+  <span style="color: #7E7E7E;">// transmit a fixed token</span>
+  transmit(<span style="color: #006699;">" : "</span>);
+  
+  <span style="color: #7E7E7E;">// transmit the first value</span>
+  transmit(v01);
+  
+  <span style="color: #7E7E7E;">// transmit a separator</span>
+  transmit(<span style="color: #006699;">" : "</span>);
+  
+  <span style="color: #7E7E7E;">// transmit a second token</span>
+  transmit(v02);
+  
+  <span style="color: #7E7E7E;">// transmit a CR/LF for the PC</span>
+  <span style="color: #7E7E7E;">// software to sync to</span>
+  transmitlf();
+ 
+  <span style="color: #7E7E7E;">// ... just take your time</span>
+  <span style="color: #CC6600;">delay</span>(100);
+}
+
+</pre><!-- ws:end:WikiTextMediaRule:1 --><br>
+<br>
+The PC software monitors the serial port of the Arduino which is acting as a base station and waits for a CR/LF-sequence to arrive in the data stream in order to start processing.<br>
+<br>
+Once a full string is received, a simple error-checking strategy is employed in the PC software. The first thing to check is whether the two ":" transmitted from the sensor are present.<br>
+<br>
+Furthermore, as the float values are converted by the sensor into strings with a fixed length, the total length of the transmitted string stays constant. However, some bytes might not be received by the base station.<br>
+<br>
+So if you display only data which does have the two ":" transmitted and does have the correct message length, the link becomes quite stable.<br>
+<br>
+As mentioned, this code does not really use any of the advanced features of the nRF24L01, but it should get you started with communications between two Arduinos.<br>
+<br>
+You might want to go further by trying to implement:<br>
+<br>
+<ul><li>Transmitting directly binary data in larger data chunks. The nRF24L01 can transmit up to 32byte in one piece.</li><li>Fine-tuning the Shockburst mode and other transmission parameters for your needs.</li><li>Implementing a two-communication link.</li><li>Utilzing/taking care of the FIFO in the nRF24L01.</li></ul><br>
+As the nRF24L01 does feature error-checking in Shockburst mode, such an improved implementation will release the burden of error-checking from the analyzing software running on the PC. The above described method is simple and fast (or quick and dirty, depending on the way you look at it <!-- ws:start:WikiTextRemoteImageRule:26:&lt;img src=&quot;http://arduino.cc/forum/Smileys/arduinoWide/smiley-wink.png&quot; alt=&quot;smiley-wink&quot; title=&quot;smiley-wink&quot; /&gt; --><table class="captionBox"><tbody><tr><td class="captionedImage"><img src="./arduino-info - nRF24L01-Mirf-Examples_files/smiley-wink.png" alt="smiley-wink" title="smiley-wink"></td></tr><tr><td class="imageCaption">smiley-wink</td></tr></tbody></table><!-- ws:end:WikiTextRemoteImageRule:26 --> ).<br>
+<hr>
+NOTE: The 24F Library is much more full-featured and does error checking etc. <a class="wiki_link" href="https://arduino-info.wikispaces.com/nRF24L01-RF24-Examples">See it here:</a>
+  </div>
+
+<div id="pageEditor" class="editorWrapper editorLayer">
+  <iframe id="target_editor" name="target_editor" src="./arduino-info - nRF24L01-Mirf-Examples_files/blank.html" style="width:0px;height:0px;border:0"></iframe>
+    <form action="https://arduino-info.wikispaces.com/page/edit/nRF24L01-Mirf-Examples" method="post" class="editorForm" id="editorForm"><input type="hidden" name="wikispacesFormToken" value="8e577ddd6a67de798a6eb2d8ab7ac22352518ddf"><div class="movkp"><input type="text" class="form-control" name="wikispaces_user_id" value="user-1433521194"></div><div class="movkp"><input type="text" class="form-control" name="goto" autocomplete="off"></div><div class="movkp"><input type="text" class="form-control" name="mode" autocomplete="off"></div><div class="wsh"><input type="text" class="form-control" name="version" autocomplete="off"></div><div class="movkp"><input type="text" class="form-control" name="pageComments" autocomplete="off"></div><div class="movkp"><input type="text" class="form-control" name="saveAndContinue" autocomplete="off"></div><div class="jowic"><input type="text" class="form-control" name="comment" autocomplete="off"></div><div class="wsh"><input type="text" class="form-control" name="commentsDisabled" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="contentPresent" autocomplete="off"></div><div class="jowic"><input type="text" class="form-control" name="editorCleanup" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="WikispacesEditorContent" autocomplete="off"></div><input type="hidden" name="wikispacesASFormToken" value="50b8479cd053d21888ca91e40a4b2ebb9ceeb8cd">
+    <input type="hidden" title="goto" name="aae2e1a90cec2d1d4cd70ded3d16231705a53a57" value="">
+    <input type="hidden" title="mode" name="2a0471d0ee26949e4ae71fc5498c90c8ed4317be" autocomplete="off" value="visual">
+    <input type="hidden" title="version" name="417b84e014ae196a3d384d76cddf630ed3b93e66" autocomplete="off" value="400015212">
+    <input type="hidden" title="pageComments" name="ab00b3a4ad1cf85df5e975a222cbb5c93cdce5e9" autocomplete="off" value="">
+    <input type="hidden" title="saveAndContinue" name="85002e92f64ed81fe134fa33775402dd6a6a7e68" value="0">
+    <input type="hidden" title="comment" name="891c7dd40a8c5cf3dce4fa2629d19f27d4f76499" value="">
+    <input type="hidden" title="commentsDisabled" name="d1e06e7694ebe364f0aafe14c994ede4ff225838" autocomplete="off" value="">
+    <input type="hidden" title="contentPresent" name="94f720c35a7bc658595fdac343b9b1c10f0bfe72" autocomplete="off" value="">
+    <input type="hidden" title="editorCleanup" name="d77ebda19331766231aed8df787f4340d3f5cc9f" autocomplete="off" value="">
+
+    <textarea id="wsMainEditor" title="content" class="noContentHide" name="625aaf927d0e1a5bcfcee885554f32a78a58257b" style="width: 100%; position: absolute; top: -50000px; left: -50000px;" autocomplete="off"></textarea>
+
+  <noscript>
+    &lt;h2&gt;Javascript Required&lt;/h2&gt;
+    &lt;p&gt;You need to enable Javascript in your browser to edit pages.&lt;/p&gt;
+  </noscript>
+
+  </form>
+  
+  
+  <div id="plainTextEditor" style="position:relative;display:none" class="editorLayer">
+    <textarea id="textEditor" class="autogrow" style="height: 444px; overflow: hidden;"></textarea>
+    <p style="clear:both;" align="right"><a href="https://help.wikispaces.com/help.wikitext" class="js-help-link" data-help="help.wikitext">help on how to format text</a></p>
+  </div>
+</div>
+
+
+
+
+  </div>
+  <div class="commentColumn WikispacesStream"><div class="WikispacesContent WikispacesBs3"><div class="commentList"></div></div></div>
+</div>
+
+  
+
+
+
+
+<script type="text/template" id="js-event-template">
+  <small>
+    <%- startDateShortFormat %>
+    <a href="<%- ws.common.pathFor('event', 'view', id) %>" class="WikispacesDialogLink">
+      <%- ws.common.truncate(title, 15) %>
+    </a>
+  </small>
+</script>
+
+<script type="text/template" id="js-reply-template">
+  <div class="tc-timeline-comment media">
+
+    <a class="pull-left userLink" href="<%- userCreated.url %>">
+      <img src="<%- userCreated.imageUrl %>" width="30" height="30" class="author-avatar" alt="" />
+    </a>
+    <div class="media-body" data-id="<%= id %>">
+      <% if (ws.context.user.canAdministerWiki) { %>
+        <i class="tc-delete-comment fa fa-trash-o contextual-command destroy-message ws-tip" title="Delete reply"></i>
+      <% } %>
+      <div class="tc-box-name-date">
+        <span class="tc-commenter"><a href="<%- userCreated.url %>"><%- userCreated.username %></a></span>
+        <% if (smartDate == '__live__') { %>
+        <abbr style="border-bottom-style: none;" class="timeago tc-comment-date" title="<%- (new Date(parseInt(dateCreated) * 1000)).toISOString() %>">
+          <%- (new Date(parseInt(dateCreated) * 1000)).toDateString() %>
+        </abbr>
+        <% } else { %>
+          <abbr style="border-bottom-style: none;" class="tc-comment-date"><%- smartDate %></abbr>
+        <% } %>
+      </div>
+      <% if (body) { %>
+      <p>
+        <%= body %>
+      </p>
+      <% } %>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="js-share-template">
+  <div class="tc-timeline-block tc-<%= ws.stream.typeToBlockType(sharedType) %>-block" <%= (ws.stream.hideTimeline ? 'style="padding-left: 0px;"' : '') %>>
+
+    <% if (!ws.stream.hideTimeline) { %>
+      <div class="tc-timeline-icon">
+        <i class="fa fa-<%= ws.stream.typeToIcon(sharedType) %>"></i>
+      </div>
+      <div class="tc-timeline-triangle-man"></div>
+    <% } %>
+
+    <div class="tc-timeline-box" data-id="<%= id %>">
+      <div class="media">
+        <a class="pull-left userLink" href="<%- userCreated.url %>">
+          <img src="<%- userCreated.imageUrl %>" width="48" height="48" class="author-avatar media-object" alt="" />
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <% if (ws.context.user.id) { %>
+              <li>
+                <a class="js-toggle-monitor" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-eye"></i>
+                  <span><%= monitored ? 'Start Monitoring' : 'Stop Monitoring' %></span>
+                </a>
+              </li>
+              <% } %>
+
+              <% if (ws.context.user.canAdministerWiki) { %>
+              <li>
+                <a class="js-toggle-lock" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-lock"></i>
+                  <span><%= locked ? 'Unlock Replies' : 'Lock Replies' %></span>
+                </a>
+              </li>
+              <% if (sharedType == 'discussion' || sharedType == 'comment' || sharedType == 'event') { %>
+              <li>
+                <a class="js-destroy-share" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-trash-o"></i>
+                  Delete <%= ws.stream.typeToName(sharedType) %>
+                </a>
+              </li>
+              <% } %>
+              <% } %>
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              <% if (typeof adminLink !== 'undefined' && adminLink && ws.context.user.canAdministerWiki) { %>
+                <a href="<%- adminLink %>"><%- title %></a>
+              <% } else { %>
+                <%- title %>
+              <% } %>
+              <% if (typeof startDate !== 'undefined' && startDate) { %> - <%= startDateShortFormat %> <%= ws.stream.getYearFromStartDate(startDate) %><% } %>
+              </h3>
+              <div class="tc-box-name-date">
+                <% if (ws.context.instance.isTesClassroom) { %>
+                  <%- userCreated.username %>
+                <% } else { %>
+                  <a class="author-name" href="<%- userCreated.url %>"><%- userCreated.username %></a>
+                <% } %>
+                <% if (typeof recipients !== 'undefined' && recipients) { %>
+                  <i class="fa fa-angle-right"></i>
+                  <% if (typeof recipientsLink !== 'undefined') { %>
+                    <a href="<%- recipientsLink %>"><%- recipients %></a>
+                  <% } else { %>
+                    <span class="recipients"><%- recipients %></span>
+                  <% } %>
+                <% } %>
+                <% if (smartDate == '__live__') { %>
+                  <abbr style="border-bottom-style: none;" class="timeago tc-block-date" title="<%= (new Date(parseInt(dateCreated) * 1000)).toISOString() %>">
+                    <%= (new Date(parseInt(dateCreated) * 1000)).toDateString() %>
+                  </abbr>
+                <% } else { %>
+                  <abbr style="border-bottom-style: none;" class="tc-block-date"><%- smartDate %></abbr>
+                <% } %>
+              </div>
+          </div>
+
+          <div class="<%= sharedType == 'comment' && !orphaned && !ws.stream.noCollapse ? 'hidden ' : '' %>tc-block-content">
+            <div class="clearfix">
+              <% if (typeof rangeActions !== 'undefined') { %>
+                <div class="tc-range-actions">
+                  <% for(var i = 0; i < rangeActions.length; i++) { %>
+                  <%= ws.stream.rangeActionTemplate(rangeActions[i]) %>
+                  <% } %>
+                </div>
+              <% } %>
+              <% if (description) { %>
+                <p><%= description %></p>
+              <% } %>
+            </div>
+          </div>
+
+          <% if (replyPages.length > 0 && !(replyPages.length === 1 && replyPages[0].digests.length === 0)) { %>
+            <div class="tc-timeline-comments">
+            <% for (var i = 0; i < replyPages.length; i++) { %>
+              <% if (i == 0 && replyPages[i].more) { %>
+                <a href="#" class="tc-show-more" onclick="ws.stream.pageReplies(<%= id %>, <%= replyPages[i].page + 1 %>); return false">Show more replies (<%= replyPages[i].more %> hidden) </a>
+              <% } else { %>
+                <div></div>
+              <% } %>
+              <% for (var j = 0; j < replyPages[i].digests.length; j++) { %>
+                <%= ws.stream.replyTemplate(replyPages[i].digests[j]) %>
+              <% } %>
+            <% } %>
+            </div>
+          <% } %>
+
+          <% if ((ws.stream.userCanPostMessage && !locked) || ws.context.user.canAdministerWiki) { %>
+          <div class="tc-add-comment media <%= ws.stream.noCollapse ? 'add-active' : ''%>">
+            <img src="<%- ws.context.user.imageUrlPrefix %>lg.jpg" width="30" height="30" class="pull-left author-avatar" alt="" />
+            <div class="media-body">
+              <textarea name="reply" placeholder="Comment" class="form-control form-control-tc ws-reveal <%= !ws.stream.noCollapse ? 'ws-unrevealed' : ''%> reply" /></textarea>
+              <button type="button" class="btn-tc btn-info-tc btn-sm-tc add-reply">Post</button>
+            </div>
+          </div>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="js-range-action-template">
+  <div>
+    <strong><%- name %></strong>
+    <% if (typeof(diffUrl) !== 'undefined') { %>
+      <a href="<%- diffUrl %>">
+    <% } %>
+    <%= new Date(dateCreated * 1000).toLocaleString() %>
+    <% if (typeof(diffUrl) !== 'undefined') { %>
+      </a>
+    <% } %>
+    <% if (typeof(rangeText) !== 'undefined') { %>
+      <div>
+        <span class="commentExtent">
+        <% if (typeof(diffUrl) !== 'undefined') { %>
+          <a href="<%- diffUrl %>">
+        <% } %>
+        <%= rangeText %>
+        <% if (typeof(diffUrl) !== 'undefined') { %>
+          </a>
+        <% } %>
+        </span>
+      </div>
+    <% } %>
+  </div>
+</script>
+
+<script type="text/template" id="js-stream-end-template">
+  <div class="tc-timeline-block tc-end-block">
+    <div class="tc-timeline-icon" style="margin-top: -10px;" />
+    <div class="tc-timeline-box" style="visibility: hidden;">
+      <p class="tc-box-title"></p>
+    </div>
+  </div>
+</script>
+
+<a name="discussion"></a>
+<div class="timeline WikispacesBs3 tc-timeline-embedded show-border">
+  <div class="timeline-line"></div>
+    <div id="js-share-list">
+    <div class="spinner hidden"><i class="fa fa-spinner fa-spin"></i></div>
+  </div>
+</div></div></div><div id="sentinel" style="clear:both"></div>        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<footer class="ws-theme-footer" role="contentinfo">
+  <div class="ws-theme-container">
+    <div class="ws-theme-footer-inner">
+      <div class="WikiFooterNav WikiElement">
+<a href="https://help.wikispaces.com/" rel="nofollow" class="js-help-trigger">Ayuda</a> ·
+<a href="https://www.wikispaces.com/about">Acerca de</a> ·
+<a href="http://blog.wikispaces.com/" target="_new">Blog</a> ·
+<a href="https://www.wikispaces.com/content/pricing" rel="nofollow">Precio</a> ·
+<a href="https://www.wikispaces.com/privacy" rel="nofollow">Privacidad</a> ·
+<a href="https://www.wikispaces.com/terms" rel="nofollow">Términos</a> ·
+<a href="https://www.wikispaces.com/site/help?url=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples" rel="nofollow"><strong>Apoyo</strong></a></div>      <div class="WikiLicense WikiElement">Contributions to https://arduino-info.wikispaces.com/ are licensed under a <a rel="license" href="http://www.creativecommons.org/licenses/by-nc/3.0">Creative Commons Attribution Non-Commercial 3.0 License</a>. <a rel="license" href="http://www.creativecommons.org/licenses/by-nc/3.0"><img src="./arduino-info - nRF24L01-Mirf-Examples_files/by-nc_3.0_80x15.png" width="85" height="15" alt="Creative Commons Attribution Non-Commercial 3.0 License"></a><br>Portions not contributed by visitors are Copyright 2015 Tangient LLC</div>    </div>
+  </div>
+</footer>
+
+
+<script type="text/template" id="dialog-template">
+<div class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title"><%= header %></h4>
+      </div>
+      <div class="modal-body">
+        <%= body %>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+
+<div id="js-help-template" class="hidden">
+  <div class="ws-help">
+    <div class="js-help-controls WikispacesContent WikispacesBs3">
+      <a href="https://www.wikispaces.com/site/gettingstarted/off" class="btn btn-default hidden js-getting-started-off pull-right">Turn off "Getting Started"</a>
+      <ol class="breadcrumb">
+        <li class="js-special-breadcrumb active">
+          <a href="https://help.wikispaces.com/" data-breadcrumb="0">Página de inicio</a>
+        </li>
+        <li class="js-ellipsis hidden js-special-breadcrumb">
+          ...
+        </li>
+        <li class="js-spinner hidden js-special-breadcrumb"><i class="fa fa-spinner fa-spin"></i></li>
+      </ol>
+    </div>
+    <div class="ws-help-content wiki">Cargando...</div>
+  </div>
+</div>
+</div>
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/95z4150v-common.min.js" type="text/javascript"></script>
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/vkz515xz-editorc.min.js" type="text/javascript"></script>
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/85k7018k-stream.min.js" type="text/javascript"></script>
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/91k8z207-contentbar.min.js" type="text/javascript"></script>
+<script src="./arduino-info - nRF24L01-Mirf-Examples_files/395j1vq7-component.stream-vo.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+ws.namespace('ws.attributes');
+ws.namespace('ws.stream');
+ws.attributes.DISCUSSION_COUNT = 0;
+ws.attributes.pageId = 66290020;
+ws.attributes.version = 400015212;
+ws.attributes.showEditor = true;
+ws.attributes.editUrl = "https:\/\/arduino-info.wikispaces.com\/page\/edit\/nRF24L01-Mirf-Examples?goto=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples";
+ws.attributes.userCanEdit = false;
+ws.stream.userCanPostMessage = false;
+ws.stream.hideTimeline = true;
+ws.stream.shareSource = "https:\/\/arduino-info.wikispaces.com\/page\/shares\/nRF24L01-Mirf-Examples";
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+jQuery(document).ready(function() {
+  ws.common.addJsonNotices({"warning":[],"error":[],"info":[],"success":[]});
+});
+
+jQuery(document).ready(function($) {
+  
+  function tipPlacement() {
+    return this.$element.closest('.ws-menu-bar .btn-group').is('.open') ? 'top' : 'bottom';
+  }
+
+  
+
+  $('.ws-menu-bar').each(function() {
+    var $menuBar = $(this);
+    var $tagDropdown = $menuBar.find('.ws-tag-dropdown-menu');
+    $menuBar.find('.tipme').tooltip({placement: tipPlacement, container: '.ws-menu-bar'});
+
+    
+    $menuBar.find('.ws-btn-more').click(ws.common.makeLinkClickFunction(function(e) {
+      if ($(this).closest('.ws-menu-bar .btn-group').is('.open')) {
+        ws.common.hideMorePageBar();
+      } else {
+        ws.common.showMorePageBar();
+      }
+    }));
+
+    $menuBar.on('click', '.ws-tag-dropdown-toggle', ws.common.makeLinkClickFunction(function(e) {
+      if ($(this).closest('.ws-menu-bar .dropdown').is('.open')) {
+        ws.common.hideTagDropdown();
+      } else {
+        ws.common.showTagDropdown();
+      }
+    }));
+
+    $(document.body).click(function(e) {
+      var $target = $(e.target);
+      if (!$target.closest('.ws-more-menu').closest('.ws-menu-bar').is($menuBar)
+          || $target.closest('a').is('.WikispacesDialogLink')) {
+        ws.common.hideMorePageBar();
+      }
+      if ($tagDropdown.length && !$target.closest('.ws-tag-dropdown-menu').is($tagDropdown)) {
+        ws.common.hideTagDropdown();
+      }
+    });
+    
+  });
+});
+
+
+jQuery(document).ready(function($) {
+  $('.ws-more-menu').on('click', 'a', function(e) {
+    if ($(this).is('.disabled')) {
+      e.preventDefault();
+    }
+  });
+});
+
+
+jQuery(document).ready(function() {
+  ws.editor.canEdit = false;
+  var editUrl = 'https://arduino-info.wikispaces.com/page/edit/nRF24L01-Mirf-Examples?goto=https%3A%2F%2Farduino-info.wikispaces.com%2FnRF24L01-Mirf-Examples';
+
+  jQuery('#js-edit-from-template').change(function() {
+    window.location = ws.common.addUriParams(editUrl, [['template', jQuery(this).val()]]);
+  });
+});
+
+
+jQuery(document).ready(function() {
+  ws.editor.loadEditorLibs('https://www.wikispaces.com/site/editorlibs/es_ES/07z93j80.gz.js');
+});
+
+
+ws.editor.startEditor = function (moreCoreOptions, moreMainOptions) {
+  ws.editor.canEdit = true;
+
+  var coreOptions = {
+    'content_css': ['https://arduino-info.wikispaces.com/stylesheet/editor/221909772-217420326D.gz.css']
+  };
+
+  // The stylesheet is passed in as a string, turn it into an array
+  // Add bootstrap styles to the editor, if we are in a theme that has full screen bootstrap
+  if (jQuery('body').is('.WikispacesBs3')) {
+    coreOptions.content_css.push('https://www.wikispaces.com//s/internal-bootstrap-body.css');
+  }
+
+  var mainOptions = {
+    'wssave_cancel_url': '/nRF24L01-Mirf-Examples',
+    'wsimage_upload_url': 'https://arduino-info.wikispaces.com/file/multiupload',
+    'wsimage_max_file_size_mb': '50',
+    'wsimage_page_view_group': ''
+  };
+
+  ws.editor.loadEditor(jQuery.extend(coreOptions, moreCoreOptions), jQuery.extend(mainOptions, moreMainOptions));
+};
+
+  var wikispaces_page_version = '400015212';
+
+  jQuery(document).ready(function() {
+    ws.editor.enableButtons();
+  });
+
+
+
+--></script><!-- w16 120 mem:3:29(33) wki:2:3(2) tot:120:120(1) -->
+
+
+<div class="autogrow-shadow" style="position: absolute; top: -10000px; left: -10000px; font-size: 14px; font-family: arial, helvetica, sans-serif; font-weight: 400; line-height: 20px; resize: none; width: 96px;"></div></body></html>

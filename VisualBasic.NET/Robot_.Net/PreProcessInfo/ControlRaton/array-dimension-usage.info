@@ -1,0 +1,1 @@
+[segment [list* "Proyecto1.frmControlRaton.RecuperarCampos.asCampos" [segment [:dimlist 1] [:dimlist [:dimrange 0 2] 1] [:dimlist [:undetrange] 1]]] [list* "Proyecto1.frmControlRaton.cmdConectar_Click.aCampos" [segment [:dimlist 1] [:dimlist [:dimrange 0 2] 1] [:dimlist [:undetrange] 1]]]]

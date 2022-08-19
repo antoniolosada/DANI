@@ -1,0 +1,181 @@
+﻿<html>
+	<head>
+		<META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="_UpgradeReport_Files\UpgradeReport.css">
+		<title>Robot.vbp Upgrade Report</title>
+		
+		<script language="javascript">
+			function outliner () {
+				oMe = window.event.srcElement
+				//get child element
+				var child = document.all[event.srcElement.getAttribute("child",false)];
+				//if child element exists, expand or collapse it.
+				if (null != child)
+					child.className = child.className == "collapsed" ? "expanded" : "collapsed";
+			}
+		
+			function changepic() {
+				uMe = window.event.srcElement;
+				var check = uMe.src.toLowerCase();
+				if (check.lastIndexOf("upgradereport_plus.gif") != -1)
+				{
+					uMe.src = "_UpgradeReport_Files/UpgradeReport_Minus.gif"
+				}
+				else
+				{
+					uMe.src = "_UpgradeReport_Files/UpgradeReport_Plus.gif"
+				}
+			}
+		</script>
+		
+	</head>
+	<body topmargin="0" leftmargin="0" rightmargin="0" onclick="outliner();">
+		<h1>Upgrade Report for Robot.vbp</h1>
+		
+		<p><span class="note">
+		<b>Time of Upgrade:  </b>18/03/2015 19:22<br>
+		</span></p>
+		
+		<h2>List of Project Files</h2>
+		<table cellpadding="2" cellspacing="0" width="98%" border="1"bordercolor="white" class="infotable">
+			<tr>
+				<td nowrap class="header">New Filename</td>
+				<td nowrap class="header">Original Filename</td>
+				<td nowrap class="header">File Type</td>
+				<td nowrap class="header">Status</td>
+				<td nowrap class="header">Errors</td>
+				<td nowrap class="header">Warnings</td>
+				<td nowrap class="header">Total Issues</td>
+			</tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Minus.gif" width="9" child="issue0">&nbsp;(Global Issues)</td>
+			<td class="content"></td>
+			<td class="content"></td>
+			<td class="content">
+		</td>	<td class="content">0</td>
+			<td class="content">7</td>
+			<td class="content">7</td>
+		</tr>
+			<tr id="issue0" bgcolor="#ffffff"><td colspan="8">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="8" class="issuetitle">Global update issues:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td><td class="issuehdr">Qty</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Global Warning</td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi1038.aspx'>Default Properties (Late Binding) will be resolved using a Helper.</a></td><td class="issuecontent">7</td></tr>
+				</table>
+			</td></tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="issue1">&nbsp;Control.vb</td>
+			<td class="content">Control.frm</td>
+			<td class="content">Form</td>
+			<td class="content">
+		Upgraded with issues</td>	<td class="content">53</td>
+			<td class="content">17</td>
+			<td class="content">70</td>
+		</tr>
+			<tr class="collapsed" id="issue1" bgcolor="#ffffff"><td colspan="8">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="8" class="issuetitle">Upgrade Issues for Control.frm:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td><td class="issuehdr">Qty</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Compile Error</td><td class="issuecontent">cmdGrabar_Click</td><td class="issuecontent">MSComDlg.CommonDialog</td><td class="issuecontent">CD</td><td class="issuecontent">CancelError</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>MSComDlg.CommonDialog property CD.CancelError was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">2</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_0</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_0.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">3</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_1</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_1.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">4</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_10</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_10.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">5</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_11</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_11.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">6</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_12</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_12.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">7</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_13</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_13.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">8</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_14</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_14.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">9</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_15</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_15.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">10</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_16</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_16.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">11</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_17</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_17.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">12</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_18</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_18.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">13</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_19</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_19.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">14</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_2</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_2.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">15</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_20</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_20.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">16</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_21</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_21.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">17</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_22</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_22.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">18</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_3</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_3.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">19</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_4</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_4.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">20</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_5</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_5.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">21</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_6</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_6.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">22</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_7</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_7.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">23</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_8</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_8.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">24</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMax_9</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMax_9.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">25</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_0</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_0.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">26</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_1</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_1.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">27</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_10</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_10.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">28</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_11</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_11.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">29</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_12</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_12.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">30</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_13</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_13.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">31</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_14</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_14.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">32</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_15</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_15.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">33</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_16</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_16.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">34</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_17</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_17.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">35</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_18</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_18.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">36</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_19</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_19.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">37</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_2</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_2.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">38</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_20</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_20.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">39</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_21</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_21.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">40</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_22</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_22.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">41</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_3</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_3.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">42</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_4</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_4.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">43</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_5</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_5.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">44</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_6</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_6.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">45</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_7</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_7.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">46</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_8</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_8.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">47</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">TextBox</td><td class="issuecontent">_tbMin_9</td><td class="issuecontent"></td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>TextBox property _tbMin_9.DataSource was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">48</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">Variant</td><td class="issuecontent">_HiddenModule</td><td class="issuecontent">array</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2081.aspx'>Array has a new behavior.</a></td><td class="issuecontent">6</td></tr>
+					<tr><td width="10" class="issuecontent">49</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">barServo_Change</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Change</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2065.aspx'>HScrollBar event barServo.Change has a new behavior.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">50</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">barServo_Change</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( Index ).</a></td><td class="issuecontent">3</td></tr>
+					<tr><td width="10" class="issuecontent">51</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">barServo_Scroll</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( Index ).</a></td><td class="issuecontent">2</td></tr>
+					<tr><td width="10" class="issuecontent">52</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">cmdMax_Click</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( giServo ).</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">53</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">cmdMin_Click</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( giServo ).</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">54</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">EnviarCambio</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( aSinc().aServo().Numero ).</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">55</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">EnviarPosicion</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( i ).</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">56</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">Form_Load</td><td class="issuecontent">Form</td><td class="issuecontent"></td><td class="issuecontent">Load</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2080.aspx'>Form_Load event was upgraded to Form_Load method and has a new behavior.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">57</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">GrabarPosicion</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( i ).</a></td><td class="issuecontent">4</td></tr>
+					<tr><td width="10" class="issuecontent">58</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">lstMov_Click</td><td class="issuecontent">Clipboard</td><td class="issuecontent">Clipboard</td><td class="issuecontent">SetText</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2081.aspx'>Clipboard.SetText has a new behavior.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">59</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">tbValServo_LostFocus</td><td class="issuecontent">HScrollBar</td><td class="issuecontent">barServo</td><td class="issuecontent">Value</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2009.aspx'>Can't resolve the name of control barServo( Index ).</a></td><td class="issuecontent">1</td></tr>
+				</table>
+			</td></tr>
+		<tr class="row">
+			<td class="content"><IMG alt="expand/collapse section" class="expandable" height="11"onclick=changepic() src="_UpgradeReport_Files/UpgradeReport_Plus.gif" width="9" child="issue2">&nbsp;frmArduino.vb</td>
+			<td class="content">frmArduino.frm</td>
+			<td class="content">Form</td>
+			<td class="content">
+		Upgraded with issues</td>	<td class="content">1</td>
+			<td class="content">1</td>
+			<td class="content">2</td>
+		</tr>
+			<tr class="collapsed" id="issue2" bgcolor="#ffffff"><td colspan="8">
+				<table width="97%" border="1" bordercolor="#dcdcdc" rules="cols" class="issuetable">
+				<tr><td colspan="8" class="issuetitle">Upgrade Issues for frmArduino.frm:</td></tr><tr><td width="10" class="issuehdr">#</td><td class="issuehdr" nowrap>Severity</td><td class="issuehdr">Location</td><td class="issuehdr">Object Type</td><td class="issuehdr">Object Name</td><td class="issuehdr">Property</td><td class="issuehdr">Description</td><td class="issuehdr">Qty</td></tr>
+					<tr><td width="10" class="issuecontent">1</td><td class="issuecontent" nowrap>Design Error</td><td class="issuecontent">(Layout)</td><td class="issuecontent">Form</td><td class="issuecontent">frmArduino</td><td class="issuecontent">ClipControls</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2064.aspx'>Form property frmArduino.ClipControls was not upgraded.</a></td><td class="issuecontent">1</td></tr>
+					<tr><td width="10" class="issuecontent">2</td><td class="issuecontent" nowrap>Runtime Warning</td><td class="issuecontent">Form_Load</td><td class="issuecontent">Form</td><td class="issuecontent"></td><td class="issuecontent">Load</td><td class="issuecontent"><a href='http://www.vbtonet.com/ewis/ewi2080.aspx'>Form_Load event was upgraded to Form_Load method and has a new behavior.</a></td><td class="issuecontent">1</td></tr>
+				</table>
+			</td></tr>
+		<tr valign="top">
+			<td class="foot">2 File(s)</td>
+			<td class="foot">&nbsp;</td>
+			<td class="foot">Forms: 2</td>
+			<td class="foot">
+		Upgraded: 2<BR>
+		Not upgraded: 0
+		</td>
+			<td class="foot">54</td>
+			<td class="foot">25</td>
+			<td class="foot">79</td>
+		</tr>
+		</table>
+		<p class="help">
+		</p>
+				<p>
+					<table class = "note">
+						<tr><td nowrap><b>Upgrade Settings</b></td></tr>
+						<tr><td nowrap><b>Log File:</b> Robot.log</td></tr>
+						<tr><td nowrap><b>Migrate Project To:</b> WinExe</td></tr>
+						<tr><td nowrap><b>Output Directory:</b> C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\Upgraded\</td></tr>
+						<tr><td nowrap><b>Output Name:</b> Robot.vbproj</td></tr>
+						<tr><td nowrap><b>Project Name:</b> Robot</td></tr>
+						<tr><td nowrap><b>Project Path:</b> C:\Users\antonio\Dropbox\TONI\PROY\Robot\Robot.vbp</td></tr>
+					</table>
+				</p>
+	</body>
+</html>

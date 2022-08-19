@@ -1,0 +1,12 @@
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\bin\Release\SimpleService.dll
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\bin\Release\SimpleService.SimpleService.apk
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\bin\Release\SimpleService.SimpleService-Signed.apk
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\SimpleService.dll
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\android\bin\SimpleService.SimpleService.apk
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\res\layout\main.xml
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\res\values\strings.xml
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\res\drawable\icon.png
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\R.cs.flag
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\uploadflags.txt
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\obj\Release\SimpleService.dll.mdb
+F:\GOOGLEDRIVE\TONI\PROY\DANI\Xamarin\SimpleService\bin\Release\SimpleService.dll.mdb

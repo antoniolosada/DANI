@@ -1,0 +1,2269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="search" href="http://arduino-info.wikispaces.com/space/opensearch" type="application/opensearchdescription+xml" title="Búsqueda de Wikispaces (arduino-info Wiki)">
+<link rel="alternate" type="application/x-wiki" title="Edit This Page" href="http://arduino-info.wikispaces.com/page/edit/Nrf24L01-2.4GHz-HowTo">
+<link rel="alternate" title="arduino-info - All Changes" href="http://arduino-info.wikispaces.com/wiki/xmla?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="arduino-info : Nrf24L01-2.4GHz-HowTo - Discussion" href="http://arduino-info.wikispaces.com/message/xml/Nrf24L01-2.4GHz-HowTo?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="arduino-info : Nrf24L01-2.4GHz-HowTo - Edits" href="http://arduino-info.wikispaces.com/page/xml/Nrf24L01-2.4GHz-HowTo?v=rss_2_0" type="application/rss+xml">
+<link rel="microsummary" href="http://arduino-info.wikispaces.com/page/microsummary/Nrf24L01-2.4GHz-HowTo/edits">
+<link rel="microsummary" href="http://arduino-info.wikispaces.com/page/microsummary/Nrf24L01-2.4GHz-HowTo/messages">
+<script type="text/javascript" async="" src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/ga.js"></script><script type="text/javascript">
+  
+if (typeof ws === 'undefined') ws = {};
+ws.context = {
+  instance: {
+    id: '1',
+    url: 'wikispaces.com',
+    isMain: true,
+    supportsGoogleDocs: false,
+    isTesClassroom: false,
+  },
+  user: {
+    id: '',
+    username: '',
+    status: '',
+    locale: 'es_ES',
+    imageUrlPrefix: 'http://c1.wikicdn.com/i/user_none_',
+    isTeacher: false,
+    canAdministerWiki: false,
+  },
+  wiki: {
+    id: '6378028',
+    name: 'arduino-info',
+    text: 'arduino-info',
+    module: 'B',
+    isClassroom: false,
+    isTesClassroom: false
+    ,defaultSpaceId: 6378028
+    ,isWwwWiki: false
+  },
+  project: {
+    id: '6378028',
+    name: ''
+  },
+  space: {
+    id: '6378028',
+    name: 'arduino-info',
+    isDefaultSpace: true,
+    isDefaultTemplate: false
+  },
+
+  environment_name: 'prod',
+
+  path: {
+    object: 'page',
+    method: 'view',
+    page: 'Nrf24L01-2.4GHz-HowTo',
+    id: ''
+  },
+
+  settings: {
+    main_domain: 'wikispaces.com',
+    session_url: 'https://session.wikispaces.com/1/',
+    asset_url_prefix: 'http://c1.wikicdn.com',
+    beta_features: false,
+    isMobileSite: false,
+    isUploadCapable: true,
+    can_discuss: false,
+    has_gdocs: false,
+    isDialog: false,
+    pwin: ''
+  },
+  clockSkewMillis: 1433521699051 - ((window.performance && window.performance.timing.responseStart > 0) ? window.performance.timing.responseStart : (new Date()).getTime())
+}
+
+
+// legacy javascript API variables, use the above instead
+var wikispaces_isUserLoggedIn = !!ws.context.user.id;
+var wikispaces_isMain = ws.context.instance.isMain;
+var wikispaces_username = ws.context.user.username;
+var wikispaces_spaceName = ws.context.space.name;
+var wikispaces_projectName = ws.context.project.name;
+var wikispaces_wikiName = ws.context.wiki.name;
+var wikispaces_wikiText = ws.context.wiki.text;
+var wikispaces_isDefaultSpace = ws.context.space.isDefaultSpace;
+var wikispaces_method = ws.context.path.method;
+var wikispaces_object = ws.context.path.object;
+var wikispaces_page = ws.context.path.page;
+var wikispaces_id = ws.context.path.id;
+var wikispaces_domain = ws.context.instance.url;
+var wikispaces_isUserOrganizer = false;
+var wikispaces_main_domain = ws.context.settings.asset_url_prefix;
+var wikispaces_asset_url_prefix = ws.context.settings.asset_url_prefix;
+var wikispaces_beta_features = ws.context.settings.beta_features;
+var wikispaces_isMobileSite = ws.context.settings.isMobileSite;
+var wikispaces_isUploadCapable = ws.context.settings.isUploadCapable;
+var wikispaces_can_discuss = ws.context.settings.can_discuss;
+var wikispaces_has_gdocs = ws.context.settings.has_gdocs;
+
+</script><title>arduino-info - Nrf24L01-2.4GHz-HowTo</title>
+<meta charset="utf-8">
+<link rel="apple-touch-icon" sizes="144x144" href="http://c1.wikicdn.com/_/z6371z4x/i/logo-144.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://c1.wikicdn.com/_/j5j77xz3/i/logo-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://c1.wikicdn.com/_/vq8j5432/i/logo-72.png">
+<link rel="apple-touch-icon" href="http://c1.wikicdn.com/_/38515190/i/logo-57.png">
+<link rel="shortcut icon" href="http://c1.wikicdn.com/_/55v9k02z/i/logo-16.png">
+<style type="text/css">
+/* Standard theme styles */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+.ws-theme-header-inner,
+.ws-theme-body-inner,
+.ws-theme-footer-inner,
+.ws-theme-content-inner,
+.ws-theme-sidebar-inner {
+  position: relative;
+}
+.ws-theme-header-inner:after,
+.ws-theme-body-inner:after,
+.ws-theme-footer-inner:after,
+.ws-theme-content-inner:after,
+.ws-theme-sidebar-inner:after,
+.ws-theme-menu-inner:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+.ws-theme-content, .ws-theme-sidebar {
+  overflow-x: auto;
+}
+.ws-theme-footer {
+  text-align: right;
+}
+.ws-theme-footer a, .ws-theme-footer a:hover {
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  .ws-theme-container {
+    width: 750px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .ws-theme-content {
+    width: 550px;
+    min-height: 384px;
+    float: right;
+  }
+  .ws-theme-sidebar {
+    width: 200px;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .ws-theme-container {
+    width: 970px;
+  }
+  .ws-theme-content {
+    width: 770px;
+    min-height: 496px;
+  }
+}
+@media (min-width: 1200px) {
+  .ws-theme-container {
+    width: 1170px;
+  }
+  .ws-theme-content {
+    width: 970px;
+    min-height: 600px;
+  }
+}
+/* End standard theme styles */
+</style>
+<style type="text/css">
+/* Theme-specific styles */
+body {
+  background: #DDA;
+}
+
+.ws-theme-container {
+  margin: 0 5px;
+}
+
+.ws-theme-header .WikiSearch .WikiSearchInput,
+.ws-theme-sidebar .WikiSearch .WikiSearchInput,
+.ws-theme-footer .WikiSearch .WikiSearchInput {
+  width: 100%;
+}
+
+.ws-theme-header a,
+.ws-theme-header a:hover,
+.ws-theme-sidebar a,
+.ws-theme-footer a {
+  text-decoration: none;
+}
+.ws-theme-header a,
+.ws-theme-header a:hover,
+.ws-theme-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+.ws-theme-header .ws-theme-menu a:hover,
+.ws-theme-sidebar a:hover,
+.ws-theme-footer a:hover {
+  text-decoration: underline;
+}
+.ws-theme-header img,
+.ws-theme-sidebar img,
+.ws-theme-footer img {
+  border: none;
+}
+
+.ws-theme-header,
+.ws-theme-footer {
+  color: #444444;
+}
+
+.ws-theme-header,
+.ws-theme-sidebar {
+  display: none;
+}
+
+.ws-theme-content,
+.ws-theme-sidebar {
+  overflow-x: visible;
+}
+.ws-theme-content-inner,
+.ws-theme-sidebar-inner {
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.ws-theme-body {
+  padding-top: 15px;
+}
+
+.ws-theme-content-inner {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: #FFF;
+}
+
+.ws-theme-footer {
+  text-align: center;
+}
+.ws-theme-footer-inner {
+  padding: 15px;
+}
+.ws-theme-footer .WikiLicense img {
+  vertical-align: text-bottom;
+}
+
+@media (min-width: 768px) {
+  body {
+    background: url(http://c1.wikicdn.com/_/2537888v/i/theme_wood.jpg);
+  }
+
+  .ws-theme-container {
+    width: auto;
+  }
+
+  .ws-theme-header,
+  .ws-theme-sidebar {
+    display: block;
+  }
+
+  .ws-theme-header .ws-theme-menu {
+    background: #80A7D9 url(http://c1.wikicdn.com/_/4qkjx897/i/theme_header_overlay.png) repeat-x;
+    border-bottom: 1px solid #BBB;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+  }
+  .ws-theme-header .ws-theme-menu-inner {
+    padding: 10px 0;
+  }
+  .ws-theme-header .WikiActions {
+    margin: 0 0 0 12px;
+    padding: 0;
+  }
+  .ws-theme-header .WikiActions li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 15px;
+    white-space: nowrap;
+  }
+  .ws-theme-header .WikiActions div {
+    display: inline-block;
+  }
+  .ws-theme-header .WikiActionSupplemental {
+    margin-left: 4px;
+  }
+  .ws-theme-header-inner {
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+    font-size: 1.5em !important;
+    font-weight: normal !important;
+  }
+  .ws-theme-header-inner a {
+    font-size: inherit !important;
+  }
+
+  .ws-theme-content {
+    width: auto;
+    margin-right: 200px;
+    padding-right: 5px;
+    padding-left: 73px;
+    float: none;
+  }
+  .ws-theme-content-inner {
+    float: left;
+    width: 100%;
+  }
+  .ws-theme-content-inner:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -73px;
+    width: 73px;
+    background: url(http://c1.wikicdn.com/_/q85x653j/i/theme_spiral.png) repeat-y 0 -6px;
+  }
+
+  .ws-theme-sidebar {
+    float: right;
+  }
+  .ws-theme-sidebar a {
+    color: #0000FF;
+  }
+  .ws-theme-sidebar-inner {
+    padding: 10px;
+    background-color: #EDEDE6;
+    border: 1px solid #BFBA96;
+  }
+  .ws-theme-sidebar .WikiCustomNav ol {
+    padding-left: 16px;
+  }
+  .ws-theme-sidebar .WikiCustomNav ol.includePageList {
+    padding-left: 0;
+  }
+  .ws-theme-sidebar .WikispacesNavbar {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+  .ws-theme-sidebar .ws-theme-nav-edit {
+    color: #666;
+    text-align: center;
+  }
+  .ws-theme-sidebar .ws-theme-nav-edit a {
+    color: inherit;
+  }
+}
+/* End theme-specific styles */
+</style>
+<link rel="stylesheet" href="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/221909772-217420326D.gz.css" type="text/css">
+<link rel="stylesheet" href="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/9q897620-internal-bootstrap.css" type="text/css">
+<link rel="stylesheet" href="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/vz033906-internal.css" type="text/css">
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/j91xzz3x-top.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+
+  var wsGoogleAccount = 'UA-80504-1';
+  _gaq.push(['_setAccount', wsGoogleAccount]);
+  _gaq.push(['_gat._anonymizeIp']);
+  _gaq.push(['_setDomainName', 'wikispaces.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_setCustomVar', 2, 'Authenticated', 'Guest', 2]);
+  _gaq.push(['_trackPageview']);
+</script><style type="text/css" id="js-fixed-header-a-style">.wiki a[name]:before { content: "\00A0"; display: inline-block; visibility: hidden; width: 0; padding-top: 28px; margin-top: -28px; }</style><script type="text/javascript" src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/07z93j80.gz.js"></script></head>
+<body><a href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#WikiContent" class="hidden sr-only sr-only-focusable">Skip to main content</a><div id="js-fixed-header-holder" class="fixed"><div class="WikispacesContent WikispacesBs3" role="banner">
+      <div id="WikispacesBanner" class="BannerDisplayed" style="">You are not a member of this wiki. <a href="http://arduino-info.wikispaces.com/space/join"> Join now</a>
+<script type="text/javascript">
+function dismissJoinWiki() {
+  ws.common.displayBanner(false);
+  jQuery.post("http://arduino-info.wikispaces.com/wiki/dismissjoin");
+}
+</script> &nbsp;<a href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#" onclick="dismissJoinWiki(); return false;">Dismiss</a></div>
+    <div class="ws-main-top-nav visible-xs">
+    <div class="navbar navbar-static-top" style="margin-bottom: 0;">
+      <div class="container">
+                <div class="navbar-header">
+          <div class="visible-xs pull-left">
+            <a href="http://arduino-info.wikispaces.com/space/menu" class="WikispacesDialogLink btn navbar-btn">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+          <div class="visible-xs pull-right js-globalnav-popover-container">
+                        <a href="http://www.wikispaces.com/site/signin?goto=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo" class="btn navbar-btn ws-mobile-guest-username js-globalnav-popover-trigger" data-original-title="" title="">
+              guest
+            </a>
+                        <div class="hidden js-globalnav-popover-content">
+              <div class="WikispacesContent WikispacesBs3">
+                <div class="WikiInternalHeaderNav noHide">
+  <div class="WikiInternalHeaderNavMenu">
+                          
+                  <span class="WikiInternalHeaderNavMenuArea"><a href="http://www.wikispaces.com/user/join?goto=http%3A%2F%2Farduino-info.wikispaces.com%2Fspace%2Fjoin" rel="nofollow" class="WikispacesXDomainDialogLink">Únete</a></span>
+
+          <span class="divider">|</span>
+        
+        <span class="WikiInternalHeaderNavMenuArea"><a class="js-help-trigger" rel="nofollow" href="http://help.wikispaces.com/">Ayuda</a></span>
+
+        <span class="divider">|</span>
+      
+      <span class="WikiInternalHeaderNavMenuArea"><a href="http://www.wikispaces.com/site/signin?goto=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo" rel="nofollow" class="WikispacesXDomainDialogLink">Iniciar Sesión</a></span>
+      </div>
+<div id="NoticeTool" class="headerPanel hidden" style="display: none;"><div id="NoticeToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last text-center"><a href="http://www.wikispaces.com/mail/list/?folder=Inbox">View All Messages</a></li></ol></div></div><div id="WikiTool" class="headerPanel hidden" style="display: none;"><div id="WikiToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"></ol></div></div><div id="HelpTool" class="headerPanel hidden" style="display: none;"><div id="HelpToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last divider hidden"></li><li><a class="js-help-trigger" rel="nofollow" href="http://help.wikispaces.com/">Help Wiki</a></li></ol></div></div></div>              </div>
+            </div>
+          </div>
+          <div class="ws-navbar-middle-xs">
+            <div class="navbar-brand" role="navigation">
+              <a href="http://www.wikispaces.com/" class="ws-logo"></a>
+              <i class="fa fa-angle-right"></i>
+              <a href="http://arduino-info.wikispaces.com/">arduino-info</a>
+                              <i class="fa fa-angle-right"></i> <a href="http://arduino-info.wikispaces.com/home">Página de inicio</a>
+              
+            </div>
+          </div>
+                    <form action="http://arduino-info.wikispaces.com/search/view" method="post" class="navbar-form ws-include-xs pull-left ws-navbar-search hidden-xs" role="search"><input type="hidden" name="wikispacesFormToken" value="e690c0ac6355198fe0139dd27c8143f861f4237f"><input type="text" class="form-control search-query" name="q" value="" placeholder="Búsqueda"> </form>
+                  </div>
+      </div>
+    </div>
+  </div>
+      <div class="hidden-xs"><div class="WikiInternalHeaderNav WikiElement floating" style="right: -199px;">
+  <div class="WikiInternalHeaderNavMenu">
+                                    <span class="WikiInternalHeaderNavMenuArea guestUserName">guest</span><span class="slideMarker divider">|</span>
+        
+                  <span class="WikiInternalHeaderNavMenuArea"><a href="http://www.wikispaces.com/user/join?goto=http%3A%2F%2Farduino-info.wikispaces.com%2Fspace%2Fjoin" rel="nofollow" class="WikispacesXDomainDialogLink">Únete</a></span>
+
+          <span class="divider">|</span>
+        
+        <span class="WikiInternalHeaderNavMenuArea"><a class="js-help-trigger" rel="nofollow" href="http://help.wikispaces.com/">Ayuda</a></span>
+
+        <span class="divider">|</span>
+      
+      <span class="WikiInternalHeaderNavMenuArea"><a href="http://www.wikispaces.com/site/signin?goto=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo" rel="nofollow" class="WikispacesXDomainDialogLink">Iniciar Sesión</a></span>
+      </div>
+<div id="NoticeTool" class="headerPanel hidden" style="display: none;"><div id="NoticeToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last text-center"><a href="http://www.wikispaces.com/mail/list/?folder=Inbox">View All Messages</a></li></ol></div></div><div id="WikiTool" class="headerPanel hidden" style="display: none;"><div id="WikiToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"></ol></div></div><div id="HelpTool" class="headerPanel hidden" style="display: none;"><div id="HelpToolList"><ol class="dropdown-menu dropdown-menu-right" style="display: block;"><li class="js-last divider hidden"></li><li><a class="js-help-trigger" rel="nofollow" href="http://help.wikispaces.com/">Help Wiki</a></li></ol></div></div></div></div>
+  </div></div><div id="js-fixed-header-offset" style="margin-top: 28px;">
+<header class="ws-theme-header" role="banner">
+  <nav class="ws-theme-menu" role="navigation">
+    <div class="ws-theme-container">
+      <div class="ws-theme-menu-inner">
+        <ul class="WikiActions WikiElement WikiControls">
+    <li id="WikiActionHome"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="http://arduino-info.wikispaces.com/"><i class="fa fa-home fa-fw"></i></a><a href="http://arduino-info.wikispaces.com/">Inicio del wiki</a></div></li>
+    <li id="WikiActionChanges"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="http://arduino-info.wikispaces.com/wiki/changes"><i class="fa fa-clock-o fa-fw"></i></a><a href="http://arduino-info.wikispaces.com/wiki/changes">Cambios Recientes</a></div></li>
+    <li id="WikiActionPagesAndFiles"><div><span class="WikiActionSupplemental" style="float: right;"></span><a href="http://arduino-info.wikispaces.com/space/content"><i class="fa fa-file-text-o fa-fw"></i></a><a href="http://arduino-info.wikispaces.com/space/content">Pages and Files</a></div></li>
+    <li id="WikiActionMembers"><div class="js-member-link"><span class="WikiActionSupplemental" style="float: right;"></span><a href="http://arduino-info.wikispaces.com/wiki/members"><i class="fa fa-user fa-fw"></i></a><a href="http://arduino-info.wikispaces.com/wiki/members">Miembros</a></div></li>
+</ul>
+      </div>
+    </div>
+  </nav>
+  <div class="ws-theme-container">
+    <div class="ws-theme-header-inner">
+      <a href="http://arduino-info.wikispaces.com/" class="WikiLogo WikiElement"><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/logo.jpg" alt="arduino-info"></a>    </div>
+  </div>
+</header>
+
+<div class="ws-theme-body">
+  <div class="ws-theme-container">
+    <div class="ws-theme-body-inner">
+      <nav class="ws-theme-sidebar" role="navigation">
+        <div class="ws-theme-sidebar-inner">
+          <div class="ws-theme-menu">
+            <div class="ws-theme-menu-inner">
+              <form action="http://arduino-info.wikispaces.com/search/view" method="post" class="WikiSearch WikiElement" role="search"><input type="text" class="form-control WikiSearchInput" name="q" value="" placeholder="Búsqueda"> </form>              <div class="WikiCustomNav WikiElement wiki"><h2><a class="wiki_link" href="http://arduino-info.wikispaces.com/HOME">HOME</a></h2>
+ <h2><a class="wiki_link" href="http://arduino-info.wikispaces.com/About-Contact">ABOUT US!</a></h2>
+ <h3><span style="color: #ff0037;"><a class="wiki_link_ext" href="http://yourduino.com/sunshop2/" rel="nofollow">YourDuinoShop</a></span></h3>
+ <h3><span style="color: #ff0000;"><a class="wiki_link" href="http://arduino-info.wikispaces.com/Newsletters">NEWSLETTERS</a></span></h3>
+ <h2><a class="wiki_link_ext" href="http://arduinoinfo.info/blog/" rel="nofollow">BLOG</a></h2>
+ <h2><a class="wiki_link" href="http://arduino-info.wikispaces.com/WikiFolk">THIS WIKI:</a></h2>
+ <hr>
+<hr>
+<span style="font-size: 26px; line-height: 30px;"><strong><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-What-IS-it">WHAT IS Arduino?</a></strong></span><br>
+<hr>
+<span style="font-size: 26px; line-height: 30px;"><strong>LEARNING Arduino:</strong></span><br>
+<ul><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-What-IS-it">Arduino: WhatIsIt?</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/YourDuinoStarter">Hands-On Learning</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/YourDuinoStarterSoftwareSketches">Example Sketches</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-Libraries">Arduino Libraries</a></li></ul><hr>
+<strong><span style="font-size: 26px;">ARDUINO HOWTO:</span></strong><br>
+<ul><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Cables">CABLES, WIRES and PINS</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/SensorShield">SENSOR SHIELD</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/ArduinoPower">ARDUINO POWER</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Servos">SERVO MOTORS</a></li><li><a class="wiki_link" href="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/arduino-info - Nrf24L01-2.4GHz-HowTo.html">WIRELESS nRF24L01</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/LCD-Blue-I2C">LCD DISPLAYS</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/SD-Cards">SD CARDS</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/UltraSonicDistance">Ultrasonic Sensors</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Brick-Temperature-DS18B20">TemperatureSensor</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/IR-RemoteControl">IR Remotes</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/StepperMotors">Stepper Motors</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/DS1307_RealTime_Clock_Brick">RealTimeClock</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Keyboards-MultipleButtons">Keyboards/Buttons</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Arduino-PWM-Frequency">PWM Frequencies</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/Analog-Output">Analog Output</a></li><li><a class="wiki_link" href="http://arduino-info.wikispaces.com/TUTORIALS">TUTORIALS</a></li></ul><br>
+<a class="wiki_link" href="http://arduino-info.wikispaces.com/Collaborate">BJK</a><br>
+<a class="wiki_link" href="http://arduino-info.wikispaces.com/Listing_File_List">C</a></div>              <div class="ws-theme-nav-edit">
+                              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main class="ws-theme-content" role="main">
+        <div class="ws-theme-content-inner">
+          <div class="contentBox"><div class="innerContentBox" id="WikiContent">
+
+<script type="text/template" id="comment-footer-template">
+
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</script>
+
+<script type="text/template" id="comment-content-template">
+<div class="ws-box commentView">
+  <div class="comment-close">
+    <button type="button" class="closeme close" aria-hidden="true"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="commentHeader">
+    <p class="ws-stream-meta command-context">
+      <a class="userLink userLinkPicture" href="<%= userCreated.url %>"><img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16"></a>
+      <a href="<%= userCreated.url %>"><%= userCreated.username %></a>
+      <% if (smartDate == '__live__') { %>
+      <abbr class="timeago" title="<%= (new Date(parseInt(dateCreated, 10) * 1000)).toISOString() %>">
+        <%= dateCreated %>
+      </abbr>
+      <% } else { %>
+        <%- smartDate %>
+      <% } %>
+      <% if (ws.context.user.canAdministerWiki && ws.comments.Manager.readOnly) { %>
+        <i class="fa fa-trash-o contextual-command delete ws-tip" title="Delete Comment"></i>
+      <% } %>
+    </p>
+  </div>
+
+  <div class="commentBody">
+    <div class="commentContent">
+      <%= description %>
+    </div>
+
+      <% for(i = 0; i < replyPages.length; i++) { %>
+        <% for(var j = 0; j < replyPages[i].digests.length; j++) { %>
+      <div class="commentReply" data-id="<%= replyPages[i].digests[j].id %>">
+        <p class="ws-stream-meta command-context">
+          <a class="userLink userLinkPicture" href="<%= replyPages[i].digests[j].userCreated.url %>"><img class="userPicture" src="<%= replyPages[i].digests[j].userCreated.imageUrl %>" width="16" height="16"></a>
+          <a href="<%= replyPages[i].digests[j].userCreated.url %>"><%= replyPages[i].digests[j].userCreated.username %></a>
+          <% if (smartDate == '__live__') { %>
+          <abbr class="timeago" title="<%= (new Date(parseInt(replyPages[i].digests[j].dateCreated, 10) * 1000)).toISOString() %>">
+            <%= new Date(parseInt(replyPages[i].digests[j].dateCreated, 10) * 1000).toLocaleString() %>
+          </abbr>
+          <% } else { %>
+            <%- smartDate %>
+          <% } %>
+          <% if (ws.context.user.canAdministerWiki) { %>
+          <i class="fa fa-trash-o contextual-command delete-reply ws-tip" title="Delete Reply"></i>
+          <% } %>
+          </p>
+        <div class="commentContent"><%= replyPages[i].digests[j].body %></div>
+      </div>
+        <% } %>
+      <% } %>
+
+      <form class="reply commentReply">
+        <div class="form-group">
+          <textarea name="reply" placeholder="Reply" class="form-control" /></textarea>
+        </div>
+        <div class="btn-toolbar">
+          <button type="submit" class="btn btn-primary btn-sm" name="go" value="1">Post</button>
+
+          <% if (ws.context.user.id) { %>
+            <% if (monitored) { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-monitor ws-tip active" title="You are monitoring replies."><i class="fa fa-eye"></i></button>
+            <% } else { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-monitor ws-tip" title="You are not monitoring replies."><i class="fa fa-eye"></i></button>
+            <% } %>
+          <% } %>
+          <% if (ws.context.user.canAdministerWiki) { %>
+            <% if (locked) { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-lock ws-tip active" title="Replies are not allowed."><i class="fa fa-lock"></i></button>
+            <% } else { %>
+            <button type="button" class="btn btn-default btn-sm pull-right toggle-lock ws-tip" title="Replies are allowed."><i class="fa fa-lock"></i></button>
+            <% } %>
+          <% } %>
+
+          <i class="fa fa-spinner fa-spin spinner pull-right hidden"></i>
+        </div>
+      </form>
+   </div>
+
+   
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</div>
+</script>
+
+<script type="text/template" id="comment-composer-template">
+<div class="ws-box commentView">
+  <div class="commentComposer">
+    <div class="comment-close">
+      &nbsp;<button type="button" class="close closeme" aria-hidden="true"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="commentHeader">
+      <p class="ws-stream-meta command-context">
+        <img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16">
+        <a href="#" onclick="return false;"><%= userCreated.username %></a>
+      </p>
+    </div>
+    <div class="commentBody">
+      <textarea name="comment" class="compose form-control" placeholder="Comment"/></textarea><br/>
+      <div class="btn-toolbar">
+        <button type="button" class="btn btn-default btn-sm monitored active pull-right" style="margin-left: 6px" onclick="jQuery(this).toggleClass('active')"><i class="fa fa-eye"></i></button>
+        <button type="button" class="btn btn-default btn-sm locked btn-toggle pull-right" onclick="jQuery(this).toggleClass('active')"><i class="fa fa-lock"></i></button>
+        <button type="button" class="btn btn-primary btn-sm closeme">Save</button>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="commentFooter modal-footer">
+  <div class="pull-left">
+    <button type="button" class="btn btn-default btn-sm previous"><i class="fa fa-arrow-left"></i></button>
+    <button type="button" class="btn btn-default btn-sm next"><i class="fa fa-arrow-right"></i></button>
+  </div>
+  <% if (ws.context.user.canAdministerWiki && !ws.comments.Manager.readOnly) { %>
+  <div class="pull-right">
+    <button type="button" class="btn btn-default btn-sm remove">Remove</button>
+  </div>
+  <% } %>
+</div>
+
+</div>
+</script>
+
+<script type="text/template" id="comment-proxy-template">
+<div class="comment-proxy">
+  <span class="commentUser">
+  <% if (userCreated) { %>
+    <img class="userPicture" src="<%= userCreated.imageUrl %>" width="16" height="16">
+  <% } else { %>
+    <img class="userPicture" src="<%= ws.context.user.imageUrlPrefix %>sm.jpg" width="16" height="16">
+  <% } %>
+  </span>
+  <span class="commentReplies"><%= 1 + _(replyPages).reduce(function(memo, page){ return memo + page.digests.length; }, 0) %></span>
+</div>
+</script>
+
+<div class="ws-menu-bar WikiControls WikispacesContent WikispacesBs3">
+  
+    <h1 class="pageTitle"><a href="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/arduino-info - Nrf24L01-2.4GHz-HowTo.html">Nrf24L01-2.4GHz-HowTo</a></h1>
+      <div class="btn-group pull-right">
+          <span class="btn btn-default disabled tipme" title="" data-original-title="you do not have permission to edit this page"><i class="fa fa-pencil fa-fw"></i> Editar</span>          <a class="btn btn-default tipme" title="" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#discussion" data-original-title="view 13 discussion posts"><i class="fa fa-comments fa-fw"></i> 13</a>          <a class="btn btn-default tipme" title="" href="http://arduino-info.wikispaces.com/page/history/Nrf24L01-2.4GHz-HowTo" data-original-title="view 82 revisions"><i class="fa fa-clock-o fa-fw"></i> 82</a>          <a class="btn btn-default ws-btn-more dropdown-toggle tipme" title="" href="http://arduino-info.wikispaces.com/page/menu/Nrf24L01-2.4GHz-HowTo" data-original-title="more options"><i class="icon-height-only fa-fw"></i>…</a>        <ul class="ws-more-menu dropdown-menu dropdown-menu-right">
+              <li class=" dropdown"><a class=" ws-tag-dropdown-toggle" href="http://arduino-info.wikispaces.com/page/tags/Nrf24L01-2.4GHz-HowTo"><span class="pull-right">0</span> <i class="fa fa-tag fa-fw"></i> Etiquetas</a>
+          <div class="dropdown-menu dropdown-menu-right ws-tag-dropdown-menu">
+          
+
+
+
+<form action="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#" name="WikiTagForm" class="WikiTagForm"><input type="hidden" name="wikispacesFormToken" value="26254432be7f1471b2c18af038efb69934219106"><input type="hidden" name="wikispacesFormToken" value="26254432be7f1471b2c18af038efb69934219106">
+  <div class="WikiTagList">
+    <i class="fa fa-tag ws-action"></i>
+        <ul class="list-unstyled">
+          <li>No tags</li>
+        </ul>
+      </div>
+  </form>      </div>
+    </li>
+              <li class="divider"></li>
+            <li class=""><a class=" WikispacesDialogLink" href="http://arduino-info.wikispaces.com/wiki/addmonitor?monitorLink=page%3ANrf24L01-2.4GHz-HowTo"><i class="fa fa-eye fa-fw"></i> Notify</a>
+    </li>
+        <li class=""><a class=" WikispacesDialogLink" href="http://arduino-info.wikispaces.com/page/rss/Nrf24L01-2.4GHz-HowTo"><i class="fa fa-rss fa-fw"></i> RSS</a>
+    </li>
+        <li class=""><a class="" href="http://arduino-info.wikispaces.com/page/links/Nrf24L01-2.4GHz-HowTo"><i class="fa fa-link fa-fw"></i> Enlaces inversos</a>
+    </li>
+              <li class="divider"></li>
+            <li class=""><a class="" href="http://arduino-info.wikispaces.com/page/code/Nrf24L01-2.4GHz-HowTo"><i class="fa fa-code fa-fw"></i> Source</a>
+    </li>
+        <li class=""><a class="" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo?f=print"><i class="fa fa-print fa-fw"></i> Print</a>
+    </li>
+        <li class=""><a class="" href="http://arduino-info.wikispaces.com/page/pdf/Nrf24L01-2.4GHz-HowTo"><i class="fa fa-cloud-download fa-fw"></i> Export (PDF)</a>
+    </li>
+      </ul>  </div>
+  </div>
+
+
+
+
+  <textarea class="form-control" id="autosaveContent" style="display:none;" rows="1" cols="1"></textarea>
+  <div id="autosavePrompt" style="display:none;"></div>
+
+<div class="commentContainer" style="position: relative; z-index: 10;"><div class="div-canvas" style="position: absolute; top: 0px; left: 0px; width: 1585px; height: 8672px;"></div>
+  <div class="commentSubject">
+  <div class="wiki wikiPage" id="content_view">
+  <!-- ws:start:WikiTextHeadingRule:2:&lt;h1&gt; --><h1 id="toc0"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To"></a><!-- ws:end:WikiTextHeadingRule:2 -->nRF24L01 2.4GHz Radio/Wireless Transceivers How-To</h1>
+ <br>
+Having two or more Arduinos be able to communicate with each other wirelessly over a distance opens lots of possibilities:<br>
+<ul><li>Remote sensors for temperature, pressure, alarms, much more</li><li>Robot control and monitoring from 50 feet to 2000 feet distances</li><li>Remote control and monitoring of nearby or neighborhood buildings</li><li>Autonomous vehicles of all kinds</li></ul><br>
+These are a series of 2.4 GHz Radio modules that are all based on the Nordic Semiconductor nRF24L01+ chip. <a class="wiki_link_ext" href="http://www.nordicsemi.com/eng/Products/2.4GHz-RF/nRF24L01P" rel="nofollow">(Details)</a> The Nordic nRF24L01+ integrates a complete 2.4GHz RF transceiver, RF synthesizer, and baseband logic including the Enhanced ShockBurst™ hardware protocol accelerator supporting a high-speed SPI interface for the application controller. The low-power short-range (200 feet or so)Transceiver is available on a board with Arduino interface and built-in Antenna for less than $3! <a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=188" rel="nofollow">See it here.</a><br>
+<br>
+See: <a class="wiki_link" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#ex1">EXAMPLE SOFTWARE SKETCHES AT END OF PAGE:</a><br>
+See:<a class="wiki_link" href="https://arduino-info.wikispaces.com/RadioLink-Joystick-To-Servos"> NEW EXAMPLE: Radio link transmitting Joystick positions to a receive unit </a>controlling X,Y Servos that follow the remote Joystick. Uses the RadioHead Library.<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:4:&lt;h3&gt; --><h3 id="toc1"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--NOTE! Power Problems:"></a><!-- ws:end:WikiTextHeadingRule:4 --><span style="color: #e910eb;">NOTE! Power Problems:</span></h3>
+ Many users have had trouble getting the nRF24L01 modules to work. Many times the problem is that the 3.3V Power to the module does not have enough current capability, or current surges cause problems. Here are suggestions:<br>
+<ul><li>Connect a .3.3 uF to 10 uF (MicroFarad) capacitor <strong>directly on the module</strong> from +3.3V to Gnd (Watch + and - !) [Some users say 10 uF or more..]<ul><li>A separate 3.3V power supply <a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=206" rel="nofollow">(Maybe this one?)</a></li><li>A<a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=225" rel="nofollow"> YourDuinoRobo1 </a>Arduino compatible, which has an added 3.3V regulator (But maybe add a .1 uF capacitor on the radio module).</li></ul></li><li>This is especially important if you are connecting the module with jumper wires.</li><li>If you design a printed circuit board that the module plugs into, add .1uf and 10uf capacitors close to the GND and 3.3V pins.</li></ul>This is particularly noticeable when 3.3V power comes from a MEGA, Nano etc. that has only 50 ma of 3.3V power available. Newer boards like the <a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=225" rel="nofollow">YourDuinoRobo1</a> have 350 ma or more available and can run the high-power modules directly.<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:6:&lt;h3&gt; --><h3 id="toc2"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Range??"></a><!-- ws:end:WikiTextHeadingRule:6 -->Range??</h3>
+ Range is very dependent on the situation and is much more with clear line of sight outdoors than indoors with effects of walls and materials. <span style="line-height: 1.5;">The usual distance quoted by different suppliers for the low-power version module with the single chip is 200 Feet or 100 Meters. This is for open space between units operating at 250KHz. Indoors the range will be less due to walls etc...</span><br>
+<br>
+We suggest you test two units at your actual locations before making a decision. <span style="line-height: 1.5;">There are units with an Antenna Preamplifier for the receiver and transmitter power amplifier and external antenna. The range between that type unit and several low-power units will be better than between two low-power units. Every situation is a little different and difficult to get an exact number without actual tests.</span><br>
+<br>
+<span style="background-color: initial;"><a class="wiki_link_ext" href="http://www.nordicsemi.com/eng/content/download/2726/34069/file/nRF24L01P_Product_Specification_1_0.pdf" rel="nofollow">Link to nRF24L01+ Data Sheet.</a></span> You don't have to, but if you want to understand more about what you can do with this "little" radio, download the data sheet. In particular you may want to read pages 7-8-9 ( For Overview and Features), and page 39 (MultiCeiver, which allows 6 Arduinos to talk to a Primary Arduino in an organized manner). Fortunately the board-level products we have take care of many of the physical and electrical details and Antenna Impedance Matching etc., and this library takes care of lots of register initialization and operational details.<br>
+<br>
+There are additional modules which add Transmitter power amplifiers and Receiver preamplifiers for longer distances.. up to 1 Km (3000 feet). <a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=search_list&s%5Bsearch%5D=nrf24&s%5Btitle%5D=Y&s%5Bshort_desc%5D=Y&s%5Bfull_desc%5D=Y&s%5Bsku%5D=Y&s%5Bmatch%5D=all&s%5Bcid%5D=0" rel="nofollow">See them all here.</a> These modules use an external antenna which can be a simple directly-attached one or a cable-connected antenna with more gain or directivity. Here's what some of these look like:<br>
+<!-- ws:start:WikiTextLocalImageRule:369:&lt;img src=&quot;/file/view/nRF24L01-3.jpg/243329431/nRF24L01-3.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/nRF24L01-3.jpg" alt="nRF24L01-3.jpg" title="nRF24L01-3.jpg"><!-- ws:end:WikiTextLocalImageRule:369 --><!-- ws:start:WikiTextLocalImageRule:370:&lt;img src=&quot;/file/view/nRF24L01-4.jpg/243329825/nRF24L01-4.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/nRF24L01-4.jpg" alt="nRF24L01-4.jpg" title="nRF24L01-4.jpg"><!-- ws:end:WikiTextLocalImageRule:370 --><br>
+<br>
+On the left is the low-power version, with it's built-in zig-zag antenna. On the right you can see the pins sticking down (up in this photo) that connect to Arduino. Later we will show the pinout.<br>
+<br>
+<!-- ws:start:WikiTextLocalImageRule:371:&lt;img src=&quot;/file/view/nRF24L01-LN-PA-2.jpg/243330207/nRF24L01-LN-PA-2.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/nRF24L01-LN-PA-2.jpg" alt="nRF24L01-LN-PA-2.jpg" title="nRF24L01-LN-PA-2.jpg"><!-- ws:end:WikiTextLocalImageRule:371 --><!-- ws:start:WikiTextLocalImageRule:372:&lt;img src=&quot;/file/view/nRF24L01-LN-PA-1.jpg/243330387/nRF24L01-LN-PA-1.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/nRF24L01-LN-PA-1.jpg" alt="nRF24L01-LN-PA-1.jpg" title="nRF24L01-LN-PA-1.jpg"><!-- ws:end:WikiTextLocalImageRule:372 --><br>
+Above is the version with Transmit Power amplifier and Receive Preamplifier. Our low-cost antenna is on the unit shown on the right. The same 8 pins connect to Arduino and the same software is used.<br>
+<br>
+Here's a <a class="wiki_link_ext" href="http://achuwilson.wordpress.com/2012/05/18/long-range-rf-link-using-nrf24l01-rf-transceiver/" rel="nofollow">link to a Home-Brew antenna design:</a><br>
+<br>
+These transceivers use the 2.4 GHz unlicensed band like many WiFi routers, some cordless phones etc.<br>
+<br>
+Transceivers like these both send and receive data in 'packets' of several bytes at a time. There is built-in error correction and resending, and it is possible to have one unit communicate with up to 6 other similar units at the same time.<br>
+<br>
+<span style="line-height: 1.5;">These amazing low-cost units have a lot of internal complexity but some talented people have written Arduino libraries that make them easy to us. We have other pages that show examples and point to the free software libraries you may need. They all use the same pinout as shown in the following diagram, which is a </span><strong><span style="line-height: 1.5;"><span style="color: #ff0000;">TOP VIEW</span> (Correction!):</span></strong><br>
+<!-- ws:start:WikiTextLocalImageRule:373:&lt;img src=&quot;/file/view/24L01Pinout-800.jpg/243330999/24L01Pinout-800.jpg&quot; alt=&quot;&quot; title=&quot;&quot; /&gt; --><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/24L01Pinout-800.jpg" alt="24L01Pinout-800.jpg" title="24L01Pinout-800.jpg"><!-- ws:end:WikiTextLocalImageRule:373 --><br>
+<!-- ws:start:WikiTextLocalImageRule:374:&lt;img src=&quot;/file/view/NRF24L012_BottomView.jpg/399759498/NRF24L012_BottomView.jpg&quot; alt=&quot;BOTTOM VIEW&quot; title=&quot;BOTTOM VIEW&quot; align=&quot;right&quot; /&gt; --><table class="captionBox" style="float: right;"><tbody><tr><td class="captionedImage"><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/NRF24L012_BottomView.jpg" alt="NRF24L012_BottomView.jpg" title="NRF24L012_BottomView.jpg" align="right"></td></tr><tr><td class="imageCaption">BOTTOM VIEW</td></tr></tbody></table><!-- ws:end:WikiTextLocalImageRule:374 -->Here's details of the Pinout and connections to Arduino (updated):<br>
+
+
+<table class="wiki_table">
+    <tbody><tr>
+        <td><!-- ws:start:WikiTextHeadingRule:8:&lt;h3&gt; --><h3 id="toc3"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Signal"></a><!-- ws:end:WikiTextHeadingRule:8 --><strong>Signal</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:10:&lt;h3&gt; --><h3 id="toc4"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RF Module"></a><!-- ws:end:WikiTextHeadingRule:10 --><strong>RF Module</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:12:&lt;h3&gt; --><h3 id="toc5"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--COLOR"></a><!-- ws:end:WikiTextHeadingRule:12 --><strong>COLOR</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:14:&lt;h3&gt; --><h3 id="toc6"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Arduino pin for"></a><!-- ws:end:WikiTextHeadingRule:14 --><strong>Arduino pin for</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:16:&lt;h3&gt; --><h3 id="toc7"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RF24 Library"></a><!-- ws:end:WikiTextHeadingRule:16 --><strong>RF24 Library</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:18:&lt;h3&gt; --><h3 id="toc8"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Arduino pin for"></a><!-- ws:end:WikiTextHeadingRule:18 --><strong>Arduino pin for</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:20:&lt;h3&gt; --><h3 id="toc9"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Mirf Library"></a><!-- ws:end:WikiTextHeadingRule:20 --><strong>Mirf Library</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:22:&lt;h3&gt; --><h3 id="toc10"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--MEGA2560 pin"></a><!-- ws:end:WikiTextHeadingRule:22 --><strong>MEGA2560 pi</strong>n</h3>
+ <!-- ws:start:WikiTextHeadingRule:24:&lt;h3&gt; --><h3 id="toc11"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RF24 Library"></a><!-- ws:end:WikiTextHeadingRule:24 -->RF24 Library</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:26:&lt;h3&gt; --><h3 id="toc12"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Arduino Pin for"></a><!-- ws:end:WikiTextHeadingRule:26 --><strong>Arduino Pin for</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:28:&lt;h3&gt; --><h3 id="toc13"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RH_NRF24"></a><!-- ws:end:WikiTextHeadingRule:28 --><strong>RH_NRF24</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:30:&lt;h3&gt; --><h3 id="toc14"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RadioHead Library"></a><!-- ws:end:WikiTextHeadingRule:30 --><strong>RadioHead Library</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:32:&lt;h3&gt; --><h3 id="toc15"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--MEGA2560 Pin for"></a><!-- ws:end:WikiTextHeadingRule:32 --><strong>MEGA2560 Pin for</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:34:&lt;h3&gt; --><h3 id="toc16"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RH_NRF24"></a><!-- ws:end:WikiTextHeadingRule:34 --><strong>RH_NRF24</strong></h3>
+ <!-- ws:start:WikiTextHeadingRule:36:&lt;h3&gt; --><h3 id="toc17"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--RadioHead Library"></a><!-- ws:end:WikiTextHeadingRule:36 --><strong>RadioHead Library</strong></h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:38:&lt;h3&gt; --><h3 id="toc18"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND"></a><!-- ws:end:WikiTextHeadingRule:38 --><strong>GND</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:40:&lt;h3&gt; --><h3 id="toc19"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--1"></a><!-- ws:end:WikiTextHeadingRule:40 --><strong>1</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:42:&lt;h3&gt; --><h3 id="toc20"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Brown"></a><!-- ws:end:WikiTextHeadingRule:42 --><strong>Brown</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:44:&lt;h3&gt; --><h3 id="toc21"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND *"></a><!-- ws:end:WikiTextHeadingRule:44 --><strong>GND</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:46:&lt;h3&gt; --><h3 id="toc22"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND"></a><!-- ws:end:WikiTextHeadingRule:46 --><strong>GND</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:48:&lt;h3&gt; --><h3 id="toc23"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND *"></a><!-- ws:end:WikiTextHeadingRule:48 --><strong>GND</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:50:&lt;h3&gt; --><h3 id="toc24"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND *"></a><!-- ws:end:WikiTextHeadingRule:50 --><strong>GND</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:52:&lt;h3&gt; --><h3 id="toc25"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--GND *"></a><!-- ws:end:WikiTextHeadingRule:52 --><strong>GND</strong> *</h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:54:&lt;h3&gt; --><h3 id="toc26"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--VCC"></a><!-- ws:end:WikiTextHeadingRule:54 --><strong>VCC</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:56:&lt;h3&gt; --><h3 id="toc27"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--2"></a><!-- ws:end:WikiTextHeadingRule:56 --><strong>2</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:58:&lt;h3&gt; --><h3 id="toc28"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Red"></a><!-- ws:end:WikiTextHeadingRule:58 --><strong>Red</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:60:&lt;h3&gt; --><h3 id="toc29"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3.3V *"></a><!-- ws:end:WikiTextHeadingRule:60 --><strong>3.3V</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:62:&lt;h3&gt; --><h3 id="toc30"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3.3V"></a><!-- ws:end:WikiTextHeadingRule:62 --><strong>3.3V</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:64:&lt;h3&gt; --><h3 id="toc31"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3.3V *"></a><!-- ws:end:WikiTextHeadingRule:64 --><strong>3.3V</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:66:&lt;h3&gt; --><h3 id="toc32"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3.3V *"></a><!-- ws:end:WikiTextHeadingRule:66 --><strong>3.3V</strong> *</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:68:&lt;h3&gt; --><h3 id="toc33"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3.3V *"></a><!-- ws:end:WikiTextHeadingRule:68 --><strong>3.3V</strong> *</h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:70:&lt;h3&gt; --><h3 id="toc34"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--CE"></a><!-- ws:end:WikiTextHeadingRule:70 --><strong>CE</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:72:&lt;h3&gt; --><h3 id="toc35"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--3"></a><!-- ws:end:WikiTextHeadingRule:72 --><strong>3</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:74:&lt;h3&gt; --><h3 id="toc36"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Orange"></a><!-- ws:end:WikiTextHeadingRule:74 --><strong>Orange</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:76:&lt;h3&gt; --><h3 id="toc37"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--9"></a><!-- ws:end:WikiTextHeadingRule:76 --><strong>9</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:78:&lt;h3&gt; --><h3 id="toc38"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--8"></a><!-- ws:end:WikiTextHeadingRule:78 --><strong>8</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:80:&lt;h3&gt; --><h3 id="toc39"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--9"></a><!-- ws:end:WikiTextHeadingRule:80 --><strong>9</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:82:&lt;h3&gt; --><h3 id="toc40"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--8"></a><!-- ws:end:WikiTextHeadingRule:82 -->8</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:84:&lt;h3&gt; --><h3 id="toc41"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--8"></a><!-- ws:end:WikiTextHeadingRule:84 -->8</h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:86:&lt;h3&gt; --><h3 id="toc42"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--CSN"></a><!-- ws:end:WikiTextHeadingRule:86 --><strong>CSN</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:88:&lt;h3&gt; --><h3 id="toc43"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--4"></a><!-- ws:end:WikiTextHeadingRule:88 --><strong>4</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:90:&lt;h3&gt; --><h3 id="toc44"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Yellow"></a><!-- ws:end:WikiTextHeadingRule:90 --><strong>Yellow</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:92:&lt;h3&gt; --><h3 id="toc45"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--10"></a><!-- ws:end:WikiTextHeadingRule:92 --><strong>10</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:94:&lt;h3&gt; --><h3 id="toc46"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--7"></a><!-- ws:end:WikiTextHeadingRule:94 --><strong>7</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:96:&lt;h3&gt; --><h3 id="toc47"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--53"></a><!-- ws:end:WikiTextHeadingRule:96 --><strong>53</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:98:&lt;h3&gt; --><h3 id="toc48"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--10"></a><!-- ws:end:WikiTextHeadingRule:98 -->10</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:100:&lt;h3&gt; --><h3 id="toc49"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--53"></a><!-- ws:end:WikiTextHeadingRule:100 --><strong>53</strong></h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:102:&lt;h3&gt; --><h3 id="toc50"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--SCK"></a><!-- ws:end:WikiTextHeadingRule:102 --><strong>SCK</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:104:&lt;h3&gt; --><h3 id="toc51"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--5"></a><!-- ws:end:WikiTextHeadingRule:104 --><strong>5</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:106:&lt;h3&gt; --><h3 id="toc52"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Green"></a><!-- ws:end:WikiTextHeadingRule:106 --><strong>Green</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:108:&lt;h3&gt; --><h3 id="toc53"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--13"></a><!-- ws:end:WikiTextHeadingRule:108 --><strong>13</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:110:&lt;h3&gt; --><h3 id="toc54"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--13"></a><!-- ws:end:WikiTextHeadingRule:110 --><strong>13</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:112:&lt;h3&gt; --><h3 id="toc55"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--52"></a><!-- ws:end:WikiTextHeadingRule:112 --><strong>52</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:114:&lt;h3&gt; --><h3 id="toc56"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--13"></a><!-- ws:end:WikiTextHeadingRule:114 -->13</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:116:&lt;h3&gt; --><h3 id="toc57"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--52"></a><!-- ws:end:WikiTextHeadingRule:116 --><strong>52</strong></h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:118:&lt;h3&gt; --><h3 id="toc58"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--MOSI"></a><!-- ws:end:WikiTextHeadingRule:118 --><strong>MOSI</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:120:&lt;h3&gt; --><h3 id="toc59"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--6"></a><!-- ws:end:WikiTextHeadingRule:120 --><strong>6</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:122:&lt;h3&gt; --><h3 id="toc60"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Blue"></a><!-- ws:end:WikiTextHeadingRule:122 --><strong>Blue</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:124:&lt;h3&gt; --><h3 id="toc61"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--11"></a><!-- ws:end:WikiTextHeadingRule:124 --><strong>11</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:126:&lt;h3&gt; --><h3 id="toc62"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--11"></a><!-- ws:end:WikiTextHeadingRule:126 --><strong>11</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:128:&lt;h3&gt; --><h3 id="toc63"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--51"></a><!-- ws:end:WikiTextHeadingRule:128 --><strong>51</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:130:&lt;h3&gt; --><h3 id="toc64"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--11"></a><!-- ws:end:WikiTextHeadingRule:130 -->11</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:132:&lt;h3&gt; --><h3 id="toc65"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--51"></a><!-- ws:end:WikiTextHeadingRule:132 --><strong>51</strong></h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:134:&lt;h3&gt; --><h3 id="toc66"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--MISO"></a><!-- ws:end:WikiTextHeadingRule:134 --><strong>MISO</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:136:&lt;h3&gt; --><h3 id="toc67"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--7"></a><!-- ws:end:WikiTextHeadingRule:136 --><strong>7</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:138:&lt;h3&gt; --><h3 id="toc68"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Violet"></a><!-- ws:end:WikiTextHeadingRule:138 --><strong>Violet</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:140:&lt;h3&gt; --><h3 id="toc69"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--12"></a><!-- ws:end:WikiTextHeadingRule:140 --><strong>12</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:142:&lt;h3&gt; --><h3 id="toc70"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--12"></a><!-- ws:end:WikiTextHeadingRule:142 --><strong>12</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:144:&lt;h3&gt; --><h3 id="toc71"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--50"></a><!-- ws:end:WikiTextHeadingRule:144 --><strong>50</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:146:&lt;h3&gt; --><h3 id="toc72"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--12"></a><!-- ws:end:WikiTextHeadingRule:146 -->12</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:148:&lt;h3&gt; --><h3 id="toc73"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--50"></a><!-- ws:end:WikiTextHeadingRule:148 --><strong>50</strong></h3>
+</td>
+    </tr>
+    <tr>
+        <td><!-- ws:start:WikiTextHeadingRule:150:&lt;h3&gt; --><h3 id="toc74"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--IRQ"></a><!-- ws:end:WikiTextHeadingRule:150 --><strong>IRQ</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:152:&lt;h3&gt; --><h3 id="toc75"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--8"></a><!-- ws:end:WikiTextHeadingRule:152 --><strong>8</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:154:&lt;h3&gt; --><h3 id="toc76"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--Gray"></a><!-- ws:end:WikiTextHeadingRule:154 --><strong>Gray</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:156:&lt;h3&gt; --><h3 id="toc77"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--2 *"></a><!-- ws:end:WikiTextHeadingRule:156 --><strong>2</strong> *</h3>
+</td>
+        <td><br>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:158:&lt;h3&gt; --><h3 id="toc78"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--per library"></a><!-- ws:end:WikiTextHeadingRule:158 --><strong>per library</strong></h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:160:&lt;h3&gt; --><h3 id="toc79"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--N/C"></a><!-- ws:end:WikiTextHeadingRule:160 -->N/C</h3>
+</td>
+        <td><!-- ws:start:WikiTextHeadingRule:162:&lt;h3&gt; --><h3 id="toc80"><a name="nRF24L01 2.4GHz Radio/Wireless Transceivers How-To--N/C"></a><!-- ws:end:WikiTextHeadingRule:162 -->N/C</h3>
+</td>
+    </tr>
+</tbody></table>
+
+<br>
+<ul><li>NOTE!! Most <strong>* problems with intermittent operation</strong> are because of electrical noise on the 3.3V Power supply. The MEGA is more of a problem with this. Solution: ADD bypass capacitors across GND and 3.3V ON the radio modules. One user said, "Just S<span style="line-height: 1.5;">older a 100nF ceramic cap across the gnd and 3.3v pins direct on the nrf24l01+ modules!" Some have used a 1uF to 10uF capacitor. </span></li><li>NOTE: Pin 8 IRQ is Unused by most software, but the RF24 library has an example that utilizes it.</li></ul><br>
+The COLOR is for optional color-coded flat cable<a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=185" rel="nofollow"> such as THIS.</a> We'll add some photos soon showing easiest ways to cable these...<br>
+<br>
+NOTE: These units VCC connection <strong><span style="color: #ff0000;">must go to 3.3V not 5.0V,</span></strong> although the Arduino itself may run at 5.0V and the signals will be OK. <span style="line-height: 1.5;">The NRF24L01+ IC is a 3.3V device, but its I/O pins are 5 V tolerant , which makes it easier to interface to Arduino/YourDuino.</span><br>
+Arduino UNO and earlier versions have a 3.3V output that can run the low-power version of these modules (See Power Problems at the top of this page!), but the high-power versions must have a separate 3.3V supply. The <a class="wiki_link_ext" href="http://yourduino.com/sunshop2/index.php?l=product_detail&p=225" rel="nofollow">YourDuinoRobo1</a> has a higher power 3.3V regulator and can be used to run the high-power Power Amplifier type module without a separate 3.3V regulator.<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:164:&lt;h1&gt; --><h1 id="toc81"><a name="nRF24L01 SOFTWARE AND LIBRARIES:"></a><!-- ws:end:WikiTextHeadingRule:164 -->nRF24L01 SOFTWARE AND LIBRARIES:</h1>
+ <br>
+We will show an example of transmit and receive software below, and there are many examples on the RF24 Library <span style="line-height: 1.5;">download page. You will need a library of software to run the nRF24L01 radios. There are lots of details but you can ignore many of them that the library will take care of.</span><br>
+<br>
+<strong>Get Maniacbug's excellent RF24 Library</strong>:<br>
+<span style="line-height: 1.5;">Download it <a class="wiki_link_ext" href="https://github.com/maniacbug/RF24" rel="nofollow">HERE:</a> (Click "Download ZIP" on the lower right of the page)</span><br>
+<span style="line-height: 1.5;">Once you have downloaded the ZIP, you should see a folder called RF24-master.ZIP. Change the name of this file to just RF24.ZIP. Double click on the ZIP and you should see a non-ZIP folder also called </span><br>
+RF24-master. Rename this to just RF24 as well.<br>
+<br>
+<span style="line-height: 1.5;">Then see our page about installing libraries <a class="wiki_link" href="https://arduino-info.wikispaces.com/Arduino-Libraries">HERE:</a></span><br>
+When you have the library installed, you can run the examples below.<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:166:&lt;h3&gt; --><h3 id="toc82"><a name="nRF24L01 SOFTWARE AND LIBRARIES:--More Information on these pages:"></a><!-- ws:end:WikiTextHeadingRule:166 --><span style="line-height: 1.5;">More Information on these pages:</span></h3>
+ <a class="wiki_link" href="http://arduino-info.wikispaces.com/nRF24L01-RF24-Examples">RF24 Library and Examples</a>: Many good details and more features like error correction and Networking.<br>
+<a class="wiki_link_ext" href="http://maniacbug.github.com/RF24Network/index.html" rel="nofollow">RF24 Network System information: </a> A many-node network under development<br>
+<a class="wiki_link_ext" href="http://maniacbug.wordpress.com/2012/03/30/rf24network/" rel="nofollow">ManiacBug's Blog entry</a> and discussion of the Network<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:168:&lt;h3&gt; --><h3 id="toc83"><a name="nRF24L01 SOFTWARE AND LIBRARIES:--RadioHead: A very full-featured Library with support for may different radios, not just nRF24L01:"></a><!-- ws:end:WikiTextHeadingRule:168 --><strong>RadioHead:</strong> A very full-featured Library with support for may different radios, not just nRF24L01:</h3>
+ <a class="wiki_link_ext" href="http://www.airspayce.com/mikem/arduino/RadioHead/index.html" rel="nofollow">http://www.airspayce.com/mikem/arduino/RadioHead/index.html</a><br>
+<br>
+<a class="wiki_link" href="http://arduino-info.wikispaces.com/nRF24L01-Mirf-Examples">Mirf Library Example:</a> A simpler demonstration<br>
+<br>
+<!-- ws:start:WikiTextAnchorRule:174:&lt;img src=&quot;/i/anchor.gif&quot; class=&quot;WikiAnchor&quot; alt=&quot;Anchor&quot; id=&quot;wikitext@@anchor@@ex1&quot; title=&quot;Anchor: ex1&quot;/&gt; --><a name="ex1"></a><!-- ws:end:WikiTextAnchorRule:174 --><br>
+<br>
+<br>
+<!-- ws:start:WikiTextHeadingRule:170:&lt;h1&gt; --><h1 id="toc84"><a name="EXAMPLE ARDUINO SKETCHES:"></a><!-- ws:end:WikiTextHeadingRule:170 -->EXAMPLE ARDUINO SKETCHES:</h1>
+ <br>
+<strong>Example: Transmit the position of a Joystick X and Y with one nRF24L01 to another nRF24L01 that will receive and display the Joystick position.</strong><br>
+<br>
+<br>
+There are two sketches that you <span style="line-height: 1.5;">can cut and paste into a blank Arduino IDE windows and then save. Upload one to the Arduino that has an nRF24L01 connected, and the joystick or Potentiometers connected. Upload the other into an Arduino with an nRf24L01.</span><br>
+<br>
+<br>
+<strong>YD_nRF24L01_Transmit_JoyStick</strong><br>
+<br>
+<!-- ws:start:WikiTextMediaRule:0:&lt;img src=&quot;https://www.wikispaces.com/site/embedthumbnail/custom/24540634?h=0&amp;w=0&quot; class=&quot;WikiMedia WikiMediaCustom&quot; id=&quot;wikitext@@media@@type=&amp;quot;custom&amp;quot; key=&amp;quot;24540634&amp;quot;&quot; title=&quot;Custom Media&quot;/&gt; --><pre><span style="color: #7E7E7E;">/* YourDuinoStarter Example: nRF24L01 Transmit Joystick values</span>
+<span style="color: #7E7E7E;"> - WHAT IT DOES: Reads Analog values on A0, A1 and transmits</span>
+<span style="color: #7E7E7E;">   them over a nRF24L01 Radio Link to another transceiver.</span>
+<span style="color: #7E7E7E;"> - SEE the comments after "//" on each line below</span>
+<span style="color: #7E7E7E;"> - CONNECTIONS: nRF24L01 Modules See:</span>
+<span style="color: #7E7E7E;"> http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo</span>
+<span style="color: #7E7E7E;">   1 - GND</span>
+<span style="color: #7E7E7E;">   2 - VCC 3.3V !!! NOT 5V</span>
+<span style="color: #7E7E7E;">   3 - CE to Arduino pin 9</span>
+<span style="color: #7E7E7E;">   4 - CSN to Arduino pin 10</span>
+<span style="color: #7E7E7E;">   5 - SCK to Arduino pin 13</span>
+<span style="color: #7E7E7E;">   6 - MOSI to Arduino pin 11</span>
+<span style="color: #7E7E7E;">   7 - MISO to Arduino pin 12</span>
+<span style="color: #7E7E7E;">   8 - UNUSED</span>
+<span style="color: #7E7E7E;">   - </span>
+<span style="color: #7E7E7E;">   Analog Joystick or two 10K potentiometers:</span>
+<span style="color: #7E7E7E;">   GND to Arduino GND</span>
+<span style="color: #7E7E7E;">   VCC to Arduino +5V</span>
+<span style="color: #7E7E7E;">   X Pot to Arduino A0</span>
+<span style="color: #7E7E7E;">   Y Pot to Arduino A1</span>
+<span style="color: #7E7E7E;">   </span>
+<span style="color: #7E7E7E;"> - V1.00 11/26/13</span>
+<span style="color: #7E7E7E;">   Based on examples at http://www.bajdi.com/</span>
+<span style="color: #7E7E7E;">   Questions: terry@yourduino.com */</span>
+
+<span style="color: #7E7E7E;">/*-----( Import needed libraries )-----*/</span>
+#include &lt;<span style="color: #CC6600;">SPI</span>.h&gt;
+#include &lt;nRF24L01.h&gt;
+#include &lt;RF24.h&gt;
+<span style="color: #7E7E7E;">/*-----( Declare Constants and Pin Numbers )-----*/</span>
+#define CE_PIN   9
+#define CSN_PIN 10
+#define JOYSTICK_X A0
+#define JOYSTICK_Y A1
+
+<span style="color: #7E7E7E;">// NOTE: the "LL" at the end of the constant is "LongLong" type</span>
+<span style="color: #CC6600;">const</span> uint64_t pipe = 0xE8E8F0F0E1LL; <span style="color: #7E7E7E;">// Define the transmit pipe</span>
+
+
+<span style="color: #7E7E7E;">/*-----( Declare objects )-----*/</span>
+RF24 radio(CE_PIN, CSN_PIN); <span style="color: #7E7E7E;">// Create a Radio</span>
+<span style="color: #7E7E7E;">/*-----( Declare Variables )-----*/</span>
+<span style="color: #CC6600;">int</span> joystick[2];  <span style="color: #7E7E7E;">// 2 element array holding Joystick readings</span>
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>setup</b></span>()   <span style="color: #7E7E7E;">/****** SETUP: RUNS ONCE ******/</span>
+{
+  <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">begin</span>(9600);
+  radio.<span style="color: #CC6600;">begin</span>();
+  radio.openWritingPipe(pipe);
+}<span style="color: #7E7E7E;">//--(end setup )---</span>
+
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>loop</b></span>()   <span style="color: #7E7E7E;">/****** LOOP: RUNS CONSTANTLY ******/</span>
+{
+  joystick[0] = <span style="color: #CC6600;">analogRead</span>(JOYSTICK_X);
+  joystick[1] = <span style="color: #CC6600;">analogRead</span>(JOYSTICK_Y);
+  
+  radio.<span style="color: #CC6600;">write</span>( joystick, sizeof(joystick) );
+
+}<span style="color: #7E7E7E;">//--(end main loop )---</span>
+
+<span style="color: #7E7E7E;">/*-----( Declare User-written Functions )-----*/</span>
+
+<span style="color: #7E7E7E;">//NONE</span>
+<span style="color: #7E7E7E;">//*********( THE END )***********</span>
+
+
+</pre><!-- ws:end:WikiTextMediaRule:0 --><br>
+<br>
+<strong>YD_nRF24L01_Receive_JoyStick</strong><br>
+<br>
+<!-- ws:start:WikiTextMediaRule:1:&lt;img src=&quot;https://www.wikispaces.com/site/embedthumbnail/custom/24540636?h=0&amp;w=0&quot; class=&quot;WikiMedia WikiMediaCustom&quot; id=&quot;wikitext@@media@@type=&amp;quot;custom&amp;quot; key=&amp;quot;24540636&amp;quot;&quot; title=&quot;Custom Media&quot;/&gt; --><pre><span style="color: #7E7E7E;">/* YourDuinoStarter Example: nRF24L01 Receive Joystick values</span>
+
+<span style="color: #7E7E7E;"> - WHAT IT DOES: Receives data from another transceiver with</span>
+<span style="color: #7E7E7E;">   2 Analog values from a Joystick or 2 Potentiometers</span>
+<span style="color: #7E7E7E;">   Displays received values on Serial Monitor</span>
+<span style="color: #7E7E7E;"> - SEE the comments after "//" on each line below</span>
+<span style="color: #7E7E7E;"> - CONNECTIONS: nRF24L01 Modules See:</span>
+<span style="color: #7E7E7E;"> http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo</span>
+<span style="color: #7E7E7E;">   1 - GND</span>
+<span style="color: #7E7E7E;">   2 - VCC 3.3V !!! NOT 5V</span>
+<span style="color: #7E7E7E;">   3 - CE to Arduino pin 9</span>
+<span style="color: #7E7E7E;">   4 - CSN to Arduino pin 10</span>
+<span style="color: #7E7E7E;">   5 - SCK to Arduino pin 13</span>
+<span style="color: #7E7E7E;">   6 - MOSI to Arduino pin 11</span>
+<span style="color: #7E7E7E;">   7 - MISO to Arduino pin 12</span>
+<span style="color: #7E7E7E;">   8 - UNUSED</span>
+<span style="color: #7E7E7E;">   </span>
+<span style="color: #7E7E7E;"> - V1.00 11/26/13</span>
+<span style="color: #7E7E7E;">   Based on examples at http://www.bajdi.com/</span>
+<span style="color: #7E7E7E;">   Questions: terry@yourduino.com */</span>
+
+<span style="color: #7E7E7E;">/*-----( Import needed libraries )-----*/</span>
+#include &lt;<span style="color: #CC6600;">SPI</span>.h&gt;
+#include &lt;nRF24L01.h&gt;
+#include &lt;RF24.h&gt;
+<span style="color: #7E7E7E;">/*-----( Declare Constants and Pin Numbers )-----*/</span>
+#define CE_PIN   9
+#define CSN_PIN 10
+
+<span style="color: #7E7E7E;">// NOTE: the "LL" at the end of the constant is "LongLong" type</span>
+<span style="color: #CC6600;">const</span> uint64_t pipe = 0xE8E8F0F0E1LL; <span style="color: #7E7E7E;">// Define the transmit pipe</span>
+
+
+<span style="color: #7E7E7E;">/*-----( Declare objects )-----*/</span>
+RF24 radio(CE_PIN, CSN_PIN); <span style="color: #7E7E7E;">// Create a Radio</span>
+<span style="color: #7E7E7E;">/*-----( Declare Variables )-----*/</span>
+<span style="color: #CC6600;">int</span> joystick[2];  <span style="color: #7E7E7E;">// 2 element array holding Joystick readings</span>
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>setup</b></span>()   <span style="color: #7E7E7E;">/****** SETUP: RUNS ONCE ******/</span>
+{
+  <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">begin</span>(9600);
+  <span style="color: #CC6600;">delay</span>(1000);
+  <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">println</span>(<span style="color: #006699;">"Nrf24L01 Receiver Starting"</span>);
+  radio.<span style="color: #CC6600;">begin</span>();
+  radio.openReadingPipe(1,pipe);
+  radio.startListening();;
+}<span style="color: #7E7E7E;">//--(end setup )---</span>
+
+
+<span style="color: #CC6600;">void</span> <span style="color: #CC6600;"><b>loop</b></span>()   <span style="color: #7E7E7E;">/****** LOOP: RUNS CONSTANTLY ******/</span>
+{
+  <span style="color: #CC6600;">if</span> ( radio.<span style="color: #CC6600;">available</span>() )
+  {
+    <span style="color: #7E7E7E;">// Read the data payload until we've received everything</span>
+    <span style="color: #CC6600;">bool</span> done = <span style="color: #CC6600;">false</span>;
+    <span style="color: #CC6600;">while</span> (!done)
+    {
+      <span style="color: #7E7E7E;">// Fetch the data payload</span>
+      done = radio.<span style="color: #CC6600;">read</span>( joystick, sizeof(joystick) );
+      <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">print</span>(<span style="color: #006699;">"X = "</span>);
+      <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">print</span>(joystick[0]);
+      <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">print</span>(<span style="color: #006699;">" Y = "</span>);      
+      <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">println</span>(joystick[1]);
+    }
+  }
+  <span style="color: #CC6600;">else</span>
+  {    
+      <span style="color: #CC6600;"><b>Serial</b></span>.<span style="color: #CC6600;">println</span>(<span style="color: #006699;">"No radio available"</span>);
+  }
+
+}<span style="color: #7E7E7E;">//--(end main loop )---</span>
+
+<span style="color: #7E7E7E;">/*-----( Declare User-written Functions )-----*/</span>
+
+<span style="color: #7E7E7E;">//NONE</span>
+<span style="color: #7E7E7E;">//*********( THE END )***********</span>
+
+
+</pre><!-- ws:end:WikiTextMediaRule:1 --><br>
+<br>
+Another interesting example: Chat between radios:<br>
+<!-- ws:start:WikiTextUrlRule:518:https://github.com/stanleyseow/RF24/tree/master/examples --><a class="wiki_link_ext" href="https://github.com/stanleyseow/RF24/tree/master/examples" rel="nofollow">https://github.com/stanleyseow/RF24/tree/master/examples</a><!-- ws:end:WikiTextUrlRule:518 --><br>
+<br>
+<br>
+<br>
+---------------------( COPY: Post for people having nRF24L01 Problems )---------------------<br>
+<!-- ws:start:WikiTextHeadingRule:172:&lt;h2&gt; --><h2 id="toc85"><a name="EXAMPLE ARDUINO SKETCHES:-nRF24L01 Intermittent / No operation."></a><!-- ws:end:WikiTextHeadingRule:172 -->nRF24L01 Intermittent / No operation.</h2>
+ ALWAYS check 3.3V power. Many times intermittent operation is due to power supply regulation issues. Even though the average current may be less than 15ma, apparently there are quick transients when each transmit burst happens.<br>
+I used to have nRF24L01 problems. Worked one day / one minute, failed the next. Now I put a 1uf to 10uf capacitor right from GND to 3.3V pins on the modules, and things are MUCH better.<br>
+<br>
+<span style="line-height: 1.5;">These modules are designed to plug into a baseboard that usually has significant bypass capacitors. If you have them on the end of jumper wires you need extra bypass capacitors.</span><br>
+Try it and let us know here!<br>
+-----------------( END COPY )----------------------
+  </div>
+
+<div id="pageEditor" class="editorWrapper editorLayer">
+  <iframe id="target_editor" name="target_editor" src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/blank.html" style="width:0px;height:0px;border:0"></iframe>
+    <form action="http://arduino-info.wikispaces.com/page/edit/Nrf24L01-2.4GHz-HowTo" method="post" class="editorForm" id="editorForm"><input type="hidden" name="wikispacesFormToken" value="c65ae74a11d123cd087e7196c0291d83c4a8169e"><div class="wsh"><input type="text" class="form-control" name="wikispaces_user_id" value="user-1433521699"></div><div class="jowic"><input type="text" class="form-control" name="goto" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="mode" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="version" autocomplete="off"></div><div class="wsh"><input type="text" class="form-control" name="pageComments" autocomplete="off"></div><div class="jowic"><input type="text" class="form-control" name="saveAndContinue" autocomplete="off"></div><div class="wsh"><input type="text" class="form-control" name="comment" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="commentsDisabled" autocomplete="off"></div><div class="movkp"><input type="text" class="form-control" name="contentPresent" autocomplete="off"></div><div class="wsh"><input type="text" class="form-control" name="editorCleanup" autocomplete="off"></div><div class="mimw"><input type="text" class="form-control" name="WikispacesEditorContent" autocomplete="off"></div><input type="hidden" name="wikispacesASFormToken" value="0f082c45a37eb6da208d039029296407202d70bf">
+    <input type="hidden" title="goto" name="5b649c6ffde107f2b1fd2a20a4648ff65d265c14" value="">
+    <input type="hidden" title="mode" name="9a8b2d3a4ec61168a2a13ab45b1e718bab39e6c7" autocomplete="off" value="visual">
+    <input type="hidden" title="version" name="d3b1ab6bd938f7262397303005c41d81ac00d1b2" autocomplete="off" value="547798022">
+    <input type="hidden" title="pageComments" name="26cfd75ad1aaa14251dab6a7852cbe942f0c42af" autocomplete="off" value="">
+    <input type="hidden" title="saveAndContinue" name="6301c720d3a4d85d8ae3ca021b49ec853d468bb1" value="0">
+    <input type="hidden" title="comment" name="611fea65271c873553881b4fce3bfd086af9eb1a" value="">
+    <input type="hidden" title="commentsDisabled" name="9ced26f11b9ec25913b3232459593bcde0251b63" autocomplete="off" value="">
+    <input type="hidden" title="contentPresent" name="99d332cba7d8f666be4f4ea474dc9fcb8482d4d5" autocomplete="off" value="">
+    <input type="hidden" title="editorCleanup" name="9ab12bec953bb148eaa784c312f7b1743504d4a0" autocomplete="off" value="">
+
+    <textarea id="wsMainEditor" title="content" class="noContentHide" name="0ea0bd36df2bf76b58bdff4b81d97bad16f8db8b" style="width: 100%; position: absolute; top: -50000px; left: -50000px;" autocomplete="off"></textarea>
+
+  <noscript>
+    &lt;h2&gt;Javascript Required&lt;/h2&gt;
+    &lt;p&gt;You need to enable Javascript in your browser to edit pages.&lt;/p&gt;
+  </noscript>
+
+  </form>
+  
+  
+  <div id="plainTextEditor" style="position:relative;display:none" class="editorLayer">
+    <textarea id="textEditor" class="autogrow" style="height: 444px; overflow: hidden;"></textarea>
+    <p style="clear:both;" align="right"><a href="http://help.wikispaces.com/help.wikitext" class="js-help-link" data-help="help.wikitext">help on how to format text</a></p>
+  </div>
+</div>
+
+
+
+
+  </div>
+  <div class="commentColumn WikispacesStream"><div class="WikispacesContent WikispacesBs3"><div class="commentList"></div></div></div>
+</div>
+
+  
+
+
+
+
+<script type="text/template" id="js-event-template">
+  <small>
+    <%- startDateShortFormat %>
+    <a href="<%- ws.common.pathFor('event', 'view', id) %>" class="WikispacesDialogLink">
+      <%- ws.common.truncate(title, 15) %>
+    </a>
+  </small>
+</script>
+
+<script type="text/template" id="js-reply-template">
+  <div class="tc-timeline-comment media">
+
+    <a class="pull-left userLink" href="<%- userCreated.url %>">
+      <img src="<%- userCreated.imageUrl %>" width="30" height="30" class="author-avatar" alt="" />
+    </a>
+    <div class="media-body" data-id="<%= id %>">
+      <% if (ws.context.user.canAdministerWiki) { %>
+        <i class="tc-delete-comment fa fa-trash-o contextual-command destroy-message ws-tip" title="Delete reply"></i>
+      <% } %>
+      <div class="tc-box-name-date">
+        <span class="tc-commenter"><a href="<%- userCreated.url %>"><%- userCreated.username %></a></span>
+        <% if (smartDate == '__live__') { %>
+        <abbr style="border-bottom-style: none;" class="timeago tc-comment-date" title="<%- (new Date(parseInt(dateCreated) * 1000)).toISOString() %>">
+          <%- (new Date(parseInt(dateCreated) * 1000)).toDateString() %>
+        </abbr>
+        <% } else { %>
+          <abbr style="border-bottom-style: none;" class="tc-comment-date"><%- smartDate %></abbr>
+        <% } %>
+      </div>
+      <% if (body) { %>
+      <p>
+        <%= body %>
+      </p>
+      <% } %>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="js-share-template">
+  <div class="tc-timeline-block tc-<%= ws.stream.typeToBlockType(sharedType) %>-block" <%= (ws.stream.hideTimeline ? 'style="padding-left: 0px;"' : '') %>>
+
+    <% if (!ws.stream.hideTimeline) { %>
+      <div class="tc-timeline-icon">
+        <i class="fa fa-<%= ws.stream.typeToIcon(sharedType) %>"></i>
+      </div>
+      <div class="tc-timeline-triangle-man"></div>
+    <% } %>
+
+    <div class="tc-timeline-box" data-id="<%= id %>">
+      <div class="media">
+        <a class="pull-left userLink" href="<%- userCreated.url %>">
+          <img src="<%- userCreated.imageUrl %>" width="48" height="48" class="author-avatar media-object" alt="" />
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <% if (ws.context.user.id) { %>
+              <li>
+                <a class="js-toggle-monitor" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-eye"></i>
+                  <span><%= monitored ? 'Start Monitoring' : 'Stop Monitoring' %></span>
+                </a>
+              </li>
+              <% } %>
+
+              <% if (ws.context.user.canAdministerWiki) { %>
+              <li>
+                <a class="js-toggle-lock" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-lock"></i>
+                  <span><%= locked ? 'Unlock Replies' : 'Lock Replies' %></span>
+                </a>
+              </li>
+              <% if (sharedType == 'discussion' || sharedType == 'comment' || sharedType == 'event') { %>
+              <li>
+                <a class="js-destroy-share" tabindex="-1" href="#">
+                  <i class="fa-fw fa fa-trash-o"></i>
+                  Delete <%= ws.stream.typeToName(sharedType) %>
+                </a>
+              </li>
+              <% } %>
+              <% } %>
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              <% if (typeof adminLink !== 'undefined' && adminLink && ws.context.user.canAdministerWiki) { %>
+                <a href="<%- adminLink %>"><%- title %></a>
+              <% } else { %>
+                <%- title %>
+              <% } %>
+              <% if (typeof startDate !== 'undefined' && startDate) { %> - <%= startDateShortFormat %> <%= ws.stream.getYearFromStartDate(startDate) %><% } %>
+              </h3>
+              <div class="tc-box-name-date">
+                <% if (ws.context.instance.isTesClassroom) { %>
+                  <%- userCreated.username %>
+                <% } else { %>
+                  <a class="author-name" href="<%- userCreated.url %>"><%- userCreated.username %></a>
+                <% } %>
+                <% if (typeof recipients !== 'undefined' && recipients) { %>
+                  <i class="fa fa-angle-right"></i>
+                  <% if (typeof recipientsLink !== 'undefined') { %>
+                    <a href="<%- recipientsLink %>"><%- recipients %></a>
+                  <% } else { %>
+                    <span class="recipients"><%- recipients %></span>
+                  <% } %>
+                <% } %>
+                <% if (smartDate == '__live__') { %>
+                  <abbr style="border-bottom-style: none;" class="timeago tc-block-date" title="<%= (new Date(parseInt(dateCreated) * 1000)).toISOString() %>">
+                    <%= (new Date(parseInt(dateCreated) * 1000)).toDateString() %>
+                  </abbr>
+                <% } else { %>
+                  <abbr style="border-bottom-style: none;" class="tc-block-date"><%- smartDate %></abbr>
+                <% } %>
+              </div>
+          </div>
+
+          <div class="<%= sharedType == 'comment' && !orphaned && !ws.stream.noCollapse ? 'hidden ' : '' %>tc-block-content">
+            <div class="clearfix">
+              <% if (typeof rangeActions !== 'undefined') { %>
+                <div class="tc-range-actions">
+                  <% for(var i = 0; i < rangeActions.length; i++) { %>
+                  <%= ws.stream.rangeActionTemplate(rangeActions[i]) %>
+                  <% } %>
+                </div>
+              <% } %>
+              <% if (description) { %>
+                <p><%= description %></p>
+              <% } %>
+            </div>
+          </div>
+
+          <% if (replyPages.length > 0 && !(replyPages.length === 1 && replyPages[0].digests.length === 0)) { %>
+            <div class="tc-timeline-comments">
+            <% for (var i = 0; i < replyPages.length; i++) { %>
+              <% if (i == 0 && replyPages[i].more) { %>
+                <a href="#" class="tc-show-more" onclick="ws.stream.pageReplies(<%= id %>, <%= replyPages[i].page + 1 %>); return false">Show more replies (<%= replyPages[i].more %> hidden) </a>
+              <% } else { %>
+                <div></div>
+              <% } %>
+              <% for (var j = 0; j < replyPages[i].digests.length; j++) { %>
+                <%= ws.stream.replyTemplate(replyPages[i].digests[j]) %>
+              <% } %>
+            <% } %>
+            </div>
+          <% } %>
+
+          <% if ((ws.stream.userCanPostMessage && !locked) || ws.context.user.canAdministerWiki) { %>
+          <div class="tc-add-comment media <%= ws.stream.noCollapse ? 'add-active' : ''%>">
+            <img src="<%- ws.context.user.imageUrlPrefix %>lg.jpg" width="30" height="30" class="pull-left author-avatar" alt="" />
+            <div class="media-body">
+              <textarea name="reply" placeholder="Comment" class="form-control form-control-tc ws-reveal <%= !ws.stream.noCollapse ? 'ws-unrevealed' : ''%> reply" /></textarea>
+              <button type="button" class="btn-tc btn-info-tc btn-sm-tc add-reply">Post</button>
+            </div>
+          </div>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="js-range-action-template">
+  <div>
+    <strong><%- name %></strong>
+    <% if (typeof(diffUrl) !== 'undefined') { %>
+      <a href="<%- diffUrl %>">
+    <% } %>
+    <%= new Date(dateCreated * 1000).toLocaleString() %>
+    <% if (typeof(diffUrl) !== 'undefined') { %>
+      </a>
+    <% } %>
+    <% if (typeof(rangeText) !== 'undefined') { %>
+      <div>
+        <span class="commentExtent">
+        <% if (typeof(diffUrl) !== 'undefined') { %>
+          <a href="<%- diffUrl %>">
+        <% } %>
+        <%= rangeText %>
+        <% if (typeof(diffUrl) !== 'undefined') { %>
+          </a>
+        <% } %>
+        </span>
+      </div>
+    <% } %>
+  </div>
+</script>
+
+<script type="text/template" id="js-stream-end-template">
+  <div class="tc-timeline-block tc-end-block">
+    <div class="tc-timeline-icon" style="margin-top: -10px;" />
+    <div class="tc-timeline-box" style="visibility: hidden;">
+      <p class="tc-box-title"></p>
+    </div>
+  </div>
+</script>
+
+<a name="discussion"></a>
+<div class="timeline WikispacesBs3 tc-timeline-embedded show-border">
+  <div class="timeline-line"></div>
+    <div id="js-share-list"><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="73364712">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/bramwerbrouck">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                No communication
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/bramwerbrouck">bramwerbrouck</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Apr 22, 2015</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Hi, I have 2 different modules both connected to an arduino Nano, one is a NRF24L01+PA+LNA SMA Antenna Wireless Transceiver communication module 2.4G 1100m, the other one is an Arduino NRF24L01+ 2.4GHz Wireless Transceiver Module, but I have no communication   with each other, when I take 2 of the  Arduino NRF24L01+ 2.4GHz Wireless modules, than I have communication... What's wrong here?<br>
+ I use the sketch "YD_nRF24L01_Transmit_JoyStick" and "YD_nRF24L01_Receive_JoyStick"</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+    
+  <div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="73084802">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/noobtechie">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Using this library for TI Launchpads
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/noobtechie">noobtechie</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Apr 8, 2015</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Hi, I have a TI Tiva C Launchpad which uses Energia an Arduino fork. Is it possible to use the Mirf library with the Energia IDE?</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="72909530">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/Uldis.s">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                If nRF24L01 not working
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/Uldis.s">Uldis.s</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Mar 30, 2015</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Hi!<br>
+I had a problem, when nRF24L01 not working. Tried to add cap between Vcc and GND, but still no succsess. So, I added another one 0.1uF between antenna and GND (see picture). In my board there is a empty pads, and it helps!<br>
+<br>
+<!-- ws:start:WikiTextUrlRule:3:https://lh3.googleusercontent.com/-O_-IePs63yM/VRo3YwbylnI/AAAAAAAABHQ/_2gduPOBWRg/w958-h719-no/2015-03-31%2B08.53.18.jpg --><a class="wiki_link_ext" href="https://lh3.googleusercontent.com/-O_-IePs63yM/VRo3YwbylnI/AAAAAAAABHQ/_2gduPOBWRg/w958-h719-no/2015-03-31%2B08.53.18.jpg" rel="nofollow">https://lh3.googleusercontent.com/-O_-IePs63yM/VRo3YwbylnI/AAAAAAAABHQ/_2gduPOBWRg/w958-h719-no/2015-03-31%2B08.53.18.jpg</a><!-- ws:end:WikiTextUrlRule:3 --></p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="72816266">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/Josu_Arduino">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Sending a String
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/Josu_Arduino">Josu_Arduino</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Mar 26, 2015</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Hi there! I´m new with the nRF24L01 transceivers and in my code I need to send a string from an Arduino to another one. I tried to change the radio.write( string, sizeof(string) ) but it didnt work at all. Can someone help me and expalin how does the radio.write function works? Thank you very much.</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="71261030">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/mistercrazyboy21">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                programming code not working
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/mistercrazyboy21">mistercrazyboy21</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Jan 4, 2015</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>he, <br>
+I just copied your joystick code and added the library in arduino but now the code doesn't compile because 'RF24 doesn't name a type'. <br>
+thank you :D</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="70139900">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/Lee_lvd">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Can you tell me how the ones listed in the link compair to this link?
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/Lee_lvd">Lee_lvd</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Nov 6, 2014</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p><!-- ws:start:WikiTextUrlRule:1:http://www.dx.com/p/nrf24l01-2-4ghz-wireless-transceiver-module-126467 --><a class="wiki_link_ext" href="http://www.dx.com/p/nrf24l01-2-4ghz-wireless-transceiver-module-126467" rel="nofollow">http://www.dx.com/p/nrf24l01-2-4ghz-wireless-transceiver-module-126467</a><!-- ws:end:WikiTextUrlRule:1 --><br>
+I ordered these thinking they would be easy to use and finding they are not 802 wireless as I thought they were.  I have learned a lot but I have not even powered the pair of these up so far.</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="70007284">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/chrisc28">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Intermittent receive, improved capacitor fix
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/chrisc28">chrisc28</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Oct 30, 2014</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Like many, I was having issues with poor reception of packets.  Thanks to this HowTo for finally cluing me into the cause.  I tried a 0.1uF SMD ceramic cap soldered directly to the VCC/GND header pins of the nRF24L01+ module.  This improved things slightly, at least letting me know I was on the right track.  Increasing the value in increments, each increase showed further improvement, but I was still getting about 40% packet loss even at 47uF.  I must have a particularly noisy power supply!  So I decided to try a different approach than increasing the cap value even further.  In fact, I decreased the cap to 10uF, but also connected VCC and GND from the radio module to the main board through a pair of 1 ohm resistors.  This forms an RC filter, more effectively reducing noise entering the module than any reasonably-sized cap alone could.  I'm happy to say reception is finally rock solid.  I just joined to share this, and am not familiar with wiki editing, but perhaps this may be helpful enough to others that someone might consider adding it to the guide.</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="69403812">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/barnettech">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Can I plug the receiver into different pins?
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/barnettech">barnettech</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Sep 20, 2014</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>I'm trying to get this to work with a Zumo Shield and the 9,10,11,12, and 13 pins are already taken on the Ardruino Uno Board, can I plug it instead into pins 1-5 ?</p>
+              
+            </div>
+          </div>
+
+          
+            <div class="tc-timeline-comments">
+            
+              
+                <div></div>
+              
+              
+                
+  <div class="tc-timeline-comment media">
+
+    <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/Josu_Arduino">
+      <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="30" height="30" class="author-avatar" alt="">
+    </a>
+    <div class="media-body" data-id="80576138">
+      
+      <div class="tc-box-name-date">
+        <span class="tc-commenter"><a href="http://www.wikispaces.com/user/view/Josu_Arduino">Josu_Arduino</a></span>
+        
+          <abbr style="border-bottom-style: none;" class="tc-comment-date">Mar 26, 2015</abbr>
+        
+      </div>
+      
+      <p>
+        I dont know if you can do that. Can you change the pins which are already taken? That may be an option, I hope i had helped you
+      </p>
+      
+    </div>
+  </div>
+
+              
+            
+            </div>
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="67038872">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/phanajan">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Best wireless routers 
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/phanajan">phanajan</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Apr 10, 2014</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Best wireless routers <br>
+[url=<!-- ws:start:WikiTextUrlRule:1:http://www.bestwirelessrouterrewiews.com --><a class="wiki_link_ext" href="http://www.bestwirelessrouterrewiews.com/" rel="nofollow">http://www.bestwirelessrouterrewiews.com</a><!-- ws:end:WikiTextUrlRule:1 -->]best wireless router[/url]</p>
+              
+            </div>
+          </div>
+
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><div>
+  <div class="tc-timeline-block tc-announcement-block" style="padding-left: 0px;">
+
+    
+
+    <div class="tc-timeline-box" data-id="65618104">
+      <div class="media">
+        <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/fatih_-1">
+          <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="48" height="48" class="author-avatar media-object" alt="">
+        </a>
+
+        <div class="media-body">
+
+          <div class="tc-stream-dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="http://arduino-info.wikispaces.com/Nrf24L01-2.4GHz-HowTo#">
+              <i class="fa fa-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              
+
+              
+            </ul>
+          </div>
+
+          <div class="tc-timeline-box-header ws-reveal media-heading">
+              <h3 class="tc-box-title">
+              
+                Arduino Leonardo Boards Pin
+              
+              
+              </h3>
+              <div class="tc-box-name-date">
+                
+                  <a class="author-name" href="http://www.wikispaces.com/user/view/fatih_-1">fatih_-1</a>
+                
+                
+                
+                  <abbr style="border-bottom-style: none;" class="tc-block-date">Jan 9, 2014</abbr>
+                
+              </div>
+          </div>
+
+          <div class="tc-block-content">
+            <div class="clearfix">
+              
+              
+                <p>Hello;<br>
+Arduino Leonardo board has got different SPI pins this page and it has ICSP pins.I tried this example but it didn't work with Leonardo board. Can you help me?</p>
+              
+            </div>
+          </div>
+
+          
+            <div class="tc-timeline-comments">
+            
+              
+                <div></div>
+              
+              
+                
+  <div class="tc-timeline-comment media">
+
+    <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/DavidEgts">
+      <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="30" height="30" class="author-avatar" alt="">
+    </a>
+    <div class="media-body" data-id="75344988">
+      
+      <div class="tc-box-name-date">
+        <span class="tc-commenter"><a href="http://www.wikispaces.com/user/view/DavidEgts">DavidEgts</a></span>
+        
+          <abbr style="border-bottom-style: none;" class="tc-comment-date">Sep 28, 2014</abbr>
+        
+      </div>
+      
+      <p>
+        I had the same problem too but I figured it out.  It would be great if this page's table "Here's details of the Pinout and connections to Arduino (updated):" could be updated to add a column for the Leonardo.  Here's the mapping...<br>
+<br>
+RF Module       Leonardo<br>
+1                      GND<br>
+2                      3.3V<br>
+3                      9<br>
+4                      10***<br>
+5                      ISCP pin 3 (SCK)<br>
+6                      ISCP pin 4 (MOSI)<br>
+7                      ISCP pin 1 (MISO)<br>
+8                      2*<br>
+<br>
+</p><ul><ul><ul><li>I'm not sure if the module wants RF Module pin 4 connected to a SS.  The Leonardo doesn't have a pin exposed for SS, but pin 10 seemed to "just work".  To quote "Fortunately it is perfectly ok to use pin 10 (or any other digital pin) to drive the target’s reset. (The only requirement for the SS pin is that it is configured as an output (which makes the leo an SPI master)." from...</li></ul></ul></ul><br>
+<!-- ws:start:WikiTextUrlRule:30:http://petervanhoyweghen.wordpress.com/2012/09/16/arduinoisp-on-the-leonardo/ --><a class="wiki_link_ext" href="http://petervanhoyweghen.wordpress.com/2012/09/16/arduinoisp-on-the-leonardo/" rel="nofollow">http://petervanhoyweghen.wordpress.com/2012/09/16/arduinoisp-on-the-leonardo/</a><!-- ws:end:WikiTextUrlRule:30 --><br>
+<br>
+<ul><li>Pin 2 for the IRQ works in the same way as the Uno in the RF24 library example per the 2nd NOTE below the above-referenced table, so it should have a * next to it if the table were to be updated to include Leonardo.</li></ul><br>
+For more good info on the Leonardo...<br>
+<br>
+<!-- ws:start:WikiTextUrlRule:31:http://www.instructables.com/id/Step-by-Step-Guide-to-the-Arduino-Leonardo/?ALLSTEPS --><a class="wiki_link_ext" href="http://www.instructables.com/id/Step-by-Step-Guide-to-the-Arduino-Leonardo/?ALLSTEPS" rel="nofollow">http://www.instructables.com/id/Step-by-Step-Guide-to-the-Arduino-Leonardo/?ALLSTEPS</a><!-- ws:end:WikiTextUrlRule:31 -->
+      <p></p>
+      
+    </div>
+  </div>
+
+              
+                
+  <div class="tc-timeline-comment media">
+
+    <a class="pull-left userLink" href="http://www.wikispaces.com/user/view/bramwerbrouck">
+      <img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/user_none_lg.jpg" width="30" height="30" class="author-avatar" alt="">
+    </a>
+    <div class="media-body" data-id="81410886">
+      
+      <div class="tc-box-name-date">
+        <span class="tc-commenter"><a href="http://www.wikispaces.com/user/view/bramwerbrouck">bramwerbrouck</a></span>
+        
+          <abbr style="border-bottom-style: none;" class="tc-comment-date">Apr 22, 2015</abbr>
+        
+      </div>
+      
+      <p>
+        Hi, I have 2 different modules both connected to an arduino Nano, one is a NRF24L01+PA+LNA SMA Antenna Wireless Transceiver communication module 2.4G 1100m, the other one is an Arduino NRF24L01+ 2.4GHz Wireless Transceiver Module, but I have no communication   with each other, when I take 2 of the  Arduino NRF24L01+ 2.4GHz Wireless modules, than I have communication... What's wrong here?<br>
+ I use the sketches  "YD_nRF24L01_Transmit_JoyStick" and "YD_nRF24L01_Receive_JoyStick"
+      </p>
+      
+    </div>
+  </div>
+
+              
+            
+            </div>
+          
+
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div></div>
+</div></div></div><div id="sentinel" style="clear:both"></div>        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<footer class="ws-theme-footer" role="contentinfo">
+  <div class="ws-theme-container">
+    <div class="ws-theme-footer-inner">
+      <div class="WikiFooterNav WikiElement">
+<a href="http://help.wikispaces.com/" rel="nofollow" class="js-help-trigger">Ayuda</a> ·
+<a href="http://www.wikispaces.com/about">Acerca de</a> ·
+<a href="http://blog.wikispaces.com/" target="_new">Blog</a> ·
+<a href="http://www.wikispaces.com/content/pricing" rel="nofollow">Precio</a> ·
+<a href="http://www.wikispaces.com/privacy" rel="nofollow">Privacidad</a> ·
+<a href="http://www.wikispaces.com/terms" rel="nofollow">Términos</a> ·
+<a href="http://www.wikispaces.com/site/help?url=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo" rel="nofollow"><strong>Apoyo</strong></a></div>      <div class="WikiLicense WikiElement">Contributions to http://arduino-info.wikispaces.com/ are licensed under a <a rel="license" href="http://www.creativecommons.org/licenses/by-nc/3.0">Creative Commons Attribution Non-Commercial 3.0 License</a>. <a rel="license" href="http://www.creativecommons.org/licenses/by-nc/3.0"><img src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/by-nc_3.0_80x15.png" width="85" height="15" alt="Creative Commons Attribution Non-Commercial 3.0 License"></a><br>Portions not contributed by visitors are Copyright 2015 Tangient LLC</div>    </div>
+  </div>
+</footer>
+
+
+<script type="text/template" id="dialog-template">
+<div class="modal fade" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title"><%= header %></h4>
+      </div>
+      <div class="modal-body">
+        <%= body %>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+
+<div id="js-help-template" class="hidden">
+  <div class="ws-help">
+    <div class="js-help-controls WikispacesContent WikispacesBs3">
+      <a href="http://www.wikispaces.com/site/gettingstarted/off" class="btn btn-default hidden js-getting-started-off pull-right">Turn off "Getting Started"</a>
+      <ol class="breadcrumb">
+        <li class="js-special-breadcrumb active">
+          <a href="http://help.wikispaces.com/" data-breadcrumb="0">Página de inicio</a>
+        </li>
+        <li class="js-ellipsis hidden js-special-breadcrumb">
+          ...
+        </li>
+        <li class="js-spinner hidden js-special-breadcrumb"><i class="fa fa-spinner fa-spin"></i></li>
+      </ol>
+    </div>
+    <div class="ws-help-content wiki">Cargando...</div>
+  </div>
+</div>
+</div>
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/95z4150v-common.min.js" type="text/javascript"></script>
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/vkz515xz-editorc.min.js" type="text/javascript"></script>
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/85k7018k-stream.min.js" type="text/javascript"></script>
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/91k8z207-contentbar.min.js" type="text/javascript"></script>
+<script src="./arduino-info - Nrf24L01-2.4GHz-HowTo_files/395j1vq7-component.stream-vo.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+ws.namespace('ws.attributes');
+ws.namespace('ws.stream');
+ws.attributes.DISCUSSION_COUNT = 13;
+ws.attributes.pageId = 70743309;
+ws.attributes.version = 547798022;
+ws.attributes.showEditor = true;
+ws.attributes.editUrl = "http:\/\/arduino-info.wikispaces.com\/page\/edit\/Nrf24L01-2.4GHz-HowTo?goto=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo";
+ws.attributes.userCanEdit = false;
+ws.stream.userCanPostMessage = false;
+ws.stream.hideTimeline = true;
+ws.stream.shareSource = "http:\/\/arduino-info.wikispaces.com\/page\/shares\/Nrf24L01-2.4GHz-HowTo";
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+jQuery(document).ready(function() {
+  ws.common.addJsonNotices({"warning":[],"error":[],"info":[],"success":[]});
+});
+
+jQuery(document).ready(function($) {
+  
+  function tipPlacement() {
+    return this.$element.closest('.ws-menu-bar .btn-group').is('.open') ? 'top' : 'bottom';
+  }
+
+  
+
+  $('.ws-menu-bar').each(function() {
+    var $menuBar = $(this);
+    var $tagDropdown = $menuBar.find('.ws-tag-dropdown-menu');
+    $menuBar.find('.tipme').tooltip({placement: tipPlacement, container: '.ws-menu-bar'});
+
+    
+    $menuBar.find('.ws-btn-more').click(ws.common.makeLinkClickFunction(function(e) {
+      if ($(this).closest('.ws-menu-bar .btn-group').is('.open')) {
+        ws.common.hideMorePageBar();
+      } else {
+        ws.common.showMorePageBar();
+      }
+    }));
+
+    $menuBar.on('click', '.ws-tag-dropdown-toggle', ws.common.makeLinkClickFunction(function(e) {
+      if ($(this).closest('.ws-menu-bar .dropdown').is('.open')) {
+        ws.common.hideTagDropdown();
+      } else {
+        ws.common.showTagDropdown();
+      }
+    }));
+
+    $(document.body).click(function(e) {
+      var $target = $(e.target);
+      if (!$target.closest('.ws-more-menu').closest('.ws-menu-bar').is($menuBar)
+          || $target.closest('a').is('.WikispacesDialogLink')) {
+        ws.common.hideMorePageBar();
+      }
+      if ($tagDropdown.length && !$target.closest('.ws-tag-dropdown-menu').is($tagDropdown)) {
+        ws.common.hideTagDropdown();
+      }
+    });
+    
+  });
+});
+
+
+jQuery(document).ready(function($) {
+  $('.ws-more-menu').on('click', 'a', function(e) {
+    if ($(this).is('.disabled')) {
+      e.preventDefault();
+    }
+  });
+});
+
+
+jQuery(document).ready(function() {
+  ws.editor.canEdit = false;
+  var editUrl = 'http://arduino-info.wikispaces.com/page/edit/Nrf24L01-2.4GHz-HowTo?goto=http%3A%2F%2Farduino-info.wikispaces.com%2FNrf24L01-2.4GHz-HowTo';
+
+  jQuery('#js-edit-from-template').change(function() {
+    window.location = ws.common.addUriParams(editUrl, [['template', jQuery(this).val()]]);
+  });
+});
+
+
+jQuery(document).ready(function() {
+  ws.editor.loadEditorLibs('http://www.wikispaces.com/site/editorlibs/es_ES/07z93j80.gz.js');
+});
+
+
+ws.editor.startEditor = function (moreCoreOptions, moreMainOptions) {
+  ws.editor.canEdit = true;
+
+  var coreOptions = {
+    'content_css': ['http://arduino-info.wikispaces.com/stylesheet/editor/221909772-217420326D.gz.css']
+  };
+
+  // The stylesheet is passed in as a string, turn it into an array
+  // Add bootstrap styles to the editor, if we are in a theme that has full screen bootstrap
+  if (jQuery('body').is('.WikispacesBs3')) {
+    coreOptions.content_css.push('http://www.wikispaces.com//s/internal-bootstrap-body.css');
+  }
+
+  var mainOptions = {
+    'wssave_cancel_url': '/Nrf24L01-2.4GHz-HowTo',
+    'wsimage_upload_url': 'http://arduino-info.wikispaces.com/file/multiupload',
+    'wsimage_max_file_size_mb': '50',
+    'wsimage_page_view_group': ''
+  };
+
+  ws.editor.loadEditor(jQuery.extend(coreOptions, moreCoreOptions), jQuery.extend(mainOptions, moreMainOptions));
+};
+
+  var wikispaces_page_version = '547798022';
+
+  jQuery(document).ready(function() {
+    ws.editor.enableButtons();
+  });
+
+
+
+--></script><!-- w1 129 mem:2:37(33) wki:1:2(2) tot:129:129(1) -->
+
+
+<div class="autogrow-shadow" style="position: absolute; top: -10000px; left: -10000px; font-size: 14px; font-family: arial, helvetica, sans-serif; font-weight: 400; line-height: 20px; resize: none; width: 96px;"></div></body></html>

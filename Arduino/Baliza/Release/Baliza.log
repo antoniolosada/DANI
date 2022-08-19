@@ -1,0 +1,83 @@
+﻿Compilación iniciada a las 07/06/2016 21:10:46.
+     1>Proyecto "F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\Baliza.vcxproj" en el nodo 2 (Build destinos).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\variants\standard" /IF:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza /I"F:\PROGRAMAS\arduino-1.5.2\libraries\RF24" /I"F:\PROGRAMAS\arduino-1.5.2\libraries\RF24\utility" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\libraries\SPI" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\libraries\SPI\utility" /I"F:\PROGRAMAS\arduino-1.5.2\libraries" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\libraries" /I"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\3e1h150h.0pg\Micro Platforms\default\debuggers" /I"C:\Users\Antonio Losada\Documents\Arduino\libraries" /IF:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\variants\standard" /I"F:\PROGRAMAS\arduino-1.5.2\libraries\RF24" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\libraries\SPI" /I"F:\PROGRAMAS\arduino-1.5.2\libraries" /I"F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\libraries" /I"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Extensions\3e1h150h.0pg\Micro Platforms\default\debuggers" /I"C:\Users\Antonio Losada\Documents\Arduino\libraries" /I"f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\\" /I"f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr\\" /I"f:\programas\arduino-1.5.2\hardware\tools\avr\avr\\" /I"f:\programas\arduino-1.5.2\hardware\tools\avr\lib\gcc\avr\4.3.2\include\\" /Zi /nologo /W3 /WX- /sdl /Od /Oi /Oy- /D __AVR_ATmega328p__ /D __AVR_ATmega328P__ /D F_CPU=16000000L /D ARDUINO=152 /D __cplusplus /D GCC_VERSION=40302 /D _MBCS /X /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /FIF:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h /analyze- /errorReport:prompt LowPower.cpp
+         LowPower.cpp
+     1>c1xx : warning C4117: el nombre de la macro '__cplusplus' está reservado; se omite '#define'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(13): warning C4005: '__AVR_ATmega328p__' : redefinición de macro
+                 argumentos de la línea de comandos :  vea la definición anterior de '__AVR_ATmega328p__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(14): warning C4005: '__AVR_ATmega328P__' : redefinición de macro
+                 argumentos de la línea de comandos :  vea la definición anterior de '__AVR_ATmega328P__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(17): warning C4117: el nombre de la macro '__cplusplus' está reservado; se omite '#define'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(27): warning C4005: 'GCC_VERSION' : redefinición de macro
+                 argumentos de la línea de comandos :  vea la definición anterior de 'GCC_VERSION'
+     1>f:\programas\arduino-1.5.2\hardware\tools\avr\lib\gcc\avr\4.3.2\include\stddef.h(214): error C2371: 'size_t' : nueva definición; tipos básicos distintos
+                 predefined C++ types (compiler internal)(19) : vea la declaración de 'size_t'
+     1>f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\math.h(337): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr/pgmspace.h(211): warning C4091: 'typedef ' : se ha omitido a la izquierda de 'void' cuando no hay ninguna variable declarada
+     1>F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(96): error C2371: 'byte' : nueva definición; tipos básicos distintos
+                 F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(56) : vea la declaración de 'byte'
+     1>f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\HardwareSerial.h(65): error C2535: 'size_t HardwareSerial::write(uint8_t)' : función miembro ya definida o declarada
+                 f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\HardwareSerial.h(62) : vea la declaración de 'HardwareSerial::write'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(69): warning C4005: 'pgm_read_byte' : redefinición de macro
+                 f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr/pgmspace.h(696) : vea la definición anterior de 'pgm_read_byte'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(70): warning C4005: 'pgm_read_word' : redefinición de macro
+                 f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr/pgmspace.h(705) : vea la definición anterior de 'pgm_read_word'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(72): warning C4005: 'digitalPinToPort' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(143) : vea la definición anterior de 'digitalPinToPort'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(73): warning C4005: 'digitalPinToBitMask' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(144) : vea la definición anterior de 'digitalPinToBitMask'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(74): warning C4005: 'digitalPinToTimer' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(145) : vea la definición anterior de 'digitalPinToTimer'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(75): warning C4005: 'analogInPinToBit' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(125) : vea la definición anterior de 'analogInPinToBit'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(76): warning C4005: 'portOutputRegister' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(147) : vea la definición anterior de 'portOutputRegister'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(77): warning C4005: 'portInputRegister' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(148) : vea la definición anterior de 'portInputRegister'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\__vm\.Baliza.vsarduino.h(78): warning C4005: 'portModeRegister' : redefinición de macro
+                 F:\PROGRAMAS\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(149) : vea la definición anterior de 'portModeRegister'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(114): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(131): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(132): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(136): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(138): error C3861: 'ComprobarCambioModo': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(150): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(152): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(161): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(163): error C3861: 'ComprobarCambioModo': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(192): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(193): error C3861: 'Espera': no se encontró el identificador
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\Baliza.ino(204): warning C4244: '=' : conversión de 'unsigned long' a 'float'; posible pérdida de datos
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(190): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(536): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(594): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(600): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(680): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(687): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(745): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(752): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(824): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(830): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(862): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(158): error C2084: la función 'void LowPowerClass::idle(period_t,adc_t,timer2_t,timer1_t,timer0_t,spi_t,usart0_t,twi_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(124) : vea la definición anterior de 'idle'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(514): error C2084: la función 'void LowPowerClass::adcNoiseReduction(period_t,adc_t,timer2_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(140) : vea la definición anterior de 'adcNoiseReduction'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(589): error C2084: la función 'void LowPowerClass::powerDown(period_t,adc_t,bod_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(141) : vea la definición anterior de 'powerDown'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(658): error C2084: la función 'void LowPowerClass::powerSave(period_t,adc_t,bod_t,timer2_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(142) : vea la definición anterior de 'powerSave'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(740): error C2084: la función 'void LowPowerClass::powerStandby(period_t,adc_t,bod_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(143) : vea la definición anterior de 'powerStandby'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(802): error C2084: la función 'void LowPowerClass::powerExtStandby(period_t,adc_t,bod_t,timer2_t)' ya tiene un cuerpo
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(144) : vea la definición anterior de 'powerExtStandby'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(860): error C2084: la función 'void __vector_6(void)' ya tiene un cuerpo
+                 F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(859) : vea la definición anterior de '__vector_6'
+     1>F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\..\Baliza\LowPower.cpp(914): error C2086: 'LowPowerClass LowPower' : nueva definición
+                 f:\googledrive\toni\proy\dani\arduino\baliza\LowPower.h(162) : vea la declaración de 'LowPower'
+     1>Compilación del proyecto terminada "F:\GOOGLEDRIVE\TONI\PROY\DANI\Arduino\Baliza\Baliza.vcxproj" (Build destinos) -- ERROR.
+
+ERROR al compilar.
+
+Tiempo transcurrido 00:00:00.75

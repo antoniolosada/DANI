@@ -1,0 +1,30 @@
+boca abierta cerrada 112 92
+cabeza izq-der 15  135 centro 65
+cabeza arriba-abajo 105 1 centro 12
+
+derecho
+hombro-cuerpo fuera-dentro 625 832 < dentro > fuera centro 799
+hombro-brazo adelante-atras 331 170 < adelante > atras reposo 180
+bicepst abajo-arriba 600 762 reposo 762
+
+mano
+pulgar abierto cerrado 27 160
+indice abierto cerrado 16 178
+medio abierto cerrado 158 23
+anular abierto cerrado 13 178
+meñique abierto cerrado 43 178
+muñeca giro der-iz 50-178 inicial 178
+
+izquierdo
+hombro-cuerpo fuera-dentro 735 977  < fuera > dentro centro 890
+hombro-brazo adelante-atras 490 704 < atras > adelante reposo 650
+bicepst abajo-arriba 509 614 < arriba > abajo reposo 605
+
+mano
+pulgar abierto cerrado  178 51 centro 163
+indice abierto cerrado 155 41 ini 136
+medio abierto cerrado 125 0 centro 115
+anular abierto cerrado 0 178 centro 42
+meñique abierto cerrado 178 35 centro 178
+muñeca derecha - izq 0 178 centro 118
+

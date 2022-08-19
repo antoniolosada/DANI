@@ -1,0 +1,29 @@
+der
+biceps 87,75 - 102 -> 15 .            7,5    105 18
+hombro-brazo 54- 95 -> 41             20     85 40
+hombro-cuerpo  77,5 - 102 -> 25       12,5   100 30
+
+izq
+biceps 66-84.5 -> 19                  10     85 25
+hombro-brazo 35.5-75 -> 39            20     65   39
+hombro-cuerpo  55-80 -> 25            12,5   90   25
+
+der
+bideps 560  130
+hombro brazo  300  580
+hombro cuerpo 844 970
+
+izq
+bideps 547 359
+hombro brazo  500 729
+hombro cuerpo 555 748
+
+
+
+947
+497
+227
+
+673
+663
+372

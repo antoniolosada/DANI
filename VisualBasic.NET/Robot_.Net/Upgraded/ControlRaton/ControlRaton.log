@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeLog>
+  <Settings>
+    <Setting Name="LogFile" Value="ControlRaton.log" />
+    <Setting Name="GenerateInterfacesForClasses" Value="FALSE" />
+    <Setting Name="ProjectName" Value="ControlRaton" />
+    <Setting Name="OutputName" Value="ControlRaton.vbproj" />
+    <Setting Name="OutputDir" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\Upgraded\ControlRaton\" />
+    <Setting Name="ProjectPath" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot\ControlRaton\ControlRaton.vbp" />
+    <Setting Name="MigrateProjectTo" Value="WinExe" />
+  </Settings>
+  <File OldPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot\ControlRaton\frmControlRaton.frm" NewPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\Upgraded\ControlRaton\frmControlRaton.vb" FileType="Form" Upgraded="True">
+    <Section Name="(Layout)">
+      <Issue Type="Runtime" Number="2055" Qty="1">Panel property picCursores.BackgroundImage will be tiled.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picDerecha" ObjectType="PictureBox" PME="ForeColor" Qty="1">PictureBox property picDerecha.ForeColor was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picAbajo" ObjectType="PictureBox" PME="ForeColor" Qty="1">PictureBox property picAbajo.ForeColor was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picIzq" ObjectType="PictureBox" PME="ForeColor" Qty="1">PictureBox property picIzq.ForeColor was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picCursores" ObjectType="PictureBox" PME="ForeColor" Qty="1">PictureBox property picCursores.ForeColor was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picCursores" ObjectType="PictureBox" PME="AutoSize" Qty="1">PictureBox property picCursores.AutoSize was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="picArriba" ObjectType="PictureBox" PME="ForeColor" Qty="1">PictureBox property picArriba.ForeColor was not upgraded.</Issue>
+      <Issue Type="Design" Number="6020" Qty="1">The length of array 'cmdCentro' was set to the maximun used index.</Issue>
+    </Section>
+    <Section Name="Form_Load">
+      <Issue Type="Runtime" Number="2080" ObjectType="Form" PME="Load" Qty="1">Form_Load event was upgraded to Form_Load method and has a new behavior.</Issue>
+    </Section>
+  </File>
+</UpgradeLog>
+

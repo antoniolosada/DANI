@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="SimpleService.SimpleService">
+  <!--suppress UsesMinSdkAttributes-->
+  <uses-sdk android:minSdkVersion="21" />
+  <application android:label="SimpleService" android:name="android.app.Application" android:allowBackup="true">
+    <activity android:label="Simple Service Demo" android:name="md53f899d2ba869be110cd50f7fd98fd776.Activity1">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <service android:name="md53f899d2ba869be110cd50f7fd98fd776.SimpleStartedService" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="SimpleService.SimpleService.mono.MonoRuntimeProvider.__mono_init__" />
+  </application>
+</manifest>

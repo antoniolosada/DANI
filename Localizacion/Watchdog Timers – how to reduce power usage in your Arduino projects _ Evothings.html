@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/ -->
+<html class=" js no-touch cssanimations csstransforms csstransforms3d csstransitions" lang="en-GB" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watchdog Timers – how to reduce power usage in your Arduino projects | Evothings</title>
+  <link rel="profile" href="http://gmpg.org/xfn/11">
+  <link rel="pingback" href="http://evothings.com/xmlrpc.php">
+  <link rel="alternate" type="application/rss+xml" title="Evothings » Feed" href="http://evothings.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Evothings » Comments Feed" href="http://evothings.com/comments/feed/">
+<link rel="stylesheet" id="wordpresslist-css" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/admin.css" type="text/css" media="all">
+<link rel="stylesheet" id="x-child-css" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="x-font-custom-css" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="wpgform-css-css" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/wpgform.css" type="text/css" media="all">
+<link rel="stylesheet" id="js_composer_custom_css-css" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/custom.css" type="text/css" media="screen">
+<!-- This site uses the Google Analytics by Yoast plugin v5.3 - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<script type="text/javascript" async="" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/ga.js"></script><script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-44159401-1']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script');
+		ga.type = 'text/javascript';
+		ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(ga, s);
+	})();
+
+</script>
+<!-- / Google Analytics by Yoast -->
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/jquery.js"></script>
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/x-head.min.js"></script>
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/x-shortcodes-head.min.js"></script>
+<link rel="canonical" href="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings.html">
+<link rel="shortlink" href="http://evothings.com/?p=1235">
+    <script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/OS-Adder.js"></script>
+    <style type="text/css">	.ssba {
+											padding: 0px;
+											
+											
+											
+										}
+										.ssba img		
+										{ 	
+											width: 45px !important;
+											padding: 10px;
+											border:  0;
+											box-shadow: none !important;
+											display: inline !important;
+											vertical-align: middle;
+										}
+										.ssba, .ssba a		
+										{
+											text-decoration:none;
+											background: none;
+											
+											font-size: 	12px;
+											color: 		#636363!important;
+											font-weight: bold;
+										}</style><meta property="og:site_name" content="Evothings"><meta property="og:title" content="Watchdog Timers – how to reduce power usage in your Arduino projects"><meta property="og:description" content="Do you have an Arduino project configured to periodically gather some sensory information and you are noticing it draining power quickly while waiting for the next interval? Do you want to get the maximum operating…"><meta property="og:image" content=""><meta property="og:url" content="http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/"><meta property="og:type" content="article"><meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://evothings.com/wp-content/plugins/js_composer/assets/css/vc-ie8.css" media="screen"><![endif]-->
+<style type="text/css"></style>
+
+<style type="text/css">
+.synved-social-resolution-single {
+display: inline-block;
+}
+.synved-social-resolution-normal {
+display: inline-block;
+}
+.synved-social-resolution-hidef {
+display: none;
+}
+
+@media only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 2dppx),
+only screen and (min-resolution: 192dpi) {
+	.synved-social-resolution-normal {
+	display: none;
+	}
+	.synved-social-resolution-hidef {
+	display: inline-block;
+	}
+}
+</style>
+<style id="x-customizer-css-output" type="text/css">a,h1 a:hover,h2 a:hover,h3 a:hover,h4 a:hover,h5 a:hover,h6 a:hover,.x-comment-time:hover,#reply-title small a,.comment-reply-link:hover,.x-comment-author a:hover{color:#e15a64;}a:hover,#reply-title small a:hover,.x-recent-posts a:hover .h-recent-posts{color:#cb414b;}.entry-title:before{color:#f1ba63;}a.x-img-thumbnail:hover,li.bypostauthor > article.comment{border-color:#e15a64;}.flex-direction-nav a,.flex-control-nav a:hover,.flex-control-nav a.flex-active,.x-dropcap,.x-skill-bar .bar,.x-pricing-column.featured h2,.h-comments-title small,.pagination a:hover,.x-entry-share .x-share:hover,.entry-thumb,.widget_tag_cloud .tagcloud a:hover,.widget_product_tag_cloud .tagcloud a:hover,.x-highlight,.x-recent-posts .x-recent-posts-img,.x-recent-posts .x-recent-posts-img:before,.x-portfolio-filters{background-color:#e15a64;}.x-recent-posts a:hover .x-recent-posts-img,.x-portfolio-filters:hover{background-color:#cb414b;}.x-main{width:68.79803%;}.x-sidebar{width:24.79803%;}.x-topbar .p-info,.x-topbar .p-info a,.x-topbar .x-social-global a{color:#ffffff;}.x-topbar .p-info a:hover{color:#959baf;}.x-topbar{background-color:#d35400;}.x-navbar .desktop .x-nav > li:before{padding-top:40px;}.x-brand,.x-brand:hover,.x-navbar .desktop .x-nav > li > a,.x-navbar .desktop .sub-menu li > a,.x-navbar .mobile .x-nav li a{color:#777777;}.x-navbar .desktop .x-nav > li > a:hover,.x-navbar .desktop .x-nav > .x-active > a,.x-navbar .desktop .x-nav > .current-menu-item > a,.x-navbar .desktop .sub-menu li > a:hover,.x-navbar .desktop .sub-menu li.x-active > a,.x-navbar .desktop .sub-menu li.current-menu-item > a,.x-navbar .desktop .x-nav .x-megamenu > .sub-menu > li > a,.x-navbar .mobile .x-nav li > a:hover,.x-navbar .mobile .x-nav li.x-active > a,.x-navbar .mobile .x-nav li.current-menu-item > a{color:#656565;}.x-btn-navbar,.x-btn-navbar:hover{color:#ffffff;}.x-navbar .desktop .sub-menu li:before,.x-navbar .desktop .sub-menu li:after{background-color:#777777;}.x-navbar,.x-navbar .sub-menu{background-color:#ffffff !important;}.x-btn-navbar,.x-btn-navbar.collapsed:hover{background-color:#666666;}.x-btn-navbar.collapsed{background-color:#444444;}.x-navbar .desktop .x-nav > li > a:hover > span,.x-navbar .desktop .x-nav > li.x-active > a > span,.x-navbar .desktop .x-nav > li.current-menu-item > a > span{box-shadow:0 2px 0 0 #656565;}.x-navbar .desktop .x-nav > li > a{height:95px;padding-top:40px;}.x-navbar .desktop .x-nav > li ul{top:95px;}.x-colophon.bottom{background-color:#ffffff;}.x-colophon.bottom,.x-colophon.bottom a,.x-colophon.bottom .x-social-global a{color:#ffffff;}.h-landmark{font-weight:300;}.x-brand,.x-brand:hover{color:#444444;}.x-comment-author a{color:#424242;}.x-comment-author a,.comment-form-author label,.comment-form-email label,.comment-form-url label,.comment-form-rating label,.comment-form-comment label,.widget_calendar #wp-calendar caption,.widget_calendar #wp-calendar th,.x-accordion-heading .x-accordion-toggle,.x-nav-tabs > li > a:hover,.x-nav-tabs > .active > a,.x-nav-tabs > .active > a:hover{color:#333333;}.widget_calendar #wp-calendar th{border-bottom-color:#333333;}.pagination span.current,.x-portfolio-filters-menu,.widget_tag_cloud .tagcloud a,.h-feature-headline span i,.widget_price_filter .ui-slider .ui-slider-handle{background-color:#333333;}@media (max-width:979px){.x-widgetbar{left:0;right:0;}}body{font-size:14px;font-style:normal;font-weight:300;color:#424242;background-color:#ffffff;}a:focus,select:focus,input[type="file"]:focus,input[type="radio"]:focus,input[type="submit"]:focus,input[type="checkbox"]:focus{outline:thin dotted #333;outline:5px auto #e15a64;outline-offset:-1px;}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-style:normal;font-weight:900;letter-spacing:-1px;}.w-h{font-weight:900 !important;}.x-container.width{width:88%;}.x-container.max{max-width:1000px;}.x-main.full{float:none;display:block;width:auto;}@media (max-width:979px){.x-main.full,.x-main.left,.x-main.right,.x-sidebar.left,.x-sidebar.right{float:none;display:block;width:auto !important;}}.entry-header,.entry-content{font-size:16px;}.x-brand{font-style:normal;font-weight:400;letter-spacing:-3px;}.x-brand img{width:100px;}body,input,button,select,textarea{font-family:"Lato","Helvetica Neue",Helvetica,sans-serif;}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family:"Lato","Helvetica Neue",Helvetica,sans-serif;}.x-brand{font-family:"Pacifico","Helvetica Neue",Helvetica,sans-serif;}.x-navbar .x-nav > li > a{font-family:"Lato","Helvetica Neue",Helvetica,sans-serif;}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,.h1 a,.h2 a,.h3 a,.h4 a,.h5 a,.h6 a,blockquote{color:#333333;}.cfc-h-tx{color:#333333 !important;}.cfc-h-bd{border-color:#333333 !important;}.cfc-h-bg{background-color:#333333 !important;}.cfc-b-tx{color:#424242 !important;}.cfc-b-bd{border-color:#424242 !important;}.cfc-b-bg{background-color:#424242 !important;}.x-navbar{font-size:14px;}.x-navbar-inner{min-height:95px;}.x-brand{font-size:1px;font-size:0.1rem;}.x-navbar .x-brand{margin-top:10px;}.x-navbar .x-nav-wrap .x-nav > li > a{font-style:normal;font-weight:400;text-transform:uppercase;}.x-btn-navbar{margin-top:20px;;}.x-btn-navbar,.x-btn-navbar.collapsed{font-size:22px;}@media (max-width:979px){}.x-btn,.button,[type="submit"]{color:#ffffff;border-color:#656565;background-color:#777777;}.x-btn:hover,.button:hover,[type="submit"]:hover{color:#fff;border-color:#555555;background-color:#555555;}.x-btn.x-btn-real,.x-btn.x-btn-real:hover{margin-bottom:0.25em;text-shadow:0 0.075em 0.075em rgba(0,0,0,0.65);}.x-btn.x-btn-real{box-shadow:0 0.25em 0 0 #2a2a2a,0 4px 9px rgba(0,0,0,0.75);}.x-btn.x-btn-real:hover{box-shadow:0 0.25em 0 0 #2a2a2a,0 4px 9px rgba(0,0,0,0.75);}.x-btn.x-btn-flat,.x-btn.x-btn-flat:hover{margin-bottom:0;text-shadow:0 0.075em 0.075em rgba(0,0,0,0.65);box-shadow:none;}.x-btn.x-btn-transparent,.x-btn.x-btn-transparent:hover{margin-bottom:0;border-width:3px;text-shadow:none;text-transform:uppercase;background-color:transparent;box-shadow:none;}.x-btn,.x-btn:hover,.button,.button:hover,[type="submit"],[type="submit"]:hover{text-shadow:0 0.075em 0.075em rgba(0,0,0,0.5);}.x-btn,.button,[type="submit"]{border-radius:0.25em;}.x-btn,.button,[type="submit"]{padding:0.579em 1.105em 0.842em;font-size:19px;font-size:1.9rem;}</style>
+    <style id="x-customizer-css-custom" type="text/css">
+      article h1 { font-size: 24px; }
+article h2 { font-size: 20px; }
+article h3 { font-size: 18px }
+article h4 { font-size: 16px; }
+article pre { font-size: 80%; }
+.sub-menu { top: 75px !important; }
+.sub-menu li { font-size:14px; text-transform:uppercase; }
+#menu-item-1490 a { color: #cb414b; }
+.x-searchform-overlay .form-search label { font-size: 3.2em; }
+blockquote { font-size: 1.7rem; }    </style>
+
+  </head>
+
+<body class="single single-post postid-1235 single-format-standard x-renew x-navbar-static-active x-full-width-layout-active x-content-sidebar-active wpb-js-composer js-comp-ver-4.3.5 vc_responsive x-v3_2_4 x-child-theme-active x-shortcodes-v3_0_5 win64">
+
+  
+  <div id="top" class="site">
+
+  
+  
+
+  <header class="masthead masthead-inline" role="banner">
+    
+    
+
+  <div class="x-navbar-wrap">
+    <div class="x-navbar">
+      <div class="x-navbar-inner">
+        <div class="x-container max width">
+          
+
+<a href="http://evothings.com/" class="x-brand img" title="Making mobile apps for IoT easy, fast and fun to build!">
+  <img src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/evothings_logo_large_white1.png" alt="Making mobile apps for IoT easy, fast and fun to build!"></a>          
+<a href="http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/#" class="x-btn-navbar collapsed" data-toggle="collapse" data-target=".x-nav-wrap.mobile">
+  <i class="x-icon-bars"></i>
+  <span class="visually-hidden">Navigation</span>
+</a>
+
+<nav class="x-nav-wrap desktop" role="navigation">
+  <ul id="menu-new-main-menu" class="x-nav"><li id="menu-item-1491" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1491"><a href="http://evothings.com/"><span>Home</span></a></li>
+<li id="menu-item-1490" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1490"><a href="http://evothings.com/download/"><span>Download</span></a></li>
+<li id="menu-item-1453" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1453"><a href="http://evothings.com/developer/"><span>Developer Center</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1454" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1454"><a href="http://evothings.com/getting-started-with-evothings-studio-in-90-seconds/"><span>Getting started</span></a></li>
+	<li id="menu-item-1457" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1457"><a href="http://evothings.com/starterkits/"><span>Starter Kits</span></a></li>
+	<li id="menu-item-1461" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1461"><a href="http://evothings.com/things/"><span>Supported Things</span></a></li>
+	<li id="menu-item-1462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1462"><a href="http://evothings.com/tutorials/"><span>Tutorials</span></a></li>
+	<li id="menu-item-1464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1464"><a href="http://evothings.com/doc/"><span>Documentation</span></a></li>
+	<li id="menu-item-1465" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1465"><a href="http://evothings.com/forum/"><span>Forum</span></a></li>
+	<li id="menu-item-1455" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1455"><a href="http://evothings.com/blog/"><span>Tech blog</span></a></li>
+</ul>
+</li>
+<li id="menu-item-1466" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1466"><a href="http://evothings.com/news/"><span>News</span></a></li>
+<li id="menu-item-1467" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1467"><a href="http://evothings.com/about/"><span>About Us</span></a></li>
+<li class="menu-item x-menu-item x-menu-item-search"><a href="http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/#" class="x-btn-navbar-search"><span><i class="x-icon x-icon-search"></i><span class="x-hidden-desktop"> Search</span></span></a></li></ul></nav>
+
+<div class="x-nav-wrap mobile collapse">
+  <ul id="menu-new-main-menu-1" class="x-nav"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1491"><a href="http://evothings.com/"><span>Home</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1490"><a href="http://evothings.com/download/"><span>Download</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1453"><a href="http://evothings.com/developer/"><span>Developer Center</span><div class="x-sub-toggle" data-toggle="collapse" data-target=".sub-menu.sm-0"><span><i class="x-icon x-icon-angle-double-down"></i></span></div></a>
+<ul class="sub-menu sm-0 collapse">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1454"><a href="http://evothings.com/getting-started-with-evothings-studio-in-90-seconds/"><span>Getting started</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1457"><a href="http://evothings.com/starterkits/"><span>Starter Kits</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1461"><a href="http://evothings.com/things/"><span>Supported Things</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1462"><a href="http://evothings.com/tutorials/"><span>Tutorials</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1464"><a href="http://evothings.com/doc/"><span>Documentation</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1465"><a href="http://evothings.com/forum/"><span>Forum</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1455"><a href="http://evothings.com/blog/"><span>Tech blog</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1466"><a href="http://evothings.com/news/"><span>News</span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1467"><a href="http://evothings.com/about/"><span>About Us</span></a></li>
+<li class="menu-item x-menu-item x-menu-item-search"><a href="http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/#" class="x-btn-navbar-search"><span><i class="x-icon x-icon-search"></i><span class="x-hidden-desktop"> Search</span></span></a></li></ul></div>        </div>
+      </div>
+    </div>
+  </div>
+
+  </header>
+
+  
+  
+  
+    <header class="x-header-landmark">
+      <div class="x-container max width">
+        <div class="x-landmark-breadcrumbs-wrap">
+          <div class="x-landmark">
+
+                      
+              <!--<h1 class="h-landmark"><span>Blog</span></h1>-->
+
+                      
+          </div>
+
+          
+          
+        </div>
+      </div>
+    </header>
+
+    
+  <div class="x-container max width offset">
+    <div class="x-main left" role="main">
+
+              
+<article id="post-1235" class="post-1235 post type-post status-publish format-standard hentry category-blogs tag-arduino no-post-thumbnail">
+  <div class="entry-wrap">
+    
+<header class="entry-header">
+    <h1 class="entry-title">Watchdog Timers – how to reduce power usage in your Arduino projects</h1>
+    <p class="p-meta"><span>Aaron Ardiri</span><span><time class="entry-date" datetime="2014-10-28T16:03:05+00:00">2014-10-28</time></span><span><a href="http://evothings.com/category/blogs/" title="View all posts in: “Blogs”">Blogs</a></span></p></header>        
+
+
+<div class="entry-content content">
+
+
+  <!-- Simple Share Buttons Adder (5.6) simplesharebuttons.com --><div class="ssba"><div style="text-align:left"><a href="http://twitter.com/share?url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/&text=Watchdog+Timers+%E2%80%93+how+to+reduce+power+usage+in+your+Arduino+projects+%23IoT+%23InternetOfThings" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://twitter.com/share?url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/&amp;text=Watchdog+Timers+%E2%80%93+how+to+reduce+power+usage+in+your+Arduino+projects+%23IoT+%23InternetOfThings&#39;, &#39;&#39;]);" class="ssba_twitter_share" target="_blank" rel="nofollow"><img src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://www.facebook.com/sharer.php?u=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.facebook.com/sharer.php?u=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/&#39;, &#39;&#39;]);" class="ssba_facebook_share" target="_blank" rel="nofollow"><img src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://www.linkedin.com/shareArticle?mini=true&url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.linkedin.com/shareArticle?mini=true&amp;url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/&#39;, &#39;&#39;]);" class="ssba_linkedin_share ssba_share_link" target="_blank" rel="nofollow"><img src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/linkedin.png" title="LinkedIn" class="ssba" alt="Share on LinkedIn"></a><a href="https://plus.google.com/share?url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://plus.google.com/share?url=http://evothings.com/watchdog-timers-how-to-reduce-power-usage-in-your-arduino-projects/&#39;, &#39;&#39;]);" class="ssba_google_share" target="_blank" rel="nofollow"><img src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div><p><img align="right" width="200" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/watchdog.jpg">Do you have an <a href="http://www.arduino.cc/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.arduino.cc&#39;, &#39;Arduino&#39;]);" target="_blank" rel="nofollow">Arduino</a> project configured to periodically gather some sensory information and you are noticing it draining power quickly while waiting for the next interval? Do you want to get the maximum operating period on those small batteries? </p>
+<p>Then it is time to consider implementing a WatchDog Timer (WDT) so conserve power when your device can power down while not in use.</p>
+<p><span id="more-1235"></span></p>
+<p>So, what is a watchdog timer?</p>
+<blockquote class="x-blockquote">A watchdog timer (WDT); sometimes called a computer operating properly or COP timer, or simply a watchdog – is an electronic timer that is used to detect and recover from computer malfunctions.<cite class="x-cite">en.wikipedia.org/wiki/Watchdog_timer</cite></blockquote>
+<p>While typically used to detect when a computer system crashes or becomes unresponsive – it can also be used to wake up a device if it has been on purpose put into a power down state; something that becomes applicable to saving power and reducing power consumption.</p>
+<p>You could theoretically write your own; using the in-built features of the Atmel AVR platform – specifically the <tt>&lt;avr/wdt.h&gt;</tt>, <tt>&lt;avr/sleep.h&gt;</tt>, <tt>&lt;avr/power.h&gt;</tt> and <tt>&lt;avr/interrupt.h&gt;</tt> headers or you could use a third-party library and save yourself a few headaches trying to perfect an implementation on your own.</p>
+<p></p><center><p></p>
+<table border="0">
+<tbody><tr>
+<td style="width:125px;"><font style="font-size:0px;"><b>Library</b></font></td>
+<td style="width:75px;"><font style="font-size:0px;"><b>Repo</b></font></td>
+<td style="width:175px;"><font style="font-size:0px;"><b>Links</b></font></td>
+<td><font style="font-size:0px;"><b>License</b></font></td>
+</tr>
+<tr>
+<td><font size="-1">Low-Power</font></td>
+<td><a href="https://github.com/rocketscream/Low-Power" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://github.com/rocketscream/Low-Power&#39;, &#39;&#39;]);" target="_blank" rel="nofollow"><img width="24" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/github.jpg"></a></td>
+<td><font size="-1"><a href="https://github.com/rocketscream/Low-Power" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://github.com/rocketscream/Low-Power&#39;, &#39;Project Home&#39;]);" target="_blank" rel="nofollow">Project Home</a>, <a href="http://www.rocketscream.com/blog/2011/07/04/lightweight-low-power-arduino-library/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.rocketscream.com/blog/2011/07/04/lightweight-low-power-arduino-library/&#39;, &#39;Blog&#39;]);" target="_blank" rel="nofollow">Blog</a></font></td>
+<td><font size="-1">CC-SA 3.0</font></td>
+</tr>
+<tr>
+<td><font size="-1">JeeLib</font></td>
+<td><a href="https://github.com/jcw/jeelib" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://github.com/jcw/jeelib&#39;, &#39;&#39;]);" target="_blank" rel="nofollow"><img width="24" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/github.jpg"></a></td>
+<td><font size="-1"><a href="https://github.com/jcw/jeelib" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://github.com/jcw/jeelib&#39;, &#39;Project Home&#39;]);" target="_blank" rel="nofollow">Project Home</a>, <a href="http://jeelabs.net/projects/jeelib/wiki" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://jeelabs.net/projects/jeelib/wiki&#39;, &#39;Wiki&#39;]);" target="_blank" rel="nofollow">Wiki</a></font></td>
+<td><font size="-1">MIT</font></td>
+</tr>
+<tr>
+<td><font size="-1">narcoleptic</font></td>
+<td><a href="https://code.google.com/p/narcoleptic/source/checkout" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://code.google.com/p/narcoleptic/source/checkout&#39;, &#39;&#39;]);" target="_blank" rel="nofollow"><img width="24" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/googlecode.jpg"></a></td>
+<td><font size="-1"><a href="https://code.google.com/p/narcoleptic/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://code.google.com/p/narcoleptic/&#39;, &#39;Project Home&#39;]);" target="_blank" rel="nofollow">Project Home</a></font></td>
+<td><font size="-1">GNU GPL v3.0</font></td>
+</tr>
+<tr>
+<td><font size="-1">Enerlib</font></td>
+<td><a href="https://codebender.cc/library/Enerlib" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;https://codebender.cc/library/Enerlib&#39;, &#39;&#39;]);" target="_blank" rel="nofollow"><img width="24" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/codebender.jpg"></a></td>
+<td><font size="-1"><a href="http://playground.arduino.cc/Code/Enerlib" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://playground.arduino.cc/Code/Enerlib&#39;, &#39;Project Home&#39;]);" target="_blank" rel="nofollow">Project Home</a></font></td>
+<td><font size="-1">undefined</font></td>
+</tr>
+</tbody></table>
+<p></p></center><p></p>
+<p>I found the above four libraries; some in better states than others and depending on the type of open-source license you are looking for the one you decide on will vary. I took a look at the code state of each project and I believe the “Low-Power” library is streamlined well and very simple to integrate into an existing Arduino project.</p>
+<p>The Low-Power library provides three example cases; either to put the device in idle mode for a short timeframe or do a full power down and wake-up after a period of time or after an external interrupt occurs (ie: Serial, sensor or a network event).</p>
+<pre class="x-code"><code>#include "LowPower.h"<p></p>
+<p>void setup()<br>
+{<br>
+&nbsp;&nbsp;// No setup is required for this library<br>
+}</p>
+<p>void loop()<br>
+{<br>
+&nbsp;&nbsp;// Enter power down state for 8 s with ADC and BOD module disabled<br>
+&nbsp;&nbsp;LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);  </p>
+</code><p><code>&nbsp;&nbsp;// Do something here<br>
+&nbsp;&nbsp;// Example: Read sensor, data logging, data transmission.<br>
+}<br>
+</code></p></pre>
+<p>The above example puts to device to sleep for eight seconds (the maximum interval provided by the AVR hardware) – you could make multiple requests to extend this (2×8 = 16 seconds) or if you want you could hook up an <a href="http://www.playwitharduino.com/?p=291" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.playwitharduino.com/?p=291&#39;, &#39;external timer&#39;]);" target="_blank" rel="nofollow">external timer</a> and trigger the wake-up with an interrupt. It also increases the basic compiled sketch size from 450 to 642 bytes (using 1.5.x IDE) and adds a single byte of dynamic memory for the LowPower reference object – minimal for the job.</p>
+<p>But while it sounds great – there is a small caveat; power reduction relies not only on software but it also relies on the hardware used and unfortunately a lot of off the shelf devices are not very power efficient due to extra electrical components.</p>
+<p>I found a great <a href="http://gadgetmakersblog.com/arduino-power-consumption/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://gadgetmakersblog.com/arduino-power-consumption/&#39;, &#39;blog post&#39;]);" target="_blank" rel="nofollow">blog post</a> comparing the power consumption of an Arduino UNO by default with a watchdog timer (45.6mA vs 34.4mA – a small reduction) and using a custom board removing any power hungry components such as regulators and LEDs; to get right down to µA levels. Rocket Scream have a <a href="http://www.rocketscream.com/blog/2011/07/04/lightweight-low-power-arduino-library/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-article&#39;, &#39;http://www.rocketscream.com/blog/2011/07/04/lightweight-low-power-arduino-library/&#39;, &#39;blog post&#39;]);" target="_blank" rel="nofollow">blog post</a> outlining similar results.</p>
+<p>The use of watchdog timers in your project could make a drastic difference to the amount of information your Arduino projects could gather and transmit to the cloud; this information could then be displayed on a mobile device by writing an application in <a href="http://evothings.com/download/">Evothings Studio</a>. You’ll find <a href="http://evothings.com/doc">plenty of templates to use in your own projects</a> at the Evothings Studio website for controlling and monitoring your Arduino projects.</p>
+  
+
+</div>
+
+
+  <footer class="entry-footer cf">
+    <p><i class="x-icon-tags"></i> Tags: <a href="http://evothings.com/tag/arduino/" rel="tag">arduino</a></p>  </footer>
+  </div>
+</article>        
+      
+    </div>
+
+          
+
+
+  <aside class="x-sidebar right" role="complementary">
+          <div id="synved_social_follow-2" class="widget widget_synved_social_follow"><h4 class="h-widget">Follow Evothings on</h4><div><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-facebook nolightbox" data-provider="facebook" target="_blank" rel="nofollow" title="Follow us on Facebook" href="https://www.facebook.com/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="facebook" title="Follow us on Facebook" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/facebook(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-twitter nolightbox" data-provider="twitter" target="_blank" rel="nofollow" title="Follow us on Twitter" href="https://twitter.com/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="twitter" title="Follow us on Twitter" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/twitter(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-google_plus nolightbox" data-provider="google_plus" target="_blank" rel="nofollow" title="Follow us on Google+" href="https://plus.google.com/114920485966259796975/posts" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="google_plus" title="Follow us on Google+" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/google_plus.png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-linkedin nolightbox" data-provider="linkedin" target="_blank" rel="nofollow" title="Find us on Linkedin" href="https://www.linkedin.com/company/3772667" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:5px;margin-right:5px;"><img alt="linkedin" title="Find us on Linkedin" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/linkedin(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-youtube nolightbox" data-provider="youtube" target="_blank" rel="nofollow" title="Find us on YouTube" href="https://www.youtube.com/user/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:5px;"><img alt="youtube" title="Find us on YouTube" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/youtube.png"></a></div></div><div id="search-2" class="widget widget_search">
+<form method="get" id="searchform" class="form-search" action="http://evothings.com/">
+  <label for="s" class="visually-hidden">Search</label>
+  <input type="text" id="s" class="search-query" name="s" placeholder="Search">
+</form></div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="h-widget">Recent posts</h4>		<ul>
+					<li>
+				<a href="http://evothings.com/ti-sensortag-starter-kit/">TI SensorTag Starter Kit</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/evothings-studio-1-2-officially-released/">Evothings Studio 1.2 officially released</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/how-to-turn-a-nordic-semiconductor-nrf51-dk-into-a-discoverable-beacon-using-mbed/">How to turn a Nordic Semiconductor nRF51-DK into a discoverable beacon using mbed</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/how-to-use-an-arduino-ethernet-shield-with-the-nordic-semiconductor-nrf51-dk/">How to use an Arduino Ethernet Shield with the Nordic Semiconductor nRF51-DK</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/how-to-make-a-mobile-iot-app-for-the-facebook-parse-data-cloud/">How to make a mobile IoT app for the Facebook Parse data cloud</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/hands-on-guide-to-building-a-native-javascript-ibeacon-app-using-cordova/">Hands on guide to building a native JavaScript iBeacon app using Cordova</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/create-your-own-mobile-application-for-the-mediatek-linkit-one/">Create your own mobile application for the MediaTek Linkit ONE</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/embedded-conference-scandinavia-syd/">Evothings keynote at Embedded Conference Scandinavia Syd</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/estimote-nearables-starter-kit/">Estimote Nearables Starter Kit</a>
+						</li>
+					<li>
+				<a href="http://evothings.com/announcing-the-release-of-evothings-studio-1-1-3/">Announcing the release of Evothings Studio 1.1.3</a>
+						</li>
+				</ul>
+		</div><div id="rssiconwidget-2" class="widget widget_rssiconwidget"><a href="http://evothings.com/feed/" style="color: ; padding: 16px 0px 16px 37px; background: url(&#39;http://evothings.com/wp-content/plugins/rss-icon-widget/icons/feed-icon-32x32.png&#39;) no-repeat 0 50%;">Subscribe via RSS</a></div>      </aside>
+
+    
+  </div>
+
+
+
+  
+    
+  
+
+  <footer class="x-colophon top" role="contentinfo">
+    <div class="x-container max width">
+
+      <div class="x-column x-md x-1-2"><div id="synved_social_follow-4" class="widget widget_synved_social_follow"><h4 class="h-widget">Follow Evothings on</h4><div><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-facebook nolightbox" data-provider="facebook" target="_blank" rel="nofollow" title="Follow us on Facebook" href="https://www.facebook.com/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:20px;margin-right:20px;"><img alt="facebook" title="Follow us on Facebook" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/facebook(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-twitter nolightbox" data-provider="twitter" target="_blank" rel="nofollow" title="Follow us on Twitter" href="https://twitter.com/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:20px;margin-right:20px;"><img alt="twitter" title="Follow us on Twitter" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/twitter(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-google_plus nolightbox" data-provider="google_plus" target="_blank" rel="nofollow" title="Follow us on Google+" href="https://plus.google.com/114920485966259796975/posts" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:20px;margin-right:20px;"><img alt="google_plus" title="Follow us on Google+" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/google_plus.png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-linkedin nolightbox" data-provider="linkedin" target="_blank" rel="nofollow" title="Find us on Linkedin" href="https://www.linkedin.com/company/3772667" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:20px;margin-right:20px;"><img alt="linkedin" title="Find us on Linkedin" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/linkedin(1).png"></a><a class="synved-social-button synved-social-button-follow synved-social-size-32 synved-social-resolution-single synved-social-provider-youtube nolightbox" data-provider="youtube" target="_blank" rel="nofollow" title="Find us on YouTube" href="https://www.youtube.com/user/evothings" style="font-size: 0px; width:32px;height:32px;margin:0;margin-bottom:20px;"><img alt="youtube" title="Find us on YouTube" class="synved-share-image synved-social-image synved-social-image-follow" width="32" height="32" style="display: inline; width:32px;height:32px; margin: 0; padding: 0; border: none; box-shadow: none;" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/youtube.png"></a></div></div><div id="text-3" class="widget widget_text"><h4 class="h-widget">Newsletter</h4>			<div class="textwidget"><a href="http://evothings.com/signup-newsletter">Sign up to our newsletter</a> to stay updated! Don't worry, we only inform you about major updates.</div>
+		</div></div><div class="x-column x-md x-1-2 last"><div id="search-6" class="widget widget_search"><h4 class="h-widget">Search</h4>
+<form method="get" id="searchform" class="form-search" action="http://evothings.com/">
+  <label for="s" class="visually-hidden">Search</label>
+  <input type="text" id="s" class="search-query" name="s" placeholder="Search">
+</form></div></div>
+    </div>
+  </footer>
+
+
+  
+
+  
+      <div class="x-searchform-overlay">
+        <div class="x-searchform-overlay-inner">
+          <div class="x-container max width">
+            <form method="get" id="searchform" class="form-search center-text" action="http://evothings.com/">
+              <label for="s" class="cfc-h-tx tt-upper">Type and Press “enter” to Search</label>
+              <input type="text" id="s" class="search-query cfc-h-tx center-text tt-upper" name="s">
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+  </div> <!-- END #top.site -->
+
+  
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/x-body.min.js"></script>
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Watchdog Timers – how to reduce power usage in your Arduino projects _ Evothings_files/x-shortcodes-body.min.js"></script>
+
+
+  
+
+  
+
+</body></html>

@@ -1,0 +1,74 @@
+﻿  LowPower.cpp
+c1xx : warning C4117: el nombre de la macro '__cplusplus' está reservado; se omite '#define'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(13): warning C4005: '__AVR_ATmega328p__' : redefinición de macro
+          argumentos de la línea de comandos :  vea la definición anterior de '__AVR_ATmega328p__'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(14): warning C4005: '__AVR_ATmega328P__' : redefinición de macro
+          argumentos de la línea de comandos :  vea la definición anterior de '__AVR_ATmega328P__'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(18): warning C4117: el nombre de la macro '__cplusplus' está reservado; se omite '#define'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(28): warning C4005: 'GCC_VERSION' : redefinición de macro
+          argumentos de la línea de comandos :  vea la definición anterior de 'GCC_VERSION'
+f:\programas\arduino-1.5.2\hardware\tools\avr\lib\gcc\avr\4.3.2\include\stddef.h(214): error C2371: 'size_t' : nueva definición; tipos básicos distintos
+          f:\googledrive\toni\proy\dani\arduino\baliza\predefined c++ types (compiler internal)(19) : vea la declaración de 'size_t'
+f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\math.h(337): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr\pgmspace.h(211): warning C4091: 'typedef ' : se ha omitido a la izquierda de 'void' cuando no hay ninguna variable declarada
+f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(96): error C2371: 'byte' : nueva definición; tipos básicos distintos
+          f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(57) : vea la declaración de 'byte'
+f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\hardwareserial.h(65): error C2535: 'size_t HardwareSerial::write(uint8_t)' : función miembro ya definida o declarada
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\hardwareserial.h(62) : vea la declaración de 'HardwareSerial::write'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(70): warning C4005: 'pgm_read_byte' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr\pgmspace.h(696) : vea la definición anterior de 'pgm_read_byte'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(71): warning C4005: 'pgm_read_word' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\tools\avr\avr\include\avr\pgmspace.h(705) : vea la definición anterior de 'pgm_read_word'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(73): warning C4005: 'digitalPinToPort' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(143) : vea la definición anterior de 'digitalPinToPort'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(74): warning C4005: 'digitalPinToBitMask' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(144) : vea la definición anterior de 'digitalPinToBitMask'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(75): warning C4005: 'digitalPinToTimer' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(145) : vea la definición anterior de 'digitalPinToTimer'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(76): warning C4005: 'analogInPinToBit' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(125) : vea la definición anterior de 'analogInPinToBit'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(77): warning C4005: 'portOutputRegister' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(147) : vea la definición anterior de 'portOutputRegister'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(78): warning C4005: 'portInputRegister' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(148) : vea la definición anterior de 'portInputRegister'
+f:\googledrive\toni\proy\dani\arduino\baliza\__vm\.baliza.vsarduino.h(79): warning C4005: 'portModeRegister' : redefinición de macro
+          f:\programas\arduino-1.5.2\hardware\arduino\avr\cores\arduino\arduino.h(149) : vea la definición anterior de 'portModeRegister'
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(114): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(131): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(132): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(136): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(138): error C3861: 'ComprobarCambioModo': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(150): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(152): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(161): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(163): error C3861: 'ComprobarCambioModo': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(192): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(193): error C3861: 'Espera': no se encontró el identificador
+f:\googledrive\toni\proy\dani\arduino\baliza\baliza.ino(204): warning C4244: '=' : conversión de 'unsigned long' a 'float'; posible pérdida de datos
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(190): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(536): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(594): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(600): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(680): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(687): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(745): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(752): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(824): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(830): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(862): warning C4002: hay demasiados parámetros reales para la macro '__asm__'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(158): error C2084: la función 'void LowPowerClass::idle(period_t,adc_t,timer2_t,timer1_t,timer0_t,spi_t,usart0_t,twi_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(124) : vea la definición anterior de 'idle'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(514): error C2084: la función 'void LowPowerClass::adcNoiseReduction(period_t,adc_t,timer2_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(140) : vea la definición anterior de 'adcNoiseReduction'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(589): error C2084: la función 'void LowPowerClass::powerDown(period_t,adc_t,bod_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(141) : vea la definición anterior de 'powerDown'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(658): error C2084: la función 'void LowPowerClass::powerSave(period_t,adc_t,bod_t,timer2_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(142) : vea la definición anterior de 'powerSave'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(740): error C2084: la función 'void LowPowerClass::powerStandby(period_t,adc_t,bod_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(143) : vea la definición anterior de 'powerStandby'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(802): error C2084: la función 'void LowPowerClass::powerExtStandby(period_t,adc_t,bod_t,timer2_t)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(144) : vea la definición anterior de 'powerExtStandby'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(860): error C2084: la función 'void __vector_6(void)' ya tiene un cuerpo
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(859) : vea la definición anterior de '__vector_6'
+f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.cpp(914): error C2086: 'LowPowerClass LowPower' : nueva definición
+          f:\googledrive\toni\proy\dani\arduino\baliza\lowpower.h(162) : vea la declaración de 'LowPower'

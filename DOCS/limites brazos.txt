@@ -1,0 +1,7 @@
+18 800-690 fuera   boton izquierdo	175 fuera
+19 242-116 atras			5 adelante
+20 901-1023 abajo			5 arriba
+
+22 757-900 dentro			175 dentro
+23 540-670 atras			175 adelante
+24 197-94 arriba			5 arriba

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeLog>
+  <Settings>
+    <Setting Name="LogFile" Value="Robot.log" />
+    <Setting Name="GenerateInterfacesForClasses" Value="FALSE" />
+    <Setting Name="ProjectName" Value="Robot" />
+    <Setting Name="OutputName" Value="Robot.vbproj" />
+    <Setting Name="OutputDir" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\PreProcessInfo\" />
+    <Setting Name="ProjectPath" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot\Robot.vbp" />
+    <Setting Name="MigrateProjectTo" Value="WinExe" />
+  </Settings>
+  <File OldPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot\Control.frm" NewPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\PreProcessInfo\Control.vb" FileType="Form" Upgraded="True">
+    <Section Name="(Layout)">
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_12" ObjectType="TextBox" Qty="1">TextBox property _tbMax_12.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_12" ObjectType="TextBox" Qty="1">TextBox property _tbMin_12.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_11" ObjectType="TextBox" Qty="1">TextBox property _tbMax_11.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_10" ObjectType="TextBox" Qty="1">TextBox property _tbMax_10.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_9" ObjectType="TextBox" Qty="1">TextBox property _tbMax_9.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_8" ObjectType="TextBox" Qty="1">TextBox property _tbMax_8.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_7" ObjectType="TextBox" Qty="1">TextBox property _tbMax_7.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_6" ObjectType="TextBox" Qty="1">TextBox property _tbMax_6.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_11" ObjectType="TextBox" Qty="1">TextBox property _tbMin_11.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_10" ObjectType="TextBox" Qty="1">TextBox property _tbMin_10.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_9" ObjectType="TextBox" Qty="1">TextBox property _tbMin_9.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_8" ObjectType="TextBox" Qty="1">TextBox property _tbMin_8.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_7" ObjectType="TextBox" Qty="1">TextBox property _tbMin_7.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_6" ObjectType="TextBox" Qty="1">TextBox property _tbMin_6.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_5" ObjectType="TextBox" Qty="1">TextBox property _tbMax_5.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_4" ObjectType="TextBox" Qty="1">TextBox property _tbMax_4.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_3" ObjectType="TextBox" Qty="1">TextBox property _tbMax_3.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_2" ObjectType="TextBox" Qty="1">TextBox property _tbMax_2.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_1" ObjectType="TextBox" Qty="1">TextBox property _tbMax_1.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_0" ObjectType="TextBox" Qty="1">TextBox property _tbMax_0.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_5" ObjectType="TextBox" Qty="1">TextBox property _tbMin_5.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_4" ObjectType="TextBox" Qty="1">TextBox property _tbMin_4.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_3" ObjectType="TextBox" Qty="1">TextBox property _tbMin_3.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_2" ObjectType="TextBox" Qty="1">TextBox property _tbMin_2.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_1" ObjectType="TextBox" Qty="1">TextBox property _tbMin_1.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_0" ObjectType="TextBox" Qty="1">TextBox property _tbMin_0.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_22" ObjectType="TextBox" Qty="1">TextBox property _tbMax_22.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_21" ObjectType="TextBox" Qty="1">TextBox property _tbMax_21.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_22" ObjectType="TextBox" Qty="1">TextBox property _tbMin_22.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_21" ObjectType="TextBox" Qty="1">TextBox property _tbMin_21.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_20" ObjectType="TextBox" Qty="1">TextBox property _tbMax_20.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_19" ObjectType="TextBox" Qty="1">TextBox property _tbMax_19.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_18" ObjectType="TextBox" Qty="1">TextBox property _tbMax_18.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_17" ObjectType="TextBox" Qty="1">TextBox property _tbMax_17.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_20" ObjectType="TextBox" Qty="1">TextBox property _tbMin_20.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_19" ObjectType="TextBox" Qty="1">TextBox property _tbMin_19.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_18" ObjectType="TextBox" Qty="1">TextBox property _tbMin_18.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_17" ObjectType="TextBox" Qty="1">TextBox property _tbMin_17.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_16" ObjectType="TextBox" Qty="1">TextBox property _tbMax_16.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_15" ObjectType="TextBox" Qty="1">TextBox property _tbMax_15.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_14" ObjectType="TextBox" Qty="1">TextBox property _tbMax_14.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMax_13" ObjectType="TextBox" Qty="1">TextBox property _tbMax_13.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_16" ObjectType="TextBox" Qty="1">TextBox property _tbMin_16.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_15" ObjectType="TextBox" Qty="1">TextBox property _tbMin_15.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_14" ObjectType="TextBox" Qty="1">TextBox property _tbMin_14.DataSource was not upgraded.</Issue>
+      <Issue Type="Design" Number="2064" ObjectName="_tbMin_13" ObjectType="TextBox" Qty="1">TextBox property _tbMin_13.DataSource was not upgraded.</Issue>
+    </Section>
+  </File>
+  <File OldPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot\frmArduino.frm" NewPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\PreProcessInfo\frmArduino.vb" FileType="Form" Upgraded="True" />
+</UpgradeLog>
+

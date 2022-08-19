@@ -1,0 +1,11 @@
+        tbValorParar(16 - MIN_SERVO_POS).Text = "84"
+
+        tbValorParar(18 - MIN_SERVO_POS).Text = "107"
+        tbValorParar(19 - MIN_SERVO_POS).Text = "110"
+        tbValorParar(20 - MIN_SERVO_POS).Text = "78"
+        tbValorParar(21 - MIN_SERVO_POS).Text = "83"
+        tbValorParar(22 - MIN_SERVO_POS).Text = "82"
+        tbValorParar(23 - MIN_SERVO_POS).Text = "81"
+        tbValorParar(24 - MIN_SERVO_POS).Text = "82"
+
+boca 113 -85

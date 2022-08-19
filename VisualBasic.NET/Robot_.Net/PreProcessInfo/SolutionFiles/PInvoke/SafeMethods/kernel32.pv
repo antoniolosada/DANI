@@ -1,0 +1,1 @@
+(%unit (%imports) (%package "SafeNative") (%module "kernel32" (%public) (%method "Sleep" (%void) (%args (%variable (%byval) (%var "dwMilliseconds") (%int))) (%seq (%call (%id "RobotSupport.UnsafeNative.kernel32.Sleep") (%param (%id "dwMilliseconds")))) (%public))))

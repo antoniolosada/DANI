@@ -1,0 +1,4 @@
+F:\GOOGLEDRIVE\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Joystick\obj\Release\Joystick.csprojResolveAssemblyReference.cache
+F:\GOOGLEDRIVE\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Joystick\obj\Release\Joystick1.Form1.resources
+F:\GOOGLEDRIVE\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Joystick\obj\Release\Joystick1.Properties.Resources.resources
+F:\GOOGLEDRIVE\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Joystick\obj\Release\Joystick.csproj.GenerateResource.Cache

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UpgradeLog>
+  <Settings>
+    <Setting Name="LogFile" Value="ControlRaton.log" />
+    <Setting Name="GenerateInterfacesForClasses" Value="FALSE" />
+    <Setting Name="ProjectName" Value="ControlRaton" />
+    <Setting Name="OutputName" Value="ControlRaton.vbproj" />
+    <Setting Name="OutputDir" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\PreProcessInfo\ControlRaton\" />
+    <Setting Name="ProjectPath" Value="C:\Users\antonio\Dropbox\TONI\PROY\Robot\ControlRaton\ControlRaton.vbp" />
+    <Setting Name="MigrateProjectTo" Value="WinExe" />
+  </Settings>
+  <File OldPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot\ControlRaton\frmControlRaton.frm" NewPath="C:\Users\antonio\Dropbox\TONI\PROY\Robot_.Net\PreProcessInfo\ControlRaton\frmControlRaton.vb" FileType="Form" Upgraded="True">
+    <Section Name="(Layout)">
+      <Issue Type="Runtime" Number="2055" Qty="1">Panel property picCursores.BackgroundImage will be tiled.</Issue>
+    </Section>
+  </File>
+</UpgradeLog>
+

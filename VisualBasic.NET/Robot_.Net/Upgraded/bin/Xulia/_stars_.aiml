@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<aiml>
+<!--author: antonio-->
+<!--licence: Standard-->
+<!--created with: GaitoBot AIML Editor V2.10.0.42867-->
+<category>
+	<pattern>*</pattern>
+	<template>
+		<random>
+			<li><srai>say confusion statement</srai></li>
+		</random></template>
+</category>
+</aiml>

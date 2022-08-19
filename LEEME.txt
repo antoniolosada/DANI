@@ -1,0 +1,3 @@
+Arduino DANI Mega 1278
+Para compilar el proyecto Robot ha que emplear el botón derecho (menú contextual) , opción compilar
+El proyecto principal está en .\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Upgraded
