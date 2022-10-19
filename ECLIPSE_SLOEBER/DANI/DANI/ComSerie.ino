@@ -1,10 +1,10 @@
+#include "pines.h"
+
 //#define PIN_RETROCESO  10 //Blanco
 
 #define GRADOS    0
 #define MS        1
-#define PIN_AVANCE_RETROCESO 9 //Azul
-#define PIN_PWM_MOTOR 10 //Azul
-#define SERVO_DIR    26 //Servo direcciÃ³n
+#define SERVO_DIR    26 //Servo direccion
 #define MAX_SENSOR_DISTANCIA 4
 #define MIN_POS_SERVO 18
 #define MAX_POS_SERVO 24
@@ -74,6 +74,7 @@ int LeerCadena(int *i, char *Cadena)
 
 void ProcesarCadena(char *Cadena)
 {
+	//Letras escogidas: Aa,b,cC,dD,eE,f,-g,-h,iI,-j,-k,L,mM,-ñ,o,Pp,-q,rR,sS,tT,U,vV,-w,-y,Z,1,2
   char cCar;
   int i;
   int iPosFin;
@@ -101,6 +102,7 @@ void ProcesarCadena(char *Cadena)
         d = RecValor(Cadena, p, ';', &iPosFin);
 
         digitalWrite(PIN_ALIMENTACION_BASE, d);
+        ActivarBase();
         break;
       }
       case 'c': 
@@ -109,6 +111,7 @@ void ProcesarCadena(char *Cadena)
         d = RecValor(Cadena, p, ';', &iPosFin);
 
         digitalWrite(PIN_ALIMENTACION_CUERPO, d);
+        ActivarCuerpo();
         break;
       }
 	  case 'C':
@@ -117,6 +120,7 @@ void ProcesarCadena(char *Cadena)
 		  d = RecValor(Cadena, p, ';', &iPosFin);
 
 		  digitalWrite(PIN_ALIMENTACION_CABEZA, d);
+		  ActivarCabeza();
 		  break;
 	  }
       case 'o':
@@ -164,10 +168,7 @@ void ProcesarCadena(char *Cadena)
 	  case 'P':
 	  { //Parada del motor
 		  if (MOTOR == HIGH)
-		  {
-
-              ApagadoMotorProgresivo();
-		  }
+			  ApagadoMotorProgresivo();
 		  break;
 	  }
 	  case 'd':
@@ -289,6 +290,20 @@ void ProcesarCadena(char *Cadena)
             Serial.print(">SEC_ERROR_MAX_SEC");
         break;
       }
+      case 'M': //Movimiento de servo rotacinoal indicando valor de potenciómetro
+      {
+          //Cambiamos el valor de la posicion del potenciometros de parada
+          cCar = Cadena[p];
+
+          int iPorcPotencia = 100;
+          iNumServo = RecValor(Cadena, p, ',', &iPosFin);
+          iValor = RecValor(Cadena, iPosFin + 1, ',', &iPosFin);
+          iPorcPotencia = RecValor(Cadena, iPosFin + 1, ';', &iPosFin);
+
+          EstablecerMovimientoServoRot(iNumServo, iValor, iPorcPotencia);
+
+          break;
+      }
       case 'r':
       {
           iEstado = RUN;
@@ -306,6 +321,32 @@ void ProcesarCadena(char *Cadena)
           iValor = RecValor(Cadena, iPosFin + 1, ';', &iPosFin);
 
           CambiarPosicionParada(iNumServo, iValor);
+          break;
+      }
+      case 'E':
+      { //Ejecutar movimiento temporizado para servos posicionales
+    	  for (int i=2; i<=16; i++)
+    	  {
+    		  int indServo = RecNumServo(i);
+    		  //Si tiene tiempo programado y no se está moviendo
+    		  if ((aPosServos[indServo].ms_tiempo_mov > 0) && !aPosServos[indServo].MovTemporizadoActivo)
+    		  {
+    			  aPosServos[indServo].ms_inicial = millis();
+    			  aPosServos[indServo].ms_final = aPosServos[indServo].ms_inicial + aPosServos[indServo].ms_tiempo_mov;
+    			  aPosServos[indServo].MovTemporizadoActivo = true;
+    		  }
+    	  }
+    	  break;
+      }
+      case 'e':
+      {
+          //Cambiamos el valor de la posicion de parada de los servos rotacionales
+          cCar = Cadena[p++];
+
+          iNumServo = RecValor(Cadena, p, ',', &iPosFin);
+          iValor = RecValor(Cadena, iPosFin + 1, ';', &iPosFin);
+
+          CambiarValorServoParada(iNumServo, iValor);
           break;
       }
       case 'S':
@@ -329,6 +370,30 @@ void ProcesarCadena(char *Cadena)
         iNumSecActiva = SIN_ASIGNAR;
         Serial.println(">RESET_OK");
         break;
+      }
+      case 'T':
+      {
+    	  int iGradosSeg;
+		  //Cambiamos el valor de la posiciÃ³n del potenciÃ³metros de parada
+		  cCar = Cadena[p];
+
+		  iNumServo = RecValor(Cadena, p, ',', &iPosFin);
+		  iValor = RecValor(Cadena, iPosFin + 1, ',', &iPosFin);
+		  iGradosSeg = RecValor(Cadena, iPosFin + 1, ';', &iPosFin);
+
+		  int indServo = RecNumServo(iNumServo);
+
+		  if (aPosServos[indServo].MovTemporizadoActivo)
+		  {
+			  aPosServos[indServo].MovTemporizadoActivo = false;
+			  PararServo(iNumServo);
+		  }
+
+		  aPosServos[indServo].iValoIniTemporizado = aPosServos[indServo].iValor;
+		  aPosServos[indServo].iValorFinTemporizado = iValor;
+		  aPosServos[indServo].ms_tiempo_mov = abs(aPosServos[indServo].iValorFinTemporizado -
+				  	  	  	  	  	  	  	  	  	   long(aPosServos[indServo].iValoIniTemporizado))*1000 / iGradosSeg;
+		  break;
       }
       case 'i':
       {
@@ -382,7 +447,7 @@ void ProcesarCadena(char *Cadena)
           Serial.print(",");
           EnviarEstadoEncendidoReles();
           EnviarEstadoEncendidoCfg();
-          Serial.print(",");
+          Serial.print("=>");
           Serial.print(Debug);
           Serial.println(";");
           break;
@@ -485,4 +550,9 @@ void ApagadoMotorProgresivo()
     digitalWrite(PIN_PWM_MOTOR, LOW);
     MOTOR = LOW;
 }
+
+
+
+
+
 

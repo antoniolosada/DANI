@@ -42,9 +42,39 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/mega</locationURI>
 		</link>
 		<link>
-			<name>libraries/Servo</name>
+			<name>libraries/BasicLinearAlgebra</name>
 			<type>2</type>
-			<location>C:/Users/antonio/Documents/Arduino/libraries/Servo</location>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/BasicLinearAlgebra/3.5.0</locationURI>
+		</link>
+		<link>
+			<name>libraries/Kalman</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Kalman/1.1.0</locationURI>
+		</link>
+		<link>
+			<name>libraries/MeanFilterLib</name>
+			<type>2</type>
+			<location>C:/Users/antonio/Documents/Arduino/libraries/MeanFilterLib</location>
+		</link>
+		<link>
+			<name>libraries/RF24</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/RF24/1.4.2</locationURI>
+		</link>
+		<link>
+			<name>libraries/SPI</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/SPI</locationURI>
+		</link>
+		<link>
+			<name>libraries/ServoTimer2</name>
+			<type>2</type>
+			<location>C:/Users/antonio/Documents/Arduino/libraries/ServoTimer2</location>
+		</link>
+		<link>
+			<name>libraries/VirtualWire</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/VirtualWire</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

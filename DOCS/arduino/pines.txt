@@ -1,0 +1,51 @@
+
+
+PIN_CONTADOR_VELOCIDAD	2
+PIN_SENSOR_LINEA_R  	3
+			4-7	-> distancia trigger
+case 26: return  	8; //Servo direcciÃ³n - blanco  8,9,10,11*  ->us sappo anillo izq
+PIN_AVANCE_RETROCESO 	9 //Azul                        8,10 CAMBIA 12,13*
+PIN_PWM_MOTOR 		10 //Azul                       9 CAMBIA a 14*
+11*
+12-13,14*
+PIN_ALIMENTACION_CABEZA 15
+PIN_ALIMENTACION_BASE   16
+PIN_ALIMENTACION_CUERPO 17
+			18-21   -> distancia echo
+    case 2: return  	22; //pulgar
+    case 3: return  	23; //Incide 167-33
+    case 4: return  	24; //CorazÃ³n 159-55
+    case 5: return  	25; //Anular 178-57
+26-27* 
+    case 7: return  	28; //Giro MuÃ±eca -> CAMBIA a 26*
+    case 6: return  	29; //MeÃ±ique     -> CAMBIA a 27*
+30*
+    case 14: return 	31; //boca
+    case 15: return 	32; //Mivimiento lateral cabeza
+    case 16: return 	33; //Subir-Bajar cabeza
+34  ->rf
+    case 22: return 	35; //Hombro-cuerpo izq
+    case 24: return 	36; //Biceps izq
+    case 23: return 	37; //Hombro-Brazo izq
+PIN_SENSOR_LINEA_L  	38
+PIN_SENSOR_LINEA_C  	39
+40-41
+    case 19: return 	42; //Hombro-brazo der
+    case 20: return 	43; //Codo der
+44
+    case 18: return 	45; //Hombro-cuerpo der
+    case 8: return  	46; //pulgar
+    case 9: return  	47; //indice
+    case 10: return 	48; //medio
+49,50      ->  mrf24l01 -> 49^,50,51,52,53^     ^configurables
+    case 11: return 	51; //anular   -> CAMBIA a 28*
+    case 12: return 	52; //MeÃ±ique -> CAMBIA a 29*
+    case 13: return 	53; //muÃ±eca  -> CAMBIA a 30*
+
+    A0-A5  -> sappo anillo der
+    A6-A7  -> sappo anillo izq
+
+
+nrf24 50.51.52.40,41
+rf    34
+

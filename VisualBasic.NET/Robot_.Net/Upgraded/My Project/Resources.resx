@@ -124,8 +124,8 @@
   <data name="derecha 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\derecha 1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cabeza1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cabeza1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bateria_baja" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bateria_baja.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bateria_alta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bateria_alta.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,23 +136,35 @@
   <data name="on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\on.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Radar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Radar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="micro1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\Imagenes\micro.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="parar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\parar1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="uso_cpu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uso_cpu.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bateria_cargando" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bateria_cargando.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arriba 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arriba 1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Radar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Radar.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bateria_critica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bateria_critica.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="arriba 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arriba 1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cabeza" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cabeza.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="micro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\Imagenes\micro.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="parar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\parar1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\Imagenes\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="parar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\parar.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,13 +175,13 @@
   <data name="bateria_cargando1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bateria_cargando.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bateria_baja" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bateria_baja.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cabeza1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cabeza1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="izquierda 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\izquierda 1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="uso_cpu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\uso_cpu.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="sonido" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\..\..\Imagenes\sonido.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -1,3 +1,5 @@
 Clean\ Serial\ Monitor\ after\ upload=false
+FmStatus=9
 Open\ serial\ connections\ with\ the\ monitor=true
+Serial\ Monitor\ Last\ Used\ auto\ scroll\ setting=true
 eclipse.preferences.version=1

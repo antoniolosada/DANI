@@ -121,7 +121,7 @@
     <value>430, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tbControlPosOn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdControlLimitesOn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk3mBAAAAAAAADYAAAAoAAAAFAAAABQAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA4eHh4eHh
         4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh
@@ -146,7 +146,7 @@
         4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh
 </value>
   </data>
-  <data name="tbControlPosOff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cmdControlLimitesOff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk2qAwAAAAAAADYAAAAoAAAAEQAAABEAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA4eHh4eHh
         4eHh4eHh0NDceHjRMzPQCgrUAwPZCgrUMzPQeHjR0NDc4eHh4eHh4eHh4eHhAOHh4eHh4eHh4YqK0w4O
@@ -211,7 +211,7 @@
         3Hh40TMz0BAQ1BIS2RAQ1DMz0Hh40dDQ3OHh4eHh4eHh4eHh4QA=
 </value>
   </data>
-  <data name="cmdControlLimitesOn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tbControlPosOn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk3mBAAAAAAAADYAAAAoAAAAFAAAABQAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA4eHh4eHh
         4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh
@@ -236,7 +236,7 @@
         4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh
 </value>
   </data>
-  <data name="cmdControlLimitesOff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tbControlPosOff.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk2qAwAAAAAAADYAAAAoAAAAEQAAABEAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA4eHh4eHh
         4eHh4eHh0NDceHjRMzPQCgrUAwPZCgrUMzPQeHjR0NDc4eHh4eHh4eHh4eHhAOHh4eHh4eHh4YqK0w4O
@@ -387,9 +387,6 @@
   </data>
   <metadata name="listBoxHelper1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="listBoxComboBoxHelper1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>147, 17</value>
   </metadata>
   <data name="btParar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -580,6 +577,12 @@
   </metadata>
   <metadata name="tmrControlesGenerales.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1200, 17</value>
+  </metadata>
+  <metadata name="tmrMoverBoca.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1377, 17</value>
+  </metadata>
+  <metadata name="tmrLeerDatosArduino.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
   </metadata>
   <data name="picRobot.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3308,12 +3311,6 @@
         QFF4QFF4PlB4PE90P091QFB2Pk92P053O09xPE5zPU1zPU11PUxyO0xyR1l+AA==
 </value>
   </data>
-  <metadata name="tmrMoverBoca.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1377, 17</value>
-  </metadata>
-  <metadata name="tmrLeerDatosArduino.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAQ2gAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAA

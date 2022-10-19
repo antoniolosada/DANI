@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="U-&gt;"/>
+		<item key="selection" value="algoKalman"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="U-&gt;"/>
-			<item value="DIR"/>
-			<item value="_DIR"/>
-			<item value="ComprobarControlColision"/>
-			<item value="PIN_ALIMENTACION_BASE"/>
-			<item value="VALOR_DISTANCIA_MIN"/>
+			<item value="algoKalman"/>
+			<item value="medidas"/>
+			<item value="RecuperarPosicion"/>
+			<item value="Espera"/>
+			<item value="LOG_DEBUG"/>
+			<item value="direccion"/>
+			<item value="sBaliza"/>
+			<item value="PIN_PWM_MOTOR"/>
+			<item value="PIN_SENSOR_LINEA_R"/>
+			<item value="pin("/>
+			<item value="26"/>
+			<item value="I"/>
+			<item value="9"/>
+			<item value="DISTANCIA_IZQUIERDA"/>
+			<item value="DISTANCIA_DERECHA"/>
 		</list>
 		<list key="replacehistory">
+			<item value=" "/>
+			<item value="pinServo = "/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1004"/>
-		<item key="DIALOG_Y_ORIGIN" value="460"/>
+		<item key="DIALOG_X_ORIGIN" value="952"/>
+		<item key="DIALOG_Y_ORIGIN" value="307"/>
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

@@ -1,0 +1,11 @@
+subir
+
+der
+hombro 1 baja       desc
+brazo  0 sube       desc
+biceps 0 sube       desc
+
+izq
+hombro 1 sube       asc
+brazo  1 baja       desc
+biceps 0 sube       desc

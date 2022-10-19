@@ -1,0 +1,622 @@
+#define MIN_SERVO_POS   16
+#define MAX_SERVO_POS	25
+
+#define MS_POR_GRADO	60
+#define MIN_TIEMPO_DESCONEX  400
+
+#define VALOR_MEDIO		100
+#define NUM_POSICIONES	255
+
+#define ASCENDENTE				1
+#define DESCENDENTE				0
+#define SIN_ACCION				-1
+
+#define MAYOR_MEDIO		1
+#define MENOR_MEDIO		-1
+
+#define SERVO_ROT_SUBIR		5
+#define SERVO_ROT_BAJAR		175
+
+#define MAX_CONTADOR_FUERA_LIMITES  3
+
+#define TIEMPO_DESCONEX_SERVO_ROT_MS 3000
+#define VALOR_SERVO_ROT_ALTO 175
+#define VALOR_SERVO_ROT_BAJO 5
+
+//N煤meros de los servos comunicados desde PC
+enum Posiciones {
+	mano_derecha_pulgar = 2,
+	mano_derecha_indice = 3,
+	mano_derecha_medio = 4,
+	mano_derecha_anular = 5,
+	mano_derecha_menique = 6,
+	mano_derecha_muneca = 7,
+	mano_izquierda_pulgar = 8,
+	mano_izquierda_indice = 9,
+	mano_izquierda_medio = 10,
+	mano_izquierda_anular = 11,
+	mano_izquierda_menique = 12,
+	mano_izquierda_muneca = 13,
+	boca = 14,
+	guinada = 15,
+	cabeceo = 16,
+	hombro_cuerpo_derecho = 18,
+	hombro_brazo_derecho = 19,
+	biceps_derecho = 20,
+	hombro_cuerpo_iquierdo = 22,
+	hombro_brazo_iquierdo = 23,
+	biceps_izquierdo = 24,
+	direccion = 26,
+	avance = 27
+};
+
+#define NUM_SERVOS_ROT	6
+#define NUM_SERVOS		16		
+#define NUM_VECES_FUERA_TOLERANCIA 4
+
+#define MULTIPLICADOR_TOLERANCIA_APAGADO	2
+
+struct sInfoServosRot
+{
+	byte NumServo;
+	byte Direccion;
+	byte PosParada;
+	int MinPos;
+	int MaxPos;
+	byte Tolerancia;
+	int ValorPotenciometroParada;
+	byte PosActual;
+	byte Reposicionar;
+	byte NumVecesFueraTolerancia;
+	int ValorPotInicial;
+	int ValorPotFinal;
+	int PorcentajePotencia;
+	bool MovimientoActivo;
+};
+
+struct sInfoServos
+{
+	byte NumServo;
+	byte PosInicial;
+	byte MinPos;
+	byte MaxPos;
+};
+
+//*****************************  CFG   ************************************************************************************************************************************************************
+
+//Valores de configuraci贸n servos rotacionales
+sInfoServosRot InfoServosRot[NUM_SERVOS_ROT] =
+{
+   {hombro_cuerpo_derecho,ASCENDENTE, 108,844,970,10,0,0,0,0,0,0,false},
+   {hombro_brazo_derecho,ASCENDENTE, 109,300,580,20,0,0,0,0,0,0,false},
+   {biceps_derecho,ASCENDENTE, 70,140,560,10,0,0,0,0,0,0,false},
+   {hombro_cuerpo_iquierdo,DESCENDENTE, 80,555,748,10,0,0,0,0,0,0,false},
+   {hombro_brazo_iquierdo,ASCENDENTE, 78,510,719,10,0,0,0,0,0,0,false},
+   {biceps_izquierdo,ASCENDENTE, 75,359,547,10,0,0,0,0,0,0,false} };
+
+
+//Valores de configuraci贸n servos normales
+sInfoServos InfoServos[NUM_SERVOS] =
+{
+  {mano_derecha_pulgar, 85, 27, 160},
+  {mano_derecha_indice, 85, 16, 178},
+  {mano_derecha_medio, 85, 23, 158},
+  {mano_derecha_anular, 85, 13, 178},
+  {mano_derecha_menique, 85, 43, 178},
+  {mano_derecha_muneca, 178, 43, 178},
+  {mano_izquierda_pulgar, 163, 51, 178},
+  {mano_izquierda_indice, 136, 41, 155},
+  {mano_izquierda_medio, 115, 0, 125},
+  {mano_izquierda_anular, 42, 0, 178},
+  {mano_izquierda_menique, 178, 35, 178},
+  {mano_izquierda_muneca, 118, 0, 178},
+  {boca, 92, 90, 112},
+  {guinada, 65, 15, 135},
+  {cabeceo, 12, 1, 105},
+  {direccion, 87, 1, 155}
+};
+#define IND_INFO_SERVOS_DIR	15
+
+
+
+//*****************************  CFG   ************************************************************************************************************************************************************
+
+//Convierte los n潞 de servos interface PC a 0..5
+byte RecNumServoRot(int servo)
+{ //Servos rotacionales
+	int i;
+	if (servo < 22)
+		return servo - 18;
+	else
+		return servo - 22 + 3;
+}
+byte RecNumServo(int servo)
+{ //Los n潞 de servos normales comienzan en 2
+	return servo - 2;
+}
+
+//Devuelve un valor normalizado entre 0 y NUM_POSICIONES
+int LeerPosicionArticulacion(int ns)
+{
+	int valor = analogRead(pinPotenciometro(ns));
+
+	float valor_unidad = (float)NUM_POSICIONES/(InfoServosRot[RecNumServoRot(ns)].MaxPos - InfoServosRot[RecNumServoRot(ns)].MinPos + 1);
+
+	return (float)(InfoServosRot[RecNumServoRot(ns)].MaxPos - valor) * valor_unidad;
+}
+
+//Devuelve el pin asignado a cada n潞 de servo del programa PC
+int pin(int iNumServo)
+{
+  switch (iNumServo+2)
+  {
+    case 2: return 22; //pulgar
+    case 3: return 23; //Incide 167-33
+    case 4: return 24; //Coraz贸n 159-55
+    case 5: return 25; //Anular 178-57
+    case 6: return 29; //Me帽ique
+    case 7: return 28; //Giro Mu帽eca
+    case 8: return 46; //pulgar
+    case 9: return 47; //indice
+    case 10: return 48; //medio
+    case 11: return 51; //anular
+    case 12: return 52; //Me帽ique
+    case 13: return 53; //mu帽eca
+    case 14: return 31; //boca
+    case 15: return 32; //Mivimiento lateral cabeza
+    case 16: return 33; //Subir-Bajar cabeza
+	//Servos rotacionales
+    case 18: return 45; //Hombro-cuerpo der
+    case 19: return 42; //Hombro-brazo der
+    case 20: return 43; //Codo der
+    case 22: return 35; //Hombro-cuerpo izq
+    case 23: return 37; //Hombro-Brazo izq
+    case 24: return 36; //Biceps izq
+	case 26: return 8; //Servo direcci贸n - blanco
+  }
+  return 0;
+}
+
+//Pin de los potenci贸metros de cada articulaci贸n
+int pinPotenciometro(int iNumServo)
+{
+  switch (iNumServo)
+  {
+	case 18: return 13; //hombro-brazo der
+	case 19: return 12; //Hombro-brazo der
+    case 20: return 15; //codo der
+
+    case 22: return 9; //hombro-brazo der
+    case 23: return 11; //hombro-brazo der
+    case 24: return 8; //hombro-brazo der
+  }
+}
+
+bool ServoRotacional(int ns)
+{
+	if ((ns >= 18) && (ns <= 24) && (ns != 21))
+		return true; //Servo de rotaci髇 cont韓ua
+	else
+		return false; //Servo de posici髇
+}
+
+//Establecer como posici贸n inicial la posici贸n actual (Arduino)
+void PosicionInicial()
+{
+	ControlPosicionActivo = false;
+	//Servos rotaci髇 cont韓ua
+	for (int i = 0; i < NUM_SERVOS_ROT; i++)
+	{
+		AsignarServo(InfoServosRot[i].NumServo, InfoServosRot[i].PosParada, GRADOS);
+		InfoServosRot[i].PosActual = InfoServosRot[i].PosParada;
+		InfoServosRot[i].ValorPotenciometroParada = analogRead(pinPotenciometro(InfoServosRot[i].NumServo));
+		InfoServosRot[i].Reposicionar = SIN_ASIGNAR;
+		InfoServosRot[i].MovimientoActivo = false;
+	}
+
+	//Servos normales
+	for (int i = 0; i < NUM_SERVOS; i++)
+		AsignarServo(InfoServos[i].NumServo, InfoServos[i].PosInicial, GRADOS);
+}
+
+void ActivarCabeza()
+{
+	for (int i = 14; i <=16; i++)
+		AsignarServo(i, aPosServos[i-2].iValor, aPosServos[i-2].iUnidad);
+}
+
+void ActivarBase()
+{
+	AsignarServo(26, aPosServos[SERVO_DIR-2].iValor, aPosServos[SERVO_DIR-2].iUnidad);
+}
+
+void ActivarCuerpo()
+{
+	int i;
+
+	for (i = 2; i <=13; i++)
+		AsignarServo(i, aPosServos[i-2].iValor, aPosServos[i-2].iUnidad);
+
+	for (i = 18; i <=24; i++)
+		AsignarServo(i, aPosServos[i-2].iValor, aPosServos[i-2].iUnidad);
+}
+
+
+void GrabarValorParada(int iNumServo, int iValor)
+{
+	//Grabamos el valor ser servo para que se encuentre parado
+	InfoServosRot[RecNumServoRot(iNumServo)].PosParada = iValor;
+}
+
+bool EstamosParandoServoRot(int iNumServo, int iValor)
+{
+	return (iValor == InfoServosRot[RecNumServoRot(iNumServo)].PosParada);
+}
+
+//Asignamos valor desde el interface de control
+void AsignarServoControl(int iNumServo, int iValor, int iModo)
+{
+	//Si se asigna valor de movimiento en un servo rotacional del el interface de control hay que parar el reposicionamiento
+	//La posici贸n de parada es la actual
+	if (ServoRotacional(iNumServo))
+	{
+		//Solo cambio el valor del potenci贸metro de posici贸n si estoy cambiando la posici贸n desde el interface de control
+		InfoServosRot[RecNumServoRot(iNumServo)].MovimientoActivo = false;
+		InfoServosRot[RecNumServoRot(iNumServo)].NumVecesFueraTolerancia = 0;
+		InfoServosRot[RecNumServoRot(iNumServo)].ValorPotenciometroParada = analogRead(pinPotenciometro(iNumServo));
+		DirServo[RecNumServoRot(iNumServo)] = iValor;
+
+		if (EstamosParandoServoRot(iNumServo, iValor))
+			InfoServosRot[RecNumServoRot(iNumServo)].Reposicionar = SIN_ASIGNAR; //Permitimos que se active el reposicionamiento
+		else
+			InfoServosRot[RecNumServoRot(iNumServo)].Reposicionar = MOV_CONTROL; //Estamos en movimiento y no se puede activar el reposicionamiento
+	}
+	else
+	{
+		aPosServos[RecNumServo(iNumServo)].ms_tiempo_mov = 0; //Desactivamos la programaci髇 de movimiento
+	}
+
+	AsignarServo(iNumServo, iValor, iModo);
+}
+
+void CambiarPosicionParada(int iNumServo, int iPos) //Posici贸n potenci贸metros de parada
+{
+	if (ServoRotacional(iNumServo))
+	{
+		InfoServosRot[RecNumServoRot(iNumServo)].PosActual = PararServo(iNumServo);
+		//Solo cambio la posicion de parada si me paro tras una reasignaci贸n
+		InfoServosRot[RecNumServoRot(iNumServo)].Reposicionar == SIN_ASIGNAR;
+		InfoServosRot[RecNumServoRot(iNumServo)].NumVecesFueraTolerancia = 0;
+		InfoServosRot[RecNumServoRot(iNumServo)].ValorPotenciometroParada = iPos;
+	}
+}
+void CambiarValorServoParada(int iNumServo, int iPos) //Cambia el valor de parada de los servos rotacionales
+{
+	if (ServoRotacional(iNumServo))
+	{
+		InfoServosRot[RecNumServoRot(iNumServo)].PosActual = PararServo(iNumServo);
+		//Solo cambio la posicion de parada si me paro tras una reasignaci贸n
+		InfoServosRot[RecNumServoRot(iNumServo)].Reposicionar == SIN_ASIGNAR;
+		InfoServosRot[RecNumServoRot(iNumServo)].NumVecesFueraTolerancia = 0;
+		InfoServosRot[RecNumServoRot(iNumServo)].PosParada = iPos;
+	}
+}
+unsigned long TiempoDesconexion(int iValorActual, int iValorNuevo, bool ServoRotContinua)
+{
+	int TiempoDesconexion = 0;
+
+	if (ServoRotContinua)
+		TiempoDesconexion = TIEMPO_DESCONEX_SERVO_ROT_MS;
+	else
+		TiempoDesconexion = MIN_TIEMPO_DESCONEX;
+
+	return TiempoDesconexion;
+}
+
+//Asignaci贸n de valor de servo tanto desde controles internos como desde interface de control
+void AsignarServo(int iNumServo, int iValor, int iUnidad)
+{
+  int iMin, iMax;
+  
+  iMin = 0;
+  iMax = 179;
+  int indServo = RecNumServo(iNumServo);
+  int iServoLimites = indServo;
+
+   if ((iUnidad == GRADOS) && (iNumServo >= 2) && (iNumServo <= 26))
+   {
+	   //Si es un servo normal sobreescribimos los limites
+	   if (!ServoRotacional(iNumServo))
+	   {
+		   if (iNumServo == SERVO_DIR) iServoLimites = IND_INFO_SERVOS_DIR; //L韒ites de la direcci髇
+		   iMin = InfoServos[iServoLimites].MinPos;
+		   iMax = InfoServos[iServoLimites].MaxPos;
+	   }
+
+	   //Asignamos el valor a los servos
+       if ((iValor >= iMin) && (iValor <= iMax))
+       {
+    	   int pin = aPosServos[indServo].pin;
+    	   if (pin > 0)
+    	   {
+			   if (aPosServos[indServo].Conectado)
+			   {
+				   aServo[indServo].write(iValor);
+				   aPosServos[indServo].ms_desconexion = millis()+TiempoDesconexion(aPosServos[indServo].iValor, iValor, ServoRotacional(iNumServo));
+			   }
+			   else
+			   {
+				   cli();
+				   aServo[indServo].attach(pin);
+				   aServo[indServo].write(iValor);
+				   sei();
+				   aPosServos[indServo].Conectado = true;
+				   aPosServos[indServo].ms_desconexion = millis()+TiempoDesconexion(aPosServos[indServo].iValor, iValor, ServoRotacional(iNumServo));
+			   }
+			   aPosServos[indServo].iValor = iValor;
+			   aPosServos[indServo].iUnidad = iUnidad;
+    	   }
+       }
+
+	   if (ServoRotacional(iNumServo))
+	   {
+		   InfoServosRot[RecNumServoRot(iNumServo)].PosActual = iValor;
+		   if (EstamosParandoServoRot(iNumServo, iValor))
+		   {
+			   InfoServosRot[RecNumServoRot(iNumServo)].Reposicionar = SIN_ASIGNAR;
+			   InfoServosRot[RecNumServoRot(iNumServo)].NumVecesFueraTolerancia = 0;
+			   aPosServos[indServo].ms_desconexion = millis();
+		   }
+	   }
+   }
+   else
+   {
+     //aServo[iNumServo].writeMicroseconds(iValor);
+   }
+}
+
+int FueraDeRangos(int iNumServo, int valor, int dir, int min, int max)
+{
+	if (dir == ASCENDENTE)
+	{
+		if ((valor < min) && (DirServo[RecNumServoRot(iNumServo)] > VALOR_MEDIO))
+			return MAYOR_MEDIO;
+		else if ((valor > max) && (DirServo[RecNumServoRot(iNumServo)] < VALOR_MEDIO))
+			return MENOR_MEDIO;
+		else
+			return 0;
+	}
+	else
+	{
+		if ((valor < min) && (DirServo[RecNumServoRot(iNumServo)] < VALOR_MEDIO))
+			return MAYOR_MEDIO;
+		else if ((valor > max) && (DirServo[RecNumServoRot(iNumServo)] > VALOR_MEDIO))
+			return MENOR_MEDIO;
+		else
+			return 0;
+	}
+}
+
+static int ContadorFueraLimites = 0;
+
+int ControlLimitesArticulacionesApagado()
+{
+	int ContadorFueraLimitesLocal = 0;
+	for (int servo = 0; servo < NUM_SERVOS_ROT; servo++)
+	{
+		//Lee el valor de la posici贸n del potenci贸metros asociado al servo
+		int valor = analogRead(pinPotenciometro(InfoServosRot[servo].NumServo));
+
+		if (FueraDeRangos(InfoServosRot[servo].NumServo, valor, InfoServosRot[servo].Direccion, InfoServosRot[servo].MinPos - InfoServosRot[servo].Tolerancia* MULTIPLICADOR_TOLERANCIA_APAGADO, InfoServosRot[servo].MaxPos + InfoServosRot[servo].Tolerancia* MULTIPLICADOR_TOLERANCIA_APAGADO))
+			ContadorFueraLimitesLocal++;
+	}
+	if (ContadorFueraLimitesLocal)
+		ContadorFueraLimites++;
+	else
+		ContadorFueraLimites = 0;
+
+	if (ContadorFueraLimites == MAX_CONTADOR_FUERA_LIMITES)
+	{
+		digitalWrite(PIN_ALIMENTACION_CUERPO, HIGH); //Apagamos cuerpo
+		ContadorFueraLimites = 0;
+	}
+}
+
+
+
+int ControlLimitesArticulaciones()
+{
+	for (int servo = 0; servo <= NUM_SERVOS_ROT; servo++)
+	{
+		//Lee el valor de la posici贸n del potenci贸metros asociado al servo
+		int valor = analogRead(pinPotenciometro(InfoServosRot[servo].NumServo));
+
+		if (FueraDeRangos(InfoServosRot[servo].NumServo, valor, InfoServosRot[servo].Direccion, InfoServosRot[servo].MinPos, InfoServosRot[servo].MaxPos))
+			PararServo(InfoServosRot[servo].NumServo);
+	}
+
+	DebugInt(InfoServosRot[5].ValorPotenciometroParada, false);
+
+}
+
+int PararServo(int iNumServo)
+{
+	int iPos = InfoServosRot[RecNumServoRot(iNumServo)].PosParada;
+	if (ServoRotacional(iNumServo))
+		AsignarServo(iNumServo, iPos, GRADOS);
+	return iPos;
+}
+
+
+void ControlPosicion()
+{
+	for (int servo = 0; servo <= NUM_SERVOS_ROT; servo++)
+	{
+		//Solo si no nos estamos movimiento por orden del interface de control podemos activar el reposicionamiento
+		if (InfoServosRot[servo].Reposicionar != MOV_CONTROL)
+		{ 
+			//Recuperamos el valor del servo para comprobar si est谩 parado
+			int PosActualServo = InfoServosRot[servo].PosActual;
+			int PosParadaArticulacion = InfoServosRot[servo].ValorPotenciometroParada;     //Recuperamos el valor del potenci贸metro cuando se par贸 la 煤ltima vez
+			int PosActualArticulacion = analogRead(pinPotenciometro(InfoServosRot[servo].NumServo));    //Recuperamos el valor del potenci贸metro ahora
+
+			//Si no estamos parados, comprobamos si nos estamos reposicionando
+			if (PosActualServo != InfoServosRot[servo].PosParada)
+			{ //Solo controlamos la posici贸n de la articulaci贸n si estamos parados
+
+				//Si nos estamos reposicionando comprobamos si llegamos a la posici贸n correcta de parada de nuevo
+				if (InfoServosRot[servo].Reposicionar != SIN_ASIGNAR) //=> Nos estamos reposicionando
+				{
+					//Lee el valor de la posici贸n del potenci贸metros asociado al servo
+					int valor = analogRead(pinPotenciometro(InfoServosRot[servo].NumServo));
+
+					//Si estamos reposicionando y nos salimos de los l铆mites paramos inmediatamente
+					if (FueraDeRangos(InfoServosRot[servo].NumServo, valor, InfoServosRot[servo].Direccion, InfoServosRot[servo].MinPos, InfoServosRot[servo].MaxPos))
+					{
+						PararServo(InfoServosRot[servo].NumServo);
+					}
+					else //No estamos fuera de rango
+					{
+						//Si estamos reposicionando la articulaci贸n y alcanzamos la posici贸n de parada, paramos el servo
+						if ((InfoServosRot[servo].Reposicionar == ASCENDENTE) && (PosParadaArticulacion < PosActualArticulacion) ||
+							((InfoServosRot[servo].Reposicionar == DESCENDENTE) && (PosParadaArticulacion > PosActualArticulacion)))
+						{
+							PararServo(InfoServosRot[servo].NumServo);
+						}
+					}
+				}
+			}
+			else //Solo comprobamos el error en el punto de parada si estamos parados
+			{
+				//Comprobamos si la posici贸n se sale de tolerancia, pero solo si no estamos reposicionando
+				if (abs(PosParadaArticulacion - PosActualArticulacion) > InfoServosRot[servo].Tolerancia)
+				{
+					InfoServosRot[servo].NumVecesFueraTolerancia++;
+
+					if (InfoServosRot[servo].NumVecesFueraTolerancia == NUM_VECES_FUERA_TOLERANCIA)
+					{
+						//DEBUGServo("C1", servo, PosParadaArticulacion, PosActualArticulacion);
+						//DEBUGServo("C11", servo, PosActualServo, InfoServosRot[servo].PosParada);
+
+						//Si estamos fuera de margen de parada activamos el reposicionamiento hasta recuperar la posici贸n
+						if (PosParadaArticulacion > PosActualArticulacion)
+						{
+							AsignarServo(InfoServosRot[servo].NumServo, (InfoServosRot[servo].Direccion == ASCENDENTE) ? SERVO_ROT_SUBIR : SERVO_ROT_BAJAR, GRADOS);
+							InfoServosRot[servo].Reposicionar = ASCENDENTE;
+							DEBUGServo("C12", servo, InfoServosRot[servo].PosActual, InfoServosRot[servo].PosParada);
+						}
+						else
+						{
+							AsignarServo(InfoServosRot[servo].NumServo, (InfoServosRot[servo].Direccion == ASCENDENTE) ? SERVO_ROT_BAJAR : SERVO_ROT_SUBIR, GRADOS);
+							InfoServosRot[servo].Reposicionar = DESCENDENTE;
+							DEBUGServo("C13", servo, InfoServosRot[servo].PosActual, InfoServosRot[servo].PosParada);
+						}
+					}
+				}
+				else
+					InfoServosRot[servo].NumVecesFueraTolerancia = 0;
+			}
+		}
+	}
+} 
+
+void EnviarEstadoMotoresServosRot()
+{
+	for (int i = 0; i < NUM_SERVOS_ROT; i++)
+	{
+		if (i != 0) Serial.print(",");
+		Serial.print(InfoServosRot[i].PosActual);
+	}
+}
+
+
+void DEBUGServo(String sCodigo, int iServo, int iValor1, int iValor2)
+{
+	return;
+	Serial.print("DBG_" + sCodigo);
+	Serial.print("->");
+	Serial.print(iServo);
+	Serial.print("->");
+	Serial.print(iValor1);
+	Serial.print(",");
+	Serial.println(iValor2);
+}
+
+void DEBUGprint(String Cad, int p1, int p2, int p3)
+{
+	Serial.print("DBG_" + Cad);
+	Serial.print("->");
+	Serial.print(p1);
+	Serial.print(", ");
+	Serial.print(p2);
+	Serial.print(", ");
+	Serial.println(p3);
+}
+void EstablecerMovimientoServoRot(int iNumServo, int iValorPot, int iPorcPotencia)
+{
+	int iValorInicial =
+			InfoServosRot[RecNumServoRot(iNumServo)].ValorPotInicial = analogRead(pinPotenciometro(iNumServo));
+	InfoServosRot[RecNumServoRot(iNumServo)].ValorPotFinal = iValorPot;
+	InfoServosRot[RecNumServoRot(iNumServo)].PorcentajePotencia = iPorcPotencia;
+	InfoServosRot[RecNumServoRot(iNumServo)].MovimientoActivo = true;
+
+	int iPotencia = 0;
+
+	bool bPotAlta =  (iValorPot > iValorInicial);
+	bPotAlta = (InfoServosRot[RecNumServoRot(iNumServo)].Direccion == ASCENDENTE ? bPotAlta: !bPotAlta);
+
+	if (bPotAlta)
+		iPotencia = InfoServosRot[RecNumServoRot(iNumServo)].PosParada +
+			(179 - InfoServosRot[RecNumServoRot(iNumServo)].PosParada)*iPorcPotencia/100;
+	else
+		iPotencia = InfoServosRot[RecNumServoRot(iNumServo)].PosParada -
+			InfoServosRot[RecNumServoRot(iNumServo)].PosParada*iPorcPotencia/100;
+
+	AsignarServo(iNumServo, iPotencia, GRADOS);
+}
+
+void ControlPosicionamientoServosRot()
+{
+	for (int i = 18; i <= 24; i++)
+	{
+		if (i==21) continue;
+
+		if (InfoServosRot[RecNumServoRot(i)].MovimientoActivo)
+		{
+			int iValorPotActual = analogRead(pinPotenciometro(i));
+			bool Ascendente = (InfoServosRot[RecNumServoRot(i)].Direccion == ASCENDENTE);
+			bool ValorSuperado = (iValorPotActual >= InfoServosRot[RecNumServoRot(i)].ValorPotFinal);
+			if ((Ascendente && ValorSuperado) || (!Ascendente && !ValorSuperado))
+			{
+				InfoServosRot[RecNumServoRot(i)].MovimientoActivo = false;
+				PararServo(i);
+			}
+		}
+	}
+}
+
+void ControlMovimientoTemporizado()
+{
+	long ms = millis();
+	  for (int i = 2; i <= 16; i++)
+	  {
+		  int indServo = RecNumServo(i);
+		  if (aPosServos[indServo].MovTemporizadoActivo)
+		  {
+			  if (ms > aPosServos[indServo].ms_final)
+			  {
+				  AsignarServo(i, aPosServos[indServo].iValorFinTemporizado, GRADOS);
+				  aPosServos[indServo].MovTemporizadoActivo = false;
+			  }
+			  else
+			  {
+				  float Avance = 1.0 - abs((aPosServos[indServo].ms_final-millis()) / (aPosServos[indServo].ms_final-aPosServos[indServo].ms_inicial));
+				  int iValor = aPosServos[indServo].iValoIniTemporizado + 1.0*(aPosServos[indServo].iValorFinTemporizado-aPosServos[indServo].iValoIniTemporizado)*Avance;
+
+				  if (iValor != aPosServos[indServo].iValor)
+					  LOG_DEBUG("P2",i,iValor,Avance,0);
+				  AsignarServo(i, iValor, GRADOS);
+			  }
+		  }
+	  }
+}

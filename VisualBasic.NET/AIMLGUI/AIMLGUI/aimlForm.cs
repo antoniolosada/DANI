@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 using System.IO;
 using SpeechLib;
 using AIMLbot;
@@ -52,18 +53,19 @@ namespace AIMLGUI
         static string static_frase = "";
         int ControlX, ControlY;
 #if VOZ_UWP_SAPI_11
-        private SpeechRecognizer speechRecognizer;
+        private static SpeechRecognizer speechRecognizer;
         public SpeechRecognitionEngine recognizer;
         static public SpeechRecognitionEngine srecognizer;
         static bool Salida = false;
         static string texto = "";
         static bool ActivarCabeza = false;
+        public static bool SeguirSonido = true;
 #else
         public SpeechRecognitionEngine recognizer;
 #endif
         static aimlForm saimlForm;
         static String[] comandos;
-        public delegate void DelegadoEjecutarComando(String comando, float precision);
+        public delegate int DelegadoEjecutarComando(String comando, float precision, int iServo, int iPos);
         public delegate void DelegadoprocessInputFromUser();
         public DelegadoEjecutarComando dEjecutarComando;
         public DelegadoprocessInputFromUser dprocessInputFromUser;
@@ -73,6 +75,10 @@ namespace AIMLGUI
         static MODO MODO_ACTIVO = MODO.Comando;
         static bool ComandosSoloRecUWP = false;
         bool PresentacionPorVoz = false;
+        static bool ComandoAutorizado = false;
+        static bool RecVozUWPACtivado = false;
+        static Stopwatch timeMeasure = new Stopwatch();
+        const int SEGUNDOS_REC_COMANDO_DANI = 4;
 
         enum eModos
         { 
@@ -90,13 +96,6 @@ namespace AIMLGUI
             myUser = new User("DefaultUser",this.myBot);
             myBot.WrittenToLog += new Bot.LogMessageDelegate(myBot_WrittenToLog);
             dprocessInputFromUser = processInputFromUser;
-            String prec_min = ConfigurationSettings.AppSettings["precision_reconocimiento"].ToString();
-            ComandosSoloRecUWP = (ConfigurationSettings.AppSettings["SoloComandosRecVozUWP"].ToString() == "S" ? true : false);
-            chkMoverBoca.Checked= (ConfigurationSettings.AppSettings["mover_boca"].ToString() == "S" ? true : false);
-            chkMoverCabeza.Checked = (ConfigurationSettings.AppSettings["mover_cabeza"].ToString() == "S" ? true : false);
-            ActivarCabeza = (ConfigurationSettings.AppSettings["cabeza_activada_modo_conversacion"].ToString() == "S" ? true : false);
-            PresentacionPorVoz = (ConfigurationSettings.AppSettings["presentacion_por_voz"].ToString() == "S" ? true : false);
-            PRECISION_MINIMA = Convert.ToInt16(prec_min)/100;
         }
 
         public void InicializarPosControl(int x, int y)
@@ -347,21 +346,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
         private void buttonGo_Click(object sender, EventArgs e)
         {
-            this.processInputFromUser();
+                this.processInputFromUser();
         }
 
         private void processInputFromUser()
         {
+            if (!tmr_rec_uwp_activo) return;
+
             if (this.myBot.isAcceptingUserInput)
             {
+                string Salida = "";
                 string rawInput = this.richTextBoxInput.Text;
                 this.richTextBoxInput.Text = string.Empty;
                 this.richTextBoxOutput.AppendText("You: " + rawInput + Environment.NewLine);
                 Request myRequest = new Request(rawInput, this.myUser, this.myBot);
-                Result myResult = this.myBot.Chat(myRequest);
+                Result myResult = new Result(this.myUser,this.myBot,myRequest);
+                buttonGo.BackColor = Color.Red;
+                buttonGo.Text = "...";
+
+                if (cbModelo.Text == "AIML")
+                {
+                    myResult = this.myBot.Chat(myRequest);
+                    Salida = myResult.Output;
+                }
+                else
+                {
+                    Salida = EjecutarGPT3(cbModelo.Text, rawInput);
+                }
                 this.lastRequest = myRequest;
                 this.lastResult = myResult;
-                this.richTextBoxOutput.AppendText("Bot: " + myResult.Output + Environment.NewLine + Environment.NewLine);
+                this.richTextBoxOutput.AppendText("Bot: " + Salida + Environment.NewLine + Environment.NewLine);
                 if (this.toolStripMenuItemSpeech.Checked)
                 {
                     //Desactivamos reconocimiento para que no detecte su propia voz
@@ -369,9 +383,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                     {
 #if !VOZ_UWP_SAPI_11
                         if (chkReconocimientoActivo.Checked) recognizer.RecognizeAsyncCancel();
+#else
+                        speechRecognizer.ContinuousRecognitionSession.StopAsync();
 #endif
                     }
-                    catch (Exception e) { }
+                    catch (Exception e) { MessageBox.Show(e.Message); }
                     System.Speech.Synthesis.SpeechSynthesizer voz= new System.Speech.Synthesis.SpeechSynthesizer();
                     static_voz = voz;
                     voz.SpeakProgress += new EventHandler<SpeakProgressEventArgs>(synth_SpeakProgress);
@@ -384,13 +400,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                         InicializarMoverBoca();
                     }
                     tmr_rec_uwp_activo = false;
-                    voz.SpeakAsync(myResult.Output);
+                    voz.SpeakAsync(Salida);
+                    speechRecognizer.ContinuousRecognitionSession.StartAsync();
                     //try
                     //{
                     //    if (chkReconocimientoActivo.Checked) recognizer.RecognizeAsync(RecognizeMode.Multiple);
                     //}
                     //catch (Exception e) { }
-               return;
+                    return;
 #region codigo_antiguo
                if (chkMoverBoca.Checked)
                     {
@@ -442,14 +459,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
             if (saimlForm.chkMoverBoca.Checked)
             {
                 saimlForm.tmrMoverBoca.Enabled = false;
-                saimlForm.dEjecutarComando("cerrar boca", 1);
-                texto = ""; //Borramos los posibles reconocimientos de voz mientras hablaba
+                EjecutarComando("cerrar boca", 1);
             }
 #if !VOZ_UWP_SAPI_11
             srecognizer.RecognizeAsync(RecognizeMode.Multiple);
 #endif
+            saimlForm.buttonGo.BackColor = Color.LightGray;
+            saimlForm.buttonGo.Text = "PROCESAR";
+            texto = "";
+
             //static_ControlVoz.ActivarReconocimiento();
             static_voz.Dispose();
+            Thread.Yield(); //Procesamos mensajes, alguno de reconocimiento de voz
+            Thread.Yield();
+            Thread.Yield();
+            Thread.Sleep(1500);
+            Thread.Yield(); //Procesamos mensajes, alguno de reconocimiento de voz
+            Thread.Yield();
+            Thread.Yield();
+            texto = ""; //Borramos los posibles reconocimientos de voz mientras hablaba
             tmr_rec_uwp_activo = true;
         }
         static void synth_SpeakProgress(object sender, SpeakProgressEventArgs e)
@@ -464,7 +492,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                     {
                         //Paramos el movimiento de la boca temporalmente
                         if (saimlForm.chkMoverBoca.Checked)
-                            saimlForm.dEjecutarComando("cerrar boca", 1);
+                            EjecutarComando("cerrar boca", 1);
 
                     }
                     else if ((car >= 'a') && (car <= 'z'))
@@ -480,7 +508,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                     if (saimlForm.chkMoverBoca.Checked)
                     {
                         saimlForm.tmrMoverBoca.Enabled = false;
-                        saimlForm.dEjecutarComando("cerrar boca", 1);
+                        EjecutarComando("cerrar boca", 1);
                     }
                 }
             }
@@ -615,15 +643,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
         private void aimlForm_Load(object sender, EventArgs e)
         {
+            CargarConfiguracion();
+
             AIMLbot.Utils.AIMLLoader loader = new AIMLbot.Utils.AIMLLoader(this.myBot);
             loader.loadAIML(Application.StartupPath+ "\\Xulia");
 
             InicializarRecVoz();
+            //Copiamos el texto de configuración del charbot GPT3
+            String DirActual = Environment.CurrentDirectory;
+            File.Copy(DirActual + "\\configuracion.txt", DirActual + "\\entrada.txt", true);
 
             if (PresentacionPorVoz)
             {
                 System.Speech.Synthesis.SpeechSynthesizer voz = new System.Speech.Synthesis.SpeechSynthesizer();
-                voz.Speak("dani operativa");
+                voz.Speak("sistema operativo");
                 voz.Dispose();
             }
         }
@@ -631,7 +664,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #if VOZ_UWP_SAPI_11
         private async Task<bool> CompilarGramaticaUWP()
         {
-            this.speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
+            speechRecognizer = new SpeechRecognizer(SpeechRecognizer.SystemSpeechLanguage);
+            speechRecognizer.Timeouts.BabbleTimeout = new TimeSpan(1,59,59);
+            speechRecognizer.Timeouts.InitialSilenceTimeout = new TimeSpan(1, 59, 59);
+            speechRecognizer.Timeouts.EndSilenceTimeout = new TimeSpan(1, 59, 59);
+            speechRecognizer.ContinuousRecognitionSession.AutoStopSilenceTimeout = new TimeSpan(1, 59, 59);
 
             // Provide feedback to the user about the state of the recognizer. This can be used to provide visual feedback in the form
             // of an audio indicator to help the user understand whether they're being heard.
@@ -648,12 +685,36 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
         }
         public void ActivarReconocimientoUWP()
         {
-            CompilarGramaticaUWP();
-            Thread.Sleep(2000);
-            ActivarReconocedorUWP();
-            tmrProcesarVozUWP.Enabled = true;
+            try
+            {
+                CompilarGramaticaUWP();
+                Thread.Sleep(2000);
+                ActivarReconocedorUWP();
+                tmrProcesarVozUWP.Enabled = true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
-        private void DesactivarReconocedor()
+        private void ActivarReconocedorUWP()
+        {
+            speechRecognizer.ContinuousRecognitionSession.Completed += ContinuousRecognitionSession_Completed;
+            speechRecognizer.ContinuousRecognitionSession.ResultGenerated += ContinuousRecognitionSession_ResultGenerated;
+            speechRecognizer.StateChanged += SpeechRecognizer_StateChanged;
+
+            if (speechRecognizer.State == Windows.Media.SpeechRecognition.SpeechRecognizerState.Idle)
+            {
+                try
+                {
+                    speechRecognizer.ContinuousRecognitionSession.StartAsync();
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+        private void DesactivarReconocedorUWP()
         {
             tmrProcesarVozUWP.Enabled = false;
             speechRecognizer.ContinuousRecognitionSession.Completed -= ContinuousRecognitionSession_Completed;
@@ -671,28 +732,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                 }
             }
-        }
-        private void ActivarReconocedorUWP()
-        {
-            speechRecognizer.ContinuousRecognitionSession.Completed += ContinuousRecognitionSession_Completed;
-            speechRecognizer.ContinuousRecognitionSession.ResultGenerated += ContinuousRecognitionSession_ResultGenerated;
-            speechRecognizer.StateChanged += SpeechRecognizer_StateChanged;
-
-            if (speechRecognizer.State == Windows.Media.SpeechRecognition.SpeechRecognizerState.Idle)
-            {
-                try
-                {
-                    speechRecognizer.ContinuousRecognitionSession.StartAsync();
-
-                    //speechRecognizer.RecognizeWithUIAsync();
-
-                }
-                catch (Exception ex)
-                {
-                }
-            }
+            speechRecognizer.Dispose();
+            RecVozUWPACtivado = false;
         }
         private async void ContinuousRecognitionSession_ResultGenerated(SpeechContinuousRecognitionSession sender, SpeechContinuousRecognitionResultGeneratedEventArgs args)
         {
@@ -714,11 +758,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
         }
         private async void ContinuousRecognitionSession_Completed(SpeechContinuousRecognitionSession sender, SpeechContinuousRecognitionCompletedEventArgs args)
         {
-            if (args.Status != SpeechRecognitionResultStatus.Success)
+            if ((args.Status == SpeechRecognitionResultStatus.TimeoutExceeded) || 
+                (args.Status == SpeechRecognitionResultStatus.Success ))
             {
                 //Cuando finalice el reconocedor lo iniciamos de nuevo
                 if (!Salida)
-                    speechRecognizer.ContinuousRecognitionSession.StartAsync();
+                {
+                    try
+                    {
+                        speechRecognizer.ContinuousRecognitionSession.StartAsync();
+                    }
+                    catch (Exception e) { }
+                }
             }
         }
 
@@ -770,7 +821,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                                         "desactivar cuerpo","apagar todo","parar movimientos","subir brazo derecho","subir brazo izquierdo","bajar brazo derecho","bajar brazo izquierdo",
                                         "adelante brazo derecho","adelante brazo izquierdo","atras brazo derecho","atras brazo izquierdo","abrir mano derecha","abrir mano izquierda","cerrar mano derecha",
                                         "cerrar mano izquerda","abrir boca","cerrar boca", "abrir boca","cerrar boca dos","girar muñeca derecha","ladear muñeca derecha", "tirar pelota",
-                                        "modo conversacion", "salir de conversacion"
+                                        "modo conversacion", "salir de conversacion", "dani", "modelo avanzado", "modelo básico", "version"
                                     };
 
             recognizer.LoadGrammar(CargarGramaticaReconocedor(comandos, "es-ES", new GrammarBuilder()));
@@ -806,68 +857,128 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
         }
         static void ReconocerTexto(String texto, float Precision)
         {
-            switch (texto)
+            if (SeguirSonido)
             {
-                case "modo conversacion":
-                case "modo conversación":
+                saimlForm.dEjecutarComando("pos_cabeza_ang_sonido", 0, 0, 0);
+            }
+
+            if ((texto == "dani") && !ComandoAutorizado)
+            {
+                ComandoAutorizado = true;
+                saimlForm.richTextBoxInput.BackColor = Color.Green;
+                timeMeasure.Reset();
+                timeMeasure.Start();
+                return;
+            }
+            else
+                saimlForm.richTextBoxInput.BackColor = Color.White;
+
+            if (ComandoAutorizado)
+            {
+                timeMeasure.Stop();
+                if (timeMeasure.Elapsed.TotalSeconds < SEGUNDOS_REC_COMANDO_DANI)
+                {
+                    switch (texto)
                     {
+                        case "version":
+                            {
+                                System.Speech.Synthesis.SpeechSynthesizer voz = new System.Speech.Synthesis.SpeechSynthesizer();
+                                voz.Speak("Hola, me llamo dani. Soy un robot de servicio con capacidades de interacción y navegación autónoma. Mi version es " + Application.ProductVersion);
+                                break;
+                            }
+                        case "modelo básico":
+                            {
+                                saimlForm.cbModelo.Text = "curie";
+                                break;
+                            }
+                        case "modelo avanzado":
+                            {
+                                saimlForm.cbModelo.Text = "davinci";
+                                break;
+                            }
+                        case "modo conversacion":
+                        case "modo conversación":
+                            {
 #if VOZ_UWP_SAPI_11
-                        saimlForm.recognizer.RecognizeAsyncStop();
-                        saimlForm.ActivarReconocimientoUWP();
+                                saimlForm.recognizer.RecognizeAsyncStop();
+                                if (RecVozUWPACtivado)
+                                    speechRecognizer.ContinuousRecognitionSession.StartAsync();
+                                else
+                                {
+                                    saimlForm.ActivarReconocimientoUWP();
+                                    RecVozUWPACtivado = true;
+                                }
 #else
                         saimlForm.Cursor = System.Windows.Forms.Cursors.WaitCursor;
                         saimlForm.recognizer.UnloadAllGrammars();
                         saimlForm.recognizer.LoadGrammar(new DictationGrammar());
 #endif
-                        saimlForm.Cursor = System.Windows.Forms.Cursors.Default;
-                        saimlForm.richTextBoxInput.BackColor = Color.Red;
-                        MODO_ACTIVO = MODO.Conversacion;
-                        if (ActivarCabeza) saimlForm.dEjecutarComando("activar cabeza", 1);
-                        return;
-                    }
-                case "salir conversacion":
-                case "salir de conversacion":
-                case "salir de conversación":
-                    {
-                        if (ActivarCabeza) saimlForm.dEjecutarComando("desactivar cabeza", 1);
-#if VOZ_UWP_SAPI_11
-                        saimlForm.DesactivarReconocedor();
-                        saimlForm.recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                                saimlForm.Cursor = System.Windows.Forms.Cursors.Default;
+                                saimlForm.richTextBoxInput.BackColor = Color.Red;
+                                MODO_ACTIVO = MODO.Conversacion;
+                                if (ActivarCabeza) EjecutarComando("activar cabeza", 1);
+                                return;
+                            }
+                        case "salir conversacion":
+                        case "salir de conversacion":
+                        case "salir de conversación":
+                            {
+                                ComandoAutorizado = false;
 
+                                if (ActivarCabeza) EjecutarComando("desactivar cabeza", 1);
+                                try
+                                {
+#if VOZ_UWP_SAPI_11
+                                    //saimlForm.speechRecognizer.ContinuousRecognitionSession.CancelAsync();
+                                    saimlForm.DesactivarReconocedorUWP();
+                                    saimlForm.recognizer.RecognizeAsync(RecognizeMode.Multiple);
 #else
                         saimlForm.Cursor = System.Windows.Forms.Cursors.WaitCursor;
                         saimlForm.recognizer.UnloadAllGrammars();
                         saimlForm.recognizer.LoadGrammar(CargarGramaticaReconocedor(comandos, "es-ES", new GrammarBuilder()));
 #endif
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                                finally
+                                {
+                                    saimlForm.Cursor = System.Windows.Forms.Cursors.Default;
+                                    saimlForm.richTextBoxInput.BackColor = Color.White;
+                                    MODO_ACTIVO = MODO.Comando;
+                                }
 
-                        saimlForm.Cursor = System.Windows.Forms.Cursors.Default;
-                        saimlForm.richTextBoxInput.BackColor = Color.White;
-                        MODO_ACTIVO = MODO.Comando;
-                        return;
+                                return;
+                            }
                     }
-            }
-            if (MODO_ACTIVO == MODO.Comando)
-            {
-                if (!ComandosSoloRecUWP)
-                {
-                    srecognizer.RecognizeAsyncCancel();
-                    System.Speech.Synthesis.SpeechSynthesizer voz = new System.Speech.Synthesis.SpeechSynthesizer();
-                    voz.Speak(texto);
-                    voz.Dispose();
-                    saimlForm.dEjecutarComando(texto, Precision);
-                    try
-                    {
-                        srecognizer.RecognizeAsync(RecognizeMode.Multiple);
-                    }
-                    catch { }
                 }
-            }
-            else //Modo conversación
-            {
+                if (MODO_ACTIVO == MODO.Comando)
+                {
+                    ComandoAutorizado = false;
+
+                    if (!ComandosSoloRecUWP)
+                    {
+                        srecognizer.RecognizeAsyncCancel();
+                        System.Speech.Synthesis.SpeechSynthesizer voz = new System.Speech.Synthesis.SpeechSynthesizer();
+                        voz.Speak(texto);
+                        voz.Dispose();
+                        EjecutarComando(texto, Precision);
+                        try
+                        {
+                            srecognizer.RecognizeAsync(RecognizeMode.Multiple);
+                        }
+                        catch { }
+                    }
+                }
+                else //Modo conversación
+                {
 #if !VOZ_UWP_SAPI_11
                 saimlForm.processInputFromUser();
 #endif
-            }
+                    ComandoAutorizado = true;
+                }
+            } //if comandoautorizado
         }
         static Grammar CargarGramaticaReconocedor(string[] palabras, string cultura, GrammarBuilder grammar)
         {
@@ -927,7 +1038,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
         private void InicializarMoverBoca()
         {
             contador = 0;
-            saimlForm.dEjecutarComando("abrir boca", 1);
+            EjecutarComando("abrir boca", 1);
         }
 
         private void tmrMoverBoca_Tick(object sender, EventArgs e)
@@ -939,16 +1050,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
             if (numero == 0)
             {
                 if (a >= 5)
-                    saimlForm.dEjecutarComando("cerrar boca", 1);
+                    EjecutarComando("cerrar boca", 1);
                 else
-                    saimlForm.dEjecutarComando("cerrar boca1", 1);
+                    EjecutarComando("cerrar boca1", 1);
             }
             if (numero == 1)
             {
                 if (a >= 5)
-                    saimlForm.dEjecutarComando("abrir boca", 1);
+                    EjecutarComando("abrir boca", 1);
                 else
-                    saimlForm.dEjecutarComando("abrir boca1", 1);
+                    EjecutarComando("abrir boca1", 1);
             }
         }
 
@@ -1060,21 +1171,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
                         richTextBoxInput.Text = tmpTexto;
 
                         //Si es un comando lo ejecutamos
-                        if ((tmpTexto == "salir conversacion") || (tmpTexto == "salir de conversacion"))
+                        if ((tmpTexto == "salir conversacion") || (tmpTexto == "salir de conversacion") ||
+                            (tmpTexto == "salir conversación") || (tmpTexto == "salir de conversación"))
                             ReconocerTexto(tmpTexto, (float)0.9);
                         else if (EsUnComando(tmpTexto))
-                            saimlForm.dEjecutarComando(tmpTexto, (float)0.9);
+                            EjecutarComando(tmpTexto, (float)0.9);
                         else
                         {
                             saimlForm.processInputFromUser();
                         }
                     }
                 }
+                else
+                    texto = "";
             }
             catch (Exception ex)
             {
                 Console.WriteLine("aimlForm.cs - tmrPRocesarVozUWP_Tick: " + ex.Message);
-                tmr_rec_uwp_activo = true;
+                tmr_rec_uwp_activo = false;
             }
         }
 
@@ -1093,32 +1207,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
             switch (a)
             {
                 case 0:
-                    saimlForm.dEjecutarComando("cabeza cabeceo arriba1", 1);
+                    EjecutarComando("cabeza cabeceo arriba1", 1);
                     break;
                 case 1:
-                    saimlForm.dEjecutarComando("cabeza cabeceo arriba2", 1);
+                    EjecutarComando("cabeza cabeceo arriba2", 1);
                     break;
                 case 2:
-                    saimlForm.dEjecutarComando("cabeza cabeceo abajo1", 1);
+                    EjecutarComando("cabeza cabeceo abajo1", 1);
                     break;
                 case 3:
-                    saimlForm.dEjecutarComando("cabeza cabeceo abajo2", 1);
+                    EjecutarComando("cabeza cabeceo abajo2", 1);
                     break;
             }
             a = rnd.Next(4);
             switch (a)
             {
                 case 0:
-                    saimlForm.dEjecutarComando("cabeza guinada izquierda1", 1);
+                    EjecutarComando("cabeza guinada izquierda1", 1);
                     break;
                 case 1:
-                    saimlForm.dEjecutarComando("cabeza guinada izquierda2", 1);
+                    EjecutarComando("cabeza guinada izquierda2", 1);
                     break;
                 case 2:
-                    saimlForm.dEjecutarComando("cabeza guinada derecha1", 1);
+                    EjecutarComando("cabeza guinada derecha1", 1);
                     break;
                 case 3:
-                    saimlForm.dEjecutarComando("cabeza guinada derecha2", 1);
+                    EjecutarComando("cabeza guinada derecha2", 1);
                     break;
             }
         }
@@ -1137,5 +1251,50 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
             recognizer.RecognizeAsyncCancel();
 #endif
         }
+
+        private String EjecutarGPT3(String Modelo, String conversacion)
+        {
+            String s = "D:\\PROGRAMAS\\PYTHON\\python.exe";
+            Process p = new Process();
+            String fileReader = "";
+            String DirActual = Environment.CurrentDirectory;
+            StreamWriter escritor;
+
+            escritor = File.AppendText(DirActual + "\\entrada.txt");
+            escritor.Write("Humano:" + conversacion+ Environment.NewLine);
+            escritor.Flush();
+            escritor.Close();
+
+            p.StartInfo.FileName = s;
+            p.StartInfo.Arguments = "D:\\PROGRAMAS\\PYTHON\\Proy\\chatbot.py "+Modelo+" " + DirActual + "\\entrada.txt " + DirActual + "\\salida.txt";
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            p.Start();
+            p.WaitForExit();
+
+            fileReader = File.ReadAllText(DirActual + "\\salida.txt", System.Text.Encoding.UTF8);
+
+            escritor = File.AppendText(DirActual + "\\entrada.txt");
+            escritor.Write("Dani:" + fileReader+Environment.NewLine);
+            escritor.Flush();
+            escritor.Close();
+
+            return fileReader;
+        }
+        private void CargarConfiguracion()
+        {
+            String prec_min = ConfigurationSettings.AppSettings["precision_reconocimiento"].ToString();
+            ComandosSoloRecUWP = (ConfigurationSettings.AppSettings["SoloComandosRecVozUWP"].ToString() == "S" ? true : false);
+            chkMoverBoca.Checked = (ConfigurationSettings.AppSettings["mover_boca"].ToString() == "S" ? true : false);
+            chkMoverCabeza.Checked = (ConfigurationSettings.AppSettings["mover_cabeza"].ToString() == "S" ? true : false);
+            ActivarCabeza = (ConfigurationSettings.AppSettings["cabeza_activada_modo_conversacion"].ToString() == "S" ? true : false);
+            PresentacionPorVoz = (ConfigurationSettings.AppSettings["presentacion_por_voz"].ToString() == "S" ? true : false);
+            PRECISION_MINIMA = Convert.ToInt16(prec_min) / 100;
+            SeguirSonido = (ConfigurationSettings.AppSettings["seguir_sonido_con_cabeza"].ToString() == "S" ? true : false);
+        }
+        static void EjecutarComando(String comando, float precision)
+        {
+             saimlForm.dEjecutarComando("cerrar boca", 1, 0, 0);
+        }
+
     }
 }

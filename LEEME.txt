@@ -1,3 +1,8 @@
 Arduino DANI Mega 1278
 Para compilar el proyecto Robot ha que emplear el botón derecho (menú contextual) , opción compilar
 El proyecto principal está en .\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Upgraded
+
+Si error en espacio de nombres Ascomm:
+Copiar y registras en sysWOW64 los ficheros de install\ficheros
+
+Descomprimir arduino\libraries en Documentos del usuario

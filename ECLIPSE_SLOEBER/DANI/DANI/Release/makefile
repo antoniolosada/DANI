@@ -9,13 +9,11 @@ RM := rm -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include libraries\Servo\src\stm32f4\subdir.mk
--include libraries\Servo\src\samd\subdir.mk
--include libraries\Servo\src\sam\subdir.mk
--include libraries\Servo\src\nrf52\subdir.mk
--include libraries\Servo\src\megaavr\subdir.mk
--include libraries\Servo\src\mbed\subdir.mk
--include libraries\Servo\src\avr\subdir.mk
+-include libraries\VirtualWire\subdir.mk
+-include libraries\ServoTimer2\subdir.mk
+-include libraries\SPI\src\subdir.mk
+-include libraries\RF24\subdir.mk
+-include libraries\Kalman\subdir.mk
 -include core\core\subdir.mk
 -include objects.mk
 

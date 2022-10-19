@@ -12,6 +12,7 @@ Imports Microsoft.VisualBasic
 Imports System
 Imports System.Drawing
 Imports System.Windows.Forms
+Imports System.IO
 Imports System.IO.Ports
 Imports System.Threading
 Imports System.Speech.Recognition
@@ -37,6 +38,7 @@ Imports HaarCascadeClassifer.HaarDetector
 Imports WebCam_Capture
 Imports _09_HTTPLISTENER_WEBSERVER
 Imports System.Xml
+Imports Microsoft.Kinect
 
 Public Class frmControl
     Inherits System.Windows.Forms.Form
@@ -54,8 +56,22 @@ Public Class frmControl
     Private Const MOUSEEVENTF_MOVE As Integer = &H1S
     Private Const MOUSEEVENTF_RIGHTDOWN As Integer = &H8S
     Private Const MOUSEEVENTF_RIGHTUP As Integer = &H10S
-
+    Private Const MIN_ANG_SONIDO As Integer = -40
+    Private Const MAX_ANG_SONIDO As Integer = 40
+    Private Const MARGEN_ANG_CABEZA_SONIDO As Integer = 10
     Private Const SERVO_DIR As Integer = -1
+    Private Const SERVO_CABEZA_CABECEO = 16
+    Private Const SERVO_CABEZA_GUINADA = 15
+
+    Private Const SERVO_HOMBRO_DER = 18
+    Private Const SERVO_BRAZO_SUP_DER = 19
+    Private Const SERVO_BRAZO_INF_DER = 20
+
+    Private Const SERVO_HOMBRO_IZQ = 22
+    Private Const SERVO_BRAZO_SUP_IZQ = 23
+    Private Const SERVO_BRAZO_INF_IZQ = 24
+
+    Private Const SERVO_BOCA = 14
     Private Const MAX_LONGITUD_TEXTO_LOG = 12000
 #Region "Video"
     Dim FuenteDeVideoD As VideoCaptureDevice = Nothing
@@ -117,7 +133,7 @@ Public Class frmControl
 
     Const ZONA_SUPERIOR As Integer = 1
     Const ZONA_INFERIOR As Integer = 0
-    Const TODAS_LAS_ZONAS As Integer = 2
+    Const INDEPENDIENTE As Integer = 0
 
     Const SIN_CAMBIO As Integer = &HC0FFFF
     Const CAMBIO As Integer = &HC0C0FF
@@ -174,6 +190,8 @@ Public Class frmControl
     Const MOV_SOLIDARIO_ESPEJO As Integer = 1
     Const MOV_SOLIDARIO_COMPLEJO As Integer = 2
     Const ESPERA_COM_INSTRUCCIONES As Integer = 100
+    Const ESPERA_COM_INSTRUCCIONES_RAPIDO As Integer = 35
+    Const MARGEN_MOV_SERVO_ROT As Integer = 5
 
     Dim giEstado As Integer
     Dim giServo As Integer
@@ -195,6 +213,8 @@ Public Class frmControl
     Private PosicionBrazos(7) As Integer
     Private Arranque As Boolean = True
     Private DatosRecibidosArduino As Boolean = False
+
+    Private ProcesarEventosBarServo As Boolean = True
 
 
 
@@ -243,13 +263,14 @@ Public Class frmControl
 #End Region
 
 
-    Dim Mov As DetectarMovimiento = New DetectarMovimiento()
+    Dim Mov As DetectarMovimiento = New AIMLGUI.DetectarMovimiento()
+
     Private Structure tOperacion
         Dim Numero As Short
         Dim Dif As Short
     End Structure
     Private Structure tServo
-        <Microsoft.VisualBasic.VBFixedArray(10)> _
+        <Microsoft.VisualBasic.VBFixedArray(10)>
         Dim aServo() As tOperacion
         Public Shared Function CreateInstance() As tServo
             Dim result As New tServo()
@@ -275,6 +296,9 @@ Public Class frmControl
 
     Dim m_Servo As Integer = MIN_SERVO_POS
     Dim m_Sensor As Integer = 0
+    Dim sensor As KinectSensor
+    Const MOV_GRADOS_SEG As Integer = 45
+    Const POTENCIA_SERVO_ROT As Integer = 100
 
 
     'UPGRADE_NOTE: (2010) barServo.Change was changed from an event to a procedure. More Information: http://www.vbtonet.com/ewis/ewi2010.aspx
@@ -323,7 +347,7 @@ Public Class frmControl
         cbUnidad.SelectedIndex = GRADOS
 
         cbGrabar.SelectedIndex = GRABAR_MODIFICADOS
-        cbZonaMov.SelectedIndex = TODAS_LAS_ZONAS
+        cbZonaMov.SelectedIndex = INDEPENDIENTE
 
         GenerarSincronizaciones()
 
@@ -366,6 +390,8 @@ Public Class frmControl
     Private Sub barServo_Change(ByRef Index As Integer, ByVal newScrollValue As Integer)
         Dim iPos As Integer = Conversion.Val(tbValServo(Index).Text)
 
+        If (Not ControlBarraMovSolidarioPosServo(Index)) Then Return
+
         'UPGRADE_WARNING: (2009) Can't resolve the name of control barServo( Index ). More Information: http://www.vbtonet.com/ewis/ewi2009.aspx
         If StringsHelper.ToDoubleSafe(tbValServo(Index).Text) <> barServo(Index).Value Then
             tbValServo(Index).BackColor = ColorTranslator.FromOle(CAMBIO)
@@ -397,9 +423,8 @@ Public Class frmControl
     Private Sub barServo_Scroll_Renamed(ByRef Index As Integer, ByVal newScrollValue As Integer)
         Dim iPos As Integer = Conversion.Val(tbValServo(Index).Text)
         'UPGRADE_WARNING: (2009) Can't resolve the name of control barServo( Index ). More Information: http://www.vbtonet.com/ewis/ewi2009.aspx
-        tbValServo(Index).Text = CStr(barServo(Index).Value)
+        If (Not ControlBarraMovSolidarioPosServo(Index)) Then Return
 
-        'UPGRADE_WARNING: (2009) Can't resolve the name of control barServo( Index ). More Information: http://www.vbtonet.com/ewis/ewi2009.aspx
         EnviarCambio(Index, barServo(Index).Value - iPos, EVENT_SCROLL)
     End Sub
 
@@ -472,9 +497,63 @@ Public Class frmControl
             End If
         Catch ex As Exception
             MessageBox.Show("Error: " + ex.Message.ToString())
+            picEstado.BackColor = Color.Red
         End Try
     End Sub
 
+    Private Function ControlBarraMovSolidarioPosServo(ByRef Index As Integer) As Boolean
+        Dim dif As Integer = tbValServo(Index).Text - CStr(barServo(Index).Value)
+
+        If Not ProcesarEventosBarServo Then Return False
+
+        If cbZonaMov.Text = "Solidario" Then
+            If Index = 0 Then
+                For i As Integer = 3 To 6
+                    Dim valor = barServo(i - 2).Value + IIf(i = 4, dif, -dif)
+                    If valor < barServo(i - 2).Minimum Or valor > barServo(i - 2).Maximum Then
+                        ProcesarEventosBarServo = False
+                        Application.DoEvents()
+                        ProcesarEventosBarServo = True
+                        barServo(Index).Refresh()
+                        Return False
+                    End If
+                Next
+                For i As Integer = 3 To 6
+                    Dim valor = barServo(i - 2).Value + IIf(i = 4, dif, -dif)
+                    If valor >= barServo(i - 2).Minimum And valor <= barServo(i - 2).Maximum Then
+                        barServo(i - 2).Value = valor
+                        tbValServo(i - 2).Text = valor
+                        tbValServo(i - 2).Refresh()
+                        EnviarPosicionServo(Val(tbNumServo(i - 2).Text), Val(tbValServo(i - 2).Text))
+                        Thread.Sleep(ESPERA_COM_INSTRUCCIONES_RAPIDO)
+                    End If
+                Next
+            ElseIf Index = 6 Then
+                For i As Integer = 9 To 12
+                    Dim valor = barServo(i - 2).Value + IIf(i = 11, dif, -dif)
+                    If valor < barServo(i - 2).Minimum Or valor > barServo(i - 2).Maximum Then
+                        ProcesarEventosBarServo = False
+                        Application.DoEvents()
+                        ProcesarEventosBarServo = True
+                        barServo(Index).Refresh()
+                        Return False
+                    End If
+                Next
+                For i As Integer = 9 To 12
+                    Dim valor = barServo(i - 2).Value + IIf(i = 11, dif, -dif)
+                    If valor >= barServo(i - 2).Minimum And valor <= barServo(i - 2).Maximum Then
+                        barServo(i - 2).Value = valor
+                        tbValServo(i - 2).Text = valor
+                        tbValServo(i - 2).Refresh()
+                        EnviarPosicionServo(Val(tbNumServo(i - 2).Text), Val(tbValServo(i - 2).Text))
+                        Thread.Sleep(ESPERA_COM_INSTRUCCIONES_RAPIDO)
+                    End If
+                Next
+            End If
+        End If
+        tbValServo(Index).Text = CStr(barServo(Index).Value)
+        Return True
+    End Function
     Private Sub InicializarValoresArduino()
         'Posición inicial firmware todos los servos
         EnviarCodigo("i", 0)
@@ -510,6 +589,7 @@ Public Class frmControl
         For i As Integer = 18 To 24
             'Asignamos valor y valor de parada
             If i <> 21 Then EnviarPosicionServo(i, Val(tbValorParar(i - 16).Text), "r")
+            If i <> 21 Then EnviarValorParadaServoRot(i, Val(tbValorParar(i - 16).Text), "r")
         Next
     End Sub
 
@@ -753,7 +833,11 @@ Public Class frmControl
 
         'Movimiento independiente
         'EnviarPosicion(iServo)
-        EnviarPosicionServo(Val(tbNumServo(iServo).Text), Val(tbValServo(iServo).Text))
+        If cbModoEnvio.Text = "Envío Continuo" Then
+            EnviarPosicionServo(Val(tbNumServo(iServo).Text), Val(tbValServo(iServo).Text))
+        ElseIf iEvent = EVENT_CHANGE Then
+            ProgramarMovimientoServo(Val(tbNumServo(iServo).Text), Val(tbValServo(iServo).Text), MOV_GRADOS_SEG)
+        End If
 
         bEjecutandose = False
     End Sub
@@ -817,6 +901,16 @@ Public Class frmControl
         If _continue Then EscribirComCRC(":V" & i.ToString.Trim() & ";.")
         'com.Output = ":a" & i.ToString.Trim() & ";."
     End Sub
+    Sub ProgramarMovimientoServo(ByRef iServo As Integer, ByVal iValor As Integer, ByVal iGrados_seg As Integer)
+        Dim sCad As String = ":T"
+        sCad = sCad & Conversion.Str(iServo).Trim() & "," & Conversion.Str(iValor).Trim() & "," & Conversion.Str(iGrados_seg).Trim() & ";."
+        If _continue Then EscribirComCRC(sCad)
+        Application.DoEvents()
+    End Sub
+    Sub EjecutarMovimientoProgramado()
+        If _continue Then EscribirComCRC(":E;.")
+        Application.DoEvents()
+    End Sub
     Sub EnviarPosicionServo(ByRef i As Integer, ByVal iValor As Integer, Optional Op As String = "")
         Dim sCad As String = ""
 
@@ -837,12 +931,34 @@ Public Class frmControl
             End If
         End If
     End Sub
+    Sub EnviarMovimientoServoRot(ByRef iServo As Integer, ByVal iValor As Integer, ByVal iPotencia As Integer, Optional Op As String = "")
+        Dim sCad As String = ""
+
+        If giEstado = ARRANCADO Then
+            sCad = ":M"
+            sCad = sCad & Conversion.Str(iServo).Trim() & "," & Conversion.Str(iValor).Trim() & "," & Conversion.Str(iPotencia).Trim() & ";."
+            If _continue Then EscribirComCRC(sCad)
+            Application.DoEvents()
+        End If
+    End Sub
     Sub EnviarPosicionParada(ByRef i As Integer, ByVal iValor As Integer, ByVal Op As String)
         Dim sCad As String = ""
 
         If giEstado = ARRANCADO Then
             If cbModoEnvio.SelectedIndex = ENVIO_CONTINUO Then
                 sCad = ":R" + Op
+                sCad = sCad & Conversion.Str(i).Trim() & "," & Conversion.Str(iValor).Trim() & ";."
+                If _continue Then EscribirComCRC(sCad)
+                Application.DoEvents()
+            End If
+        End If
+    End Sub
+    Sub EnviarValorParadaServoRot(ByRef i As Integer, ByVal iValor As Integer, ByVal Op As String)
+        Dim sCad As String = ""
+
+        If giEstado = ARRANCADO Then
+            If cbModoEnvio.SelectedIndex = ENVIO_CONTINUO Then
+                sCad = ":M" + Op
                 sCad = sCad & Conversion.Str(i).Trim() & "," & Conversion.Str(iValor).Trim() & ";."
                 If _continue Then EscribirComCRC(sCad)
                 Application.DoEvents()
@@ -883,13 +999,11 @@ Public Class frmControl
         Dim sCad As String = ""
 
         If giEstado = ARRANCADO Then
-            If cbModoEnvio.SelectedIndex = ENVIO_CONTINUO Then
-                If _continue Then EscribirComCRC(":" & sCodigo & iValor & ";.")
-                Application.DoEvents()
+            If _continue Then EscribirComCRC(":" & sCodigo & iValor & ";.")
+            Application.DoEvents()
 
-                If sCodigo = "c" And iValor = 1 Then
-                    Application.DoEvents()
-                End If
+            If sCodigo = "c" And iValor = 1 Then
+                Application.DoEvents()
             End If
         End If
     End Sub
@@ -1603,9 +1717,21 @@ Public Class frmControl
             cbPosiciones.AddItem("P" + i.ToString())
         Next
 
+        CargarPosicionServosManos()
+        DatosArduino.Dispose()
+
+        If RecCfg("INI_enviar_posiciones_parada") = "S" Then
+            chkEnviarPosIniServosControl.Checked = True
+        End If
+    End Sub
+    Private Sub CargarPosicionServosManos()
+        Dim sServo As String
+        Dim iValor As Integer
+        Dim sValor As Integer
+        Dim iNumPos As Integer = RecCfg("posicion", "num_pos")
+        Dim DatosArduino As frmArduino = New frmArduino()
 
         'Cargar posiciones de servos de las manos
-        iNumPos = RecCfg("posicion", "num_pos")
 
         For i As Integer = 0 To iNumPos - 1
             aPosManos(i).iNumServo = New Integer(NUM_SERVOS_MANOS) {}
@@ -1620,12 +1746,8 @@ Public Class frmControl
             Next
             cbPosiciones.AddItem("M" + i.ToString())
         Next
-        DatosArduino.Dispose()
-
-        If RecCfg("INI_enviar_posiciones_parada") = "S" Then
-            chkEnviarPosIniServosControl.Checked = True
-        End If
     End Sub
+
 #End Region
     Private Sub cmdHablar_Click(sender As Object, e As EventArgs) Handles cmdHablar.Click
         static_frase = tbTexto.Text
@@ -1790,6 +1912,8 @@ Public Class frmControl
         aDist(3) = tbDistD
 
         frmServerWEB.Show()
+
+        InicializarKinect()
 
         Me.Text += " v" + Application.ProductVersion
     End Sub
@@ -1976,7 +2100,7 @@ Public Class frmControl
         Dim AIML As aimlForm = New aimlForm()
 
         AIML.InicializarPosControl(Me.Top + Me.Height, Me.Left)
-        AIML.dEjecutarComando = AddressOf EjecutarComando
+        AIML.dEjecutarComando = AddressOf EjecutarComandoExt
         aimlForm.dEjecutarMyo = AddressOf EjecutarMyo
 
         AIML.Show()
@@ -2027,8 +2151,20 @@ Public Class frmControl
         voz.Dispose()
     End Sub
     Sub EjecutarComando(comando As String, presicion As Double)
+        EjecutarComandoExt(comando, presicion, 0, 0)
+    End Sub
+    Function EjecutarComandoExt(comando As String, presicion As Double, iServo As Integer, iPos As Integer) As Integer
         Try
+            If aimlForm.SeguirSonido And cmdCabeza1.Tag = "ON" Then
+                OrientarCabezaAngSonido()
+            End If
+
             Select Case (comando)
+                'Comandos ejecutados desde aimlForm
+                Case "pos_cabeza_ang_sonido"
+                    Exit Select
+
+                'Comandos de voz
                 Case "movimiento adelante"
                     EnviarCodigo("b", 0)
                     EnviarSentidoMarcha(0)
@@ -2093,37 +2229,37 @@ Public Class frmControl
             '    picIzq.Visible = True
             '    Exit Select
                 Case "parar movimientos"
-                    EnviarPosicionServo(18, Val(tbValorParar(2).Text))
-                    EnviarPosicionServo(19, Val(tbValorParar(3).Text))
-                    EnviarPosicionServo(20, Val(tbValorParar(4).Text))
+                    EnviarPosicionServo(SERVO_HOMBRO_DER, Val(tbValorParar(2).Text))
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_DER, Val(tbValorParar(3).Text))
+                    EnviarPosicionServo(SERVO_BRAZO_INF_DER, Val(tbValorParar(4).Text))
 
-                    EnviarPosicionServo(22, Val(tbValorParar(6).Text))
-                    EnviarPosicionServo(23, Val(tbValorParar(7).Text))
-                    EnviarPosicionServo(24, Val(tbValorParar(8).Text))
+                    EnviarPosicionServo(SERVO_HOMBRO_IZQ, Val(tbValorParar(6).Text))
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_IZQ, Val(tbValorParar(7).Text))
+                    EnviarPosicionServo(SERVO_BRAZO_INF_IZQ, Val(tbValorParar(8).Text))
                     Exit Select
                 Case "subir brazo derecho"
-                    EnviarPosicionServo(20, 5)
+                    EnviarPosicionServo(SERVO_BRAZO_INF_DER, 5)
                 Case "subir brazo izquierdo"
-                    EnviarPosicionServo(24, 5)
+                    EnviarPosicionServo(SERVO_BRAZO_INF_IZQ, 5)
                 Case "bajar brazo derecho"
-                    EnviarPosicionServo(20, 175)
+                    EnviarPosicionServo(SERVO_BRAZO_INF_DER, 175)
                 Case "bajar brazo izquierdo"
-                    EnviarPosicionServo(24, 175)
+                    EnviarPosicionServo(SERVO_BRAZO_INF_IZQ, 175)
 
                 Case "adelante brazo derecho"
-                    EnviarPosicionServo(19, 5)
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_DER, 5)
                 Case "adelante brazo izquierdo"
-                    EnviarPosicionServo(23, 175)
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_IZQ, 175)
                 Case "atras brazo derecho"
-                    EnviarPosicionServo(19, 175)
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_DER, 175)
                 Case "atras brazo izquierdo"
-                    EnviarPosicionServo(23, 5)
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_IZQ, 5)
                 Case "tirar pelota"
                     tmrLeerDatosArduino.Enabled = False
                     'adelante brazo
-                    EnviarPosicionServo(19, 5)
+                    EnviarPosicionServo(SERVO_BRAZO_SUP_DER, 5)
                     'abajo brazo
-                    EnviarPosicionServo(20, 175)
+                    EnviarPosicionServo(SERVO_BRAZO_INF_DER, 175)
                     'abrir mano
                     CambiarServoConVelocidad(_barServo_0, _tbValServo_0, 2, RecCfg("pulgar_derecho_abierto"), 4, 15)
                     CambiarServoConVelocidad(_barServo_1, _tbValServo_1, 3, RecCfg("indice_derecho_abierto"), 4, 15)
@@ -2171,47 +2307,48 @@ Public Class frmControl
                     tmrLeerDatosArduino.Enabled = True
                 Case "abrir boca"
                     'CambiarServo(_barServo_12, _tbValServo_12, 14, RecCfg("boca_abierta"))
-                    EnviarPosicionServo(14, RecCfg("boca_abierta"))
+                    EnviarPosicionServo(SERVO_BOCA, RecCfg("boca_abierta"))
                     Exit Select
                 Case "cerrar boca"
-                    EnviarPosicionServo(14, RecCfg("boca_cerrada"))
+                    EnviarPosicionServo(SERVO_BOCA, RecCfg("boca_cerrada"))
                     Exit Select
                 Case "abrir boca1"
                     'CambiarServo(_barServo_12, _tbValServo_12, 14, RecCfg("boca_abierta"))
-                    EnviarPosicionServo(14, RecCfg("boca_abierta1"))
+                    EnviarPosicionServo(SERVO_BOCA, RecCfg("boca_abierta1"))
                     Exit Select
                 Case "cerrar boca1"
-                    EnviarPosicionServo(14, RecCfg("boca_cerrada1"))
+                    EnviarPosicionServo(SERVO_BOCA, RecCfg("boca_cerrada1"))
                     Exit Select
                 Case "cabeza cabeceo arriba1"
-                    EnviarPosicionServo(16, RecCfg("cabeza_cabeceo_arriba1"))
+                    EnviarPosicionServo(SERVO_CABEZA_CABECEO, RecCfg("cabeza_cabeceo_arriba1"))
                     Exit Select
                 Case "cabeza cabeceo arriba2"
-                    EnviarPosicionServo(16, RecCfg("cabeza_cabeceo_arriba2"))
+                    EnviarPosicionServo(SERVO_CABEZA_CABECEO, RecCfg("cabeza_cabeceo_arriba2"))
                     Exit Select
                 Case "cabeza cabeceo abajo1"
-                    EnviarPosicionServo(16, RecCfg("cabeza_cabeceo_abajo1"))
+                    EnviarPosicionServo(SERVO_CABEZA_CABECEO, RecCfg("cabeza_cabeceo_abajo1"))
                     Exit Select
                 Case "cabeza cabeceo abajo2"
-                    EnviarPosicionServo(16, RecCfg("cabeza_cabeceo_abajo2"))
+                    EnviarPosicionServo(SERVO_CABEZA_CABECEO, RecCfg("cabeza_cabeceo_abajo2"))
                     Exit Select
                 Case "cabeza guinada izquierda1"
-                    EnviarPosicionServo(15, RecCfg("cabeza_guinada_izq1"))
+                    EnviarPosicionServo(SERVO_CABEZA_GUINADA, RecCfg("cabeza_guinada_izq1"))
                     Exit Select
                 Case "cabeza guinada izquierda2"
-                    EnviarPosicionServo(15, RecCfg("cabeza_guinada_izq2"))
+                    EnviarPosicionServo(SERVO_CABEZA_GUINADA, RecCfg("cabeza_guinada_izq2"))
                     Exit Select
                 Case "cabeza guinada derecha1"
-                    EnviarPosicionServo(15, RecCfg("cabeza_guinada_der1"))
+                    EnviarPosicionServo(SERVO_CABEZA_GUINADA, RecCfg("cabeza_guinada_der1"))
                     Exit Select
                 Case "cabeza guinada derecha2"
-                    EnviarPosicionServo(15, RecCfg("cabeza_guinada_der2"))
+                    EnviarPosicionServo(SERVO_CABEZA_GUINADA, RecCfg("cabeza_guinada_der2"))
                     Exit Select
             End Select
         Catch ex As Exception
             MessageBox.Show("Control.vb - EjecutarComando: " + ex.Message)
         End Try
-    End Sub
+        Return 0
+    End Function
 
     Public Sub CambiarServo(s As HScrollBar, tbValor As TextBox, iServo As Integer, fin As String)
         CambiarServoConVelocidad(s, tbValor, iServo, fin, 2, ESPERA_TRANSICION_SERVO * 2)
@@ -2771,8 +2908,10 @@ error_Renamed:
         Select Case e.Type
             Case ScrollEventType.ThumbTrack
                 'barServo_Scroll_Renamed(Index, e.NewValue)
+                tbValorRot(Index).Text = barServoPos(Index).Value
             Case ScrollEventType.EndScroll
-                'barServoPos_Change(Index, e.NewValue)
+                tbValorRot(Index).Text = barServoPos(Index).Value
+                tbValorRot(Index).BackColor = Color.LightSalmon
         End Select
         System.Threading.Thread.Sleep(50)
     End Sub
@@ -2823,20 +2962,6 @@ error_Renamed:
 
     Private Sub _tbValServoPos_2_TextChanged(sender As Object, e As EventArgs) Handles _tbValServoPos_8.TextChanged, _tbValServoPos_7.TextChanged, _tbValServoPos_6.TextChanged, _tbValServoPos_4.TextChanged, _tbValServoPos_3.TextChanged, _tbValServoPos_2.TextChanged
         Dim Index As Integer = Array.IndexOf(tbValServoPos, sender)
-
-        Try
-            Dim valor As Integer = Integer.Parse(tbValServoPos(Index).Text)
-            If valor < barServoPos(Index).Minimum Then
-                barServoPos(Index).Value = barServoPos(Index).Minimum
-            ElseIf valor > barServoPos(Index).Maximum Then
-                barServoPos(Index).Value = barServoPos(Index).Maximum
-            Else
-                barServoPos(Index).Value = tbValServoPos(Index).Text
-            End If
-        Catch ex As Exception
-            Console.WriteLine("Control.vb - _tbValServoPos_2_TextChanged: " + ex.Message)
-        End Try
-
     End Sub
 
     Private Sub tbControlPosOn_Click(sender As Object, e As EventArgs) Handles tbControlPosOn.Click
@@ -2932,5 +3057,141 @@ error_Renamed:
 
     Private Sub cmdEnviarPosParada_Click(sender As Object, e As EventArgs) Handles cmdEnviarPosParada.Click
         EnviarPosicionParadaServos()
+    End Sub
+
+    Sub InicializarKinect()
+        For Each potentialSensor As KinectSensor In KinectSensor.KinectSensors
+            If potentialSensor.Status = KinectStatus.Connected Then
+                Me.sensor = potentialSensor
+                Exit For
+            End If
+            ' Start the sensor!
+            ' Some other application is streaming from the same Kinect sensor
+        Next
+
+        If Not Me.sensor Is Nothing Then
+            Try
+                Me.sensor.Start()
+            Catch e As Exception
+                Me.sensor = Nothing
+            End Try
+            AddHandler Me.sensor.AudioSource.SoundSourceAngleChanged,
+                AddressOf ControlAnguloOrigenSonido
+            Me.sensor.AudioSource.Start()
+            Me.sensor.ElevationAngle = -10
+
+        End If
+
+
+    End Sub
+    Sub ControlAnguloOrigenSonido(o As Object, e As SoundSourceAngleChangedEventArgs)
+        tbAngSonido.Text = -Math.Round(e.Angle)
+    End Sub
+
+    Private Sub cmdPrueba_Click(sender As Object, e As EventArgs) Handles cmdPrueba.Click
+        Dim s As String = "D:\PROGRAMAS\PYTHON\python.exe"
+        Dim p As New Process()
+        Dim fileReader As String
+        Dim DirActual = My.Computer.FileSystem.CurrentDirectory
+        Dim escritor As StreamWriter
+        p.StartInfo.FileName = s
+        p.StartInfo.Arguments = "D:\PROGRAMAS\PYTHON\Proy\chatbot.py curie " + DirActual + "\entrada.txt " + DirActual + "\salida.txt"
+        p.Start()
+        p.WaitForExit()
+
+        fileReader = My.Computer.FileSystem.ReadAllText(DirActual + "\salida.txt", System.Text.Encoding.UTF8)
+        MsgBox(fileReader)
+
+        escritor = File.AppendText(DirActual + "\entrada.txt")
+        escritor.Write(Environment.NewLine + "AI:" + fileReader)
+        escritor.Flush()
+        escritor.Close()
+    End Sub
+
+    Private Sub _tbMaxPos_2_TextChanged(sender As Object, e As EventArgs) Handles _tbMaxPos_2.TextChanged
+
+    End Sub
+
+    Private Sub _cmdPlay_2_Click(sender As Object, e As EventArgs) Handles _cmdPlay_2.Click, _cmdPlay_3.Click, _cmdPlay_4.Click, _cmdPlay_6.Click, _cmdPlay_7.Click, _cmdPlay_8.Click
+        Dim Index As Integer = Array.IndexOf(cmdPlay, sender)
+        'Asignamos valor y grabamos la posición de parada
+        If Val(tbNumServoPos(Index).Text) > 0 Then
+            EnviarMovimientoServoRot(Val(tbNumServoPos(Index).Text), Val(tbValorRot(Index).Text), 100, "r")
+        End If
+    End Sub
+
+    Private Sub _tbValServoPos_2_Click(sender As Object, e As EventArgs) Handles _tbValServoPos_2.Click, _tbValServoPos_3.Click, _tbValServoPos_4.Click, _tbValServoPos_6.Click, _tbValServoPos_7.Click, _tbValServoPos_8.Click
+        Dim Index As Integer = Array.IndexOf(tbValServoPos, sender)
+        Dim Valor As Integer = Convert.ToUInt16(tbValServoPos(Index).Text)
+
+        If Valor >= barServoPos(Index).Minimum And Valor <= barServoPos(Index).Maximum Then
+            barServoPos(Index).Value = tbValServoPos(Index).Text
+            tbValorRot(Index).Text = tbValServoPos(Index).Text
+        End If
+    End Sub
+
+    Private Sub cmdEjecMovTemp_Click(sender As Object, e As EventArgs) Handles cmdEjecMovTemp.Click
+        If _continue Then EjecutarMovimientoProgramado()
+        Application.DoEvents()
+    End Sub
+
+    Private Sub cmdEjecutarMovRot_Click(sender As Object, e As EventArgs) Handles cmdEjecutarMovRot.Click
+        Dim ix As Integer
+        For i As Integer = 18 To 24
+            ix = i - 16
+            If i <> 21 Then
+                Dim Valor As Integer = Convert.ToInt16(tbValorRot(ix).Text)
+                Dim Pos As Integer = Convert.ToInt16(tbValServoPos(ix).Text)
+                If Math.Abs(Valor - Pos) > MARGEN_MOV_SERVO_ROT Then
+                    EnviarMovimientoServoRot(Val(tbNumServoPos(ix).Text), Val(tbValorRot(ix).Text), POTENCIA_SERVO_ROT, "r")
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub cmdLeerPosServosRot_Click(sender As Object, e As EventArgs) Handles cmdLeerPosServosRot.Click
+        Dim ix As Integer
+        For i As Integer = 18 To 24
+            ix = i - 16
+            If i <> 21 Then
+                Dim Valor As Integer = Convert.ToUInt16(tbValServoPos(ix).Text)
+
+                If Valor < barServoPos(ix).Minimum Then Valor = barServoPos(ix).Minimum
+                If Valor > barServoPos(ix).Maximum Then Valor = barServoPos(ix).Maximum
+                barServoPos(ix).Value = Valor
+                tbValorRot(ix).Text = Valor
+                tbValorRot(ix).BackColor = Color.LightGreen
+            End If
+        Next
+    End Sub
+
+    Private Sub cmdPosIni_Click(sender As Object, e As EventArgs) Handles cmdPosIni.Click
+        Dim iPos As Integer = 0
+
+        For i As Integer = 0 To NUM_SERVOS_MANOS - 1
+            EnviarPosicionServo(aPosManos(ipos).iNumServo(i), aPosManos(ipos).iPosServo(i))
+            Thread.Sleep(ESPERA_COM_INSTRUCCIONES)
+            barServo(i).Value = aPosManos(ipos).iPosServo(i)
+            tbValServo(i).Text = aPosManos(ipos).iPosServo(i)
+        Next
+    End Sub
+
+    Private Function Calcular(Entrada As Double, MinEntrada As Double, MaxEntrada As Double, MinSalida As Double, MaxSalida As Double) As Double
+        If MinEntrada < 0 Then
+            MaxEntrada = MaxEntrada - MinEntrada
+            Entrada = Entrada - MinEntrada
+            MinEntrada = 0
+        End If
+        If Entrada < MinEntrada Then Entrada = MinEntrada
+        If Entrada > MaxEntrada Then Entrada = MaxEntrada
+
+        Return (Entrada - MinEntrada) / (MaxEntrada - MinEntrada) * (MaxSalida - MinSalida)
+    End Function
+
+    Private Sub OrientarCabezaAngSonido()
+        Dim AngSonido As Integer = Convert.ToInt16(tbAngSonido.Text)
+        Dim iPos As Integer = Calcular(AngSonido, MIN_ANG_SONIDO, MAX_ANG_SONIDO, Convert.ToInt16(tbMin(13).Text) + MARGEN_ANG_CABEZA_SONIDO, Convert.ToInt16(tbMax(13).Text) - MARGEN_ANG_CABEZA_SONIDO)
+        ProgramarMovimientoServo(SERVO_CABEZA_GUINADA, iPos, MOV_GRADOS_SEG)
+        EjecutarMovimientoProgramado()
     End Sub
 End Class

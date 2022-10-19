@@ -37,11 +37,9 @@ CPP_DEPS :=
 SUBDIRS := \
 . \
 core\core \
-libraries\Servo\src\avr \
-libraries\Servo\src\mbed \
-libraries\Servo\src\megaavr \
-libraries\Servo\src\nrf52 \
-libraries\Servo\src\sam \
-libraries\Servo\src\samd \
-libraries\Servo\src\stm32f4 \
+libraries\Kalman \
+libraries\RF24 \
+libraries\SPI\src \
+libraries\ServoTimer2 \
+libraries\VirtualWire \
 

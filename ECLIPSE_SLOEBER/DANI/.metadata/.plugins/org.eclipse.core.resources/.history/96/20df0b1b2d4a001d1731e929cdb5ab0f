@@ -1,0 +1,95 @@
+#define PIN_CONTADOR_VELOCIDAD				2
+#define PIN_SENSOR_LINEA_R  				3
+
+#define PIN_TRIGGER_SENSOR_DIST_DELANTE_1	4
+#define PIN_TRIGGER_SENSOR_DIST_DELANTE_3	5
+#define PIN_TRIGGER_SENSOR_DIST_DELANTE_2	6
+#define PIN_TRIGGER_SENSOR_DIST_ATRAS_1		7
+
+#define PIN_TRIGGER_SAPO_IZQ_1			8
+#define PIN_TRIGGER_SAPO_IZQ_2			9
+#define PIN_TRIGGER_SAPO_IZQ_3			10
+#define PIN_TRIGGER_SAPO_IZQ_4			11
+
+#define PIN_DIRECCION 					12 //Servo dirección - blanco
+#define PIN_PWM_MOTOR 					13 //Azul
+#define PIN_AVANCE_RETROCESO 			14 //Azul
+#define PIN_ALIMENTACION_CABEZA      	15
+#define PIN_ALIMENTACION_BASE      		16
+#define PIN_ALIMENTACION_CUERPO    		17
+
+#define PIN_SENSOR_LINEA_L  			18 //->18
+#define PIN_SENSOR_LINEA_C  			19 //->19
+
+#define PIN_SDA			  				20
+#define PIN_SCL  						21
+
+#define PIN_PULGAR_DER 					22 //pulgar
+#define PIN_INDICE_DER 					23 //Incide 167-33
+#define PIN_MEDIO_DER 					24 //Corazón 159-55
+#define PIN_ANULAR_DER 					25 //Anular 178-57
+// Solapados------------------------------
+#define PIN_LIDAR_CABECEO				22 //pulgar
+#define PIN_LIDAR_GUINADA				23 //Incide 167-33
+#define PIN_SALIDA_DUAL_LIBRE			24 //Corazón 159-55
+#define PIN_SALIDA_DUAL_LIBRE_2			25 //Anular 178-57
+
+#define PIN_GIRO_MANO_DER 				26 //Giro Muñeca
+#define PIN_MENIQUE_DER 				27 //Meñique
+
+#define PIN_ANULAR_IZQ 					28 //anular
+#define PIN_MENIQUE_IZQ 				29 //Meñique
+#define PIN_GIRO_MANO_IZQ 				30 //muñeca
+
+#define PIN_BOCA 						31 //boca
+#define PIN_CABEZA_GUINADA 				32 //Mivimiento lateral cabeza
+#define PIN_CABEZA_CABECEO 				33 //Subir-Bajar cabeza
+
+#define PIN_LIBRE_34				34
+
+#define PIN_HOMBRO_IZQ 					35 //Hombro-cuerpo izq
+#define PIN_BRAZO_IZQ 					36 //Biceps izq
+#define PIN_BICEPS_IZQ 					37 //Hombro-Brazo izq
+
+#define PIN_ECHO_SENSOR_DIST_DELANTE_1	38
+#define PIN_ECHO_SENSOR_DIST_DELANTE_2	39
+#define PIN_ECHO_SENSOR_DIST_DELANTE_3	40
+#define PIN_ECHO_SENSOR_DIST_ATRAS_1	41
+
+#define PIN_BICEPS_DER 					42 //Hombro-brazo der
+#define PIN_BRAZO_DER 					43 //Codo der
+#define PIN_HOMBRO_DER 					44 //Hombro-cuerpo der
+#define PIN_RF							45
+
+#define PIN_PULGAR_IZQ 					46 //pulgar
+#define PIN_INDICE_IZQ 					47 //indice
+#define PIN_MEDIO_IZQ 					48 //medio
+
+#define PIN_NRF24_CE					49 //cfg
+#define PIN_NRF24_MISO					50
+#define PIN_NRF24_MOSI					51
+#define PIN_NRF24_SCK					52
+#define PIN_NRF24_CSN					53 //cfg
+
+#define PIN_TRIGGER_SAPPO_DER_1			A0
+#define PIN_TRIGGER_SAPPO_DER_1			A1
+#define PIN_TRIGGER_SAPPO_DER_1			A2
+#define PIN_TRIGGER_SAPPO_DER_1			A3
+
+#define PIN_TRIGGER_SAPPO_DER_1			A4
+#define PIN_TRIGGER_SAPPO_DER_1			A5
+
+#define PIN_TRIGGER_SAPPO_IZQ_5			A6
+#define PIN_TRIGGER_SAPPO_IZQ_6			A7
+
+#define PIN_POT_CODO_DER 				A8
+#define PIN_POT_HOMBRO_DER 				A9
+#define PIN__LIBRE_A10 			A10
+#define PIN_POT_BRAZO_DER 				A11
+
+#define PIN_POT_BRAZO_DER 				A12
+#define PIN_POT_HOMBRO_DER 				A13
+#define PIN__LIBRE_A14 			A14
+#define PIN_POT_CODO_DER 				A15
+
+

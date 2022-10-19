@@ -80,7 +80,7 @@ Partial Class ServidorWeb
         Me.chkPrefijo.AutoSize = True
         Me.chkPrefijo.Location = New System.Drawing.Point(13, 41)
         Me.chkPrefijo.Name = "chkPrefijo"
-        Me.chkPrefijo.Size = New System.Drawing.Size(128, 20)
+        Me.chkPrefijo.Size = New System.Drawing.Size(127, 20)
         Me.chkPrefijo.TabIndex = 4
         Me.chkPrefijo.Text = "Asignar prefijo"
         Me.chkPrefijo.UseVisualStyleBackColor = True
@@ -99,7 +99,7 @@ Partial Class ServidorWeb
         Me.chkLOG.AutoSize = True
         Me.chkLOG.Location = New System.Drawing.Point(147, 41)
         Me.chkLOG.Name = "chkLOG"
-        Me.chkLOG.Size = New System.Drawing.Size(57, 20)
+        Me.chkLOG.Size = New System.Drawing.Size(56, 20)
         Me.chkLOG.TabIndex = 6
         Me.chkLOG.Text = "LOG"
         Me.chkLOG.UseVisualStyleBackColor = True
@@ -122,7 +122,7 @@ Partial Class ServidorWeb
         Me.chkVR_Cabeza.AutoSize = True
         Me.chkVR_Cabeza.Location = New System.Drawing.Point(13, 58)
         Me.chkVR_Cabeza.Name = "chkVR_Cabeza"
-        Me.chkVR_Cabeza.Size = New System.Drawing.Size(109, 20)
+        Me.chkVR_Cabeza.Size = New System.Drawing.Size(108, 20)
         Me.chkVR_Cabeza.TabIndex = 8
         Me.chkVR_Cabeza.Text = "VR_Cabeza"
         Me.chkVR_Cabeza.UseVisualStyleBackColor = True
@@ -148,6 +148,7 @@ Partial Class ServidorWeb
         Me.Name = "ServidorWeb"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "SERVIDOR WEB"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
         CType(Me.picGrafica, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

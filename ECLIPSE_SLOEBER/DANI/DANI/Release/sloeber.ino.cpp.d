@@ -10,9 +10,17 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\arduino/USBAPI.h \
  D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\arduino/Arduino.h \
  D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\variants\mega/pins_arduino.h \
- C:\Users\antonio\Documents\Arduino\libraries\Servo\src/Servo.h \
- C:\Users\antonio\Documents\Arduino\libraries\Servo\src/avr/ServoTimers.h \
- ..\DANI.ino ..\ComSerie.ino ..\Posicionamiento.ino
+ ..\pines.h \
+ C:\Users\antonio\Documents\Arduino\libraries\ServoTimer2/ServoTimer2.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\libraries\RF24\1.4.2/RF24.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\libraries\RF24\1.4.2/RF24_config.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\SPI\src/SPI.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\VirtualWire/VirtualWire.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\VirtualWire/VirtualWire_Config.h \
+ ..\list.h \
+ D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\arduino/arduino.h \
+ ..\node_cpp.h ..\list.cpp ..\node_cpp.cpp ..\SAPPO.h ..\DANI.ino \
+ ..\ComSerie.ino ..\Posicionamiento.ino
 
 D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\arduino/Arduino.h:
 
@@ -36,9 +44,31 @@ D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\ard
 
 D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\variants\mega/pins_arduino.h:
 
-C:\Users\antonio\Documents\Arduino\libraries\Servo\src/Servo.h:
+..\pines.h:
 
-C:\Users\antonio\Documents\Arduino\libraries\Servo\src/avr/ServoTimers.h:
+C:\Users\antonio\Documents\Arduino\libraries\ServoTimer2/ServoTimer2.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\libraries\RF24\1.4.2/RF24.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\libraries\RF24\1.4.2/RF24_config.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\SPI\src/SPI.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\VirtualWire/VirtualWire.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\libraries\VirtualWire/VirtualWire_Config.h:
+
+..\list.h:
+
+D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.8.5\cores\arduino/arduino.h:
+
+..\node_cpp.h:
+
+..\list.cpp:
+
+..\node_cpp.cpp:
+
+..\SAPPO.h:
 
 ..\DANI.ino:
 

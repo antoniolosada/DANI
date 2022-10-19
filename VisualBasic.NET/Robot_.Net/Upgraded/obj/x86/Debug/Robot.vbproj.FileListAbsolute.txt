@@ -253,3 +253,8 @@ D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debu
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CopyComplete
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.pdb
+D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.dll
+D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.xml
+D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.dll
+D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.pdb
+D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.SuggestedBindingRedirects.cache

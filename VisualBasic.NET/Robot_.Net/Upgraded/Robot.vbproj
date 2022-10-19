@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion />
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7F6C4506-C0B3-441C-8BB1-EBB9239FD65A}</ProjectGuid>
     <MyType>WindowsForms</MyType>
@@ -69,6 +69,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\HaarCascadeClassifer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />

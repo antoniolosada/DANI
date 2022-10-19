@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace AIMLGUI
 {
-    public class DetectarMovimiento
+    public class DetectarMovimiento 
     {
         private SubstraccionVideo objSubstraccion = new SubstraccionVideo();
         private Bitmap imagenAnterior;

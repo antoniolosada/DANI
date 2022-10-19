@@ -71,6 +71,7 @@ namespace AIMLGUI
             this.tmrProcesarVozUWP = new System.Windows.Forms.Timer(this.components);
             this.chkMoverCabeza = new System.Windows.Forms.CheckBox();
             this.tmrMoverCabeza = new System.Windows.Forms.Timer(this.components);
+            this.cbModelo = new System.Windows.Forms.ComboBox();
             this.menuStripMain.SuspendLayout();
             this.statusStripBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -91,7 +92,7 @@ namespace AIMLGUI
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(503, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(428, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -270,9 +271,9 @@ namespace AIMLGUI
             // 
             this.statusStripBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelMessages});
-            this.statusStripBottom.Location = new System.Drawing.Point(0, 142);
+            this.statusStripBottom.Location = new System.Drawing.Point(0, 143);
             this.statusStripBottom.Name = "statusStripBottom";
-            this.statusStripBottom.Size = new System.Drawing.Size(503, 22);
+            this.statusStripBottom.Size = new System.Drawing.Size(428, 22);
             this.statusStripBottom.TabIndex = 1;
             this.statusStripBottom.Text = "statusStrip1";
             // 
@@ -290,7 +291,7 @@ namespace AIMLGUI
             this.richTextBoxOutput.Name = "richTextBoxOutput";
             this.richTextBoxOutput.ReadOnly = true;
             this.richTextBoxOutput.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxOutput.Size = new System.Drawing.Size(503, 89);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(428, 89);
             this.richTextBoxOutput.TabIndex = 99;
             this.richTextBoxOutput.Text = "Use the \"File\" -> \"Open Bot\" -> \"From AIML files\" menu to load AIML files into th" +
     "e bot\'s brain. (Clicking \"OK\" in the \"Browse for folder\" box will load the AIML " +
@@ -303,7 +304,7 @@ namespace AIMLGUI
             this.buttonGo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonGo.Location = new System.Drawing.Point(0, 0);
             this.buttonGo.Name = "buttonGo";
-            this.buttonGo.Size = new System.Drawing.Size(144, 25);
+            this.buttonGo.Size = new System.Drawing.Size(123, 26);
             this.buttonGo.TabIndex = 4;
             this.buttonGo.Text = "PROCESAR";
             this.buttonGo.UseVisualStyleBackColor = true;
@@ -323,7 +324,7 @@ namespace AIMLGUI
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(503, 118);
+            this.splitContainer1.Size = new System.Drawing.Size(428, 119);
             this.splitContainer1.SplitterDistance = 89;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -340,8 +341,8 @@ namespace AIMLGUI
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.buttonGo);
-            this.splitContainer2.Size = new System.Drawing.Size(503, 25);
-            this.splitContainer2.SplitterDistance = 355;
+            this.splitContainer2.Size = new System.Drawing.Size(428, 26);
+            this.splitContainer2.SplitterDistance = 301;
             this.splitContainer2.TabIndex = 5;
             // 
             // richTextBoxInput
@@ -349,7 +350,7 @@ namespace AIMLGUI
             this.richTextBoxInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxInput.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxInput.Name = "richTextBoxInput";
-            this.richTextBoxInput.Size = new System.Drawing.Size(355, 25);
+            this.richTextBoxInput.Size = new System.Drawing.Size(301, 26);
             this.richTextBoxInput.TabIndex = 0;
             this.richTextBoxInput.Text = "";
             this.richTextBoxInput.TextChanged += new System.EventHandler(this.richTextBoxInput_TextChanged);
@@ -374,11 +375,11 @@ namespace AIMLGUI
             // chkMoverBoca
             // 
             this.chkMoverBoca.AutoSize = true;
-            this.chkMoverBoca.Location = new System.Drawing.Point(321, 146);
+            this.chkMoverBoca.Location = new System.Drawing.Point(282, 147);
             this.chkMoverBoca.Name = "chkMoverBoca";
-            this.chkMoverBoca.Size = new System.Drawing.Size(84, 17);
+            this.chkMoverBoca.Size = new System.Drawing.Size(75, 17);
             this.chkMoverBoca.TabIndex = 6;
-            this.chkMoverBoca.Text = "Mover Boca";
+            this.chkMoverBoca.Text = "Mov.Boca";
             this.chkMoverBoca.UseVisualStyleBackColor = true;
             this.chkMoverBoca.CheckedChanged += new System.EventHandler(this.chkMoverBoca_CheckedChanged);
             // 
@@ -389,9 +390,9 @@ namespace AIMLGUI
             this.chkReconocimientoActivo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkReconocimientoActivo.Location = new System.Drawing.Point(215, 147);
             this.chkReconocimientoActivo.Name = "chkReconocimientoActivo";
-            this.chkReconocimientoActivo.Size = new System.Drawing.Size(100, 17);
+            this.chkReconocimientoActivo.Size = new System.Drawing.Size(67, 17);
             this.chkReconocimientoActivo.TabIndex = 7;
-            this.chkReconocimientoActivo.Text = "Rec.Voz Activo";
+            this.chkReconocimientoActivo.Text = "Rec.Voz";
             this.chkReconocimientoActivo.UseVisualStyleBackColor = true;
             this.chkReconocimientoActivo.CheckedChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckedChanged);
             this.chkReconocimientoActivo.CheckStateChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckStateChanged);
@@ -403,7 +404,7 @@ namespace AIMLGUI
             // 
             // cmdMyo
             // 
-            this.cmdMyo.Location = new System.Drawing.Point(0, 143);
+            this.cmdMyo.Location = new System.Drawing.Point(1, 141);
             this.cmdMyo.Name = "cmdMyo";
             this.cmdMyo.Size = new System.Drawing.Size(61, 23);
             this.cmdMyo.TabIndex = 8;
@@ -415,7 +416,7 @@ namespace AIMLGUI
             // 
             this.tbMyo.Location = new System.Drawing.Point(68, 143);
             this.tbMyo.Name = "tbMyo";
-            this.tbMyo.Size = new System.Drawing.Size(141, 20);
+            this.tbMyo.Size = new System.Drawing.Size(75, 20);
             this.tbMyo.TabIndex = 9;
             // 
             // tmrMyo
@@ -429,7 +430,7 @@ namespace AIMLGUI
             // chkMoverCabeza
             // 
             this.chkMoverCabeza.AutoSize = true;
-            this.chkMoverCabeza.Location = new System.Drawing.Point(400, 145);
+            this.chkMoverCabeza.Location = new System.Drawing.Point(357, 146);
             this.chkMoverCabeza.Name = "chkMoverCabeza";
             this.chkMoverCabeza.Size = new System.Drawing.Size(74, 17);
             this.chkMoverCabeza.TabIndex = 10;
@@ -442,11 +443,25 @@ namespace AIMLGUI
             this.tmrMoverCabeza.Interval = 1000;
             this.tmrMoverCabeza.Tick += new System.EventHandler(this.tmrMoverCabeza_Tick);
             // 
+            // cbModelo
+            // 
+            this.cbModelo.FormattingEnabled = true;
+            this.cbModelo.Items.AddRange(new object[] {
+            "AIML",
+            "curie",
+            "davinci"});
+            this.cbModelo.Location = new System.Drawing.Point(149, 142);
+            this.cbModelo.Name = "cbModelo";
+            this.cbModelo.Size = new System.Drawing.Size(60, 21);
+            this.cbModelo.TabIndex = 11;
+            this.cbModelo.Text = "AIML";
+            // 
             // aimlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 164);
+            this.ClientSize = new System.Drawing.Size(428, 165);
+            this.Controls.Add(this.cbModelo);
             this.Controls.Add(this.chkMoverCabeza);
             this.Controls.Add(this.tbMyo);
             this.Controls.Add(this.cmdMyo);
@@ -524,6 +539,7 @@ namespace AIMLGUI
         private System.Windows.Forms.Timer tmrProcesarVozUWP;
         private System.Windows.Forms.CheckBox chkMoverCabeza;
         private System.Windows.Forms.Timer tmrMoverCabeza;
+        private System.Windows.Forms.ComboBox cbModelo;
     }
 }
 

@@ -2,7 +2,26 @@
 // by Michal Rinott <http://people.interaction-ivrea.it/m.rinott> 
 
 #include <Arduino.h>
-#include <Servo.h> 
+
+#ifndef SAPPO_H
+	//#include <Servo.h>
+	#include <ServoTimer2.h>
+	#define Servo ServoTimer2
+
+	#include <RF24.h>
+	#include <RF24_config.h>
+	#include <VirtualWire.h>
+	#include "pines.h"
+
+	#include "list.h"
+	#include "node_cpp.h"
+	#ifndef CODE_LIST
+		#include "list.cpp"
+		#include "node_cpp.cpp"
+	#endif
+
+	#include "SAPPO.h"
+#endif
 //#include <TimerOne.h>
 
 #define DEBUG  0
@@ -21,15 +40,6 @@
 #define VALOR_DISTANCIA_MIN			185
 #define VALOR_DISTANCIA_MAX			265
 #define VALOR_OBJETO_NO_DETECTADO	-1
-
-//Pines empleados + los que devulve la funcion pin()
-#define PIN_CONTADOR_VELOCIDAD	2
-#define PIN_SENSOR_LINEA_R  	3
-#define PIN_SENSOR_LINEA_L  	38
-#define PIN_SENSOR_LINEA_C  	39
-#define PIN_ALIMENTACION_CUERPO    17
-#define PIN_ALIMENTACION_BASE      16
-#define PIN_ALIMENTACION_CABEZA      15
 
 #define FIN_SECUENCIA  0
 #define FIN_MOVIMIENTO 0
@@ -60,14 +70,24 @@
 
 #define MAX_LON_CADENA 400
 
+#define MAX_SERVOS_POS 25
+#define REC_MEDIDAS  1
+
 //PINes de los sensores de distancia
-byte DistanciaEcho[4] = { 18, 19, 20, 21 };
-byte DistanciaTriger[4] = { 4, 6, 5, 7 };
+byte DistanciaEcho[4] = { PIN_ECHO_DIST_DELANTE_1,
+							PIN_ECHO_DIST_DELANTE_2,
+							PIN_ECHO_DIST_DELANTE_3,
+							PIN_ECHO_DIST_ATRAS_1 };
+
+byte DistanciaTriger[4] = { PIN_TRIGGER_DIST_DELANTE_1,
+							PIN_TRIGGER_DIST_DELANTE_2,
+							PIN_TRIGGER_DIST_DELANTE_3,
+							PIN_TRIGGER_DIST_ATRAS_1 };
 long DistanciaUs[4] = { 0, 0, 0, 0 };
 int DistanciaCm[4] = { 0, 0, 0, 0 };
 
 String Debug = "";
-Servo aServo[28];
+Servo aServo[MAX_SERVOS_POS];
 struct sPosServos 
 {
   int iValor;
@@ -76,7 +96,16 @@ struct sPosServos
   int iMaxIteraciones;
   int iValorInicial;
   int iValorFinal;
-} aPosServos[23];
+  byte pin;
+  bool Conectado;
+  unsigned long ms_desconexion;
+  byte iValoIniTemporizado;
+  byte iValorFinTemporizado;
+  unsigned int ms_tiempo_mov;
+  long ms_inicial = 0;
+  long ms_final = 0;
+  bool MovTemporizadoActivo = false;
+} aPosServos[MAX_SERVOS_POS];
 
 int iPosCad = 0;
 char Cadena[MAX_LON_CADENA];
@@ -85,10 +114,11 @@ struct Movimiento
 {
   byte BNumMov;
   int iTiempo;
-  int pos[25]; 
+  int pos[MAX_SERVOS_POS];
 };
 
 Movimiento Secuencia[10];
+long cont_loop = 0;
 
 int iPosSec = 0;
 int iEstado = STOP;
@@ -96,7 +126,7 @@ int iNumSecActiva = SIN_ASIGNAR;
 int iNumMovActivo = SIN_ASIGNAR;
 int iFinSec = 0;
 long ContadorMarcas = 0;
-
+bool RecuperarPosicion = false;
 long ContadorMs;
 
 static long timeControlPos = millis();
@@ -104,6 +134,12 @@ static long timeControlPos = millis();
 extern bool ControlPosicionActivo;
 extern bool ControlLimitesOffActivo;
 extern bool ControlLimitesActivo;
+extern int algoKalman;
+
+void InicializarRadio();
+void InicializarSAPPO_us();
+void CargarDatosBalizas();
+bool RecuperarMedidasBalizas(int algoritmo, bool salida);
 
 void setup() 
 { 
@@ -133,32 +169,6 @@ void setup()
   attachInterrupt(4, DistanciaI, FALLING); //INT4 -> pin 19 I
   attachInterrupt(5, DistanciaT, FALLING); //INT4 -> pin 18 T
 
-  for (i = 0; i <= 25; i++)
-  {
-    if (pin(i) > 0)
-    {
-      aServo[i].attach(pin(i));
-      aPosServos[i].iIteraciones = 0;
-    }
-  }
-
-
-//  //Movimiento cabeza
-//  for (i = 14; i <= 16; i++)
-//  {
-//    if (pin(i-2) > 0)
-//    {
-//      aServo[i-2].attach(pin(i-2));
-//      aPosServos[i-2].iIteraciones = 0;
-//    }
-//  }
-//  //Dirección
-//  aServo[26-2].attach(pin(26-2));
-//  aPosServos[26-2].iIteraciones = 0;
-
-  
-
-
   pinMode(PIN_ALIMENTACION_BASE, OUTPUT);
   pinMode(PIN_ALIMENTACION_CUERPO, OUTPUT);
   pinMode(PIN_ALIMENTACION_CABEZA, OUTPUT);
@@ -171,16 +181,51 @@ void setup()
   pinMode(PIN_SENSOR_LINEA_C, INPUT);
   pinMode(PIN_SENSOR_LINEA_R, INPUT);
 
+  Serial.begin(115200);
+
+  int pinServo = 0;
+  //Establecer posición inicial de los servos
+  for (i = 0; i < MAX_SERVOS_POS; i++)
+  {
+    aPosServos[i].MovTemporizadoActivo = false;
+	pinServo = pin(i);
+    if (pinServo > 0)
+    {
+      aServo[i].attach(pinServo);
+      aPosServos[i].iIteraciones = 0;
+      aPosServos[i].pin = pinServo;
+      aPosServos[i].Conectado = true;
+      aPosServos[i].ms_desconexion = millis();
+    }
+    else
+    {
+        aPosServos[i].pin = 0;
+        aPosServos[i].Conectado = false;
+    }
+    aPosServos[i].iValor = 0;
+    aPosServos[i].ms_tiempo_mov = 0; //Marca de movimiento programado del servo desactivo
+  }
   PosicionInicial();
+
+  //SAPPO Inicializacion
+  InicializarRadio();
+  InicializarSAPPO_us();
+  CargarDatosBalizas();
+
   delay(2000);
 
-  Serial.begin(115200);
   
+//  Serial.println("-----------------------------------------");
+//  Serial.print("RAM libre: ");
+//  Serial.print(freeRam());
+//  Serial.print(";");
 } 
  
 void loop() 
 { 
+	//return;
 	//PruebaMovimientoCabeza();
+	cont_loop++;
 
   if (LeerCadena(&iPosCad, Cadena) == LECTURA_FIN)
   {
@@ -195,17 +240,49 @@ void loop()
 	  ComprobarControlColision();
   }
 
-  if (ControlLimitesOffActivo) ControlLimitesArticulacionesApagado();
-  if (ControlLimitesActivo) ControlLimitesArticulaciones();
+  if (ControlLimitesOffActivo) ControlLimitesArticulacionesApagado(); //Apagado zona de alimentación
+  if (ControlLimitesActivo) ControlLimitesArticulaciones(); //Parada servo
 
   //20 veces por segundo se lanza el control de posiciÃ³n de las articulaciones
   if (millis() - timeControlPos > MS_CONTROL_POS)
   {
       if (ControlPosicionActivo) ControlPosicion();
       timeControlPos = millis();
+
+      ControlDesconexionServos(); //Desconecta los servos para evitar movimientos y vibraciones
+      ControlPosicionamientoServosRot(); //Para el servo rotacional cuando llega a la posición indicada
+  }
+  ControlMovimientoTemporizado(); //Movimiento suave de servos normales
+
+  bool medidas = false;
+
+  if ((cont_loop % REC_MEDIDAS) == 0 )
+  {
+  	if (RecuperarPosicion)
+  		medidas = RecuperarMedidasBalizas(algoKalman, false);
   }
 
 } 
+
+void ControlDesconexionServos()
+{
+	int i = 0;
+	int p;
+
+	  for (i = 0; i < MAX_SERVOS_POS; i++)
+	  {
+		p = pin(i);
+	    if (p > 0)
+	    {
+		  if (aPosServos[i].Conectado)
+			  if (aPosServos[i].ms_desconexion < millis())
+			  {
+				  aServo[i].detach();
+				  aPosServos[i].Conectado = false;
+			  }
+	    }
+	  }
+}
 
 void MovimientoTemporizado()
 {
@@ -422,6 +499,21 @@ void LOG3(char *c1, char *c2, char *c3)
   }
 }
 
+void LOG_DEBUG(char *c1, long l1, long l2, float l3, float l4)
+{
+    Serial.print("DBG: ");
+    Serial.print(c1);
+    Serial.print(", ");
+    Serial.print(l1);
+    Serial.print(", ");
+    Serial.print(l2);
+    Serial.print(", ");
+    Serial.print(l3);
+    Serial.print(", ");
+    Serial.print(l4);
+    Serial.println(";");
+}
+
 void ControlLimites()
 {
 
@@ -479,3 +571,10 @@ void DebugCadena(String valor, bool concatenar)
     else
         Debug = valor;
 }
+
+int freeRam() {
+  extern int __heap_start, *__brkval;
+  int v;
+  return (int)&v - (__brkval == 0 ? (int)&__heap_start : (int)__brkval);
+}
+

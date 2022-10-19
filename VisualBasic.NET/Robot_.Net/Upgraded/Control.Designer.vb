@@ -173,6 +173,8 @@ Partial Class frmControl
     Public tbParar(9) As System.Windows.Forms.Button
     Public tbMas(9) As System.Windows.Forms.Button
     Public tbValorParar(9) As System.Windows.Forms.TextBox
+    Public tbValorRot(9) As System.Windows.Forms.TextBox
+    Public cmdPlay(9) As System.Windows.Forms.Button
     Public tbMinPos(9) As System.Windows.Forms.TextBox
     Public tbMaxPos(9) As System.Windows.Forms.TextBox
     Public tbValServoPos(9) As System.Windows.Forms.TextBox
@@ -243,11 +245,7 @@ Partial Class frmControl
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me._tbNumServo_12 = New System.Windows.Forms.TextBox()
         Me._tbValServo_12 = New System.Windows.Forms.TextBox()
-        Me.picMano = New System.Windows.Forms.PictureBox()
-        Me.picBrazo = New System.Windows.Forms.PictureBox()
         Me.cmdHablar = New System.Windows.Forms.Button()
-        Me.tbControlPosOn = New System.Windows.Forms.Button()
-        Me.tbControlPosOff = New System.Windows.Forms.Button()
         Me.cmdBorrar = New System.Windows.Forms.Button()
         Me.tbServoPosMas1 = New System.Windows.Forms.Button()
         Me.tbServoPosMen1 = New System.Windows.Forms.Button()
@@ -261,12 +259,20 @@ Partial Class frmControl
         Me.tbServoPosMas6 = New System.Windows.Forms.Button()
         Me.tbServoPosMen7 = New System.Windows.Forms.Button()
         Me.tbServoPosMas7 = New System.Windows.Forms.Button()
-        Me.cmdControlLimOn = New System.Windows.Forms.Button()
-        Me.cmdControlLimOff = New System.Windows.Forms.Button()
+        Me.picBrazo = New System.Windows.Forms.PictureBox()
+        Me.picMano = New System.Windows.Forms.PictureBox()
         Me.cmdControlLimitesOn = New System.Windows.Forms.Button()
         Me.cmdControlLimitesOff = New System.Windows.Forms.Button()
+        Me.cmdControlLimOn = New System.Windows.Forms.Button()
+        Me.cmdControlLimOff = New System.Windows.Forms.Button()
+        Me.tbControlPosOn = New System.Windows.Forms.Button()
+        Me.tbControlPosOff = New System.Windows.Forms.Button()
         Me.cmdReset = New System.Windows.Forms.Button()
         Me.cmdEnviarPosParada = New System.Windows.Forms.Button()
+        Me.cmdEjecMovTemp = New System.Windows.Forms.Button()
+        Me.cmdEjecutarMovRot = New System.Windows.Forms.Button()
+        Me.cmdLeerPosServosRot = New System.Windows.Forms.Button()
+        Me.cmdPosIni = New System.Windows.Forms.Button()
         Me.cmdMoverRatón = New System.Windows.Forms.Button()
         Me.cbUnidad = New System.Windows.Forms.ComboBox()
         Me.tbCom = New System.Windows.Forms.TextBox()
@@ -330,12 +336,15 @@ Partial Class frmControl
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Frame1 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.tbAngSonido = New System.Windows.Forms.TextBox()
         Me.cmdSensorLineaR = New System.Windows.Forms.Button()
         Me.cmdSensorLineaC = New System.Windows.Forms.Button()
         Me.cmdSensorLineaL = New System.Windows.Forms.Button()
         Me.tbLogInt = New System.Windows.Forms.TextBox()
         Me.tbMarcas = New System.Windows.Forms.TextBox()
         Me.Frame5 = New System.Windows.Forms.GroupBox()
+        Me.cmdPrueba = New System.Windows.Forms.Button()
         Me.lblMAY = New System.Windows.Forms.Label()
         Me.tbControl = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -360,6 +369,12 @@ Partial Class frmControl
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Frame4 = New System.Windows.Forms.GroupBox()
+        Me._cmdPlay_8 = New System.Windows.Forms.Button()
+        Me._cmdPlay_7 = New System.Windows.Forms.Button()
+        Me._cmdPlay_6 = New System.Windows.Forms.Button()
+        Me._tbValorRot_8 = New System.Windows.Forms.TextBox()
+        Me._tbValorRot_7 = New System.Windows.Forms.TextBox()
+        Me._tbValorRot_6 = New System.Windows.Forms.TextBox()
         Me.cbPosiciones = New System.Windows.Forms.ComboBox()
         Me._tbMaxPos_9 = New System.Windows.Forms.TextBox()
         Me._tbMaxPos_8 = New System.Windows.Forms.TextBox()
@@ -394,6 +409,12 @@ Partial Class frmControl
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Frame3 = New System.Windows.Forms.GroupBox()
+        Me._cmdPlay_4 = New System.Windows.Forms.Button()
+        Me._cmdPlay_3 = New System.Windows.Forms.Button()
+        Me._cmdPlay_2 = New System.Windows.Forms.Button()
+        Me._tbValorRot_4 = New System.Windows.Forms.TextBox()
+        Me._tbValorRot_3 = New System.Windows.Forms.TextBox()
+        Me._tbValorRot_2 = New System.Windows.Forms.TextBox()
         Me._tbMaxPos_5 = New System.Windows.Forms.TextBox()
         Me._tbMaxPos_4 = New System.Windows.Forms.TextBox()
         Me._tbMaxPos_3 = New System.Windows.Forms.TextBox()
@@ -510,12 +531,6 @@ Partial Class frmControl
         Me.Label25 = New System.Windows.Forms.Label()
         Me.tmrDeteccion = New System.Windows.Forms.Timer(Me.components)
         Me.tmrControlesGenerales = New System.Windows.Forms.Timer(Me.components)
-        Me.picIzq = New System.Windows.Forms.PictureBox()
-        Me.picDer = New System.Windows.Forms.PictureBox()
-        Me.picEstado = New System.Windows.Forms.PictureBox()
-        Me.Parada = New System.Windows.Forms.Button()
-        Me.cmdArranque = New System.Windows.Forms.Button()
-        Me.picRobot = New System.Windows.Forms.PictureBox()
         Me.tmrMoverBoca = New System.Windows.Forms.Timer(Me.components)
         Me.chkMoverBoca = New System.Windows.Forms.CheckBox()
         Me.tmrLeerDatosArduino = New System.Windows.Forms.Timer(Me.components)
@@ -523,12 +538,19 @@ Partial Class frmControl
         Me.chkControlMovimiento = New System.Windows.Forms.CheckBox()
         Me.chkEnviarPosIniServosControl = New System.Windows.Forms.CheckBox()
         Me.chkDebug = New System.Windows.Forms.CheckBox()
-        CType(Me.picMano, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.picIzq = New System.Windows.Forms.PictureBox()
+        Me.picDer = New System.Windows.Forms.PictureBox()
+        Me.picEstado = New System.Windows.Forms.PictureBox()
+        Me.Parada = New System.Windows.Forms.Button()
+        Me.cmdArranque = New System.Windows.Forms.Button()
+        Me.picRobot = New System.Windows.Forms.PictureBox()
         CType(Me.picBrazo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picMano, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Frame6.SuspendLayout()
         Me.Frame8.SuspendLayout()
         Me.Frame9.SuspendLayout()
         Me.Frame1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Frame5.SuspendLayout()
         Me.Frame4.SuspendLayout()
         Me.Frame3.SuspendLayout()
@@ -1055,7 +1077,7 @@ Partial Class frmControl
         Me._tbNumServoPos_8.Enabled = False
         Me._tbNumServoPos_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbNumServoPos_8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbNumServoPos_8.Location = New System.Drawing.Point(534, 64)
+        Me._tbNumServoPos_8.Location = New System.Drawing.Point(538, 62)
         Me._tbNumServoPos_8.MaxLength = 0
         Me._tbNumServoPos_8.Name = "_tbNumServoPos_8"
         Me._tbNumServoPos_8.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1072,7 +1094,7 @@ Partial Class frmControl
         Me._tbNumServoPos_7.Enabled = False
         Me._tbNumServoPos_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbNumServoPos_7.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbNumServoPos_7.Location = New System.Drawing.Point(534, 40)
+        Me._tbNumServoPos_7.Location = New System.Drawing.Point(538, 38)
         Me._tbNumServoPos_7.MaxLength = 0
         Me._tbNumServoPos_7.Name = "_tbNumServoPos_7"
         Me._tbNumServoPos_7.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1089,7 +1111,7 @@ Partial Class frmControl
         Me._tbNumServoPos_6.Enabled = False
         Me._tbNumServoPos_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbNumServoPos_6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbNumServoPos_6.Location = New System.Drawing.Point(534, 16)
+        Me._tbNumServoPos_6.Location = New System.Drawing.Point(538, 14)
         Me._tbNumServoPos_6.MaxLength = 0
         Me._tbNumServoPos_6.Name = "_tbNumServoPos_6"
         Me._tbNumServoPos_6.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1105,13 +1127,13 @@ Partial Class frmControl
         Me._tbValServoPos_6.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_6.Location = New System.Drawing.Point(492, 16)
+        Me._tbValServoPos_6.Location = New System.Drawing.Point(510, 14)
         Me._tbValServoPos_6.MaxLength = 0
         Me._tbValServoPos_6.Name = "_tbValServoPos_6"
         Me._tbValServoPos_6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_6.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_6.Size = New System.Drawing.Size(29, 24)
         Me._tbValServoPos_6.TabIndex = 18
-        Me._tbValServoPos_6.Text = "2500"
+        Me._tbValServoPos_6.Text = "250"
         Me._tbValServoPos_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_6, "Servo nº17")
         '
@@ -1122,13 +1144,13 @@ Partial Class frmControl
         Me._tbValServoPos_7.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_7.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_7.Location = New System.Drawing.Point(492, 40)
+        Me._tbValServoPos_7.Location = New System.Drawing.Point(510, 38)
         Me._tbValServoPos_7.MaxLength = 0
         Me._tbValServoPos_7.Name = "_tbValServoPos_7"
         Me._tbValServoPos_7.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_7.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_7.Size = New System.Drawing.Size(29, 24)
         Me._tbValServoPos_7.TabIndex = 17
-        Me._tbValServoPos_7.Text = "2500"
+        Me._tbValServoPos_7.Text = "250"
         Me._tbValServoPos_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_7, "Servo nº18")
         '
@@ -1139,13 +1161,13 @@ Partial Class frmControl
         Me._tbValServoPos_8.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_8.Location = New System.Drawing.Point(492, 64)
+        Me._tbValServoPos_8.Location = New System.Drawing.Point(510, 62)
         Me._tbValServoPos_8.MaxLength = 0
         Me._tbValServoPos_8.Name = "_tbValServoPos_8"
         Me._tbValServoPos_8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_8.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_8.Size = New System.Drawing.Size(29, 24)
         Me._tbValServoPos_8.TabIndex = 16
-        Me._tbValServoPos_8.Text = "2500"
+        Me._tbValServoPos_8.Text = "250"
         Me._tbValServoPos_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_8, "Servo nº19")
         '
@@ -1258,13 +1280,13 @@ Partial Class frmControl
         Me._tbValServoPos_4.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_4.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_4.Location = New System.Drawing.Point(496, 64)
+        Me._tbValServoPos_4.Location = New System.Drawing.Point(509, 64)
         Me._tbValServoPos_4.MaxLength = 0
         Me._tbValServoPos_4.Name = "_tbValServoPos_4"
         Me._tbValServoPos_4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_4.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_4.Size = New System.Drawing.Size(30, 24)
         Me._tbValServoPos_4.TabIndex = 12
-        Me._tbValServoPos_4.Text = "2500"
+        Me._tbValServoPos_4.Text = "250"
         Me._tbValServoPos_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_4, "Servo nº15")
         '
@@ -1275,13 +1297,13 @@ Partial Class frmControl
         Me._tbValServoPos_3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_3.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_3.Location = New System.Drawing.Point(496, 40)
+        Me._tbValServoPos_3.Location = New System.Drawing.Point(509, 40)
         Me._tbValServoPos_3.MaxLength = 0
         Me._tbValServoPos_3.Name = "_tbValServoPos_3"
         Me._tbValServoPos_3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_3.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_3.Size = New System.Drawing.Size(30, 24)
         Me._tbValServoPos_3.TabIndex = 11
-        Me._tbValServoPos_3.Text = "2500"
+        Me._tbValServoPos_3.Text = "250"
         Me._tbValServoPos_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_3, "Servo nº14")
         '
@@ -1292,13 +1314,13 @@ Partial Class frmControl
         Me._tbValServoPos_2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValServoPos_2.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValServoPos_2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValServoPos_2.Location = New System.Drawing.Point(496, 16)
+        Me._tbValServoPos_2.Location = New System.Drawing.Point(509, 16)
         Me._tbValServoPos_2.MaxLength = 0
         Me._tbValServoPos_2.Name = "_tbValServoPos_2"
         Me._tbValServoPos_2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbValServoPos_2.Size = New System.Drawing.Size(43, 24)
+        Me._tbValServoPos_2.Size = New System.Drawing.Size(30, 24)
         Me._tbValServoPos_2.TabIndex = 10
-        Me._tbValServoPos_2.Text = "2500"
+        Me._tbValServoPos_2.Text = "250"
         Me._tbValServoPos_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServoPos_2, "Servo nº13")
         '
@@ -1473,31 +1495,6 @@ Partial Class frmControl
         Me._tbValServo_12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.ToolTipMain.SetToolTip(Me._tbValServo_12, "Servo nº12")
         '
-        'picMano
-        '
-        Me.picMano.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picMano.Image = Global.MiRobot.My.Resources.Resources._on
-        Me.picMano.Location = New System.Drawing.Point(604, 297)
-        Me.picMano.Name = "picMano"
-        Me.picMano.Size = New System.Drawing.Size(26, 26)
-        Me.picMano.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picMano.TabIndex = 203
-        Me.picMano.TabStop = False
-        Me.ToolTipMain.SetToolTip(Me.picMano, "4")
-        Me.picMano.Visible = False
-        '
-        'picBrazo
-        '
-        Me.picBrazo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.picBrazo.Image = Global.MiRobot.My.Resources.Resources._on
-        Me.picBrazo.Location = New System.Drawing.Point(604, 124)
-        Me.picBrazo.Name = "picBrazo"
-        Me.picBrazo.Size = New System.Drawing.Size(26, 26)
-        Me.picBrazo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picBrazo.TabIndex = 202
-        Me.picBrazo.TabStop = False
-        Me.ToolTipMain.SetToolTip(Me.picBrazo, "1")
-        '
         'cmdHablar
         '
         Me.cmdHablar.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
@@ -1508,26 +1505,6 @@ Partial Class frmControl
         Me.cmdHablar.Text = "HABLAR"
         Me.ToolTipMain.SetToolTip(Me.cmdHablar, "HABLAR")
         Me.cmdHablar.UseVisualStyleBackColor = True
-        '
-        'tbControlPosOn
-        '
-        Me.tbControlPosOn.Image = CType(resources.GetObject("tbControlPosOn.Image"), System.Drawing.Image)
-        Me.tbControlPosOn.Location = New System.Drawing.Point(105, 44)
-        Me.tbControlPosOn.Name = "tbControlPosOn"
-        Me.tbControlPosOn.Size = New System.Drawing.Size(31, 27)
-        Me.tbControlPosOn.TabIndex = 209
-        Me.ToolTipMain.SetToolTip(Me.tbControlPosOn, "Control Posición")
-        Me.tbControlPosOn.UseVisualStyleBackColor = True
-        '
-        'tbControlPosOff
-        '
-        Me.tbControlPosOff.Image = CType(resources.GetObject("tbControlPosOff.Image"), System.Drawing.Image)
-        Me.tbControlPosOff.Location = New System.Drawing.Point(76, 44)
-        Me.tbControlPosOff.Name = "tbControlPosOff"
-        Me.tbControlPosOff.Size = New System.Drawing.Size(31, 27)
-        Me.tbControlPosOff.TabIndex = 208
-        Me.ToolTipMain.SetToolTip(Me.tbControlPosOff, "Control Posición")
-        Me.tbControlPosOff.UseVisualStyleBackColor = True
         '
         'cmdBorrar
         '
@@ -1545,7 +1522,7 @@ Partial Class frmControl
         Me.tbServoPosMas1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas1.Location = New System.Drawing.Point(255, 15)
+        Me.tbServoPosMas1.Location = New System.Drawing.Point(244, 14)
         Me.tbServoPosMas1.Name = "tbServoPosMas1"
         Me.tbServoPosMas1.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas1.TabIndex = 196
@@ -1558,7 +1535,7 @@ Partial Class frmControl
         Me.tbServoPosMen1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen1.Location = New System.Drawing.Point(255, 28)
+        Me.tbServoPosMen1.Location = New System.Drawing.Point(244, 27)
         Me.tbServoPosMen1.Name = "tbServoPosMen1"
         Me.tbServoPosMen1.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen1.TabIndex = 197
@@ -1571,7 +1548,7 @@ Partial Class frmControl
         Me.tbServoPosMen2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen2.Location = New System.Drawing.Point(255, 53)
+        Me.tbServoPosMen2.Location = New System.Drawing.Point(244, 52)
         Me.tbServoPosMen2.Name = "tbServoPosMen2"
         Me.tbServoPosMen2.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen2.TabIndex = 199
@@ -1584,7 +1561,7 @@ Partial Class frmControl
         Me.tbServoPosMas2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas2.Location = New System.Drawing.Point(255, 40)
+        Me.tbServoPosMas2.Location = New System.Drawing.Point(244, 39)
         Me.tbServoPosMas2.Name = "tbServoPosMas2"
         Me.tbServoPosMas2.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas2.TabIndex = 198
@@ -1597,7 +1574,7 @@ Partial Class frmControl
         Me.tbServoPosMen3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen3.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen3.Location = New System.Drawing.Point(255, 78)
+        Me.tbServoPosMen3.Location = New System.Drawing.Point(244, 77)
         Me.tbServoPosMen3.Name = "tbServoPosMen3"
         Me.tbServoPosMen3.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen3.TabIndex = 201
@@ -1610,7 +1587,7 @@ Partial Class frmControl
         Me.tbServoPosMas3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas3.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas3.Location = New System.Drawing.Point(255, 65)
+        Me.tbServoPosMas3.Location = New System.Drawing.Point(244, 64)
         Me.tbServoPosMas3.Name = "tbServoPosMas3"
         Me.tbServoPosMas3.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas3.TabIndex = 200
@@ -1623,7 +1600,7 @@ Partial Class frmControl
         Me.tbServoPosMen5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen5.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen5.Location = New System.Drawing.Point(255, 23)
+        Me.tbServoPosMen5.Location = New System.Drawing.Point(244, 23)
         Me.tbServoPosMen5.Name = "tbServoPosMen5"
         Me.tbServoPosMen5.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen5.TabIndex = 211
@@ -1636,7 +1613,7 @@ Partial Class frmControl
         Me.tbServoPosMas5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas5.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas5.Location = New System.Drawing.Point(255, 10)
+        Me.tbServoPosMas5.Location = New System.Drawing.Point(244, 10)
         Me.tbServoPosMas5.Name = "tbServoPosMas5"
         Me.tbServoPosMas5.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas5.TabIndex = 210
@@ -1649,7 +1626,7 @@ Partial Class frmControl
         Me.tbServoPosMen6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen6.Location = New System.Drawing.Point(255, 51)
+        Me.tbServoPosMen6.Location = New System.Drawing.Point(244, 51)
         Me.tbServoPosMen6.Name = "tbServoPosMen6"
         Me.tbServoPosMen6.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen6.TabIndex = 213
@@ -1662,7 +1639,7 @@ Partial Class frmControl
         Me.tbServoPosMas6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas6.Location = New System.Drawing.Point(255, 38)
+        Me.tbServoPosMas6.Location = New System.Drawing.Point(244, 38)
         Me.tbServoPosMas6.Name = "tbServoPosMas6"
         Me.tbServoPosMas6.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas6.TabIndex = 212
@@ -1675,7 +1652,7 @@ Partial Class frmControl
         Me.tbServoPosMen7.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMen7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMen7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMen7.Location = New System.Drawing.Point(255, 76)
+        Me.tbServoPosMen7.Location = New System.Drawing.Point(244, 76)
         Me.tbServoPosMen7.Name = "tbServoPosMen7"
         Me.tbServoPosMen7.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMen7.TabIndex = 215
@@ -1688,13 +1665,58 @@ Partial Class frmControl
         Me.tbServoPosMas7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.tbServoPosMas7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.tbServoPosMas7.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(177, Byte))
-        Me.tbServoPosMas7.Location = New System.Drawing.Point(255, 63)
+        Me.tbServoPosMas7.Location = New System.Drawing.Point(244, 63)
         Me.tbServoPosMas7.Name = "tbServoPosMas7"
         Me.tbServoPosMas7.Size = New System.Drawing.Size(11, 13)
         Me.tbServoPosMas7.TabIndex = 214
         Me.tbServoPosMas7.Text = "+"
         Me.ToolTipMain.SetToolTip(Me.tbServoPosMas7, "HABLAR")
         Me.tbServoPosMas7.UseVisualStyleBackColor = False
+        '
+        'picBrazo
+        '
+        Me.picBrazo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picBrazo.Image = Global.MiRobot.My.Resources.Resources._on
+        Me.picBrazo.Location = New System.Drawing.Point(604, 124)
+        Me.picBrazo.Name = "picBrazo"
+        Me.picBrazo.Size = New System.Drawing.Size(26, 26)
+        Me.picBrazo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picBrazo.TabIndex = 202
+        Me.picBrazo.TabStop = False
+        Me.ToolTipMain.SetToolTip(Me.picBrazo, "1")
+        '
+        'picMano
+        '
+        Me.picMano.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picMano.Image = Global.MiRobot.My.Resources.Resources._on
+        Me.picMano.Location = New System.Drawing.Point(604, 297)
+        Me.picMano.Name = "picMano"
+        Me.picMano.Size = New System.Drawing.Size(26, 26)
+        Me.picMano.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picMano.TabIndex = 203
+        Me.picMano.TabStop = False
+        Me.ToolTipMain.SetToolTip(Me.picMano, "4")
+        Me.picMano.Visible = False
+        '
+        'cmdControlLimitesOn
+        '
+        Me.cmdControlLimitesOn.Image = CType(resources.GetObject("cmdControlLimitesOn.Image"), System.Drawing.Image)
+        Me.cmdControlLimitesOn.Location = New System.Drawing.Point(452, 42)
+        Me.cmdControlLimitesOn.Name = "cmdControlLimitesOn"
+        Me.cmdControlLimitesOn.Size = New System.Drawing.Size(31, 27)
+        Me.cmdControlLimitesOn.TabIndex = 215
+        Me.ToolTipMain.SetToolTip(Me.cmdControlLimitesOn, "Control Posición")
+        Me.cmdControlLimitesOn.UseVisualStyleBackColor = True
+        '
+        'cmdControlLimitesOff
+        '
+        Me.cmdControlLimitesOff.Image = CType(resources.GetObject("cmdControlLimitesOff.Image"), System.Drawing.Image)
+        Me.cmdControlLimitesOff.Location = New System.Drawing.Point(423, 42)
+        Me.cmdControlLimitesOff.Name = "cmdControlLimitesOff"
+        Me.cmdControlLimitesOff.Size = New System.Drawing.Size(31, 27)
+        Me.cmdControlLimitesOff.TabIndex = 214
+        Me.ToolTipMain.SetToolTip(Me.cmdControlLimitesOff, "Control Posición")
+        Me.cmdControlLimitesOff.UseVisualStyleBackColor = True
         '
         'cmdControlLimOn
         '
@@ -1716,25 +1738,25 @@ Partial Class frmControl
         Me.ToolTipMain.SetToolTip(Me.cmdControlLimOff, "Control Posición")
         Me.cmdControlLimOff.UseVisualStyleBackColor = True
         '
-        'cmdControlLimitesOn
+        'tbControlPosOn
         '
-        Me.cmdControlLimitesOn.Image = CType(resources.GetObject("cmdControlLimitesOn.Image"), System.Drawing.Image)
-        Me.cmdControlLimitesOn.Location = New System.Drawing.Point(452, 42)
-        Me.cmdControlLimitesOn.Name = "cmdControlLimitesOn"
-        Me.cmdControlLimitesOn.Size = New System.Drawing.Size(31, 27)
-        Me.cmdControlLimitesOn.TabIndex = 215
-        Me.ToolTipMain.SetToolTip(Me.cmdControlLimitesOn, "Control Posición")
-        Me.cmdControlLimitesOn.UseVisualStyleBackColor = True
+        Me.tbControlPosOn.Image = CType(resources.GetObject("tbControlPosOn.Image"), System.Drawing.Image)
+        Me.tbControlPosOn.Location = New System.Drawing.Point(105, 44)
+        Me.tbControlPosOn.Name = "tbControlPosOn"
+        Me.tbControlPosOn.Size = New System.Drawing.Size(31, 27)
+        Me.tbControlPosOn.TabIndex = 209
+        Me.ToolTipMain.SetToolTip(Me.tbControlPosOn, "Control Posición")
+        Me.tbControlPosOn.UseVisualStyleBackColor = True
         '
-        'cmdControlLimitesOff
+        'tbControlPosOff
         '
-        Me.cmdControlLimitesOff.Image = CType(resources.GetObject("cmdControlLimitesOff.Image"), System.Drawing.Image)
-        Me.cmdControlLimitesOff.Location = New System.Drawing.Point(423, 42)
-        Me.cmdControlLimitesOff.Name = "cmdControlLimitesOff"
-        Me.cmdControlLimitesOff.Size = New System.Drawing.Size(31, 27)
-        Me.cmdControlLimitesOff.TabIndex = 214
-        Me.ToolTipMain.SetToolTip(Me.cmdControlLimitesOff, "Control Posición")
-        Me.cmdControlLimitesOff.UseVisualStyleBackColor = True
+        Me.tbControlPosOff.Image = CType(resources.GetObject("tbControlPosOff.Image"), System.Drawing.Image)
+        Me.tbControlPosOff.Location = New System.Drawing.Point(76, 44)
+        Me.tbControlPosOff.Name = "tbControlPosOff"
+        Me.tbControlPosOff.Size = New System.Drawing.Size(31, 27)
+        Me.tbControlPosOff.TabIndex = 208
+        Me.ToolTipMain.SetToolTip(Me.tbControlPosOff, "Control Posición")
+        Me.tbControlPosOff.UseVisualStyleBackColor = True
         '
         'cmdReset
         '
@@ -1759,14 +1781,58 @@ Partial Class frmControl
         Me.cmdEnviarPosParada.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmdEnviarPosParada.ForeColor = System.Drawing.SystemColors.ControlText
         Me.cmdEnviarPosParada.Image = Global.MiRobot.My.Resources.Resources.parar1
-        Me.cmdEnviarPosParada.Location = New System.Drawing.Point(11, 59)
+        Me.cmdEnviarPosParada.Location = New System.Drawing.Point(3, 60)
         Me.cmdEnviarPosParada.Name = "cmdEnviarPosParada"
         Me.cmdEnviarPosParada.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.cmdEnviarPosParada.Size = New System.Drawing.Size(29, 27)
+        Me.cmdEnviarPosParada.Size = New System.Drawing.Size(23, 27)
         Me.cmdEnviarPosParada.TabIndex = 202
         Me.cmdEnviarPosParada.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.ToolTipMain.SetToolTip(Me.cmdEnviarPosParada, "Enviar posiciones de parada")
         Me.cmdEnviarPosParada.UseVisualStyleBackColor = False
+        '
+        'cmdEjecMovTemp
+        '
+        Me.cmdEjecMovTemp.BackColor = System.Drawing.Color.White
+        Me.cmdEjecMovTemp.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.cmdEjecMovTemp.Image = Global.MiRobot.My.Resources.Resources.play
+        Me.cmdEjecMovTemp.Location = New System.Drawing.Point(15, 26)
+        Me.cmdEjecMovTemp.Name = "cmdEjecMovTemp"
+        Me.cmdEjecMovTemp.Size = New System.Drawing.Size(42, 35)
+        Me.cmdEjecMovTemp.TabIndex = 207
+        Me.ToolTipMain.SetToolTip(Me.cmdEjecMovTemp, "Ejecutar Movimiento Temporizado")
+        Me.cmdEjecMovTemp.UseVisualStyleBackColor = False
+        '
+        'cmdEjecutarMovRot
+        '
+        Me.cmdEjecutarMovRot.Image = Global.MiRobot.My.Resources.Resources.play
+        Me.cmdEjecutarMovRot.Location = New System.Drawing.Point(25, 60)
+        Me.cmdEjecutarMovRot.Name = "cmdEjecutarMovRot"
+        Me.cmdEjecutarMovRot.Size = New System.Drawing.Size(22, 27)
+        Me.cmdEjecutarMovRot.TabIndex = 209
+        Me.ToolTipMain.SetToolTip(Me.cmdEjecutarMovRot, "Ejecutar movimiento programado")
+        Me.cmdEjecutarMovRot.UseVisualStyleBackColor = True
+        '
+        'cmdLeerPosServosRot
+        '
+        Me.cmdLeerPosServosRot.Image = Global.MiRobot.My.Resources.Resources._on
+        Me.cmdLeerPosServosRot.Location = New System.Drawing.Point(44, 60)
+        Me.cmdLeerPosServosRot.Name = "cmdLeerPosServosRot"
+        Me.cmdLeerPosServosRot.Size = New System.Drawing.Size(25, 27)
+        Me.cmdLeerPosServosRot.TabIndex = 210
+        Me.ToolTipMain.SetToolTip(Me.cmdLeerPosServosRot, "Leer posición articulaciones")
+        Me.cmdLeerPosServosRot.UseVisualStyleBackColor = True
+        '
+        'cmdPosIni
+        '
+        Me.cmdPosIni.BackColor = System.Drawing.Color.White
+        Me.cmdPosIni.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.cmdPosIni.Image = Global.MiRobot.My.Resources.Resources._on
+        Me.cmdPosIni.Location = New System.Drawing.Point(15, 65)
+        Me.cmdPosIni.Name = "cmdPosIni"
+        Me.cmdPosIni.Size = New System.Drawing.Size(42, 35)
+        Me.cmdPosIni.TabIndex = 208
+        Me.ToolTipMain.SetToolTip(Me.cmdPosIni, "Valores  iniciales")
+        Me.cmdPosIni.UseVisualStyleBackColor = False
         '
         'cmdMoverRatón
         '
@@ -1821,7 +1887,7 @@ Partial Class frmControl
         Me.cbModoEnvio.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbModoEnvio.ForeColor = System.Drawing.SystemColors.WindowText
         Me.listBoxComboBoxHelper1.SetItemData(Me.cbModoEnvio, New Integer() {0, 0})
-        Me.cbModoEnvio.Items.AddRange(New Object() {"Envío Continuo", "Envío Secuencia"})
+        Me.cbModoEnvio.Items.AddRange(New Object() {"Envío Continuo", "Envío Programado"})
         Me.cbModoEnvio.Location = New System.Drawing.Point(561, 424)
         Me.cbModoEnvio.Name = "cbModoEnvio"
         Me.cbModoEnvio.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -2278,8 +2344,8 @@ Partial Class frmControl
         Me.cbZonaMov.Cursor = System.Windows.Forms.Cursors.Default
         Me.cbZonaMov.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbZonaMov.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.listBoxComboBoxHelper1.SetItemData(Me.cbZonaMov, New Integer() {0, 0, 0})
-        Me.cbZonaMov.Items.AddRange(New Object() {"Zona Inferior", "Zona Superior", "Ambas"})
+        Me.listBoxComboBoxHelper1.SetItemData(Me.cbZonaMov, New Integer() {0, 0})
+        Me.cbZonaMov.Items.AddRange(New Object() {"Independiente", "Solidario"})
         Me.cbZonaMov.Location = New System.Drawing.Point(258, 0)
         Me.cbZonaMov.Name = "cbZonaMov"
         Me.cbZonaMov.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -2319,6 +2385,8 @@ Partial Class frmControl
         'Frame9
         '
         Me.Frame9.BackColor = System.Drawing.SystemColors.Control
+        Me.Frame9.Controls.Add(Me.cmdPosIni)
+        Me.Frame9.Controls.Add(Me.cmdEjecMovTemp)
         Me.Frame9.Controls.Add(Me._tbMax_5)
         Me.Frame9.Controls.Add(Me._tbMax_4)
         Me.Frame9.Controls.Add(Me._tbMax_3)
@@ -2690,10 +2758,10 @@ Partial Class frmControl
         Me.Label18.Cursor = System.Windows.Forms.Cursors.Default
         Me.Label18.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label18.Location = New System.Drawing.Point(29, 64)
+        Me.Label18.Location = New System.Drawing.Point(63, 63)
         Me.Label18.Name = "Label18"
         Me.Label18.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label18.Size = New System.Drawing.Size(92, 25)
+        Me.Label18.Size = New System.Drawing.Size(57, 25)
         Me.Label18.TabIndex = 45
         Me.Label18.Text = "Medio"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -2715,6 +2783,8 @@ Partial Class frmControl
         'Frame1
         '
         Me.Frame1.BackColor = System.Drawing.SystemColors.Control
+        Me.Frame1.Controls.Add(Me.PictureBox2)
+        Me.Frame1.Controls.Add(Me.tbAngSonido)
         Me.Frame1.Controls.Add(Me.cmdReset)
         Me.Frame1.Controls.Add(Me.cmdSensorLineaR)
         Me.Frame1.Controls.Add(Me.cmdSensorLineaC)
@@ -2734,11 +2804,36 @@ Partial Class frmControl
         Me.Frame1.TabStop = False
         Me.Frame1.Text = "Zona Superior "
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.MiRobot.My.Resources.Resources.sonido
+        Me.PictureBox2.Location = New System.Drawing.Point(223, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(41, 35)
+        Me.PictureBox2.TabIndex = 201
+        Me.PictureBox2.TabStop = False
+        '
+        'tbAngSonido
+        '
+        Me.tbAngSonido.AcceptsReturn = True
+        Me.tbAngSonido.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.tbAngSonido.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.tbAngSonido.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAngSonido.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.tbAngSonido.Location = New System.Drawing.Point(267, 2)
+        Me.tbAngSonido.MaxLength = 0
+        Me.tbAngSonido.Name = "tbAngSonido"
+        Me.tbAngSonido.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.tbAngSonido.Size = New System.Drawing.Size(64, 35)
+        Me.tbAngSonido.TabIndex = 199
+        Me.tbAngSonido.Text = "0000"
+        Me.tbAngSonido.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'cmdSensorLineaR
         '
         Me.cmdSensorLineaR.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.cmdSensorLineaR.Enabled = False
-        Me.cmdSensorLineaR.Location = New System.Drawing.Point(301, 2)
+        Me.cmdSensorLineaR.Location = New System.Drawing.Point(182, 2)
         Me.cmdSensorLineaR.Name = "cmdSensorLineaR"
         Me.cmdSensorLineaR.Size = New System.Drawing.Size(24, 24)
         Me.cmdSensorLineaR.TabIndex = 38
@@ -2749,7 +2844,7 @@ Partial Class frmControl
         '
         Me.cmdSensorLineaC.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.cmdSensorLineaC.Enabled = False
-        Me.cmdSensorLineaC.Location = New System.Drawing.Point(278, 2)
+        Me.cmdSensorLineaC.Location = New System.Drawing.Point(159, 2)
         Me.cmdSensorLineaC.Name = "cmdSensorLineaC"
         Me.cmdSensorLineaC.Size = New System.Drawing.Size(24, 24)
         Me.cmdSensorLineaC.TabIndex = 38
@@ -2760,7 +2855,7 @@ Partial Class frmControl
         '
         Me.cmdSensorLineaL.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.cmdSensorLineaL.Enabled = False
-        Me.cmdSensorLineaL.Location = New System.Drawing.Point(255, 2)
+        Me.cmdSensorLineaL.Location = New System.Drawing.Point(136, 2)
         Me.cmdSensorLineaL.Name = "cmdSensorLineaL"
         Me.cmdSensorLineaL.Size = New System.Drawing.Size(24, 24)
         Me.cmdSensorLineaL.TabIndex = 37
@@ -2774,11 +2869,11 @@ Partial Class frmControl
         Me.tbLogInt.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.tbLogInt.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbLogInt.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbLogInt.Location = New System.Drawing.Point(340, 2)
+        Me.tbLogInt.Location = New System.Drawing.Point(372, 2)
         Me.tbLogInt.MaxLength = 0
         Me.tbLogInt.Name = "tbLogInt"
         Me.tbLogInt.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tbLogInt.Size = New System.Drawing.Size(92, 35)
+        Me.tbLogInt.Size = New System.Drawing.Size(64, 35)
         Me.tbLogInt.TabIndex = 197
         Me.tbLogInt.Text = "0000"
         Me.tbLogInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -2790,11 +2885,11 @@ Partial Class frmControl
         Me.tbMarcas.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.tbMarcas.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbMarcas.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.tbMarcas.Location = New System.Drawing.Point(438, 2)
+        Me.tbMarcas.Location = New System.Drawing.Point(477, 2)
         Me.tbMarcas.MaxLength = 0
         Me.tbMarcas.Name = "tbMarcas"
         Me.tbMarcas.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.tbMarcas.Size = New System.Drawing.Size(107, 35)
+        Me.tbMarcas.Size = New System.Drawing.Size(68, 35)
         Me.tbMarcas.TabIndex = 196
         Me.tbMarcas.Text = "0000"
         Me.tbMarcas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -2802,6 +2897,7 @@ Partial Class frmControl
         'Frame5
         '
         Me.Frame5.BackColor = System.Drawing.SystemColors.Control
+        Me.Frame5.Controls.Add(Me.cmdPrueba)
         Me.Frame5.Controls.Add(Me.lblMAY)
         Me.Frame5.Controls.Add(Me.tbControl)
         Me.Frame5.Controls.Add(Me.Label11)
@@ -2841,6 +2937,15 @@ Partial Class frmControl
         Me.Frame5.TabIndex = 27
         Me.Frame5.TabStop = False
         Me.Frame5.Text = "Cabeza "
+        '
+        'cmdPrueba
+        '
+        Me.cmdPrueba.Location = New System.Drawing.Point(540, 13)
+        Me.cmdPrueba.Name = "cmdPrueba"
+        Me.cmdPrueba.Size = New System.Drawing.Size(20, 26)
+        Me.cmdPrueba.TabIndex = 206
+        Me.cmdPrueba.Text = "P"
+        Me.cmdPrueba.UseVisualStyleBackColor = True
         '
         'lblMAY
         '
@@ -3064,7 +3169,7 @@ Partial Class frmControl
         Me.Label30.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Label30.Size = New System.Drawing.Size(113, 25)
         Me.Label30.TabIndex = 189
-        Me.Label30.Text = "Control Altura"
+        Me.Label30.Text = "Altura Kinect"
         Me.Label30.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         '_tbMin_14
@@ -3154,6 +3259,12 @@ Partial Class frmControl
         'Frame4
         '
         Me.Frame4.BackColor = System.Drawing.SystemColors.Control
+        Me.Frame4.Controls.Add(Me._cmdPlay_8)
+        Me.Frame4.Controls.Add(Me._cmdPlay_7)
+        Me.Frame4.Controls.Add(Me._cmdPlay_6)
+        Me.Frame4.Controls.Add(Me._tbValorRot_8)
+        Me.Frame4.Controls.Add(Me._tbValorRot_7)
+        Me.Frame4.Controls.Add(Me._tbValorRot_6)
         Me.Frame4.Controls.Add(Me.cbPosiciones)
         Me.Frame4.Controls.Add(Me.tbServoPosMen7)
         Me.Frame4.Controls.Add(Me.tbServoPosMas7)
@@ -3210,6 +3321,81 @@ Partial Class frmControl
         Me.Frame4.TabStop = False
         Me.Frame4.Text = "Brazo Izquierdo "
         '
+        '_cmdPlay_8
+        '
+        Me._cmdPlay_8.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_8.Location = New System.Drawing.Point(484, 62)
+        Me._cmdPlay_8.Name = "_cmdPlay_8"
+        Me._cmdPlay_8.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_8.TabIndex = 221
+        Me._cmdPlay_8.UseVisualStyleBackColor = True
+        '
+        '_cmdPlay_7
+        '
+        Me._cmdPlay_7.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_7.Location = New System.Drawing.Point(484, 39)
+        Me._cmdPlay_7.Name = "_cmdPlay_7"
+        Me._cmdPlay_7.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_7.TabIndex = 220
+        Me._cmdPlay_7.UseVisualStyleBackColor = True
+        '
+        '_cmdPlay_6
+        '
+        Me._cmdPlay_6.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_6.Location = New System.Drawing.Point(483, 14)
+        Me._cmdPlay_6.Name = "_cmdPlay_6"
+        Me._cmdPlay_6.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_6.TabIndex = 219
+        Me._cmdPlay_6.UseVisualStyleBackColor = True
+        '
+        '_tbValorRot_8
+        '
+        Me._tbValorRot_8.AcceptsReturn = True
+        Me._tbValorRot_8.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_8.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_8.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_8.Location = New System.Drawing.Point(453, 63)
+        Me._tbValorRot_8.MaxLength = 0
+        Me._tbValorRot_8.Name = "_tbValorRot_8"
+        Me._tbValorRot_8.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_8.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_8.TabIndex = 218
+        Me._tbValorRot_8.Text = "0000"
+        Me._tbValorRot_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        '_tbValorRot_7
+        '
+        Me._tbValorRot_7.AcceptsReturn = True
+        Me._tbValorRot_7.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_7.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_7.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_7.Location = New System.Drawing.Point(453, 39)
+        Me._tbValorRot_7.MaxLength = 0
+        Me._tbValorRot_7.Name = "_tbValorRot_7"
+        Me._tbValorRot_7.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_7.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_7.TabIndex = 217
+        Me._tbValorRot_7.Text = "0000"
+        Me._tbValorRot_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        '_tbValorRot_6
+        '
+        Me._tbValorRot_6.AcceptsReturn = True
+        Me._tbValorRot_6.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_6.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_6.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_6.Location = New System.Drawing.Point(453, 14)
+        Me._tbValorRot_6.MaxLength = 0
+        Me._tbValorRot_6.Name = "_tbValorRot_6"
+        Me._tbValorRot_6.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_6.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_6.TabIndex = 216
+        Me._tbValorRot_6.Text = "0000"
+        Me._tbValorRot_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'cbPosiciones
         '
         Me.cbPosiciones.FormattingEnabled = True
@@ -3242,13 +3428,13 @@ Partial Class frmControl
         Me._tbMaxPos_8.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_8.Location = New System.Drawing.Point(446, 64)
+        Me._tbMaxPos_8.Location = New System.Drawing.Point(421, 62)
         Me._tbMaxPos_8.MaxLength = 0
         Me._tbMaxPos_8.Name = "_tbMaxPos_8"
         Me._tbMaxPos_8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_8.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_8.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_8.TabIndex = 165
-        Me._tbMaxPos_8.Text = "0000"
+        Me._tbMaxPos_8.Text = "000"
         Me._tbMaxPos_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMaxPos_7
@@ -3258,13 +3444,13 @@ Partial Class frmControl
         Me._tbMaxPos_7.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_7.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_7.Location = New System.Drawing.Point(446, 40)
+        Me._tbMaxPos_7.Location = New System.Drawing.Point(421, 38)
         Me._tbMaxPos_7.MaxLength = 0
         Me._tbMaxPos_7.Name = "_tbMaxPos_7"
         Me._tbMaxPos_7.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_7.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_7.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_7.TabIndex = 164
-        Me._tbMaxPos_7.Text = "0000"
+        Me._tbMaxPos_7.Text = "000"
         Me._tbMaxPos_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMaxPos_6
@@ -3274,13 +3460,13 @@ Partial Class frmControl
         Me._tbMaxPos_6.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_6.Location = New System.Drawing.Point(446, 16)
+        Me._tbMaxPos_6.Location = New System.Drawing.Point(421, 14)
         Me._tbMaxPos_6.MaxLength = 0
         Me._tbMaxPos_6.Name = "_tbMaxPos_6"
         Me._tbMaxPos_6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_6.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_6.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_6.TabIndex = 163
-        Me._tbMaxPos_6.Text = "0000"
+        Me._tbMaxPos_6.Text = "000"
         Me._tbMaxPos_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbValorParar_9
@@ -3306,7 +3492,7 @@ Partial Class frmControl
         Me._tbValorParar_8.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_8.Location = New System.Drawing.Point(224, 63)
+        Me._tbValorParar_8.Location = New System.Drawing.Point(213, 63)
         Me._tbValorParar_8.MaxLength = 0
         Me._tbValorParar_8.Name = "_tbValorParar_8"
         Me._tbValorParar_8.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3322,7 +3508,7 @@ Partial Class frmControl
         Me._tbValorParar_7.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_7.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_7.Location = New System.Drawing.Point(224, 39)
+        Me._tbValorParar_7.Location = New System.Drawing.Point(213, 39)
         Me._tbValorParar_7.MaxLength = 0
         Me._tbValorParar_7.Name = "_tbValorParar_7"
         Me._tbValorParar_7.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3338,7 +3524,7 @@ Partial Class frmControl
         Me._tbValorParar_6.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_6.Location = New System.Drawing.Point(224, 13)
+        Me._tbValorParar_6.Location = New System.Drawing.Point(213, 13)
         Me._tbValorParar_6.MaxLength = 0
         Me._tbValorParar_6.Name = "_tbValorParar_6"
         Me._tbValorParar_6.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3377,9 +3563,9 @@ Partial Class frmControl
         '_tbParar_8
         '
         Me._tbParar_8.Image = CType(resources.GetObject("_tbParar_8.Image"), System.Drawing.Image)
-        Me._tbParar_8.Location = New System.Drawing.Point(160, 61)
+        Me._tbParar_8.Location = New System.Drawing.Point(152, 62)
         Me._tbParar_8.Name = "_tbParar_8"
-        Me._tbParar_8.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_8.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_8.TabIndex = 183
         Me._tbParar_8.UseVisualStyleBackColor = True
         '
@@ -3388,14 +3574,14 @@ Partial Class frmControl
         Me._tbMenos_8.Image = Global.MiRobot.My.Resources.Resources.arriba_1
         Me._tbMenos_8.Location = New System.Drawing.Point(126, 61)
         Me._tbMenos_8.Name = "_tbMenos_8"
-        Me._tbMenos_8.Size = New System.Drawing.Size(31, 23)
+        Me._tbMenos_8.Size = New System.Drawing.Size(25, 23)
         Me._tbMenos_8.TabIndex = 182
         Me._tbMenos_8.UseVisualStyleBackColor = True
         '
         '_tbMas_8
         '
         Me._tbMas_8.Image = Global.MiRobot.My.Resources.Resources.abajo1
-        Me._tbMas_8.Location = New System.Drawing.Point(194, 61)
+        Me._tbMas_8.Location = New System.Drawing.Point(181, 62)
         Me._tbMas_8.Name = "_tbMas_8"
         Me._tbMas_8.Size = New System.Drawing.Size(31, 23)
         Me._tbMas_8.TabIndex = 181
@@ -3404,16 +3590,16 @@ Partial Class frmControl
         '_tbParar_7
         '
         Me._tbParar_7.Image = CType(resources.GetObject("_tbParar_7.Image"), System.Drawing.Image)
-        Me._tbParar_7.Location = New System.Drawing.Point(160, 37)
+        Me._tbParar_7.Location = New System.Drawing.Point(152, 38)
         Me._tbParar_7.Name = "_tbParar_7"
-        Me._tbParar_7.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_7.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_7.TabIndex = 180
         Me._tbParar_7.UseVisualStyleBackColor = True
         '
         '_tbMenos_7
         '
         Me._tbMenos_7.Image = Global.MiRobot.My.Resources.Resources.arriba_1
-        Me._tbMenos_7.Location = New System.Drawing.Point(194, 37)
+        Me._tbMenos_7.Location = New System.Drawing.Point(181, 38)
         Me._tbMenos_7.Name = "_tbMenos_7"
         Me._tbMenos_7.Size = New System.Drawing.Size(31, 23)
         Me._tbMenos_7.TabIndex = 179
@@ -3424,23 +3610,23 @@ Partial Class frmControl
         Me._tbMas_7.Image = Global.MiRobot.My.Resources.Resources.abajo1
         Me._tbMas_7.Location = New System.Drawing.Point(126, 37)
         Me._tbMas_7.Name = "_tbMas_7"
-        Me._tbMas_7.Size = New System.Drawing.Size(31, 23)
+        Me._tbMas_7.Size = New System.Drawing.Size(25, 23)
         Me._tbMas_7.TabIndex = 178
         Me._tbMas_7.UseVisualStyleBackColor = True
         '
         '_tbParar_6
         '
         Me._tbParar_6.Image = CType(resources.GetObject("_tbParar_6.Image"), System.Drawing.Image)
-        Me._tbParar_6.Location = New System.Drawing.Point(160, 13)
+        Me._tbParar_6.Location = New System.Drawing.Point(152, 14)
         Me._tbParar_6.Name = "_tbParar_6"
-        Me._tbParar_6.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_6.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_6.TabIndex = 177
         Me._tbParar_6.UseVisualStyleBackColor = True
         '
         '_tbMenos_6
         '
         Me._tbMenos_6.Image = Global.MiRobot.My.Resources.Resources.derecha_1
-        Me._tbMenos_6.Location = New System.Drawing.Point(194, 13)
+        Me._tbMenos_6.Location = New System.Drawing.Point(181, 14)
         Me._tbMenos_6.Name = "_tbMenos_6"
         Me._tbMenos_6.Size = New System.Drawing.Size(31, 23)
         Me._tbMenos_6.TabIndex = 176
@@ -3451,7 +3637,7 @@ Partial Class frmControl
         Me._tbMas_6.Image = Global.MiRobot.My.Resources.Resources.izquierda_1
         Me._tbMas_6.Location = New System.Drawing.Point(126, 14)
         Me._tbMas_6.Name = "_tbMas_6"
-        Me._tbMas_6.Size = New System.Drawing.Size(31, 23)
+        Me._tbMas_6.Size = New System.Drawing.Size(25, 23)
         Me._tbMas_6.TabIndex = 175
         Me._tbMas_6.UseVisualStyleBackColor = True
         '
@@ -3478,13 +3664,13 @@ Partial Class frmControl
         Me._tbMinPos_8.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_8.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_8.Location = New System.Drawing.Point(266, 61)
+        Me._tbMinPos_8.Location = New System.Drawing.Point(255, 61)
         Me._tbMinPos_8.MaxLength = 0
         Me._tbMinPos_8.Name = "_tbMinPos_8"
         Me._tbMinPos_8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_8.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_8.Size = New System.Drawing.Size(34, 24)
         Me._tbMinPos_8.TabIndex = 173
-        Me._tbMinPos_8.Text = "0000"
+        Me._tbMinPos_8.Text = "000"
         Me._tbMinPos_8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMinPos_7
@@ -3494,13 +3680,13 @@ Partial Class frmControl
         Me._tbMinPos_7.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_7.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_7.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_7.Location = New System.Drawing.Point(266, 37)
+        Me._tbMinPos_7.Location = New System.Drawing.Point(255, 37)
         Me._tbMinPos_7.MaxLength = 0
         Me._tbMinPos_7.Name = "_tbMinPos_7"
         Me._tbMinPos_7.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_7.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_7.Size = New System.Drawing.Size(34, 24)
         Me._tbMinPos_7.TabIndex = 172
-        Me._tbMinPos_7.Text = "0000"
+        Me._tbMinPos_7.Text = "000"
         Me._tbMinPos_7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMinPos_6
@@ -3510,13 +3696,13 @@ Partial Class frmControl
         Me._tbMinPos_6.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_6.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_6.Location = New System.Drawing.Point(266, 13)
+        Me._tbMinPos_6.Location = New System.Drawing.Point(255, 13)
         Me._tbMinPos_6.MaxLength = 0
         Me._tbMinPos_6.Name = "_tbMinPos_6"
         Me._tbMinPos_6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_6.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_6.Size = New System.Drawing.Size(34, 24)
         Me._tbMinPos_6.TabIndex = 171
-        Me._tbMinPos_6.Text = "0000"
+        Me._tbMinPos_6.Text = "000"
         Me._tbMinPos_6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_barServoPos_9
@@ -3535,11 +3721,11 @@ Partial Class frmControl
         '
         Me._barServoPos_8.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_8.LargeChange = 1
-        Me._barServoPos_8.Location = New System.Drawing.Point(314, 64)
+        Me._barServoPos_8.Location = New System.Drawing.Point(289, 61)
         Me._barServoPos_8.Maximum = 32767
         Me._barServoPos_8.Name = "_barServoPos_8"
         Me._barServoPos_8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_8.Size = New System.Drawing.Size(133, 25)
+        Me._barServoPos_8.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_8.TabIndex = 169
         Me._barServoPos_8.TabStop = True
         '
@@ -3547,11 +3733,11 @@ Partial Class frmControl
         '
         Me._barServoPos_7.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_7.LargeChange = 1
-        Me._barServoPos_7.Location = New System.Drawing.Point(314, 40)
+        Me._barServoPos_7.Location = New System.Drawing.Point(289, 38)
         Me._barServoPos_7.Maximum = 32767
         Me._barServoPos_7.Name = "_barServoPos_7"
         Me._barServoPos_7.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_7.Size = New System.Drawing.Size(133, 25)
+        Me._barServoPos_7.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_7.TabIndex = 168
         Me._barServoPos_7.TabStop = True
         '
@@ -3559,11 +3745,11 @@ Partial Class frmControl
         '
         Me._barServoPos_6.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_6.LargeChange = 1
-        Me._barServoPos_6.Location = New System.Drawing.Point(314, 16)
+        Me._barServoPos_6.Location = New System.Drawing.Point(289, 13)
         Me._barServoPos_6.Maximum = 32767
         Me._barServoPos_6.Name = "_barServoPos_6"
         Me._barServoPos_6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_6.Size = New System.Drawing.Size(133, 25)
+        Me._barServoPos_6.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_6.TabIndex = 167
         Me._barServoPos_6.TabStop = True
         '
@@ -3625,6 +3811,14 @@ Partial Class frmControl
         'Frame3
         '
         Me.Frame3.BackColor = System.Drawing.SystemColors.Control
+        Me.Frame3.Controls.Add(Me.cmdLeerPosServosRot)
+        Me.Frame3.Controls.Add(Me.cmdEjecutarMovRot)
+        Me.Frame3.Controls.Add(Me._cmdPlay_4)
+        Me.Frame3.Controls.Add(Me._cmdPlay_3)
+        Me.Frame3.Controls.Add(Me._cmdPlay_2)
+        Me.Frame3.Controls.Add(Me._tbValorRot_4)
+        Me.Frame3.Controls.Add(Me._tbValorRot_3)
+        Me.Frame3.Controls.Add(Me._tbValorRot_2)
         Me.Frame3.Controls.Add(Me.cmdEnviarPosParada)
         Me.Frame3.Controls.Add(Me.tbServoPosMen3)
         Me.Frame3.Controls.Add(Me.tbServoPosMas3)
@@ -3681,6 +3875,81 @@ Partial Class frmControl
         Me.Frame3.TabStop = False
         Me.Frame3.Text = "Brazo Derecho "
         '
+        '_cmdPlay_4
+        '
+        Me._cmdPlay_4.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_4.Location = New System.Drawing.Point(484, 63)
+        Me._cmdPlay_4.Name = "_cmdPlay_4"
+        Me._cmdPlay_4.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_4.TabIndex = 208
+        Me._cmdPlay_4.UseVisualStyleBackColor = True
+        '
+        '_cmdPlay_3
+        '
+        Me._cmdPlay_3.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_3.Location = New System.Drawing.Point(484, 40)
+        Me._cmdPlay_3.Name = "_cmdPlay_3"
+        Me._cmdPlay_3.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_3.TabIndex = 207
+        Me._cmdPlay_3.UseVisualStyleBackColor = True
+        '
+        '_cmdPlay_2
+        '
+        Me._cmdPlay_2.Image = Global.MiRobot.My.Resources.Resources.play
+        Me._cmdPlay_2.Location = New System.Drawing.Point(483, 14)
+        Me._cmdPlay_2.Name = "_cmdPlay_2"
+        Me._cmdPlay_2.Size = New System.Drawing.Size(26, 27)
+        Me._cmdPlay_2.TabIndex = 206
+        Me._cmdPlay_2.UseVisualStyleBackColor = True
+        '
+        '_tbValorRot_4
+        '
+        Me._tbValorRot_4.AcceptsReturn = True
+        Me._tbValorRot_4.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_4.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_4.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_4.Location = New System.Drawing.Point(453, 64)
+        Me._tbValorRot_4.MaxLength = 0
+        Me._tbValorRot_4.Name = "_tbValorRot_4"
+        Me._tbValorRot_4.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_4.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_4.TabIndex = 205
+        Me._tbValorRot_4.Text = "0000"
+        Me._tbValorRot_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        '_tbValorRot_3
+        '
+        Me._tbValorRot_3.AcceptsReturn = True
+        Me._tbValorRot_3.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_3.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_3.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_3.Location = New System.Drawing.Point(453, 40)
+        Me._tbValorRot_3.MaxLength = 0
+        Me._tbValorRot_3.Name = "_tbValorRot_3"
+        Me._tbValorRot_3.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_3.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_3.TabIndex = 204
+        Me._tbValorRot_3.Text = "0000"
+        Me._tbValorRot_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        '_tbValorRot_2
+        '
+        Me._tbValorRot_2.AcceptsReturn = True
+        Me._tbValorRot_2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me._tbValorRot_2.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me._tbValorRot_2.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me._tbValorRot_2.ForeColor = System.Drawing.SystemColors.WindowText
+        Me._tbValorRot_2.Location = New System.Drawing.Point(453, 15)
+        Me._tbValorRot_2.MaxLength = 0
+        Me._tbValorRot_2.Name = "_tbValorRot_2"
+        Me._tbValorRot_2.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me._tbValorRot_2.Size = New System.Drawing.Size(30, 24)
+        Me._tbValorRot_2.TabIndex = 203
+        Me._tbValorRot_2.Text = "0000"
+        Me._tbValorRot_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         '_tbMaxPos_5
         '
         Me._tbMaxPos_5.AcceptsReturn = True
@@ -3704,13 +3973,13 @@ Partial Class frmControl
         Me._tbMaxPos_4.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_4.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_4.Location = New System.Drawing.Point(450, 64)
+        Me._tbMaxPos_4.Location = New System.Drawing.Point(422, 63)
         Me._tbMaxPos_4.MaxLength = 0
         Me._tbMaxPos_4.Name = "_tbMaxPos_4"
         Me._tbMaxPos_4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_4.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_4.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_4.TabIndex = 157
-        Me._tbMaxPos_4.Text = "0000"
+        Me._tbMaxPos_4.Text = "000"
         Me._tbMaxPos_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMaxPos_3
@@ -3720,13 +3989,13 @@ Partial Class frmControl
         Me._tbMaxPos_3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_3.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_3.Location = New System.Drawing.Point(450, 40)
+        Me._tbMaxPos_3.Location = New System.Drawing.Point(422, 39)
         Me._tbMaxPos_3.MaxLength = 0
         Me._tbMaxPos_3.Name = "_tbMaxPos_3"
         Me._tbMaxPos_3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_3.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_3.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_3.TabIndex = 156
-        Me._tbMaxPos_3.Text = "0000"
+        Me._tbMaxPos_3.Text = "000"
         Me._tbMaxPos_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMaxPos_2
@@ -3736,11 +4005,11 @@ Partial Class frmControl
         Me._tbMaxPos_2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMaxPos_2.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMaxPos_2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMaxPos_2.Location = New System.Drawing.Point(450, 16)
+        Me._tbMaxPos_2.Location = New System.Drawing.Point(422, 15)
         Me._tbMaxPos_2.MaxLength = 0
         Me._tbMaxPos_2.Name = "_tbMaxPos_2"
         Me._tbMaxPos_2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMaxPos_2.Size = New System.Drawing.Size(45, 24)
+        Me._tbMaxPos_2.Size = New System.Drawing.Size(30, 24)
         Me._tbMaxPos_2.TabIndex = 155
         Me._tbMaxPos_2.Text = "0000"
         Me._tbMaxPos_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -3768,7 +4037,7 @@ Partial Class frmControl
         Me._tbValorParar_4.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_4.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_4.Location = New System.Drawing.Point(224, 66)
+        Me._tbValorParar_4.Location = New System.Drawing.Point(213, 65)
         Me._tbValorParar_4.MaxLength = 0
         Me._tbValorParar_4.Name = "_tbValorParar_4"
         Me._tbValorParar_4.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3784,7 +4053,7 @@ Partial Class frmControl
         Me._tbValorParar_3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_3.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_3.Location = New System.Drawing.Point(224, 42)
+        Me._tbValorParar_3.Location = New System.Drawing.Point(213, 41)
         Me._tbValorParar_3.MaxLength = 0
         Me._tbValorParar_3.Name = "_tbValorParar_3"
         Me._tbValorParar_3.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3800,7 +4069,7 @@ Partial Class frmControl
         Me._tbValorParar_2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbValorParar_2.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbValorParar_2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbValorParar_2.Location = New System.Drawing.Point(224, 16)
+        Me._tbValorParar_2.Location = New System.Drawing.Point(213, 15)
         Me._tbValorParar_2.MaxLength = 0
         Me._tbValorParar_2.Name = "_tbValorParar_2"
         Me._tbValorParar_2.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -3839,9 +4108,9 @@ Partial Class frmControl
         '_tbParar_4
         '
         Me._tbParar_4.Image = CType(resources.GetObject("_tbParar_4.Image"), System.Drawing.Image)
-        Me._tbParar_4.Location = New System.Drawing.Point(160, 66)
+        Me._tbParar_4.Location = New System.Drawing.Point(152, 66)
         Me._tbParar_4.Name = "_tbParar_4"
-        Me._tbParar_4.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_4.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_4.TabIndex = 175
         Me._tbParar_4.UseVisualStyleBackColor = True
         '
@@ -3850,14 +4119,14 @@ Partial Class frmControl
         Me._tbMenos_4.Image = Global.MiRobot.My.Resources.Resources.arriba_1
         Me._tbMenos_4.Location = New System.Drawing.Point(126, 66)
         Me._tbMenos_4.Name = "_tbMenos_4"
-        Me._tbMenos_4.Size = New System.Drawing.Size(31, 23)
+        Me._tbMenos_4.Size = New System.Drawing.Size(25, 23)
         Me._tbMenos_4.TabIndex = 174
         Me._tbMenos_4.UseVisualStyleBackColor = True
         '
         '_tbMas_4
         '
         Me._tbMas_4.Image = Global.MiRobot.My.Resources.Resources.abajo1
-        Me._tbMas_4.Location = New System.Drawing.Point(194, 66)
+        Me._tbMas_4.Location = New System.Drawing.Point(180, 66)
         Me._tbMas_4.Name = "_tbMas_4"
         Me._tbMas_4.Size = New System.Drawing.Size(31, 23)
         Me._tbMas_4.TabIndex = 173
@@ -3866,9 +4135,9 @@ Partial Class frmControl
         '_tbParar_3
         '
         Me._tbParar_3.Image = CType(resources.GetObject("_tbParar_3.Image"), System.Drawing.Image)
-        Me._tbParar_3.Location = New System.Drawing.Point(160, 42)
+        Me._tbParar_3.Location = New System.Drawing.Point(152, 42)
         Me._tbParar_3.Name = "_tbParar_3"
-        Me._tbParar_3.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_3.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_3.TabIndex = 172
         Me._tbParar_3.UseVisualStyleBackColor = True
         '
@@ -3877,14 +4146,14 @@ Partial Class frmControl
         Me._tbMenos_3.Image = Global.MiRobot.My.Resources.Resources.abajo1
         Me._tbMenos_3.Location = New System.Drawing.Point(126, 42)
         Me._tbMenos_3.Name = "_tbMenos_3"
-        Me._tbMenos_3.Size = New System.Drawing.Size(31, 23)
+        Me._tbMenos_3.Size = New System.Drawing.Size(25, 23)
         Me._tbMenos_3.TabIndex = 171
         Me._tbMenos_3.UseVisualStyleBackColor = True
         '
         '_tbMas_3
         '
         Me._tbMas_3.Image = Global.MiRobot.My.Resources.Resources.arriba_1
-        Me._tbMas_3.Location = New System.Drawing.Point(194, 42)
+        Me._tbMas_3.Location = New System.Drawing.Point(180, 42)
         Me._tbMas_3.Name = "_tbMas_3"
         Me._tbMas_3.Size = New System.Drawing.Size(31, 23)
         Me._tbMas_3.TabIndex = 170
@@ -3893,16 +4162,16 @@ Partial Class frmControl
         '_tbParar_2
         '
         Me._tbParar_2.Image = CType(resources.GetObject("_tbParar_2.Image"), System.Drawing.Image)
-        Me._tbParar_2.Location = New System.Drawing.Point(160, 16)
+        Me._tbParar_2.Location = New System.Drawing.Point(152, 16)
         Me._tbParar_2.Name = "_tbParar_2"
-        Me._tbParar_2.Size = New System.Drawing.Size(31, 23)
+        Me._tbParar_2.Size = New System.Drawing.Size(28, 23)
         Me._tbParar_2.TabIndex = 169
         Me._tbParar_2.UseVisualStyleBackColor = True
         '
         '_tbMenos_2
         '
         Me._tbMenos_2.Image = Global.MiRobot.My.Resources.Resources.derecha_1
-        Me._tbMenos_2.Location = New System.Drawing.Point(194, 16)
+        Me._tbMenos_2.Location = New System.Drawing.Point(180, 16)
         Me._tbMenos_2.Name = "_tbMenos_2"
         Me._tbMenos_2.Size = New System.Drawing.Size(31, 23)
         Me._tbMenos_2.TabIndex = 168
@@ -3913,7 +4182,7 @@ Partial Class frmControl
         Me._tbMas_2.Image = Global.MiRobot.My.Resources.Resources.izquierda_1
         Me._tbMas_2.Location = New System.Drawing.Point(126, 16)
         Me._tbMas_2.Name = "_tbMas_2"
-        Me._tbMas_2.Size = New System.Drawing.Size(31, 23)
+        Me._tbMas_2.Size = New System.Drawing.Size(25, 23)
         Me._tbMas_2.TabIndex = 167
         Me._tbMas_2.UseVisualStyleBackColor = True
         '
@@ -3940,13 +4209,13 @@ Partial Class frmControl
         Me._tbMinPos_4.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_4.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_4.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_4.Location = New System.Drawing.Point(268, 63)
+        Me._tbMinPos_4.Location = New System.Drawing.Point(257, 62)
         Me._tbMinPos_4.MaxLength = 0
         Me._tbMinPos_4.Name = "_tbMinPos_4"
         Me._tbMinPos_4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_4.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_4.Size = New System.Drawing.Size(32, 24)
         Me._tbMinPos_4.TabIndex = 165
-        Me._tbMinPos_4.Text = "0000"
+        Me._tbMinPos_4.Text = "000"
         Me._tbMinPos_4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMinPos_3
@@ -3956,13 +4225,13 @@ Partial Class frmControl
         Me._tbMinPos_3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_3.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_3.Location = New System.Drawing.Point(268, 39)
+        Me._tbMinPos_3.Location = New System.Drawing.Point(257, 38)
         Me._tbMinPos_3.MaxLength = 0
         Me._tbMinPos_3.Name = "_tbMinPos_3"
         Me._tbMinPos_3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_3.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_3.Size = New System.Drawing.Size(32, 24)
         Me._tbMinPos_3.TabIndex = 164
-        Me._tbMinPos_3.Text = "0000"
+        Me._tbMinPos_3.Text = "000"
         Me._tbMinPos_3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_tbMinPos_2
@@ -3972,13 +4241,13 @@ Partial Class frmControl
         Me._tbMinPos_2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me._tbMinPos_2.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me._tbMinPos_2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me._tbMinPos_2.Location = New System.Drawing.Point(268, 15)
+        Me._tbMinPos_2.Location = New System.Drawing.Point(257, 14)
         Me._tbMinPos_2.MaxLength = 0
         Me._tbMinPos_2.Name = "_tbMinPos_2"
         Me._tbMinPos_2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._tbMinPos_2.Size = New System.Drawing.Size(45, 24)
+        Me._tbMinPos_2.Size = New System.Drawing.Size(32, 24)
         Me._tbMinPos_2.TabIndex = 163
-        Me._tbMinPos_2.Text = "0000"
+        Me._tbMinPos_2.Text = "000"
         Me._tbMinPos_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         '_barServoPos_5
@@ -3997,11 +4266,11 @@ Partial Class frmControl
         '
         Me._barServoPos_4.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_4.LargeChange = 1
-        Me._barServoPos_4.Location = New System.Drawing.Point(316, 63)
+        Me._barServoPos_4.Location = New System.Drawing.Point(289, 62)
         Me._barServoPos_4.Maximum = 32767
         Me._barServoPos_4.Name = "_barServoPos_4"
         Me._barServoPos_4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_4.Size = New System.Drawing.Size(135, 25)
+        Me._barServoPos_4.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_4.TabIndex = 161
         Me._barServoPos_4.TabStop = True
         '
@@ -4009,11 +4278,11 @@ Partial Class frmControl
         '
         Me._barServoPos_3.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_3.LargeChange = 1
-        Me._barServoPos_3.Location = New System.Drawing.Point(316, 39)
+        Me._barServoPos_3.Location = New System.Drawing.Point(289, 39)
         Me._barServoPos_3.Maximum = 32767
         Me._barServoPos_3.Name = "_barServoPos_3"
         Me._barServoPos_3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_3.Size = New System.Drawing.Size(135, 25)
+        Me._barServoPos_3.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_3.TabIndex = 160
         Me._barServoPos_3.TabStop = True
         '
@@ -4021,11 +4290,11 @@ Partial Class frmControl
         '
         Me._barServoPos_2.Cursor = System.Windows.Forms.Cursors.Default
         Me._barServoPos_2.LargeChange = 1
-        Me._barServoPos_2.Location = New System.Drawing.Point(316, 15)
+        Me._barServoPos_2.Location = New System.Drawing.Point(289, 14)
         Me._barServoPos_2.Maximum = 32767
         Me._barServoPos_2.Name = "_barServoPos_2"
         Me._barServoPos_2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me._barServoPos_2.Size = New System.Drawing.Size(135, 25)
+        Me._barServoPos_2.Size = New System.Drawing.Size(129, 25)
         Me._barServoPos_2.TabIndex = 159
         Me._barServoPos_2.TabStop = True
         '
@@ -4049,10 +4318,10 @@ Partial Class frmControl
         Me.Label3.Cursor = System.Windows.Forms.Cursors.Default
         Me.Label3.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label3.Location = New System.Drawing.Point(8, 64)
+        Me.Label3.Location = New System.Drawing.Point(61, 64)
         Me.Label3.Name = "Label3"
         Me.Label3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label3.Size = New System.Drawing.Size(113, 25)
+        Me.Label3.Size = New System.Drawing.Size(60, 25)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Biceps"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4673,7 +4942,7 @@ Partial Class frmControl
         Me.chkMovimiento.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkMovimiento.Location = New System.Drawing.Point(310, 370)
         Me.chkMovimiento.Name = "chkMovimiento"
-        Me.chkMovimiento.Size = New System.Drawing.Size(168, 20)
+        Me.chkMovimiento.Size = New System.Drawing.Size(167, 20)
         Me.chkMovimiento.TabIndex = 34
         Me.chkMovimiento.Text = "Detección Movimiento"
         Me.chkMovimiento.UseVisualStyleBackColor = True
@@ -4716,7 +4985,7 @@ Partial Class frmControl
         Me.chkRostro.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkRostro.Location = New System.Drawing.Point(12, 370)
         Me.chkRostro.Name = "chkRostro"
-        Me.chkRostro.Size = New System.Drawing.Size(134, 20)
+        Me.chkRostro.Size = New System.Drawing.Size(133, 20)
         Me.chkRostro.TabIndex = 30
         Me.chkRostro.Text = "Detección Rostro"
         Me.chkRostro.UseVisualStyleBackColor = True
@@ -5073,6 +5342,67 @@ Partial Class frmControl
         Me.tmrControlesGenerales.Enabled = True
         Me.tmrControlesGenerales.Interval = 300
         '
+        'tmrMoverBoca
+        '
+        Me.tmrMoverBoca.Interval = 200
+        '
+        'chkMoverBoca
+        '
+        Me.chkMoverBoca.AutoSize = True
+        Me.chkMoverBoca.Checked = True
+        Me.chkMoverBoca.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkMoverBoca.Location = New System.Drawing.Point(9, 737)
+        Me.chkMoverBoca.Name = "chkMoverBoca"
+        Me.chkMoverBoca.Size = New System.Drawing.Size(84, 17)
+        Me.chkMoverBoca.TabIndex = 205
+        Me.chkMoverBoca.Text = "Mover Boca"
+        Me.chkMoverBoca.UseVisualStyleBackColor = True
+        '
+        'tmrLeerDatosArduino
+        '
+        '
+        'chkRecuperarPosiciones
+        '
+        Me.chkRecuperarPosiciones.AutoSize = True
+        Me.chkRecuperarPosiciones.Checked = True
+        Me.chkRecuperarPosiciones.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.chkRecuperarPosiciones.Location = New System.Drawing.Point(99, 737)
+        Me.chkRecuperarPosiciones.Name = "chkRecuperarPosiciones"
+        Me.chkRecuperarPosiciones.Size = New System.Drawing.Size(86, 17)
+        Me.chkRecuperarPosiciones.TabIndex = 206
+        Me.chkRecuperarPosiciones.Text = "Leer Arduino"
+        Me.chkRecuperarPosiciones.UseVisualStyleBackColor = True
+        '
+        'chkControlMovimiento
+        '
+        Me.chkControlMovimiento.AutoSize = True
+        Me.chkControlMovimiento.Location = New System.Drawing.Point(191, 737)
+        Me.chkControlMovimiento.Name = "chkControlMovimiento"
+        Me.chkControlMovimiento.Size = New System.Drawing.Size(97, 17)
+        Me.chkControlMovimiento.TabIndex = 207
+        Me.chkControlMovimiento.Text = "Limites Off Soft"
+        Me.chkControlMovimiento.UseVisualStyleBackColor = True
+        '
+        'chkEnviarPosIniServosControl
+        '
+        Me.chkEnviarPosIniServosControl.AutoSize = True
+        Me.chkEnviarPosIniServosControl.Location = New System.Drawing.Point(311, 737)
+        Me.chkEnviarPosIniServosControl.Name = "chkEnviarPosIniServosControl"
+        Me.chkEnviarPosIniServosControl.Size = New System.Drawing.Size(102, 17)
+        Me.chkEnviarPosIniServosControl.TabIndex = 208
+        Me.chkEnviarPosIniServosControl.Text = "Env. Pos. Inicial"
+        Me.chkEnviarPosIniServosControl.UseVisualStyleBackColor = True
+        '
+        'chkDebug
+        '
+        Me.chkDebug.AutoSize = True
+        Me.chkDebug.Location = New System.Drawing.Point(419, 737)
+        Me.chkDebug.Name = "chkDebug"
+        Me.chkDebug.Size = New System.Drawing.Size(58, 17)
+        Me.chkDebug.TabIndex = 210
+        Me.chkDebug.Text = "Debug"
+        Me.chkDebug.UseVisualStyleBackColor = True
+        '
         'picIzq
         '
         Me.picIzq.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -5150,67 +5480,6 @@ Partial Class frmControl
         Me.picRobot.TabIndex = 77
         Me.picRobot.TabStop = False
         '
-        'tmrMoverBoca
-        '
-        Me.tmrMoverBoca.Interval = 200
-        '
-        'chkMoverBoca
-        '
-        Me.chkMoverBoca.AutoSize = True
-        Me.chkMoverBoca.Checked = True
-        Me.chkMoverBoca.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkMoverBoca.Location = New System.Drawing.Point(9, 737)
-        Me.chkMoverBoca.Name = "chkMoverBoca"
-        Me.chkMoverBoca.Size = New System.Drawing.Size(84, 17)
-        Me.chkMoverBoca.TabIndex = 205
-        Me.chkMoverBoca.Text = "Mover Boca"
-        Me.chkMoverBoca.UseVisualStyleBackColor = True
-        '
-        'tmrLeerDatosArduino
-        '
-        '
-        'chkRecuperarPosiciones
-        '
-        Me.chkRecuperarPosiciones.AutoSize = True
-        Me.chkRecuperarPosiciones.Checked = True
-        Me.chkRecuperarPosiciones.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkRecuperarPosiciones.Location = New System.Drawing.Point(99, 737)
-        Me.chkRecuperarPosiciones.Name = "chkRecuperarPosiciones"
-        Me.chkRecuperarPosiciones.Size = New System.Drawing.Size(86, 17)
-        Me.chkRecuperarPosiciones.TabIndex = 206
-        Me.chkRecuperarPosiciones.Text = "Leer Arduino"
-        Me.chkRecuperarPosiciones.UseVisualStyleBackColor = True
-        '
-        'chkControlMovimiento
-        '
-        Me.chkControlMovimiento.AutoSize = True
-        Me.chkControlMovimiento.Location = New System.Drawing.Point(191, 737)
-        Me.chkControlMovimiento.Name = "chkControlMovimiento"
-        Me.chkControlMovimiento.Size = New System.Drawing.Size(97, 17)
-        Me.chkControlMovimiento.TabIndex = 207
-        Me.chkControlMovimiento.Text = "Limites Off Soft"
-        Me.chkControlMovimiento.UseVisualStyleBackColor = True
-        '
-        'chkEnviarPosIniServosControl
-        '
-        Me.chkEnviarPosIniServosControl.AutoSize = True
-        Me.chkEnviarPosIniServosControl.Location = New System.Drawing.Point(311, 737)
-        Me.chkEnviarPosIniServosControl.Name = "chkEnviarPosIniServosControl"
-        Me.chkEnviarPosIniServosControl.Size = New System.Drawing.Size(102, 17)
-        Me.chkEnviarPosIniServosControl.TabIndex = 208
-        Me.chkEnviarPosIniServosControl.Text = "Env. Pos. Inicial"
-        Me.chkEnviarPosIniServosControl.UseVisualStyleBackColor = True
-        '
-        'chkDebug
-        '
-        Me.chkDebug.AutoSize = True
-        Me.chkDebug.Location = New System.Drawing.Point(419, 737)
-        Me.chkDebug.Name = "chkDebug"
-        Me.chkDebug.Size = New System.Drawing.Size(58, 17)
-        Me.chkDebug.TabIndex = 210
-        Me.chkDebug.Text = "Debug"
-        Me.chkDebug.UseVisualStyleBackColor = True
-        '
         'frmControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5260,8 +5529,8 @@ Partial Class frmControl
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RASPER - Robot Autónomo de Servicio Personal"
-        CType(Me.picMano, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picBrazo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picMano, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Frame6.ResumeLayout(False)
         Me.Frame8.ResumeLayout(False)
         Me.Frame8.PerformLayout()
@@ -5269,6 +5538,7 @@ Partial Class frmControl
         Me.Frame9.PerformLayout()
         Me.Frame1.ResumeLayout(False)
         Me.Frame1.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Frame5.ResumeLayout(False)
         Me.Frame5.PerformLayout()
         Me.Frame4.ResumeLayout(False)
@@ -5307,10 +5577,10 @@ Partial Class frmControl
     End Sub
     Sub ReLoadForm(ByVal addEvents As Boolean)
         InitializetbValServo()
+        InitializebarServo()
         InitializetbNumServo()
         InitializetbMin()
         InitializetbMax()
-        InitializebarServo()
 
         InicializartbMenos()
         InicializartbParar()
@@ -5318,6 +5588,8 @@ Partial Class frmControl
         InicializartbValorParar()
         InicializartbMinPos()
         InicializartbMaxPos()
+        InicializartbValorRot()
+        InicializarcmdPlay()
         InicializartbValServoPos()
         InicializartbNumServoPos()
         InicializarbarServoPos()
@@ -5456,6 +5728,32 @@ Partial Class frmControl
         tbMas(7) = _tbMas_7
         tbMas(8) = _tbMas_8
         tbMas(9) = _tbMas_9
+    End Sub
+    Sub InicializartbValorRot()
+        ReDim tbValorRot(10)
+        tbValorRot(0) = Nothing
+        tbValorRot(1) = Nothing
+        tbValorRot(2) = _tbValorRot_2
+        tbValorRot(3) = _tbValorRot_3
+        tbValorRot(4) = _tbValorRot_4
+        tbValorRot(5) = Nothing
+        tbValorRot(6) = _tbValorRot_6
+        tbValorRot(7) = _tbValorRot_7
+        tbValorRot(8) = _tbValorRot_8
+        tbValorRot(9) = Nothing
+    End Sub
+    Sub InicializarcmdPlay()
+        ReDim cmdPlay(10)
+        cmdPlay(0) = Nothing
+        cmdPlay(1) = Nothing
+        cmdPlay(2) = _cmdPlay_2
+        cmdPlay(3) = _cmdPlay_3
+        cmdPlay(4) = _cmdPlay_4
+        cmdPlay(5) = Nothing
+        cmdPlay(6) = _cmdPlay_6
+        cmdPlay(7) = _cmdPlay_7
+        cmdPlay(8) = _cmdPlay_8
+        cmdPlay(9) = Nothing
     End Sub
     Sub InicializartbValorParar()
         ReDim tbValorParar(10)
@@ -5734,5 +6032,24 @@ Partial Class frmControl
     Public WithEvents cmdReset As Button
     Friend WithEvents tbDebug As TextBox
     Public WithEvents cmdEnviarPosParada As Button
+    Private WithEvents tbAngSonido As TextBox
+    Friend WithEvents cmdPrueba As Button
+    Private WithEvents _tbValorRot_8 As TextBox
+    Private WithEvents _tbValorRot_7 As TextBox
+    Private WithEvents _tbValorRot_6 As TextBox
+    Private WithEvents _tbValorRot_4 As TextBox
+    Private WithEvents _tbValorRot_3 As TextBox
+    Private WithEvents _tbValorRot_2 As TextBox
+    Friend WithEvents _cmdPlay_8 As Button
+    Friend WithEvents _cmdPlay_7 As Button
+    Friend WithEvents _cmdPlay_6 As Button
+    Friend WithEvents _cmdPlay_4 As Button
+    Friend WithEvents _cmdPlay_3 As Button
+    Friend WithEvents _cmdPlay_2 As Button
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents cmdEjecMovTemp As Button
+    Friend WithEvents cmdLeerPosServosRot As Button
+    Friend WithEvents cmdEjecutarMovRot As Button
+    Friend WithEvents cmdPosIni As Button
 #End Region
 End Class
