@@ -35,11 +35,20 @@ CPP_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+.metadata\.plugins\org.eclipse.cdt.make.core \
 . \
 core\core \
+libraries\Adafruit_VL53L0X-master\src \
+libraries\Adafruit_VL53L0X-master\src\core\src \
+libraries\Adafruit_VL53L0X-master\src\platform\src \
 libraries\Kalman \
 libraries\RF24 \
 libraries\SPI\src \
 libraries\ServoTimer2 \
+libraries\SoftwareSerial\src \
+libraries\SoftwareServo \
 libraries\VirtualWire \
+libraries\Wire\src \
+libraries\Wire\src\utility \
+libraries\vl53l0x \
 

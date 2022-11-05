@@ -42,6 +42,11 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/variants/mega</locationURI>
 		</link>
 		<link>
+			<name>libraries/Adafruit_VL53L0X-master</name>
+			<type>2</type>
+			<location>C:/Users/antonio/Documents/Arduino/libraries/Adafruit_VL53L0X-master</location>
+		</link>
+		<link>
 			<name>libraries/BasicLinearAlgebra</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/BasicLinearAlgebra/3.5.0</locationURI>
@@ -72,9 +77,29 @@
 			<location>C:/Users/antonio/Documents/Arduino/libraries/ServoTimer2</location>
 		</link>
 		<link>
+			<name>libraries/SoftwareSerial</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/SoftwareSerial</locationURI>
+		</link>
+		<link>
+			<name>libraries/SoftwareServo</name>
+			<type>2</type>
+			<location>C:/Users/antonio/Documents/Arduino/libraries/SoftwareServo</location>
+		</link>
+		<link>
 			<name>libraries/VirtualWire</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/VirtualWire</locationURI>
+		</link>
+		<link>
+			<name>libraries/Wire</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/arduino/hardware/avr/1.8.5/libraries/Wire</locationURI>
+		</link>
+		<link>
+			<name>libraries/vl53l0x</name>
+			<type>2</type>
+			<location>C:/Users/antonio/Documents/Arduino/libraries/vl53l0x</location>
 		</link>
 	</linkedResources>
 </projectDescription>

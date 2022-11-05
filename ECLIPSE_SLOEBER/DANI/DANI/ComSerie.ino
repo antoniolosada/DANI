@@ -1,21 +1,13 @@
 #include "pines.h"
-
-//#define PIN_RETROCESO  10 //Blanco
-
-#define GRADOS    0
-#define MS        1
-#define SERVO_DIR    26 //Servo direccion
-#define MAX_SENSOR_DISTANCIA 4
-#define MIN_POS_SERVO 18
-#define MAX_POS_SERVO 24
-
-int MOTOR = LOW;
-int VELOCIDAD = 0;
+#include <Arduino.h>
+#include "DANI.h"
+#include <Wire.h>
+#include <VL53L0X.h>
 
 bool ControlPosicionActivo = false;
 bool ControlLimitesOffActivo = false;
 bool ControlLimitesActivo = true;
-
+bool SAPPO_Activo = false;
 //Guarda el valor de los servos rotacionales => direcciÃ³n de giro
 byte DirServo[6] = { VALOR_MEDIO, VALOR_MEDIO, VALOR_MEDIO, VALOR_MEDIO, VALOR_MEDIO, VALOR_MEDIO };
 
@@ -40,7 +32,7 @@ int ComprobarCRC(int CRC, char *cad)
 int LeerCadena(int *i, char *Cadena)
 {
   char c;
-  
+
   while (Serial.available() > 0)
   {
     c = Serial.read();
@@ -74,7 +66,7 @@ int LeerCadena(int *i, char *Cadena)
 
 void ProcesarCadena(char *Cadena)
 {
-	//Letras escogidas: Aa,b,cC,dD,eE,f,-g,-h,iI,-j,-k,L,mM,-ñ,o,Pp,-q,rR,sS,tT,U,vV,-w,-y,Z,1,2
+	//Letras escogidas (Libre): Aa,bB,cC,dD,eE,fF,(gG),(hH),iI,(jJ),(kK),l(L),mM,(ñÑ),oO,Pp,(qQ),rR,sS,tT,U(u),vV,(wW),yY,(z)Z,1,2
   char cCar;
   int i;
   int iPosFin;
@@ -97,7 +89,7 @@ void ProcesarCadena(char *Cadena)
     switch (cCar)
     {
 	  case 'b':
-      { //Control alimentaciÃ³n base HIGH -> Apaga base
+      { //Control alimentacion base HIGH -> Apaga base *************************************
         int d;
         d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -106,7 +98,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
       case 'c': 
-      { //Control alimetaciÃ³n cuerpo
+      { //Control alimetacion cuerpo *************************************
         int d;
         d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -115,7 +107,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
 	  case 'C':
-	  { //Control alimetaciÃ³n cabeza
+	  { //Control alimetacion cabeza *************************************
 		  int d;
 		  d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -124,7 +116,7 @@ void ProcesarCadena(char *Cadena)
 		  break;
 	  }
       case 'o':
-      { //Control de posiciÃ³n
+      { //Control de posicion *************************************
           int d;
           d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -132,7 +124,7 @@ void ProcesarCadena(char *Cadena)
           break;
       }
       case 'L':
-      { //Control de posiciÃ³n
+      { //Control de apagago por exceso de limites *************************************
           int d;
           d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -140,15 +132,23 @@ void ProcesarCadena(char *Cadena)
           break;
       }
       case 'Z':
-      { //Control de posiciÃ³n
+      { //Control de limites *************************************
           int d;
           d = RecValor(Cadena, p, ';', &iPosFin);
 
           ControlLimitesActivo = d;
           break;
       }
+      case 'B':
+      { //Activar alimentación 12v SAPPO *************************************
+          int d;
+          d = RecValor(Cadena, p, ';', &iPosFin);
+		  digitalWrite(PIN_ALIMENTACION_SAPPO, d);
+          SAPPO_Activo  = d;
+          break;
+      }
       case 'A':
-	  { //Arranque del motor
+	  { //Arranque del motor *************************************
 		  int v;
 		  int i;
 		  v = RecValor(Cadena, p, ';', &iPosFin);
@@ -166,13 +166,13 @@ void ProcesarCadena(char *Cadena)
 		  break;
 	  }
 	  case 'P':
-	  { //Parada del motor
+	  { //Parada del motor *************************************
 		  if (MOTOR == HIGH)
 			  ApagadoMotorProgresivo();
 		  break;
 	  }
 	  case 'd':
-      { //Control de direcciÃ³n
+      { //Control de direccion *************************************
         int d;
         d = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -180,7 +180,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
       case 'f': 
-      { //Avance-Retroceso
+      { //Avance-Retroceso *************************************
         int f;
         f = RecValor(Cadena, p, ';', &iPosFin);
 		if (f)
@@ -190,7 +190,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
       case 'v': 
-      { //Control de velocidad de motor
+      { //Control de velocidad de motor *************************************
         int v;
 
         v = RecValor(Cadena, p, ';', &iPosFin);
@@ -204,7 +204,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
 	  case 'D':
-	  { //Lectura de los sensores de distancia
+	  { //Lectura de los sensores de distancia *************************************
 		  iNumSensor = RecValor(Cadena, p, ';', &iPosFin);
 
 		  Serial.print("D->");
@@ -215,7 +215,7 @@ void ProcesarCadena(char *Cadena)
 		  break;
 	  }
 	  case 'a':
-      { //Lectura del Ã¡ngulo de articulaciÃ³n
+      { //Lectura del angulo de articulacion *************************************
         iNumServo = RecValor(Cadena, p, ';', &iPosFin);
 
         Serial.print("A->");
@@ -226,7 +226,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
       case 'p': 
-      { //Posicion inmediata
+      { //Posicion inmediata **************************************************************************
         cCar = Cadena[p++];
         
         iNumServo = RecValor(Cadena, p, ',', &iPosFin);
@@ -235,7 +235,7 @@ void ProcesarCadena(char *Cadena)
         if (cCar == 'g')
             iModo = GRADOS;
         else if (cCar == 'r')
-        {   //Reseteamos la posiciÃ³n de parada
+        {   //Reseteamos la posicion de parada *************************************
             iModo = GRADOS;
             GrabarValorParada(iNumServo, iValor);
         }
@@ -247,7 +247,7 @@ void ProcesarCadena(char *Cadena)
         break;
       }
       case 'm':
-      { // Movimiento temporizado
+      { // Movimiento temporizado (No se emplea en DANI) *************************************
         cCar = Cadena[p++];
         if (cCar == 'g')
           iModo = GRADOS;
@@ -290,7 +290,7 @@ void ProcesarCadena(char *Cadena)
             Serial.print(">SEC_ERROR_MAX_SEC");
         break;
       }
-      case 'M': //Movimiento de servo rotacinoal indicando valor de potenciómetro
+      case 'M': //Movimiento de servo rotacinoal indicando valor de potenciómetro *************************************
       {
           //Cambiamos el valor de la posicion del potenciometros de parada
           cCar = Cadena[p];
@@ -314,7 +314,7 @@ void ProcesarCadena(char *Cadena)
       }
       case 'R':
       {
-          //Cambiamos el valor de la posiciÃ³n del potenciÃ³metros de parada
+          //Cambiamos el valor de la posicion del potenciometros de parada *************************************
           cCar = Cadena[p++];
 
           iNumServo = RecValor(Cadena, p, ',', &iPosFin);
@@ -324,11 +324,11 @@ void ProcesarCadena(char *Cadena)
           break;
       }
       case 'E':
-      { //Ejecutar movimiento temporizado para servos posicionales
+      { //Ejecutar movimiento temporizado para servos posicionales *************************************
     	  for (int i=2; i<=16; i++)
     	  {
     		  int indServo = RecNumServo(i);
-    		  //Si tiene tiempo programado y no se está moviendo
+    		  //Si tiene tiempo programado y no se está moviendo, asignamos ms de parada y lo activamos para moverse
     		  if ((aPosServos[indServo].ms_tiempo_mov > 0) && !aPosServos[indServo].MovTemporizadoActivo)
     		  {
     			  aPosServos[indServo].ms_inicial = millis();
@@ -340,7 +340,7 @@ void ProcesarCadena(char *Cadena)
       }
       case 'e':
       {
-          //Cambiamos el valor de la posicion de parada de los servos rotacionales
+          //Cambiamos el valor de la posicion de parada de los servos rotacionales *************************************
           cCar = Cadena[p++];
 
           iNumServo = RecValor(Cadena, p, ',', &iPosFin);
@@ -349,12 +349,12 @@ void ProcesarCadena(char *Cadena)
           CambiarValorServoParada(iNumServo, iValor);
           break;
       }
-      case 'S':
+      case 'S': // configuracion *************************************
       {
           setup();
           break;
       }
-      case 's':
+      case 's': // Parada  *************************************
       {
         iEstado = STOP;
         iNumMovActivo = SIN_ASIGNAR;
@@ -362,7 +362,7 @@ void ProcesarCadena(char *Cadena)
         Serial.println(">STOP_OK");
         break;
       }
-      case 't':
+      case 't': // reset  *************************************
       {
         iEstado = STOP;
         iPosSec = 0;
@@ -374,7 +374,7 @@ void ProcesarCadena(char *Cadena)
       case 'T':
       {
     	  int iGradosSeg;
-		  //Cambiamos el valor de la posiciÃ³n del potenciÃ³metros de parada
+		  //Cambiamos el valor de la posicion del potenciometros de parada *************************************
 		  cCar = Cadena[p];
 
 		  iNumServo = RecValor(Cadena, p, ',', &iPosFin);
@@ -391,17 +391,19 @@ void ProcesarCadena(char *Cadena)
 
 		  aPosServos[indServo].iValoIniTemporizado = aPosServos[indServo].iValor;
 		  aPosServos[indServo].iValorFinTemporizado = iValor;
-		  aPosServos[indServo].ms_tiempo_mov = abs(aPosServos[indServo].iValorFinTemporizado -
-				  	  	  	  	  	  	  	  	  	   long(aPosServos[indServo].iValoIniTemporizado))*1000 / iGradosSeg;
+		  aPosServos[indServo].ms_tiempo_mov = long(abs(aPosServos[indServo].iValorFinTemporizado -
+				  	  	  	  	  	  	  	  	  	   aPosServos[indServo].iValoIniTemporizado))*1000 / iGradosSeg;
+
+		  LOG_DEBUG("T->",aPosServos[indServo].iValor, iValor, aPosServos[indServo].ms_tiempo_mov, iGradosSeg );
 		  break;
       }
-      case 'i':
+      case 'i': // posicion inicial *************************************
       {
         PosicionInicial();
         Serial.println(">POSINI_OK");
         break;
       }
-      case 'I': //Cambiamos el valor de la variable Debug
+      case 'I': //Cambiamos el valor de la variable Debug *************************************
       {
           int d;
           char *msg = RecCadena(Cadena, p, ';', &iPosFin);
@@ -409,7 +411,7 @@ void ProcesarCadena(char *Cadena)
           Debug = msg;
           break;
       }
-      case 'V':
+      case 'V': // contador de marcr rueda *************************************
 	  {
 		  iNumServo = RecValor(Cadena, p, ';', &iPosFin);
 
@@ -419,21 +421,21 @@ void ProcesarCadena(char *Cadena)
           break;
 	  }
 	  case '1':
-	  { //Recuperar valores de todos los sensores de distancia
+	  { //Recuperar valores de todos los sensores de distancia *************************************
           Serial.print("1->");
           EnviarDistancias();
           Serial.println(";");
           break;
 	  }
 	  case '2':
-	  { //Lectura de todos los Ã¡ngulos de articulaciÃ³n
+	  { //Lectura de todos los angulos de articulacion *************************************
           Serial.print("2->");
           EnviarArticulaciones();
           Serial.println(";");
           break;
 	  }
       case 'U':
-      { //Lectura unificada de todos los sensores
+      { //Lectura unificada de todos los sensores *************************************
           Serial.print("U->");
           EnviarArticulaciones();
           Serial.print(",");
@@ -450,6 +452,30 @@ void ProcesarCadena(char *Cadena)
           Serial.print("=>");
           Serial.print(Debug);
           Serial.println(";");
+          break;
+      }
+      case 'y':
+      { //Leer línea Horizontal lidar  *************************************
+          int d;
+          d = RecValor(Cadena, p, ';', &iPosFin);
+          AsignarServo(lidar_cabeceo, d, 0 );
+          LeerLinea(true, LINEA_HORIZONTAL, d);
+          break;
+      }
+      case 'Y':
+      { //Leer línea Vertical lidar *************************************
+          int d;
+          d = RecValor(Cadena, p, ';', &iPosFin);
+          AsignarServo(lidar_guinada, d, 0 );
+          LeerLinea(true, LINEA_VERTICAL, d);
+          break;
+      }
+      case 'O':
+      { //Leer valor sensor lidar actual*************************************
+    	  int v = LeerMedidaSensorLaser();
+    	  Serial.print("O->");
+    	  Serial.print(v);
+    	  Serial.print(";");
           break;
       }
     } //switch
@@ -483,7 +509,10 @@ void EnviarArticulaciones()
     for (int i = MIN_POS_SERVO; i <= MAX_POS_SERVO; i++)
     {
         if (i != MIN_POS_SERVO) Serial.print(",");
-        Serial.print(analogRead(pinPotenciometro(i)));
+        if (i != 21)
+        	Serial.print(analogRead(pinPotenciometro(i)));
+        else
+        	Serial.print("0");
     }
 }
 

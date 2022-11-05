@@ -106,7 +106,12 @@ Public Class frmControl
     'UPGRADE_NOTE: (2041) The following line was commented. More Information: http://www.vbtonet.com/ewis/ewi2041.aspx
     'Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Integer)
 
-    Dim aDist(4) As TextBox
+    Dim aDist(MAX_SENSORES_DISTANCIA) As TextBox
+    Structure sLidar
+        Public TipoLinea As Integer
+        Public PosServo As Integer
+        Public aMedidaLidar() As Integer
+    End Structure
 
     Shared static_frase As String = ""
     Shared _continue As Boolean
@@ -120,6 +125,7 @@ Public Class frmControl
     Const MAX_SERVO_POS As Integer = 25
 
     Const MAX_SENSORES_DISTANCIA = 4
+    Const MAX_MEDIDAS_LIDAR = 50
     Const NUM_SERVOS_ROT = 6
     Const MAX_SENSOR_ARTICULACIONES = 6
     Const NUM_SERVOS_MANOS = 12
@@ -215,7 +221,7 @@ Public Class frmControl
     Private DatosRecibidosArduino As Boolean = False
 
     Private ProcesarEventosBarServo As Boolean = True
-
+    Private lidar As sLidar = New sLidar
 
 
     Enum RASPER
@@ -299,6 +305,8 @@ Public Class frmControl
     Dim sensor As KinectSensor
     Const MOV_GRADOS_SEG As Integer = 45
     Const POTENCIA_SERVO_ROT As Integer = 100
+    Const POS_SERVO_LIDAR_VER As Integer = 90
+    Const POS_SERVO_LIDAR_HOR As Integer = 90
 
 
     'UPGRADE_NOTE: (2010) barServo.Change was changed from an event to a procedure. More Information: http://www.vbtonet.com/ewis/ewi2010.aspx
@@ -444,16 +452,9 @@ Public Class frmControl
         End If
     End Sub
 
-
-
-
-
     Private Sub cmdGenerarArduino_Click(ByVal eventSender As Object, ByVal eventArgs As EventArgs) Handles cmdGenerarArduino.Click
         frmArduino.DefInstance.ShowDialog()
     End Sub
-
-
-
 
     Private Sub cmdArranque_Click(ByVal eventSender As Object, ByVal eventArgs As EventArgs) Handles cmdArranque.Click
         ConectarArduino()
@@ -1304,6 +1305,16 @@ Public Class frmControl
         Dim Valor As Integer
         If sCad.Length > 3 Then
             Select Case sCad.Substring(0, 3)
+                Case "L->" ' Array de distancias lidar
+                    lidar.aMedidaLidar = New Integer(MAX_MEDIDAS_LIDAR) {}
+                    aCad = sCad.Substring(3).Split(",")
+                    lidar.TipoLinea = aCad(0)
+                    lidar.PosServo = aCad(1)
+                    For i As Integer = 0 To MAX_MEDIDAS_LIDAR - 1
+                        lidar.aMedidaLidar(i) = Val(aCad(i + 2))
+                    Next
+                Case "O->" ' distancias lidar
+                    _tbValorParar_0.Text = Convert.ToInt16(sCad.Substring(3))
                 Case "1->" ' Distancias de todos los sensores
                     aCad = sCad.Substring(3).Split(",")
                     For i As Integer = 0 To MAX_SENSORES_DISTANCIA - 1
@@ -1472,7 +1483,9 @@ Public Class frmControl
     End Sub
 
     Sub DataReceivedHandler(sender As Object, e As SerialDataReceivedEventArgs)
-        'RecDatos() interpreta los datos
+
+        '->RecDatos() interpreta los datos
+
         Static i As Integer = 0
         Dim _serialPort As SerialPort = sender
         'Dim indata As String = sp.ReadExisting()
@@ -3193,5 +3206,25 @@ error_Renamed:
         Dim iPos As Integer = Calcular(AngSonido, MIN_ANG_SONIDO, MAX_ANG_SONIDO, Convert.ToInt16(tbMin(13).Text) + MARGEN_ANG_CABEZA_SONIDO, Convert.ToInt16(tbMax(13).Text) - MARGEN_ANG_CABEZA_SONIDO)
         ProgramarMovimientoServo(SERVO_CABEZA_GUINADA, iPos, MOV_GRADOS_SEG)
         EjecutarMovimientoProgramado()
+    End Sub
+
+    Private Sub cmdSAPPO_0_Click(sender As Object, e As EventArgs) Handles cmdSAPPO_0.Click
+        EnviarCodigo("B", 1)
+        cmdSAPPO_1.BackColor = Color.LightGray
+        cmdSAPPO_1.Tag = "OFF"
+    End Sub
+
+    Private Sub cmdSAPPO_1_Click(sender As Object, e As EventArgs) Handles cmdSAPPO_1.Click
+        EnviarCodigo("B", 0)
+        cmdSAPPO_1.BackColor = Color.LightSalmon
+        cmdSAPPO_1.Tag = "ON"
+    End Sub
+
+    Private Sub cmdBarridoLaserHor_Click(sender As Object, e As EventArgs) Handles cmdBarridoLaserHor.Click
+        EnviarCodigo("y", POS_SERVO_LIDAR_VER)
+    End Sub
+
+    Private Sub cmdBarridoLaserVer_Click(sender As Object, e As EventArgs) Handles cmdBarridoLaserVer.Click
+        EnviarCodigo("Y", POS_SERVO_LIDAR_HOR)
     End Sub
 End Class

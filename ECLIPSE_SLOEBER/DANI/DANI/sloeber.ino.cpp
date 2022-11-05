@@ -2,22 +2,29 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2022-10-17 19:30:47
+//This file has been generated on 2022-11-04 19:25:58
 
 #include "Arduino.h"
 #include "pines.h"
 #include <Arduino.h>
-#include <ServoTimer2.h>
-#define Servo ServoTimer2
+#include "DANI.h"
+#include <Wire.h>
+#include <VL53L0X.h>
+#include <Arduino.h>
+#include "pines.h"
+#include "DANI.h"
+#include "SoftwareServo.h"
 #include <RF24.h>
 #include <RF24_config.h>
 #include <VirtualWire.h>
-#include "pines.h"
+#define Servo SoftwareServo
 #include "list.h"
 #include "node_cpp.h"
 #include "list.cpp"
 #include "node_cpp.cpp"
 #include "SAPPO.h"
+#include <Arduino.h>
+#include "DANI.h"
 
 int ComprobarCRC(int CRC, char *cad) ;
 int LeerCadena(int *i, char *Cadena) ;
@@ -35,7 +42,7 @@ void setup()  ;
 void loop()  ;
 void ControlDesconexionServos() ;
 void MovimientoTemporizado() ;
-void MedirDistanciaSensor3() ;
+void MedirDistanciaSensor(byte sensor) ;
 void ComprobarControlColision() ;
 void ContadorVelocidad() ;
 void DistanciaD() ;
@@ -49,7 +56,6 @@ void LOG2int(char *c1, int i2) ;
 void LOG2(char *c1, char *c2) ;
 void LOG3(char *c1, char *c2, char *c3) ;
 void LOG_DEBUG(char *c1, long l1, long l2, float l3, float l4) ;
-void ControlLimites() ;
 void PruebaMovimientoCabeza() ;
 void DebugInt(int valor, bool concatenar) ;
 void DebugChar(char valor, bool concatenar) ;

@@ -1,0 +1,129 @@
+#define DEBUG  0
+#define VALOR_MEDIO		100
+#define VALOR_COLISION_US	80
+
+#define MS_CONTROL_POS      50 // Se controla el reposicionamiento en parada de los servos 20 veces por segundo
+
+//#define CONTADOR_VELOCIDAD	19
+
+#define VALOR_DISTANCIA_CM_MIN		4
+#define VALOR_DISTANCIA_CM_MAX		100
+#define VALOR_DISTANCIA_MIN			185
+#define VALOR_DISTANCIA_MAX			265
+#define VALOR_OBJETO_NO_DETECTADO	-1
+
+#define FIN_SECUENCIA  0
+#define FIN_MOVIMIENTO 0
+#define SECUENCIA_EN_PROCESO  1
+
+#define MAX_SEC 100
+
+#define RUN 1
+#define STOP 2
+#define PAUSE 3
+
+#define LECTURA_FIN  1
+#define SIN_ASIGNAR  -1
+#define MOV_CONTROL  -2
+#define TIEMPO_ITERACION_MS  5
+
+#define DISTANCIA_DERECHA	21
+#define DISTANCIA_IZQUIERDA	20
+#define DISTANCIA_CENTRO	19
+#define DISTANCIA_TRASERA	18
+
+#define SENSOR_DISTANCIA_DERECHA	3
+#define SENSOR_DISTANCIA_CENTRO		2
+#define SENSOR_DISTANCIA_IZQUIERDA	1
+#define SENSOR_DISTANCIA_TRASERA	0
+
+#define PERIODO_MEDIDA_DISTANCIA_MS 1000
+
+#define MAX_LON_CADENA 400
+
+#define MAX_SERVOS_POS 		27
+#define MIN_SERVO_SOLAPADO 	25
+
+//#define PIN_RETROCESO  10 //Blanco
+
+#define GRADOS    0
+#define MS        1
+#define SERVO_DIR    26 //Servo direccion
+#define MAX_SENSOR_DISTANCIA 4
+#define MIN_POS_SERVO 18
+#define MAX_POS_SERVO 24
+#define ESPERA_DISTANCIA_uS 2058 //0.7 metros
+
+#define MIN_SERVO_POS   16
+#define MAX_SERVO_POS	25
+
+#define MS_POR_GRADO	60
+#define MIN_TIEMPO_DESCONEX  600
+
+#define VALOR_MEDIO		100
+#define NUM_POSICIONES	255
+
+#define ASCENDENTE				1
+#define DESCENDENTE				0
+#define SIN_ACCION				-1
+
+#define MAYOR_MEDIO		1
+#define MENOR_MEDIO		-1
+
+#define SERVO_ROT_SUBIR		5
+#define SERVO_ROT_BAJAR		175
+
+#define MAX_CONTADOR_FUERA_LIMITES  3
+
+#define TIEMPO_DESCONEX_SERVO_ROT_MS 3000
+#define VALOR_SERVO_ROT_ALTO 175
+#define VALOR_SERVO_ROT_BAJO 5
+
+#define LINEA_VERTICAL		0
+#define LINEA_HORIZONTAL	1
+
+#define NUM_SERVOS_ROT	6
+#define NUM_SERVOS		18
+#define NUM_VECES_FUERA_TOLERANCIA 4
+
+#define MIN_NUM_SERVO		2
+#define MAX_NUM_SERVO		28
+#define POS_MEDIO_LIDAR_V	90
+#define POS_MEDIO_LIDAR_H	90
+
+#define MULTIPLICADOR_TOLERANCIA_APAGADO	2
+
+
+//Números de los servos comunicados desde PC
+#ifndef POSICIONES
+#define POSICIONES
+enum Posiciones {
+	mano_derecha_pulgar = 2,
+	mano_derecha_indice = 3,
+	mano_derecha_medio = 4,
+	mano_derecha_anular = 5,
+	mano_derecha_menique = 6,
+	mano_derecha_muneca = 7,
+	mano_izquierda_pulgar = 8,
+	mano_izquierda_indice = 9,
+	mano_izquierda_medio = 10,
+	mano_izquierda_anular = 11,
+	mano_izquierda_menique = 12,
+	mano_izquierda_muneca = 13,
+	boca = 14,
+	guinada = 15,
+	cabeceo = 16,
+	hombro_cuerpo_derecho = 18,
+	hombro_brazo_derecho = 19,
+	biceps_derecho = 20,
+	hombro_cuerpo_iquierdo = 22,
+	hombro_brazo_iquierdo = 23,
+	biceps_izquierdo = 24,
+	direccion = 26,
+	lidar_cabeceo = 27,
+	lidar_guinada= 28
+};
+#endif
+
+void LeerLinea(bool salida, int TipoLinea, int ValorServo);
+int LeerMedidaSensorLaser();

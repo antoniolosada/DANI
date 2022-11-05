@@ -258,3 +258,47 @@ D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsof
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.dll
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.pdb
 D:\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.SuggestedBindingRedirects.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\x64\myo.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\x86\myo.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.exe.config
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.exe
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.exe
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.DB.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\stdole.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.StdFormat.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.exe.config
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.DB.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Interop.MSCommLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AxInterop.MSCommLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.AssemblyReference.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.SuggestedBindingRedirects.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Interop.MSCommLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\AxInterop.MSCommLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.ResolveComReference.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.frmArduino.resources
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.frmControl.resources
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.Vista3D.resources
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.Resources.resources
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.GenerateResource.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CoreCompileInputs.cache
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CopyComplete
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLbot.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.UniversalApiContract.winmd
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Interop.SpeechLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.FoundationContract.winmd
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.winmd
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.exe.config
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.pdb

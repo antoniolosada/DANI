@@ -273,6 +273,8 @@ Partial Class frmControl
         Me.cmdEjecutarMovRot = New System.Windows.Forms.Button()
         Me.cmdLeerPosServosRot = New System.Windows.Forms.Button()
         Me.cmdPosIni = New System.Windows.Forms.Button()
+        Me.cmdSAPPO_1 = New System.Windows.Forms.Button()
+        Me.cmdSAPPO_0 = New System.Windows.Forms.Button()
         Me.cmdMoverRatón = New System.Windows.Forms.Button()
         Me.cbUnidad = New System.Windows.Forms.ComboBox()
         Me.tbCom = New System.Windows.Forms.TextBox()
@@ -487,6 +489,7 @@ Partial Class frmControl
         Me.cmdCuerpo0 = New System.Windows.Forms.Button()
         Me.cmdBase0 = New System.Windows.Forms.Button()
         Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.tbTexto = New System.Windows.Forms.TextBox()
         Me.Video = New System.Windows.Forms.GroupBox()
@@ -509,6 +512,8 @@ Partial Class frmControl
         Me.picVideoI = New System.Windows.Forms.PictureBox()
         Me.picVideoD = New System.Windows.Forms.PictureBox()
         Me.Radar = New System.Windows.Forms.GroupBox()
+        Me.cmdBarridoLaserVer = New System.Windows.Forms.Button()
+        Me.cmdBarridoLaserHor = New System.Windows.Forms.Button()
         Me.tbDistD = New System.Windows.Forms.TextBox()
         Me.tbDistC = New System.Windows.Forms.TextBox()
         Me.tbDistI = New System.Windows.Forms.TextBox()
@@ -1701,7 +1706,7 @@ Partial Class frmControl
         'cmdControlLimitesOn
         '
         Me.cmdControlLimitesOn.Image = CType(resources.GetObject("cmdControlLimitesOn.Image"), System.Drawing.Image)
-        Me.cmdControlLimitesOn.Location = New System.Drawing.Point(452, 42)
+        Me.cmdControlLimitesOn.Location = New System.Drawing.Point(331, 44)
         Me.cmdControlLimitesOn.Name = "cmdControlLimitesOn"
         Me.cmdControlLimitesOn.Size = New System.Drawing.Size(31, 27)
         Me.cmdControlLimitesOn.TabIndex = 215
@@ -1711,7 +1716,7 @@ Partial Class frmControl
         'cmdControlLimitesOff
         '
         Me.cmdControlLimitesOff.Image = CType(resources.GetObject("cmdControlLimitesOff.Image"), System.Drawing.Image)
-        Me.cmdControlLimitesOff.Location = New System.Drawing.Point(423, 42)
+        Me.cmdControlLimitesOff.Location = New System.Drawing.Point(302, 44)
         Me.cmdControlLimitesOff.Name = "cmdControlLimitesOff"
         Me.cmdControlLimitesOff.Size = New System.Drawing.Size(31, 27)
         Me.cmdControlLimitesOff.TabIndex = 214
@@ -1721,7 +1726,7 @@ Partial Class frmControl
         'cmdControlLimOn
         '
         Me.cmdControlLimOn.Image = CType(resources.GetObject("cmdControlLimOn.Image"), System.Drawing.Image)
-        Me.cmdControlLimOn.Location = New System.Drawing.Point(293, 44)
+        Me.cmdControlLimOn.Location = New System.Drawing.Point(218, 44)
         Me.cmdControlLimOn.Name = "cmdControlLimOn"
         Me.cmdControlLimOn.Size = New System.Drawing.Size(31, 27)
         Me.cmdControlLimOn.TabIndex = 212
@@ -1731,7 +1736,7 @@ Partial Class frmControl
         'cmdControlLimOff
         '
         Me.cmdControlLimOff.Image = CType(resources.GetObject("cmdControlLimOff.Image"), System.Drawing.Image)
-        Me.cmdControlLimOff.Location = New System.Drawing.Point(264, 44)
+        Me.cmdControlLimOff.Location = New System.Drawing.Point(189, 44)
         Me.cmdControlLimOff.Name = "cmdControlLimOff"
         Me.cmdControlLimOff.Size = New System.Drawing.Size(31, 27)
         Me.cmdControlLimOff.TabIndex = 211
@@ -1741,7 +1746,7 @@ Partial Class frmControl
         'tbControlPosOn
         '
         Me.tbControlPosOn.Image = CType(resources.GetObject("tbControlPosOn.Image"), System.Drawing.Image)
-        Me.tbControlPosOn.Location = New System.Drawing.Point(105, 44)
+        Me.tbControlPosOn.Location = New System.Drawing.Point(81, 44)
         Me.tbControlPosOn.Name = "tbControlPosOn"
         Me.tbControlPosOn.Size = New System.Drawing.Size(31, 27)
         Me.tbControlPosOn.TabIndex = 209
@@ -1751,7 +1756,7 @@ Partial Class frmControl
         'tbControlPosOff
         '
         Me.tbControlPosOff.Image = CType(resources.GetObject("tbControlPosOff.Image"), System.Drawing.Image)
-        Me.tbControlPosOff.Location = New System.Drawing.Point(76, 44)
+        Me.tbControlPosOff.Location = New System.Drawing.Point(52, 44)
         Me.tbControlPosOff.Name = "tbControlPosOff"
         Me.tbControlPosOff.Size = New System.Drawing.Size(31, 27)
         Me.tbControlPosOff.TabIndex = 208
@@ -1833,6 +1838,26 @@ Partial Class frmControl
         Me.cmdPosIni.TabIndex = 208
         Me.ToolTipMain.SetToolTip(Me.cmdPosIni, "Valores  iniciales")
         Me.cmdPosIni.UseVisualStyleBackColor = False
+        '
+        'cmdSAPPO_1
+        '
+        Me.cmdSAPPO_1.Image = CType(resources.GetObject("cmdSAPPO_1.Image"), System.Drawing.Image)
+        Me.cmdSAPPO_1.Location = New System.Drawing.Point(452, 44)
+        Me.cmdSAPPO_1.Name = "cmdSAPPO_1"
+        Me.cmdSAPPO_1.Size = New System.Drawing.Size(31, 27)
+        Me.cmdSAPPO_1.TabIndex = 218
+        Me.ToolTipMain.SetToolTip(Me.cmdSAPPO_1, "Control Posición")
+        Me.cmdSAPPO_1.UseVisualStyleBackColor = True
+        '
+        'cmdSAPPO_0
+        '
+        Me.cmdSAPPO_0.Image = CType(resources.GetObject("cmdSAPPO_0.Image"), System.Drawing.Image)
+        Me.cmdSAPPO_0.Location = New System.Drawing.Point(423, 44)
+        Me.cmdSAPPO_0.Name = "cmdSAPPO_0"
+        Me.cmdSAPPO_0.Size = New System.Drawing.Size(31, 27)
+        Me.cmdSAPPO_0.TabIndex = 217
+        Me.ToolTipMain.SetToolTip(Me.cmdSAPPO_0, "Control Posición")
+        Me.cmdSAPPO_0.UseVisualStyleBackColor = True
         '
         'cmdMoverRatón
         '
@@ -4648,6 +4673,8 @@ Partial Class frmControl
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.cmdSAPPO_1)
+        Me.GroupBox2.Controls.Add(Me.cmdSAPPO_0)
         Me.GroupBox2.Controls.Add(Me.Label37)
         Me.GroupBox2.Controls.Add(Me.cmdControlLimitesOn)
         Me.GroupBox2.Controls.Add(Me.cmdControlLimitesOff)
@@ -4670,6 +4697,7 @@ Partial Class frmControl
         Me.GroupBox2.Controls.Add(Me.cmdCuerpo0)
         Me.GroupBox2.Controls.Add(Me.cmdBase0)
         Me.GroupBox2.Controls.Add(Me.Label36)
+        Me.GroupBox2.Controls.Add(Me.Label38)
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.GroupBox2.Location = New System.Drawing.Point(10, 493)
         Me.GroupBox2.Name = "GroupBox2"
@@ -4685,12 +4713,12 @@ Partial Class frmControl
         Me.Label37.Cursor = System.Windows.Forms.Cursors.Default
         Me.Label37.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label37.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label37.Location = New System.Drawing.Point(330, 48)
+        Me.Label37.Location = New System.Drawing.Point(243, 48)
         Me.Label37.Name = "Label37"
         Me.Label37.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label37.Size = New System.Drawing.Size(89, 25)
+        Me.Label37.Size = New System.Drawing.Size(58, 25)
         Me.Label37.TabIndex = 216
-        Me.Label37.Text = "Ctr.Límites"
+        Me.Label37.Text = "Ctr.Lím"
         Me.Label37.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label35
@@ -4699,12 +4727,12 @@ Partial Class frmControl
         Me.Label35.Cursor = System.Windows.Forms.Cursors.Default
         Me.Label35.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label35.Location = New System.Drawing.Point(143, 48)
+        Me.Label35.Location = New System.Drawing.Point(113, 48)
         Me.Label35.Name = "Label35"
         Me.Label35.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label35.Size = New System.Drawing.Size(115, 25)
+        Me.Label35.Size = New System.Drawing.Size(76, 25)
         Me.Label35.TabIndex = 213
-        Me.Label35.Text = "Ctr.Límites Off"
+        Me.Label35.Text = "C.Lim.Off"
         Me.Label35.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label29
@@ -4716,9 +4744,9 @@ Partial Class frmControl
         Me.Label29.Location = New System.Drawing.Point(2, 48)
         Me.Label29.Name = "Label29"
         Me.Label29.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label29.Size = New System.Drawing.Size(68, 25)
+        Me.Label29.Size = New System.Drawing.Size(52, 25)
         Me.Label29.TabIndex = 210
-        Me.Label29.Text = "Ctr. Pos."
+        Me.Label29.Text = "C.Pos."
         Me.Label29.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         '_tbValorParar_0
@@ -4748,7 +4776,7 @@ Partial Class frmControl
         '
         '_tbMas_0
         '
-        Me._tbMas_0.Image = Global.MiRobot.My.Resources.Resources.derecha_1
+        Me._tbMas_0.Image = Global.MiRobot.My.Resources.Resources.abajo1
         Me._tbMas_0.Location = New System.Drawing.Point(428, 16)
         Me._tbMas_0.Name = "_tbMas_0"
         Me._tbMas_0.Size = New System.Drawing.Size(25, 23)
@@ -4757,7 +4785,7 @@ Partial Class frmControl
         '
         '_tbMenos_0
         '
-        Me._tbMenos_0.Image = Global.MiRobot.My.Resources.Resources.izquierda_1
+        Me._tbMenos_0.Image = Global.MiRobot.My.Resources.Resources.abajo1
         Me._tbMenos_0.Location = New System.Drawing.Point(369, 16)
         Me._tbMenos_0.Name = "_tbMenos_0"
         Me._tbMenos_0.Size = New System.Drawing.Size(31, 23)
@@ -4860,6 +4888,20 @@ Partial Class frmControl
         Me.Label36.Text = "Base"
         Me.Label36.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'Label38
+        '
+        Me.Label38.BackColor = System.Drawing.SystemColors.Control
+        Me.Label38.Cursor = System.Windows.Forms.Cursors.Default
+        Me.Label38.Font = New System.Drawing.Font("Arial", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label38.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label38.Location = New System.Drawing.Point(363, 49)
+        Me.Label38.Name = "Label38"
+        Me.Label38.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Label38.Size = New System.Drawing.Size(61, 25)
+        Me.Label38.TabIndex = 219
+        Me.Label38.Text = "SAPPO"
+        Me.Label38.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
         'tbTexto
         '
         Me.tbTexto.AcceptsReturn = True
@@ -4910,9 +4952,9 @@ Partial Class frmControl
         '
         Me.tbDebug.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.tbDebug.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbDebug.Location = New System.Drawing.Point(67, 1)
+        Me.tbDebug.Location = New System.Drawing.Point(52, 1)
         Me.tbDebug.Name = "tbDebug"
-        Me.tbDebug.Size = New System.Drawing.Size(487, 21)
+        Me.tbDebug.Size = New System.Drawing.Size(502, 21)
         Me.tbDebug.TabIndex = 211
         Me.tbDebug.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -5090,6 +5132,8 @@ Partial Class frmControl
         '
         'Radar
         '
+        Me.Radar.Controls.Add(Me.cmdBarridoLaserVer)
+        Me.Radar.Controls.Add(Me.cmdBarridoLaserHor)
         Me.Radar.Controls.Add(Me.tbDistD)
         Me.Radar.Controls.Add(Me.tbDistC)
         Me.Radar.Controls.Add(Me.tbDistI)
@@ -5102,6 +5146,24 @@ Partial Class frmControl
         Me.Radar.TabIndex = 197
         Me.Radar.TabStop = False
         Me.Radar.Text = "Radar proximidad"
+        '
+        'cmdBarridoLaserVer
+        '
+        Me.cmdBarridoLaserVer.Image = Global.MiRobot.My.Resources.Resources.arriba_1
+        Me.cmdBarridoLaserVer.Location = New System.Drawing.Point(16, 201)
+        Me.cmdBarridoLaserVer.Name = "cmdBarridoLaserVer"
+        Me.cmdBarridoLaserVer.Size = New System.Drawing.Size(25, 23)
+        Me.cmdBarridoLaserVer.TabIndex = 206
+        Me.cmdBarridoLaserVer.UseVisualStyleBackColor = True
+        '
+        'cmdBarridoLaserHor
+        '
+        Me.cmdBarridoLaserHor.Image = Global.MiRobot.My.Resources.Resources.derecha_1
+        Me.cmdBarridoLaserHor.Location = New System.Drawing.Point(141, 201)
+        Me.cmdBarridoLaserHor.Name = "cmdBarridoLaserHor"
+        Me.cmdBarridoLaserHor.Size = New System.Drawing.Size(25, 23)
+        Me.cmdBarridoLaserHor.TabIndex = 205
+        Me.cmdBarridoLaserHor.UseVisualStyleBackColor = True
         '
         'tbDistD
         '
@@ -5528,7 +5590,7 @@ Partial Class frmControl
         Me.Name = "frmControl"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "RASPER - Robot Autónomo de Servicio Personal"
+        Me.Text = "DANI - Domótica Autónoma con Navegación Inteligente"
         CType(Me.picBrazo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picMano, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Frame6.ResumeLayout(False)
@@ -6051,5 +6113,10 @@ Partial Class frmControl
     Friend WithEvents cmdLeerPosServosRot As Button
     Friend WithEvents cmdEjecutarMovRot As Button
     Friend WithEvents cmdPosIni As Button
+    Friend WithEvents cmdSAPPO_1 As Button
+    Friend WithEvents cmdSAPPO_0 As Button
+    Public WithEvents Label38 As Label
+    Friend WithEvents cmdBarridoLaserVer As Button
+    Friend WithEvents cmdBarridoLaserHor As Button
 #End Region
 End Class

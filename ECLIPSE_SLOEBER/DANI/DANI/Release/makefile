@@ -9,12 +9,21 @@ RM := rm -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include libraries\vl53l0x\subdir.mk
+-include libraries\Wire\src\utility\subdir.mk
+-include libraries\Wire\src\subdir.mk
 -include libraries\VirtualWire\subdir.mk
+-include libraries\SoftwareServo\subdir.mk
+-include libraries\SoftwareSerial\src\subdir.mk
 -include libraries\ServoTimer2\subdir.mk
 -include libraries\SPI\src\subdir.mk
 -include libraries\RF24\subdir.mk
 -include libraries\Kalman\subdir.mk
+-include libraries\Adafruit_VL53L0X-master\src\platform\src\subdir.mk
+-include libraries\Adafruit_VL53L0X-master\src\core\src\subdir.mk
+-include libraries\Adafruit_VL53L0X-master\src\subdir.mk
 -include core\core\subdir.mk
+-include .metadata\.plugins\org.eclipse.cdt.make.core\subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -54,7 +63,7 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 AR += \
-D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release\arduino.ar \
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release\arduino.ar \
 
 ELF += \
 DANI.elf \
@@ -70,19 +79,19 @@ all: DANI
 DANI: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-size" -A "D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/DANI.elf"
+	"C:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-size" -A "C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/DANI.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release\arduino.ar: $(AR_OBJ)
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-gcc-ar" rcs     D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/arduino.ar $(AR_OBJ)
+	"C:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-gcc-ar" rcs     C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 DANI.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"D:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-gcc" -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega1280   -o "D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/DANI.elf"   $(LINK_OBJ)    D:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/arduino.ar  "-LD:\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release" -lm
+	"C:\PROGRAMAS\Sloeber\arduinoPlugin\packages\arduino\tools\avr-gcc\7.3.0-atmel3.6.1-arduino7/bin/avr-gcc" -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega1280   -o "C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/DANI.elf"   $(LINK_OBJ)    C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release/arduino.ar  "-LC:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\ECLIPSE_SLOEBER\DANI\DANI\Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 

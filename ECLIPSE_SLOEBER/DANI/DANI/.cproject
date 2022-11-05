@@ -22,13 +22,18 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24/utility}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Kalman}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/BasicLinearAlgebra}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/MeanFilterLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareServo}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Adafruit_VL53L0X-master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/vl53l0x}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1883851902" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -37,13 +42,18 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24/utility}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Kalman}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/BasicLinearAlgebra}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/MeanFilterLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareServo}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Adafruit_VL53L0X-master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/vl53l0x}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.94910269" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -52,13 +62,18 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24/utility}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareSerial/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Kalman}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/BasicLinearAlgebra}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/MeanFilterLib/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/RF24}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/VirtualWire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/SoftwareServo}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/ServoTimer2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/Adafruit_VL53L0X-master/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DANI/libraries/vl53l0x}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.249388673" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
@@ -99,7 +114,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="libraries/BasicLinearAlgebra/impl|libraries/RF24/pyRF24|libraries/RF24/images|libraries/RF24/examples_pico|libraries/RF24/examples_linux|libraries/RF24/docs|libraries/RF24/datasheets|libraries/RF24/cmake|libraries/Servo/docs|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries/**/._*|libraries/?*/utility/*/*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="libraries/Adafruit_VL53L0X-master/.github|libraries/vl53l0x/.github|libraries/RF24/pyRF24|libraries/RF24/images|libraries/RF24/examples_pico|libraries/RF24/examples_linux|libraries/RF24/docs|libraries/RF24/datasheets|libraries/RF24/cmake|libraries/BasicLinearAlgebra/impl|libraries/Servo/docs|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries/**/._*|libraries/?*/utility/*/*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

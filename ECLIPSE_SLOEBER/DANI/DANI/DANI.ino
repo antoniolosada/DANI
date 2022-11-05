@@ -2,81 +2,35 @@
 // by Michal Rinott <http://people.interaction-ivrea.it/m.rinott> 
 
 #include <Arduino.h>
+#include "pines.h"
 
 #ifndef SAPPO_H
-	//#include <Servo.h>
-	#include <ServoTimer2.h>
-	#define Servo ServoTimer2
-
+	#include "DANI.h"
+	#include "SoftwareServo.h"
 	#include <RF24.h>
 	#include <RF24_config.h>
 	#include <VirtualWire.h>
-	#include "pines.h"
+	#define Servo SoftwareServo
 
-	#include "list.h"
-	#include "node_cpp.h"
-	#ifndef CODE_LIST
-		#include "list.cpp"
-		#include "node_cpp.cpp"
-	#endif
+		#include "list.h"
+		#include "node_cpp.h"
+		#ifndef CODE_LIST
+			#include "list.cpp"
+			#include "node_cpp.cpp"
+		#endif
 
-	#include "SAPPO.h"
+		#include "SAPPO.h"
 #endif
 //#include <TimerOne.h>
 
-#define DEBUG  0
-#define VALOR_MEDIO		100
-#define VALOR_COLISION_US	80
 
-#define MS_CONTROL_POS      50 // Se controla el reposicionamiento en parada de los servos 20 veces por segundo
-
-
-//#define CONTADOR_VELOCIDAD	19
-//#define PIN_ALIMENTACION_CUERPO    21
-//#define PIN_ALIMENTACION_BASE      20
-
-#define VALOR_DISTANCIA_CM_MIN		4
-#define VALOR_DISTANCIA_CM_MAX		100
-#define VALOR_DISTANCIA_MIN			185
-#define VALOR_DISTANCIA_MAX			265
-#define VALOR_OBJETO_NO_DETECTADO	-1
-
-#define FIN_SECUENCIA  0
-#define FIN_MOVIMIENTO 0
-#define SECUENCIA_EN_PROCESO  1
-
-#define MAX_SEC 100
-
-#define RUN 1
-#define STOP 2
-#define PAUSE 3
-
-#define LECTURA_FIN  1
-#define SIN_ASIGNAR  -1
-#define MOV_CONTROL  -2
-#define TIEMPO_ITERACION_MS  5
-
-#define DISTANCIA_DERECHA	21
-#define DISTANCIA_IZQUIERDA	20
-#define DISTANCIA_CENTRO	19
-#define DISTANCIA_TRASERA	18
-
-#define SENSOR_DISTANCIA_DERECHA	3
-#define SENSOR_DISTANCIA_CENTRO		2
-#define SENSOR_DISTANCIA_IZQUIERDA	1
-#define SENSOR_DISTANCIA_TRASERA	0
-
-#define PERIODO_MEDIDA_DISTANCIA_MS 1000
-
-#define MAX_LON_CADENA 400
-
-#define MAX_SERVOS_POS 25
-#define REC_MEDIDAS  1
+int MOTOR = LOW;
+int VELOCIDAD = 0;
 
 //PINes de los sensores de distancia
-byte DistanciaEcho[4] = { PIN_ECHO_DIST_DELANTE_1,
-							PIN_ECHO_DIST_DELANTE_2,
+byte DistanciaEcho[4] = { 	PIN_ECHO_DIST_DELANTE_1,
 							PIN_ECHO_DIST_DELANTE_3,
+							PIN_ECHO_DIST_DELANTE_2,
 							PIN_ECHO_DIST_ATRAS_1 };
 
 byte DistanciaTriger[4] = { PIN_TRIGGER_DIST_DELANTE_1,
@@ -101,7 +55,7 @@ struct sPosServos
   unsigned long ms_desconexion;
   byte iValoIniTemporizado;
   byte iValorFinTemporizado;
-  unsigned int ms_tiempo_mov;
+  long ms_tiempo_mov;
   long ms_inicial = 0;
   long ms_final = 0;
   bool MovTemporizadoActivo = false;
@@ -118,7 +72,6 @@ struct Movimiento
 };
 
 Movimiento Secuencia[10];
-long cont_loop = 0;
 
 int iPosSec = 0;
 int iEstado = STOP;
@@ -126,7 +79,7 @@ int iNumSecActiva = SIN_ASIGNAR;
 int iNumMovActivo = SIN_ASIGNAR;
 int iFinSec = 0;
 long ContadorMarcas = 0;
-bool RecuperarPosicion = false;
+
 long ContadorMs;
 
 static long timeControlPos = millis();
@@ -134,12 +87,16 @@ static long timeControlPos = millis();
 extern bool ControlPosicionActivo;
 extern bool ControlLimitesOffActivo;
 extern bool ControlLimitesActivo;
-extern int algoKalman;
 
+extern int algoKalman;
+bool RecuperarPosicion = false;
 void InicializarRadio();
 void InicializarSAPPO_us();
 void CargarDatosBalizas();
 bool RecuperarMedidasBalizas(int algoritmo, bool salida);
+void InicializarSensorLaser();
+
+/***********************************************************         SETUP          *********************************************************************************************************/
 
 void setup() 
 { 
@@ -164,18 +121,22 @@ void setup()
   //Timer1.attachInterrupt(ControlLimites); // Activa la interrupcion y la asocia a ISR_Blink
   pinMode(PIN_CONTADOR_VELOCIDAD, INPUT);
   attachInterrupt(digitalPinToInterrupt(PIN_CONTADOR_VELOCIDAD), ContadorVelocidad, CHANGE); //INT4 -> pin 2
+
+  /*Medida de sensores de distancia
   attachInterrupt(2, DistanciaD, FALLING); //INT4 -> pin 21 D
   attachInterrupt(3, DistanciaC, FALLING); //INT4 -> pin 20 C
   attachInterrupt(4, DistanciaI, FALLING); //INT4 -> pin 19 I
-  attachInterrupt(5, DistanciaT, FALLING); //INT4 -> pin 18 T
+  attachInterrupt(5, DistanciaT, FALLING); //INT4 -> pin 18 T*/
 
   pinMode(PIN_ALIMENTACION_BASE, OUTPUT);
   pinMode(PIN_ALIMENTACION_CUERPO, OUTPUT);
   pinMode(PIN_ALIMENTACION_CABEZA, OUTPUT);
+  pinMode(PIN_ALIMENTACION_SAPPO, OUTPUT);
 
   digitalWrite(PIN_ALIMENTACION_CUERPO, HIGH);
   digitalWrite(PIN_ALIMENTACION_BASE, HIGH);
   digitalWrite(PIN_ALIMENTACION_CABEZA, HIGH);
+  digitalWrite(PIN_ALIMENTACION_SAPPO, HIGH);
 
   pinMode(PIN_SENSOR_LINEA_L, INPUT);
   pinMode(PIN_SENSOR_LINEA_C, INPUT);
@@ -191,12 +152,19 @@ void setup()
 	pinServo = pin(i);
     if (pinServo > 0)
     {
-      aServo[i].attach(pinServo);
       aPosServos[i].iIteraciones = 0;
       aPosServos[i].pin = pinServo;
-      aPosServos[i].Conectado = true;
       aPosServos[i].ms_desconexion = millis();
-    }
+
+      if (i >= MIN_SERVO_SOLAPADO)
+          aPosServos[i].Conectado = false;
+      else
+      {
+          aPosServos[i].Conectado = true;
+          aServo[i].attach(pinServo);
+      }
+
+}
     else
     {
         aPosServos[i].pin = 0;
@@ -207,27 +175,32 @@ void setup()
   }
   PosicionInicial();
 
-  //SAPPO Inicializacion
+    /* SAPPO Inicializacion  */
   InicializarRadio();
   InicializarSAPPO_us();
   CargarDatosBalizas();
+  InicializarSensorLaser();
 
-  delay(2000);
+  	Serial.print("R->RAM libre: ");
+    Serial.print(freeRam());
+    Serial.println(";");
 
-  
-//  Serial.println("-----------------------------------------");
-//  Serial.print("RAM libre: ");
-//  Serial.print(freeRam());
-//  Serial.print(";");
+    delay(2000);
+
 } 
- 
+
+/***********************************************************         LOOP          *********************************************************************************************************/
+int SensorDistancia = 0;
+bool ActivarMedirDistancia = true;
+
 void loop() 
 { 
 	//return;
 	//PruebaMovimientoCabeza();
-	cont_loop++;
 
-  if (LeerCadena(&iPosCad, Cadena) == LECTURA_FIN)
+ SoftwareServo::refresh();
+
+ if (LeerCadena(&iPosCad, Cadena) == LECTURA_FIN)
   {
     ProcesarCadena(Cadena);
     Cadena[0] = 0;
@@ -235,10 +208,10 @@ void loop()
   //MovimientoTemporizado();
 
   long Tiempo = millis() - ContadorMs;
-  if ((Tiempo < 0) || (Tiempo > PERIODO_MEDIDA_DISTANCIA_MS))
-  {
-	  ComprobarControlColision();
-  }
+//  if ((Tiempo < 0) || (Tiempo > PERIODO_MEDIDA_DISTANCIA_MS))
+//  {
+//	  ComprobarControlColision();
+//  }
 
   if (ControlLimitesOffActivo) ControlLimitesArticulacionesApagado(); //Apagado zona de alimentación
   if (ControlLimitesActivo) ControlLimitesArticulaciones(); //Parada servo
@@ -246,7 +219,14 @@ void loop()
   //20 veces por segundo se lanza el control de posiciÃ³n de las articulaciones
   if (millis() - timeControlPos > MS_CONTROL_POS)
   {
-      if (ControlPosicionActivo) ControlPosicion();
+	  ActivarMedirDistancia = !ActivarMedirDistancia;
+	  if (ActivarMedirDistancia) //10 veces/s
+	  { //Reducimos la frecuencia de las medidas (cada una puede tardar 1,4 ms)
+		  MedirDistanciaSensor(SensorDistancia);
+		  SensorDistancia = (SensorDistancia < MAX_SENSOR_DISTANCIA-1?SensorDistancia+1:0);
+	  }
+
+	  if (ControlPosicionActivo) ControlPosicion();
       timeControlPos = millis();
 
       ControlDesconexionServos(); //Desconecta los servos para evitar movimientos y vibraciones
@@ -254,15 +234,15 @@ void loop()
   }
   ControlMovimientoTemporizado(); //Movimiento suave de servos normales
 
-  bool medidas = false;
+  return;//*******************************************************************************************
 
-  if ((cont_loop % REC_MEDIDAS) == 0 )
-  {
-  	if (RecuperarPosicion)
-  		medidas = RecuperarMedidasBalizas(algoKalman, false);
-  }
+    bool medidas = false;
 
+	if (RecuperarPosicion)
+		medidas = RecuperarMedidasBalizas(algoKalman, false);
 } 
+
+/***********************************************************         FIN LOOP          ******************************************************************************************************/
 
 void ControlDesconexionServos()
 {
@@ -308,23 +288,24 @@ void MovimientoTemporizado()
     delay(TIEMPO_ITERACION_MS);                           // waits for the servo to get there 
 }
 
-void MedirDistanciaSensor3()
+void MedirDistanciaSensor(byte sensor)
 {
 	ContadorMs = millis();
 
-	unsigned int tiempo, distancia;
+	long tiempo, distancia;
 
-	digitalWrite(DistanciaTriger[3], LOW);
-	delayMicroseconds(2);
-	digitalWrite(DistanciaTriger[3], HIGH);
+	digitalWrite(DistanciaTriger[sensor], LOW);
+	delayMicroseconds(4);
+	digitalWrite(DistanciaTriger[sensor], HIGH);
 	delayMicroseconds(10);
-	digitalWrite(DistanciaTriger[3], LOW);
+	digitalWrite(DistanciaTriger[sensor], LOW);
 	// Calcula la distancia midiendo el tiempo del estado alto del pin ECHO
-	tiempo = pulseIn(DistanciaEcho[3], HIGH);
+	tiempo = pulseIn(DistanciaEcho[sensor], HIGH, ESPERA_DISTANCIA_uS);
 	// La velocidad del sonido es de 340m/s o 29 microsegundos por centimetro
+	//LOG_DEBUG("T", tiempo, sensor, DistanciaTriger[sensor], DistanciaEcho[sensor]);
 	distancia = tiempo / 58;
 	//manda la distancia al monitor serie
-	DistanciaCm[3] = distancia;
+	DistanciaCm[sensor] = distancia;
 }
 
 void ComprobarControlColision()
@@ -375,6 +356,7 @@ void DistanciaT()
 }
 void MedirDistancia(byte sensord)
 {
+	return;
 	if (DistanciaUs[sensord] > 0)
 	{
 		//double cm = (1.0 * micros() - DistanciaUs[sensord]) * 10 / 292 / 2;
@@ -514,10 +496,6 @@ void LOG_DEBUG(char *c1, long l1, long l2, float l3, float l4)
     Serial.println(";");
 }
 
-void ControlLimites()
-{
-
-}
 
 void PruebaMovimientoCabeza()
 {
