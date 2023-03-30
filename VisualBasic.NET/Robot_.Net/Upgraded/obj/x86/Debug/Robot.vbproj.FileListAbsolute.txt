@@ -293,12 +293,72 @@ C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CopyComplete
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Memory.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Buffers.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Numerics.Vectors.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\x64\myo.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\x86\myo.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.exe.config
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.exe
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MiRobot.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.exe
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.DB.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLbot.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.UniversalApiContract.winmd
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Speech.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Interop.SpeechLib.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.FoundationContract.winmd
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Memory.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Runtime.CompilerServices.Unsafe.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Buffers.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\stdole.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.StdFormat.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Numerics.Vectors.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.winmd
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.exe.config
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\09-HTTPLISTENER WEBSERVER.exe.config
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\RobotSupport.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Kinect.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Artinsoft.VB6.DB.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.AssemblyReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.SuggestedBindingRedirects.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe.config
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.ResolveComReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.frmArduino.resources
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.frmControl.resources
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.Vista3D.resources
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.Resources.resources
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.GenerateResource.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CoreCompileInputs.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\Robot.vbproj.CopyComplete
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\obj\x86\Debug\MiRobot.exe.config
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.dll
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLbot.dll
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.UniversalApiContract.winmd
-C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Interop.SpeechLib.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Speech.dll
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.Foundation.FoundationContract.winmd
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Windows.winmd
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.pdb
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\AIMLGUI.exe.config
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\MyoSharp.pdb
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Newtonsoft.Json.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\OpenAI_API.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Threading.Tasks.Extensions.dll
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\Newtonsoft.Json.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\OpenAI_API.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\bin\System.Threading.Tasks.Extensions.xml

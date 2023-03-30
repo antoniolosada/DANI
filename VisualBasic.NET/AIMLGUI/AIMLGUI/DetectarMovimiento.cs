@@ -15,19 +15,19 @@ namespace AIMLGUI
         public int resolucionImagen { get; set; }
         private Graphics gr;
 
-        public void webcam_CapturarMovimiento(PictureBox picture, Image image)
+        public void webcam_CapturarMovimiento(PictureBox resultado, Image image)
         {
             this.resolucionImagen = 300;
             if (this.imagenAnterior == null)
                 this.imagenAnterior = new Bitmap(image);
-            if (gr == null) gr = picture.CreateGraphics();
+            if (gr == null) gr = resultado.CreateGraphics();
 
             //Calculamos la diferencia de imágenes
-            picture.Image = objSubstraccion.substraer(new Bitmap(image, this.resolucionImagen, this.resolucionImagen),
+            resultado.Image = objSubstraccion.substraer(new Bitmap(image, this.resolucionImagen, this.resolucionImagen),
                 new Bitmap(this.imagenAnterior, this.resolucionImagen, this.resolucionImagen));
             //Almacenamos la imagen actual como imagen anterior
             this.imagenAnterior = new Bitmap(image);
-            this.dibujarRecuadro(picture);
+            this.dibujarRecuadro(resultado);
         }
 
         private void dibujarRecuadro(PictureBox picture)

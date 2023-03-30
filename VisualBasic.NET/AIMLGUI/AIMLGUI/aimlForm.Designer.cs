@@ -57,21 +57,23 @@ namespace AIMLGUI
             this.richTextBoxOutput = new System.Windows.Forms.RichTextBox();
             this.buttonGo = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cbModelo = new System.Windows.Forms.ComboBox();
+            this.chkMoverCabeza = new System.Windows.Forms.CheckBox();
+            this.chkMoverBoca = new System.Windows.Forms.CheckBox();
+            this.tbMyo = new System.Windows.Forms.TextBox();
+            this.chkReconocimientoActivo = new System.Windows.Forms.CheckBox();
+            this.cmdMyo = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.richTextBoxInput = new System.Windows.Forms.RichTextBox();
             this.saveFileDialogDump = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogDump = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialogAIML = new System.Windows.Forms.FolderBrowserDialog();
-            this.chkMoverBoca = new System.Windows.Forms.CheckBox();
-            this.chkReconocimientoActivo = new System.Windows.Forms.CheckBox();
             this.tmrMoverBoca = new System.Windows.Forms.Timer(this.components);
-            this.cmdMyo = new System.Windows.Forms.Button();
-            this.tbMyo = new System.Windows.Forms.TextBox();
             this.tmrMyo = new System.Windows.Forms.Timer(this.components);
             this.tmrProcesarVozUWP = new System.Windows.Forms.Timer(this.components);
-            this.chkMoverCabeza = new System.Windows.Forms.CheckBox();
             this.tmrMoverCabeza = new System.Windows.Forms.Timer(this.components);
-            this.cbModelo = new System.Windows.Forms.ComboBox();
+            this.TimeOutConversacion = new System.Windows.Forms.Timer(this.components);
+            this.cmdPython = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.statusStripBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -286,12 +288,11 @@ namespace AIMLGUI
             // 
             this.richTextBoxOutput.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBoxOutput.Cursor = System.Windows.Forms.Cursors.Default;
-            this.richTextBoxOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBoxOutput.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxOutput.Name = "richTextBoxOutput";
             this.richTextBoxOutput.ReadOnly = true;
             this.richTextBoxOutput.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBoxOutput.Size = new System.Drawing.Size(428, 89);
+            this.richTextBoxOutput.Size = new System.Drawing.Size(428, 67);
             this.richTextBoxOutput.TabIndex = 99;
             this.richTextBoxOutput.Text = "Use the \"File\" -> \"Open Bot\" -> \"From AIML files\" menu to load AIML files into th" +
     "e bot\'s brain. (Clicking \"OK\" in the \"Browse for folder\" box will load the AIML " +
@@ -319,7 +320,14 @@ namespace AIMLGUI
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPython);
+            this.splitContainer1.Panel1.Controls.Add(this.cbModelo);
             this.splitContainer1.Panel1.Controls.Add(this.richTextBoxOutput);
+            this.splitContainer1.Panel1.Controls.Add(this.chkMoverCabeza);
+            this.splitContainer1.Panel1.Controls.Add(this.chkMoverBoca);
+            this.splitContainer1.Panel1.Controls.Add(this.tbMyo);
+            this.splitContainer1.Panel1.Controls.Add(this.chkReconocimientoActivo);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdMyo);
             // 
             // splitContainer1.Panel2
             // 
@@ -327,6 +335,75 @@ namespace AIMLGUI
             this.splitContainer1.Size = new System.Drawing.Size(428, 119);
             this.splitContainer1.SplitterDistance = 89;
             this.splitContainer1.TabIndex = 5;
+            // 
+            // cbModelo
+            // 
+            this.cbModelo.FormattingEnabled = true;
+            this.cbModelo.Items.AddRange(new object[] {
+            "davinci",
+            "AIML",
+            "curie",
+            "AIM,davinci",
+            "AIM,curie",
+            "AIM,chatgpt"});
+            this.cbModelo.Location = new System.Drawing.Point(150, 68);
+            this.cbModelo.Name = "cbModelo";
+            this.cbModelo.Size = new System.Drawing.Size(60, 21);
+            this.cbModelo.TabIndex = 11;
+            this.cbModelo.Text = "AIML";
+            // 
+            // chkMoverCabeza
+            // 
+            this.chkMoverCabeza.AutoSize = true;
+            this.chkMoverCabeza.Location = new System.Drawing.Point(358, 72);
+            this.chkMoverCabeza.Name = "chkMoverCabeza";
+            this.chkMoverCabeza.Size = new System.Drawing.Size(74, 17);
+            this.chkMoverCabeza.TabIndex = 10;
+            this.chkMoverCabeza.Text = "M.Cabeza";
+            this.chkMoverCabeza.UseVisualStyleBackColor = true;
+            this.chkMoverCabeza.CheckedChanged += new System.EventHandler(this.chkMoverCabeza_CheckedChanged);
+            // 
+            // chkMoverBoca
+            // 
+            this.chkMoverBoca.AutoSize = true;
+            this.chkMoverBoca.Location = new System.Drawing.Point(283, 73);
+            this.chkMoverBoca.Name = "chkMoverBoca";
+            this.chkMoverBoca.Size = new System.Drawing.Size(75, 17);
+            this.chkMoverBoca.TabIndex = 6;
+            this.chkMoverBoca.Text = "Mov.Boca";
+            this.chkMoverBoca.UseVisualStyleBackColor = true;
+            this.chkMoverBoca.CheckedChanged += new System.EventHandler(this.chkMoverBoca_CheckedChanged);
+            // 
+            // tbMyo
+            // 
+            this.tbMyo.Location = new System.Drawing.Point(74, 68);
+            this.tbMyo.Name = "tbMyo";
+            this.tbMyo.Size = new System.Drawing.Size(75, 20);
+            this.tbMyo.TabIndex = 9;
+            // 
+            // chkReconocimientoActivo
+            // 
+            this.chkReconocimientoActivo.AutoSize = true;
+            this.chkReconocimientoActivo.Checked = true;
+            this.chkReconocimientoActivo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReconocimientoActivo.Location = new System.Drawing.Point(216, 73);
+            this.chkReconocimientoActivo.Name = "chkReconocimientoActivo";
+            this.chkReconocimientoActivo.Size = new System.Drawing.Size(67, 17);
+            this.chkReconocimientoActivo.TabIndex = 7;
+            this.chkReconocimientoActivo.Text = "Rec.Voz";
+            this.chkReconocimientoActivo.UseVisualStyleBackColor = true;
+            this.chkReconocimientoActivo.CheckedChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckedChanged);
+            this.chkReconocimientoActivo.CheckStateChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckStateChanged);
+            // 
+            // cmdMyo
+            // 
+            this.cmdMyo.Location = new System.Drawing.Point(34, 67);
+            this.cmdMyo.Name = "cmdMyo";
+            this.cmdMyo.Size = new System.Drawing.Size(39, 23);
+            this.cmdMyo.TabIndex = 8;
+            this.cmdMyo.Text = "Myo";
+            this.cmdMyo.UseVisualStyleBackColor = true;
+            this.cmdMyo.Click += new System.EventHandler(this.cmdMyo_Click);
             // 
             // splitContainer2
             // 
@@ -372,52 +449,10 @@ namespace AIMLGUI
             this.folderBrowserDialogAIML.RootFolder = System.Environment.SpecialFolder.ApplicationData;
             this.folderBrowserDialogAIML.ShowNewFolderButton = false;
             // 
-            // chkMoverBoca
-            // 
-            this.chkMoverBoca.AutoSize = true;
-            this.chkMoverBoca.Location = new System.Drawing.Point(282, 147);
-            this.chkMoverBoca.Name = "chkMoverBoca";
-            this.chkMoverBoca.Size = new System.Drawing.Size(75, 17);
-            this.chkMoverBoca.TabIndex = 6;
-            this.chkMoverBoca.Text = "Mov.Boca";
-            this.chkMoverBoca.UseVisualStyleBackColor = true;
-            this.chkMoverBoca.CheckedChanged += new System.EventHandler(this.chkMoverBoca_CheckedChanged);
-            // 
-            // chkReconocimientoActivo
-            // 
-            this.chkReconocimientoActivo.AutoSize = true;
-            this.chkReconocimientoActivo.Checked = true;
-            this.chkReconocimientoActivo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReconocimientoActivo.Location = new System.Drawing.Point(215, 147);
-            this.chkReconocimientoActivo.Name = "chkReconocimientoActivo";
-            this.chkReconocimientoActivo.Size = new System.Drawing.Size(67, 17);
-            this.chkReconocimientoActivo.TabIndex = 7;
-            this.chkReconocimientoActivo.Text = "Rec.Voz";
-            this.chkReconocimientoActivo.UseVisualStyleBackColor = true;
-            this.chkReconocimientoActivo.CheckedChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckedChanged);
-            this.chkReconocimientoActivo.CheckStateChanged += new System.EventHandler(this.chkReconocimientoActivo_CheckStateChanged);
-            // 
             // tmrMoverBoca
             // 
             this.tmrMoverBoca.Interval = 150;
             this.tmrMoverBoca.Tick += new System.EventHandler(this.tmrMoverBoca_Tick);
-            // 
-            // cmdMyo
-            // 
-            this.cmdMyo.Location = new System.Drawing.Point(1, 141);
-            this.cmdMyo.Name = "cmdMyo";
-            this.cmdMyo.Size = new System.Drawing.Size(61, 23);
-            this.cmdMyo.TabIndex = 8;
-            this.cmdMyo.Text = "Myo";
-            this.cmdMyo.UseVisualStyleBackColor = true;
-            this.cmdMyo.Click += new System.EventHandler(this.cmdMyo_Click);
-            // 
-            // tbMyo
-            // 
-            this.tbMyo.Location = new System.Drawing.Point(68, 143);
-            this.tbMyo.Name = "tbMyo";
-            this.tbMyo.Size = new System.Drawing.Size(75, 20);
-            this.tbMyo.TabIndex = 9;
             // 
             // tmrMyo
             // 
@@ -427,46 +462,30 @@ namespace AIMLGUI
             // 
             this.tmrProcesarVozUWP.Tick += new System.EventHandler(this.tmrPRocesarVozUWP_Tick);
             // 
-            // chkMoverCabeza
-            // 
-            this.chkMoverCabeza.AutoSize = true;
-            this.chkMoverCabeza.Location = new System.Drawing.Point(357, 146);
-            this.chkMoverCabeza.Name = "chkMoverCabeza";
-            this.chkMoverCabeza.Size = new System.Drawing.Size(74, 17);
-            this.chkMoverCabeza.TabIndex = 10;
-            this.chkMoverCabeza.Text = "M.Cabeza";
-            this.chkMoverCabeza.UseVisualStyleBackColor = true;
-            this.chkMoverCabeza.CheckedChanged += new System.EventHandler(this.chkMoverCabeza_CheckedChanged);
-            // 
             // tmrMoverCabeza
             // 
             this.tmrMoverCabeza.Interval = 1000;
             this.tmrMoverCabeza.Tick += new System.EventHandler(this.tmrMoverCabeza_Tick);
             // 
-            // cbModelo
+            // TimeOutConversacion
             // 
-            this.cbModelo.FormattingEnabled = true;
-            this.cbModelo.Items.AddRange(new object[] {
-            "AIML",
-            "curie",
-            "davinci"});
-            this.cbModelo.Location = new System.Drawing.Point(149, 142);
-            this.cbModelo.Name = "cbModelo";
-            this.cbModelo.Size = new System.Drawing.Size(60, 21);
-            this.cbModelo.TabIndex = 11;
-            this.cbModelo.Text = "AIML";
+            this.TimeOutConversacion.Interval = 1000;
+            this.TimeOutConversacion.Tick += new System.EventHandler(this.TimeOutConversacion_Tick);
+            // 
+            // cmdPython
+            // 
+            this.cmdPython.Location = new System.Drawing.Point(5, 67);
+            this.cmdPython.Name = "cmdPython";
+            this.cmdPython.Size = new System.Drawing.Size(27, 23);
+            this.cmdPython.TabIndex = 100;
+            this.cmdPython.Text = "Py";
+            this.cmdPython.UseVisualStyleBackColor = true;
             // 
             // aimlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 165);
-            this.Controls.Add(this.cbModelo);
-            this.Controls.Add(this.chkMoverCabeza);
-            this.Controls.Add(this.tbMyo);
-            this.Controls.Add(this.cmdMyo);
-            this.Controls.Add(this.chkReconocimientoActivo);
-            this.Controls.Add(this.chkMoverBoca);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStripBottom);
             this.Controls.Add(this.menuStripMain);
@@ -482,6 +501,7 @@ namespace AIMLGUI
             this.statusStripBottom.ResumeLayout(false);
             this.statusStripBottom.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -540,6 +560,8 @@ namespace AIMLGUI
         private System.Windows.Forms.CheckBox chkMoverCabeza;
         private System.Windows.Forms.Timer tmrMoverCabeza;
         private System.Windows.Forms.ComboBox cbModelo;
+        private System.Windows.Forms.Timer TimeOutConversacion;
+        private System.Windows.Forms.Button cmdPython;
     }
 }
 

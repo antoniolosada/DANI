@@ -39,6 +39,13 @@ Imports WebCam_Capture
 Imports _09_HTTPLISTENER_WEBSERVER
 Imports System.Xml
 Imports Microsoft.Kinect
+Imports System.Collections.Generic
+Imports Microsoft.VisualBasic.Compatibility.VB6
+Imports MiRobot.frmControl
+Imports IronPython.Modules._ast
+Imports IronPython.Runtime
+Imports System.Runtime.InteropServices.WindowsRuntime
+Imports Microsoft
 
 Public Class frmControl
     Inherits System.Windows.Forms.Form
@@ -79,10 +86,16 @@ Public Class frmControl
     Dim DispositivosDeVideo As FilterInfoCollection
     Dim VideoResolucion As Integer = 0
     Dim ExistenDispositivos As Boolean = False
+    Dim IniciarCamara As Integer = 0
+    Const Fichero As String = "images/frame.jpg"
+    Const Fichero1 As String = "images/frame1.jpg"
+    Const FicheroD As String = "images/frameD.jpg"
+    Const FicheroI As String = "images/frameI.jpg"
 
     Dim v3D As Vista3D = New Vista3D()
 
 #End Region
+    Const MIN_TIMEOUT_PERSONA As Integer = 20
     Const ESPERA_COM As Integer = 50
     Const ESPERA_COM_CICLO As Integer = 300
 
@@ -112,6 +125,22 @@ Public Class frmControl
         Public PosServo As Integer
         Public aMedidaLidar() As Integer
     End Structure
+    Structure Deteccion
+        Dim Tipo As TipoDeteccion
+        Dim objeto As String
+        Dim Pos() As Double
+        Dim TimeDeteccion As DateTime
+    End Structure
+    Dim ListaDetecciones = New List(Of Deteccion)
+    Dim ListaPersonasDetectadas As List(Of Deteccion) = New List(Of Deteccion)
+
+    Enum TipoDeteccionRostrosNet
+        Detectar
+        Detectar_e_identificar
+        Detectar_e_identificar_una_vez
+    End Enum
+    Dim DetectarRostrosNet As Boolean
+    Dim ModoDetectarRostrosNet As TipoDeteccionRostrosNet
 
     Shared static_frase As String = ""
     Shared _continue As Boolean
@@ -145,6 +174,7 @@ Public Class frmControl
     Const CAMBIO As Integer = &HC0C0FF
     Const ASIGNADO As Integer = &HFFFFC0
     Const SIN_ASIGNAR As Integer = -1
+    Const KINECT_ALTURA_INI As Integer = 5
 
 
     Const CADERA_SUP_DER As Integer = 0
@@ -211,6 +241,7 @@ Public Class frmControl
     Dim MyoAbajo As Integer = 0
     Dim MyoDerecha As Integer = 0
     Dim MyoIzquierda As Integer = 0
+    Dim AIML As aimlForm
 
     Public aToleranciaServos() As Integer = {10, 10, 10, 10, 10, 10}
 
@@ -222,7 +253,18 @@ Public Class frmControl
 
     Private ProcesarEventosBarServo As Boolean = True
     Private lidar As sLidar = New sLidar
-
+    Dim VideoDActivo As Boolean = False
+    Dim VideoIActivo As Boolean = False
+    Dim VideoD_ms As Long = 0
+    Dim VideoI_ms As Long = 0
+    Dim VideoD_ejec_una As Boolean = False
+    Dim VideoI_ejec_una As Boolean = False
+    Dim ESPERA_VIDEOD_MS As Integer = 500
+    Dim ESPERA_VIDEOI_MS As Integer = 500
+    Enum TipoDeteccion
+        Rostros
+        Objetos
+    End Enum
 
     Enum RASPER
         boca = 14
@@ -302,12 +344,37 @@ Public Class frmControl
 
     Dim m_Servo As Integer = MIN_SERVO_POS
     Dim m_Sensor As Integer = 0
-    Dim sensor As KinectSensor
+    Dim sensor As KinectSensor = Nothing
+    Public Property KinectStart As Boolean = False
+    Public Property KinectAudioSource As Boolean = False
+    Public Property KinectCamaraRGB As Boolean = False
+    Public Property KinectCamaraProfundidad As Boolean = False
+    Public Property KinectXNA As Boolean = False
+    Dim NumImagen As Integer = 1
+    Dim IntervaloSimulacion As Integer = 1000
+    Public TimeRecVoz As DateTime = DateTime.Now
     Const MOV_GRADOS_SEG As Integer = 45
     Const POTENCIA_SERVO_ROT As Integer = 100
     Const POS_SERVO_LIDAR_VER As Integer = 90
     Const POS_SERVO_LIDAR_HOR As Integer = 90
+    Dim InfoPiedraPapelTijera As String = "Coloca la palma de la mano hacia mis ojos. Yo diré piedra,papel,tijera y elegimos los dos. Gana el mejor de tres juegos."
+    Dim RepetirFallo As Integer = 3
+    Dim JuegosPiedraPapelTijera As Integer = 3
+    Dim GrabarNombreDesconocido As Boolean = False
+    Dim GrabarDesconocido As Boolean = False
 
+    Enum TipoJugada
+        Piedra
+        Papel
+        Tijera
+        Vacio
+    End Enum
+    Const MAX_INTENTOS_PIEDRA_PAPEL_TIJERA = 3
+
+    '****************************************************  FIN DATOS ***************************************
+    '****************************************************  FIN DATOS ***************************************
+    '****************************************************  FIN DATOS ***************************************
+    '-------------------------------------------------------------------------------------------------------
 
     'UPGRADE_NOTE: (2010) barServo.Change was changed from an event to a procedure. More Information: http://www.vbtonet.com/ewis/ewi2010.aspx
     Public Sub New()
@@ -348,20 +415,19 @@ Public Class frmControl
             tbValServoPos(i).Text = CStr(0)
         Next
 
-        'com.CommPort = 1
         cbPuerto.SelectedIndex = 0
         cbModoEnvio.SelectedIndex = 0
 
-        cbUnidad.SelectedIndex = GRADOS
+        CargarCfgGeneral()
 
+        'com.CommPort = 1
+
+        cbUnidad.SelectedIndex = GRADOS
         cbGrabar.SelectedIndex = GRABAR_MODIFICADOS
         cbZonaMov.SelectedIndex = INDEPENDIENTE
 
         GenerarSincronizaciones()
-
         CargarCfgControlServos()
-
-        cbPuerto.Text = RecCfg("COM", "puerto")
 
         Dim XMLDoc As New Xml.XmlDocument
         XMLDoc.LoadXml(HaarCascadeClassifer.My.Resources.haarcascade_frontalface_alt)
@@ -495,9 +561,11 @@ Public Class frmControl
                 '    Thread.Sleep(1000)
                 'End While
                 InicializarValoresArduino()
+                cbPuerto.BackColor = Color.Green
             End If
         Catch ex As Exception
-            MessageBox.Show("Error: " + ex.Message.ToString())
+            'MessageBox.Show("Error: " + ex.Message.ToString())
+            cbPuerto.BackColor = Color.Red
             picEstado.BackColor = Color.Red
         End Try
     End Sub
@@ -1286,12 +1354,16 @@ Public Class frmControl
         tbComShared = tbCom
         ComprobarCargaBateria()
 
+        Thread.Sleep(5000)
+        Application.DoEvents()
+
         If (Arranque) Then
             If (RecCfg("INI", "conectar") = "S") Then ConectarArduino()
             If (RecCfg("INI", "ejecutar_dani") = "S") Then EjecutarDANI()
+            CargarKinect()
+            InicializarKinect(cbKinect.Text)
             Arranque = False
         End If
-
     End Sub
 
     '************************************************************************************************************************************************************************
@@ -1661,6 +1733,29 @@ Public Class frmControl
             Return Color.LightSalmon
         End If
     End Function
+    Sub CargarCfgGeneral()
+        chkDetecRostroPython.Checked = IIf(RecCfg("py_detec_rostros") = "S", True, False)
+        cbRostroPython.Text = RecCfg("py_modo_detec_rostros")
+        If SoyRobot() Then
+            IniciarCamara = Convert.ToInt16(RecCfg("ini_camara_robot"))
+            cbPuerto.Text = RecCfg("COM_puerto_robot")
+        Else
+            IniciarCamara = Convert.ToInt16(RecCfg("ini_camara"))
+            cbPuerto.Text = RecCfg("COM_puerto")
+        End If
+        DetectarRostrosNet = IIf(RecCfg("net_detec_rostros") = "S", True, False)
+        GrabarDesconocido = IIf(RecCfg("grabar_desconocido") = "S", True, False)
+        Select Case RecCfg("net_modo_detec_rostros")
+            Case "Detectar"
+                ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar
+            Case "Detectar e identificar"
+                ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar_e_identificar
+            Case "Detectar e identificar una vez"
+                ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar_e_identificar_una_vez
+        End Select
+        chkRostro.Checked = DetectarRostrosNet
+        IntervaloSimulacion = Convert.ToInt16(RecCfg("sim_intervalo_ms"))
+    End Sub
     Sub CargarCfgControlServos()
         For i As Integer = 0 To 9
             tbValorParar(i).Text = "85"
@@ -1791,6 +1886,7 @@ Public Class frmControl
 
     Private Sub cmdIniciarD_Click(sender As Object, e As EventArgs) Handles cmdIniciarD.Click
         InicializarVideo(FuenteDeVideoD, dispositivosD, "D")
+        dispositivosD.BackColor = Color.LightSalmon
     End Sub
 
     Public Function InicializarVideo(ByRef FuenteDeVideo As VideoCaptureDevice, dispositivos As ComboBox, Ojo As String) As Boolean
@@ -1809,10 +1905,24 @@ Public Class frmControl
         'FuenteDeVideo.VideoResolution = FuenteDeVideo.VideoCapabilities[2];
         FuenteDeVideo.VideoResolution = FuenteDeVideo.VideoCapabilities(VideoResolucion)
         FuenteDeVideo.Start()
+        If Ojo = "D" Then
+            VideoDActivo = True
+            cmdIniciarD.BackColor = Color.Red
+        Else
+            VideoIActivo = True
+            cmdIniciarI.BackColor = Color.Red
+        End If
         Return True
     End Function
 
     Private Sub video_NuevoFrameD(ByVal sender As Object, ByVal eventArgs As NewFrameEventArgs)
+        If (VideoD_ejec_una = False) Then
+            If Not TiempoEspera(VideoD_ms, VideoD_ejec_una, ESPERA_VIDEOD_MS) Then
+                Return
+            End If
+        Else
+            VideoD_ejec_una = False
+        End If
         Try
             Imagen = CType(eventArgs.Frame.Clone, Bitmap)
             picVideoD.Image = Imagen
@@ -1823,6 +1933,13 @@ Public Class frmControl
     End Sub
 
     Private Sub video_NuevoFrameI(ByVal sender As Object, ByVal eventArgs As NewFrameEventArgs)
+        If (VideoI_ejec_una = False) Then
+            If Not TiempoEspera(VideoI_ms, VideoI_ejec_una, ESPERA_VIDEOI_MS) Then
+                Return
+            End If
+        Else
+            VideoI_ejec_una = False
+        End If
         Try
             Dim Imagen As Bitmap = CType(eventArgs.Frame.Clone, Bitmap)
             picVideoI.Image = Imagen
@@ -1834,23 +1951,35 @@ Public Class frmControl
 
     Private Sub cmdIniciarI_Click(sender As Object, e As EventArgs) Handles cmdIniciarI.Click
         InicializarVideo(FuenteDeVideoI, dispositivosI, "I")
+        dispositivosI.BackColor = Color.LightSalmon
+
     End Sub
 
-    Public Sub TerminarFuenteDeVideo(ByRef FuenteDeVideo As VideoCaptureDevice)
+    Public Sub TerminarFuenteDeVideo(ByRef FuenteDeVideo As VideoCaptureDevice, Ojo As String)
         If Not (FuenteDeVideo Is Nothing) Then
             If FuenteDeVideo.IsRunning Then
                 FuenteDeVideo.SignalToStop()
                 FuenteDeVideo = Nothing
                 GC.Collect()
             End If
-
+            If Ojo = "D" Then
+                VideoDActivo = False
+                cmdIniciarD.BackColor = Color.Gray
+                picVideoD.Image = Nothing
+            Else
+                VideoIActivo = False
+                cmdIniciarI.BackColor = Color.Gray
+                picVideoI.Image = Nothing
+            End If
         End If
 
     End Sub
 
 
     Private Sub cmdFinD_Click(sender As Object, e As EventArgs) Handles cmdFinD.Click
-        TerminarFuenteDeVideo(FuenteDeVideoD)
+        TerminarFuenteDeVideo(FuenteDeVideoD, "D")
+        dispositivosD.BackColor = Color.White
+
     End Sub
 
     Private Sub cmdConfigD_Click(sender As Object, e As EventArgs) Handles cmdConfigD.Click
@@ -1874,7 +2003,9 @@ Public Class frmControl
     End Sub
 
     Private Sub cmdFinI_Click(sender As Object, e As EventArgs) Handles cmdFinI.Click
-        TerminarFuenteDeVideo(FuenteDeVideoI)
+        TerminarFuenteDeVideo(FuenteDeVideoI, "I")
+        dispositivosI.BackColor = Color.White
+
     End Sub
 
     Private Sub cmdConfigI_Click(sender As Object, e As EventArgs) Handles cmdConfigI.Click
@@ -1885,7 +2016,7 @@ Public Class frmControl
         MostrarResoluciones(FuenteDeVideoD)
     End Sub
 
-    Public Sub BuscarDispositivos()
+    Public Sub BuscarCamaras()
         DispositivosDeVideo = New FilterInfoCollection(FilterCategory.VideoInputDevice)
         If (DispositivosDeVideo.Count = 0) Then
             ExistenDispositivos = False
@@ -1918,7 +2049,9 @@ Public Class frmControl
     End Sub
 
     Private Sub frmControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        BuscarDispositivos()
+        'CONFIG = Sub Form_Load()
+
+        BuscarCamaras()
         aDist(0) = tbDistT
         aDist(1) = tbDistI
         aDist(2) = tbDistC
@@ -1926,8 +2059,18 @@ Public Class frmControl
 
         frmServerWEB.Show()
 
-        InicializarKinect()
+        KinectAltura.Value = KINECT_ALTURA_INI
 
+        If IniciarCamara > 0 Then
+            Try
+                dispositivosD.SelectedIndex = IniciarCamara - 1
+            Catch ex As Exception
+                tbCom.Text = "ERROR:" + ex.Message + Environment.NewLine + tbCom.Text
+            End Try
+            InicializarVideo(FuenteDeVideoD, dispositivosD, "D")
+        End If
+
+        cbKinect.Text = RecCfg("INI", "video_kinect")
         Me.Text += " v" + Application.ProductVersion
     End Sub
 
@@ -2110,12 +2253,11 @@ Public Class frmControl
         EjecutarDANI()
     End Sub
     Sub EjecutarDANI()
-        Dim AIML As aimlForm = New aimlForm()
+        AIML = New aimlForm()
 
         AIML.InicializarPosControl(Me.Top + Me.Height, Me.Left)
         AIML.dEjecutarComando = AddressOf EjecutarComandoExt
         aimlForm.dEjecutarMyo = AddressOf EjecutarMyo
-
         AIML.Show()
     End Sub
     Sub EjecutarMyo(Comando As String, roll As Integer, pitch As Integer, yaw As Integer)
@@ -2176,8 +2318,18 @@ Public Class frmControl
                 'Comandos ejecutados desde aimlForm
                 Case "pos_cabeza_ang_sonido"
                     Exit Select
+                Case "actualizar_time_rec_voz"
+                    TimeRecVoz = DateTime.Now
 
                 'Comandos de voz
+                Case "jugar a piedra papel tijera"
+                    JugarPiedraPapelTijera()
+                Case "reconocer objetos"
+                    ReconocerObjetos()
+                Case "reconocer rostros"
+                    ReconocerRostros()
+                Case "profundidad imagen"
+                    ProfundidadImagen()
                 Case "movimiento adelante"
                     EnviarCodigo("b", 0)
                     EnviarSentidoMarcha(0)
@@ -2536,18 +2688,27 @@ Public Class frmControl
     End Sub
 
     Private Sub tmrDeteccion_Tick(sender As Object, e As EventArgs) Handles tmrDeteccion.Tick
-        tmrDeteccion.Enabled = False
-        If IsNothing(FuenteDeVideoI) And Not IsNothing(FuenteDeVideoD) Then
-            If chkRostro.Checked Then DetectarRostros(picVideoI) ' Detectar y seguir rostro
-            If chkMovimiento.Checked Then DetectarMovimiento()
-            Application.DoEvents()
+        If AIML.SistemaOperativo Then
+            tmrDeteccion.Enabled = False
+            If Not IsNothing(picVideoD.Image) Then
+                If chkRostro.Checked Then
+                    cmdControl.Text = "Rostros"
+                    cmdControl.BackColor = Color.Red
+                    cmdControl.Refresh()
+                    DetectarRostros(picVideoD.Image) ' Detectar y seguir rostro
+                    cmdControl.Text = ""
+                    cmdControl.BackColor = Color.LightGray
+                    cmdControl.Refresh()
+                End If
+                If chkMovimiento.Checked Then DetectarMovimiento()
+            End If
+            tmrDeteccion.Enabled = True
         End If
-        tmrDeteccion.Enabled = True
     End Sub
     Private Sub DetectarMovimiento()
-        Mov.webcam_CapturarMovimiento(picVideoI, Imagen)
+        Mov.webcam_CapturarMovimiento(picFrame, picVideoD.Image)
     End Sub
-    Private Sub DetectarRostros(picVideoD As System.Windows.Forms.PictureBox)
+    Private Sub DetectarRostros(Imagen As System.Drawing.Image)
         Static ANTERIORX As Integer = 0
         Static ANTERIORY As Integer = 0
 
@@ -2558,8 +2719,6 @@ Public Class frmControl
         Dim x As Integer = 0
         Dim y As Integer = 0
 
-        If (IsNothing(FuenteDeVideoD)) Then Exit Sub
-
         Try
             'DETECCION
             Dim BMP As New Bitmap(Imagen)
@@ -2568,20 +2727,31 @@ Public Class frmControl
                                                           1.05, 0.3, 0.2, TRAZO) 'PARAMETROS PARA WEBCAM. PARA ROSTROS MUY PEQUEÑOS 1er. DETECTOR.Size2Scale(10)
             Dim RESULTADO As DResults = DETECTOR.Detect(BMP, PARAMETROS)
             Dim ar() As Rectangle = RESULTADO.DetectedOLocs
-            If ar Is Nothing Then
-                ENCONTRADO = False
-            ElseIf ar.Length = 0 Then
-                ENCONTRADO = False
-            Else
+
+            Dim CarasEncontradas = 0
+            ENCONTRADO = False
+            If Not ar Is Nothing Then
+                CarasEncontradas = ar.Length
+            End If
+
+            If CarasEncontradas > 0 Then
                 ENCONTRADO = True
+                If (ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar_e_identificar) Or
+                    (ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar_e_identificar_una_vez) Then
+                    ReconocerRostros()
+                    If (ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar_e_identificar_una_vez) Then
+                        ModoDetectarRostrosNet = TipoDeteccionRostrosNet.Detectar
+                    End If
+                Else
+                    picFrame.Image = BMP 'MUESTRA LA DETECCION
+                End If
+
                 For Each r As Rectangle In ar
                     x = (r.Top + r.Height / 2) - BMP.Height / 2
                     y = (r.Left + r.Width / 2) - BMP.Width / 2
-
                     'tbMarcas.Text = x & "," & y
                 Next
             End If
-            picVideoD.Image = BMP 'MUESTRA LA DETECCION
 
             If Not ENCONTRADO Then
                 lblPos1.Text = "N"
@@ -2613,6 +2783,8 @@ Public Class frmControl
             End If
         Catch ex As Exception
             MessageBox.Show("DetectarRostros: " + ex.Message.ToString())
+            Beep()
+            Beep()
         End Try
     End Sub
     Sub SeguimientoRostro(pos As Integer)
@@ -2641,7 +2813,7 @@ Public Class frmControl
         End If
     End Sub
     Private Sub chkRostro_CheckedChanged(sender As Object, e As EventArgs) Handles chkRostro.CheckedChanged
-        If (chkRostro.Checked) Or (chkMovimiento.Checked) Then
+        If (chkRostro.Checked) Or (chkMovimiento.Checked) Or (chkDetecRostroPython.Checked) Then
             tmrDeteccion.Enabled = True
         Else
             tmrDeteccion.Enabled = False
@@ -2681,14 +2853,12 @@ Public Class frmControl
     End Sub
 
     Private Sub cmdVista3D_Click(sender As Object, e As EventArgs) Handles cmdVista3D.Click
-
         v3D.fControl = Me
         v3D.Show()
-
     End Sub
 
     Private Sub frmControl_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
-        'frmServerWEB.CerrarServidor()
+
     End Sub
 
     Function ConvertirVR2Servo(v_gafas As Integer, EscalaVRGafasIni As Integer, EscalaVRGafasFin As Integer, EscalaVRServoIni As Integer, EscalaVRServoFin As Integer) As Integer
@@ -3071,54 +3241,102 @@ error_Renamed:
     Private Sub cmdEnviarPosParada_Click(sender As Object, e As EventArgs) Handles cmdEnviarPosParada.Click
         EnviarPosicionParadaServos()
     End Sub
-
-    Sub InicializarKinect()
+    Sub CargarKinect()
         For Each potentialSensor As KinectSensor In KinectSensor.KinectSensors
             If potentialSensor.Status = KinectStatus.Connected Then
                 Me.sensor = potentialSensor
                 Exit For
             End If
-            ' Start the sensor!
-            ' Some other application is streaming from the same Kinect sensor
         Next
+    End Sub
+    Sub InicializarKinect(Modo As String)
+        Dim InitSensor As Boolean
+        Dim InitSonido As Boolean
+        Dim InitCamaraRGB As Boolean
+        Dim InitCamaraDepth As Boolean
+        Dim InitXNA As Boolean
+
+        InitSensor = IIf(Modo = "Kinect Off", False, True)
+        InitSonido = IIf(Modo <> "Kinect Off", True, False)
+        InitCamaraRGB = IIf(Modo = "Kinect RGB" Or Modo = "Kinect Depth" Or Modo = "Kinect XNA", True, False)
+        InitCamaraDepth = IIf(Modo = "Kinect Depth" Or Modo = "Kinect XNA", True, False)
+        InitXNA = IIf(Modo = "Kinect XNA", True, False)
+        tbAngSonido.BackColor = Color.LightSalmon
+        cbKinect.BackColor = Color.LightSalmon
 
         If Not Me.sensor Is Nothing Then
-            Try
-                Me.sensor.Start()
-            Catch e As Exception
-                Me.sensor = Nothing
-            End Try
-            AddHandler Me.sensor.AudioSource.SoundSourceAngleChanged,
-                AddressOf ControlAnguloOrigenSonido
-            Me.sensor.AudioSource.Start()
-            Me.sensor.ElevationAngle = -10
-
+            If InitSensor Then
+                ' Inicializar sensor ----------------------------------
+                Try
+                    Me.sensor.Start()
+                    Me.KinectStart = True
+                    cbKinect.BackColor = Color.LightGreen
+                Catch e As Exception
+                    tbAngSonido.BackColor = Color.LightSalmon
+                    cbKinect.BackColor = Color.LightSalmon
+                    Me.sensor = Nothing
+                    Me.KinectStart = False
+                End Try
+                ' Inicializar sonido ----------------------------------
+                Try
+                    If KinectStart Then
+                        If InitSonido Then
+                            AddHandler Me.sensor.AudioSource.SoundSourceAngleChanged, AddressOf ControlAnguloOrigenSonido
+                            Me.sensor.AudioSource.Start()
+                            tbAngSonido.BackColor = Color.LightGreen
+                            Me.sensor.ElevationAngle = KINECT_ALTURA_INI
+                            Me.KinectAudioSource = True
+                        End If
+                    End If
+                Catch ex As Exception
+                    Me.KinectAudioSource = False
+                End Try
+                ' Inicializar camaras ----------------------------------
+                Try
+                    If KinectStart Then
+                        If Not AIML Is Nothing And Not sensor Is Nothing Then
+                            AIML.ActivarCamaras(sensor, InitCamaraRGB, AddressOf LeerBmpColorKinect, InitCamaraDepth, AddressOf LeerBmpProfundidadKinect, InitXNA, AddressOf LeerBmpXNAKinect)
+                            Me.KinectCamaraRGB = InitCamaraRGB
+                            Me.KinectCamaraProfundidad = InitCamaraDepth
+                            Me.KinectXNA = InitXNA
+                        End If
+                    End If
+                Catch ex As Exception
+                    Me.KinectCamaraRGB = False
+                    Me.KinectCamaraProfundidad = False
+                    Me.KinectXNA = False
+                End Try
+            Else
+                Me.sensor.Stop()
+            End If
         End If
+    End Sub
+    Private Sub LeerBmpColorKinect(Bmp As Bitmap)
+        If Me.KinectCamaraRGB And Not VideoDActivo Then picVideoD.Image = Bmp
+    End Sub
+    Private Sub LeerBmpProfundidadKinect(Bmp As Bitmap)
+        If cbKinect.Text = "Kinect Depth" And Me.KinectCamaraProfundidad And Not VideoIActivo Then picVideoI.Image = Bmp
+    End Sub
+    Private Sub LeerBmpXNAKinect(Bmp As Bitmap)
+        If cbKinect.Text = "Kinect XNA" And Me.KinectXNA And Not VideoIActivo Then picVideoI.Image = Bmp
+    End Sub
 
-
+    Private Sub KinectAllFramesReady(ByVal sender As Object, ByVal e As AllFramesReadyEventArgs)
+        Using colorFrame = e.OpenColorImageFrame()
+            If colorFrame Is Nothing Then Return
+            Dim pixels As Byte() = New Byte(colorFrame.PixelDataLength - 1) {}
+            colorFrame.CopyPixelDataTo(pixels)
+            Dim stride As Integer = colorFrame.Width * 4
+            'picVideoD.Image = BitmapSource.Create(colorFrame.Width, colorFrame.Height, 96, 96, PixelFormats.Bgr32, Nothing, pixels, stride)
+        End Using
     End Sub
     Sub ControlAnguloOrigenSonido(o As Object, e As SoundSourceAngleChangedEventArgs)
         tbAngSonido.Text = -Math.Round(e.Angle)
     End Sub
 
     Private Sub cmdPrueba_Click(sender As Object, e As EventArgs) Handles cmdPrueba.Click
-        Dim s As String = "D:\PROGRAMAS\PYTHON\python.exe"
-        Dim p As New Process()
-        Dim fileReader As String
-        Dim DirActual = My.Computer.FileSystem.CurrentDirectory
-        Dim escritor As StreamWriter
-        p.StartInfo.FileName = s
-        p.StartInfo.Arguments = "D:\PROGRAMAS\PYTHON\Proy\chatbot.py curie " + DirActual + "\entrada.txt " + DirActual + "\salida.txt"
-        p.Start()
-        p.WaitForExit()
-
-        fileReader = My.Computer.FileSystem.ReadAllText(DirActual + "\salida.txt", System.Text.Encoding.UTF8)
-        MsgBox(fileReader)
-
-        escritor = File.AppendText(DirActual + "\entrada.txt")
-        escritor.Write(Environment.NewLine + "AI:" + fileReader)
-        escritor.Flush()
-        escritor.Close()
+        'PruebaPython()
+        PruebaChatGPT()
     End Sub
 
     Private Sub _tbMaxPos_2_TextChanged(sender As Object, e As EventArgs) Handles _tbMaxPos_2.TextChanged
@@ -3182,10 +3400,10 @@ error_Renamed:
         Dim iPos As Integer = 0
 
         For i As Integer = 0 To NUM_SERVOS_MANOS - 1
-            EnviarPosicionServo(aPosManos(ipos).iNumServo(i), aPosManos(ipos).iPosServo(i))
+            EnviarPosicionServo(aPosManos(iPos).iNumServo(i), aPosManos(iPos).iPosServo(i))
             Thread.Sleep(ESPERA_COM_INSTRUCCIONES)
-            barServo(i).Value = aPosManos(ipos).iPosServo(i)
-            tbValServo(i).Text = aPosManos(ipos).iPosServo(i)
+            barServo(i).Value = aPosManos(iPos).iPosServo(i)
+            tbValServo(i).Text = aPosManos(iPos).iPosServo(i)
         Next
     End Sub
 
@@ -3226,5 +3444,417 @@ error_Renamed:
 
     Private Sub cmdBarridoLaserVer_Click(sender As Object, e As EventArgs) Handles cmdBarridoLaserVer.Click
         EnviarCodigo("Y", POS_SERVO_LIDAR_HOR)
+    End Sub
+
+    Sub PruebaPytonGPT()
+    End Sub
+
+    Sub PruebaChatGPT()
+        Dim comando As String = "chat_GPT(""como te llamas?"",True)"
+        Dim Salida As String = AIML.EjecutarComandoPython(comando, False)
+        MessageBox.Show(Salida)
+    End Sub
+
+    Sub PruebaPython()
+        Dim s As String = AIML.PyPath
+        Dim p As New Process()
+        Dim StdIn As StreamReader
+        Dim StdOut As StreamWriter
+        Dim DirActual = My.Computer.FileSystem.CurrentDirectory
+        p.StartInfo.FileName = s
+        p.StartInfo.Arguments = AIML.PyExec
+        p.StartInfo.RedirectStandardOutput = True
+        p.StartInfo.RedirectStandardInput = True
+        p.StartInfo.UseShellExecute = False
+        'p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+        'p.StartInfo.CreateNoWindow = True
+        p.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+        p.StartInfo.CreateNoWindow = False
+
+        p.Start()
+        StdIn = p.StandardOutput
+        StdOut = p.StandardInput
+
+        Dim i As Integer = 0
+        While (i < 10)
+            tbCom.Text = StdIn.ReadLine + tbCom.Text
+            StdOut.WriteLine("")
+            StdOut.Flush()
+            tbCom.Refresh()
+            Thread.Yield()
+            Thread.Sleep(300)
+            Inc(i)
+        End While
+        'p.WaitForExit()
+
+    End Sub
+
+    Private Sub chkDetecRostroPython_CheckedChanged(sender As Object, e As EventArgs) Handles chkDetecRostroPython.CheckedChanged
+        If (chkRostro.Checked) Or (chkMovimiento.Checked) Or (chkDetecRostroPython.Checked) Then
+            tmrDeteccionPython.Enabled = True
+        Else
+            tmrDeteccionPython.Enabled = False
+        End If
+    End Sub
+    Private Function CalcularProfundidadImagen()
+        Dim Salida As String
+        Salida = AIML.EjecutarComandoPython("profundidad(""" + FicheroD + """,""" + FicheroI + """)", False)
+    End Function
+    Private Function ReconocerElementos(Tipo As TipoDeteccion, Fichero As String) As List(Of Deteccion)
+        Dim Salida As String = ""
+        Dim CadenaDetecciones() As String
+        Dim d As Deteccion
+        Dim ListaDetecciones As List(Of Deteccion) = New List(Of Deteccion)
+
+        If Tipo = TipoDeteccion.Rostros Then
+            Salida = AIML.EjecutarComandoPython("reconocer_rostros(""" + Fichero + """, False)", False)
+        ElseIf Tipo = TipoDeteccion.Objetos Then
+            Salida = AIML.EjecutarComandoPython("reconocer_objetos(""" + Fichero + """, False)", False)
+        End If
+        If Salida <> "" Then
+            CadenaDetecciones = Salida.Split(";")
+            For i As Integer = 0 To CadenaDetecciones.Length - 1
+                Dim dc() As String = CadenaDetecciones(i).Split(":")
+                d.Tipo = Tipo
+                d.objeto = dc(0).Replace("_", "")
+                Dim posicion = dc(1).Replace("(", "").Replace("[", "").Replace(")", "").Replace("]", "")
+                Dim posc() As String = posicion.Split(",")
+                Dim posd(8) As Double
+                For j As Integer = 0 To posc.Length - 1
+                    posd(j) = Convert.ToDouble(posc(j).Replace(".", ","))
+                Next
+                d.Pos = posd
+                ListaDetecciones.Add(d)
+            Next
+        End If
+        Return ListaDetecciones
+    End Function
+    Private Sub ReconocerObjetos()
+        Dim ListaDetecciones As List(Of Deteccion)
+
+        ListaDetecciones = ReconocerElementosVideo(TipoDeteccion.Objetos, True)
+        For Each d As Deteccion In ListaDetecciones
+            AIML.Hablar("Veo " + d.objeto)
+            Thread.Sleep(500)
+        Next
+    End Sub
+    Private Sub ReconocerRostros()
+        Dim PersonasDetectadas As Boolean = False
+        ListaDetecciones = ReconocerElementosVideo(TipoDeteccion.Rostros, True)
+        If ListaDetecciones.Count > 0 Then
+            Dim Saludar As Boolean
+            If cbRostroPython.Text.Substring(0, 7) = "Saludar" Then
+                ' Identificar personas desconocidas
+                If ListaDetecciones.Count = 1 Then
+                    If ListaDetecciones(0).objeto = "Desconocido" And GrabarDesconocido Then
+                        AIML.Hablar("Hola desconocido, para que te recuerde, di, me llamo, seguido de tu nombre")
+                        GrabarNombreDesconocido = True
+                        Thread.Sleep(1000)
+                        Return
+                    End If
+                End If
+                For Each d As Deteccion In ListaDetecciones
+                    If d.objeto <> "Desconocido" Then
+                        PersonasDetectadas = True
+                        Dim p As Deteccion = Nothing
+                        p = ListaPersonasDetectadas.Find(Function(x) x.objeto = d.objeto)
+                        If (IsNothing(p.objeto)) Then
+                            Saludar = True
+                        Else
+                            If DateDiff(DateInterval.Minute, DateTime.Now, p.TimeDeteccion) > MIN_TIMEOUT_PERSONA Then
+                                Saludar = True
+                                ListaPersonasDetectadas.Remove(p)
+                            End If
+                        End If
+                        If Saludar Then
+                            p = New Deteccion()
+                            p.objeto = d.objeto
+                            p.TimeDeteccion = DateTime.Now
+                            ListaPersonasDetectadas.Add(p)
+                            AIML.Hablar("Hola " + d.objeto)
+                            Thread.Sleep(500)
+                        End If
+                    End If
+                Next
+                If cbRostroPython.Text = "Saludar y Conversar" And PersonasDetectadas Then
+                    AIML.ActivarModoConversacion()
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Function ReconocerElementosVideo(Tipo As TipoDeteccion, MostrarImagen As Boolean) As List(Of Deteccion)
+        Dim ListaDetecciones As List(Of Deteccion) = New List(Of Deteccion)
+
+        tmrDeteccion.Enabled = False
+        File.Delete(Fichero)
+        If Not IsNothing(picVideoD.Image) Then
+            If Not File.Exists(Fichero) Then
+                'Fichero = Fichero.Replace("\", "\\")
+                VideoDActivo = False
+                'picVideoD.Image.Clone.Save(Fichero)
+                Dim frame As Bitmap = New Bitmap(picVideoD.Image)
+                frame.Save(Fichero)
+                VideoDActivo = True
+                ListaDetecciones = ReconocerElementos(Tipo, Fichero)
+                If ListaDetecciones.Count > 0 And MostrarImagen Then
+                    If picFrame.Image IsNot Nothing Then picFrame.Image.Dispose()
+                    picFrame.Image = Nothing
+                    picFrame.Refresh()
+                    File.Delete(Fichero1)
+                    File.Copy(Fichero, Fichero1)
+                    picFrame.Image = System.Drawing.Image.FromFile(Fichero1)
+                End If
+                VideoDActivo = False
+            End If
+        End If
+        Return ListaDetecciones
+    End Function
+    Private Sub frmControl_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+
+    End Sub
+    Private Function ProfundidadImagen()
+        tmrDeteccion.Enabled = False
+        File.Delete(Fichero)
+        If Not IsNothing(picVideoD.Image) And Not IsNothing(picVideoI.Image) Then
+            If Not File.Exists(FicheroD) And Not File.Exists(FicheroI) Then
+                picVideoD.Image.Clone.Save(FicheroD)
+                picVideoD.Image.Clone.Save(FicheroI)
+                CalcularProfundidadImagen()
+
+                If picFrame.Image IsNot Nothing Then picFrame.Image.Dispose()
+                picFrame.Image = Nothing
+                picFrame.Refresh()
+                File.Delete(Fichero1)
+                File.Copy(Fichero, Fichero1)
+                picFrame.Image = System.Drawing.Image.FromFile(Fichero1)
+            End If
+        End If
+        Return ListaDetecciones
+    End Function
+
+    Private Sub TmrDeteccionPython_Tick(sender As Object, e As EventArgs) Handles tmrDeteccionPython.Tick
+        If AIML.SistemaOperativo Then
+            tmrDeteccionPython.Enabled = False
+            If chkDetecRostroPython.Checked Then
+                ReconocerRostros()
+            End If
+            Application.DoEvents()
+            tmrDeteccionPython.Enabled = True
+        End If
+    End Sub
+
+    Private Function SoyRobot() As Boolean
+        Return File.Exists(RecCfg("py_exec_robot"))
+    End Function
+
+    Private Sub cmdFoto_Click(sender As Object, e As EventArgs) Handles cmdFoto.Click
+        Dim MessageBoxTitle As String = "Grabar imagen"
+        Dim MessageBoxContent As String = "¿Obtener imagen temporizada?"
+
+        Dim DialogResult As DialogResult = MessageBox.Show(MessageBoxContent, MessageBoxTitle, MessageBoxButtons.YesNo)
+        If DialogResult = DialogResult.Yes Then
+            For i As Integer = 1 To 5
+                Thread.Sleep(1000)
+                If i = 4 Then
+                    cmdFoto.BackColor = Color.Red
+                ElseIf i = 2 Then
+                    cmdFoto.BackColor = Color.Yellow
+                End If
+                cmdFoto.Refresh()
+                Beep()
+                Application.DoEvents()
+            Next
+        End If
+        SacarFoto("D")
+        cmdFoto.BackColor = Color.LightGray
+    End Sub
+    Private Sub SacarFoto(Ojo As String)
+        Dim fbmp As Bitmap
+        If Not IsNothing(picVideoD.Image) Then
+            Try
+                If Ojo = "D" Then
+                    fbmp = New Bitmap(picVideoD.Image)
+                Else
+                    fbmp = New Bitmap(picVideoI.Image)
+                End If
+                fbmp.Save("images\frame" + Ojo + "_" + DateTime.Now.Millisecond.ToString + ".bmp")
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub cmdSimular_Click(sender As Object, e As EventArgs) Handles cmdSimular.Click
+        Dim FicheroBase As String = "images/sim/cam"
+        Dim Fichero As String = ""
+        Dim ImagenCargada As Boolean = False
+
+        If NumImagen = 1 Then
+            cmdSimular.BackColor = Color.Red
+        End If
+
+        Fichero = FicheroBase & "1_" & NumImagen & ".jpg"
+        If File.Exists(Fichero) Then
+            picVideoD.Image = System.Drawing.Image.FromFile(Fichero).Clone
+            ImagenCargada = True
+        End If
+        Fichero = FicheroBase & "2_" & NumImagen & ".jpg"
+        If File.Exists(Fichero) Then
+            picVideoI.Image = System.Drawing.Image.FromFile(Fichero).Clone
+            ImagenCargada = True
+        End If
+        If ImagenCargada Then
+            cmdSimular.Text = NumImagen.ToString
+            Inc(NumImagen)
+        Else
+            cmdSimular.BackColor = Color.LightGray
+            cmdSimular.Text = "Sim"
+            NumImagen = 1
+        End If
+
+    End Sub
+
+    Sub JugarPiedraPapelTijera()
+        Dim Generator As System.Random = New System.Random()
+        Dim AI As Integer = 0
+        Dim GanaIA As Boolean = False
+        Dim EleccionHumano As TipoJugada
+        Dim EleccionIA As TipoJugada
+        Dim JuegosGanadosIA As Integer = 0
+        Dim Reintentos As Integer = 0
+        Dim Ficheros() As String = {"piedra.jpg", "papel.jpg", "tijera.jpg"}
+
+        AIML.Hablar(InfoPiedraPapelTijera)
+        Thread.Sleep(500)
+        AIML.Hablar("comenzamos")
+
+        For jugada As Integer = 1 To JuegosPiedraPapelTijera
+            Reintentos = 0
+            While Reintentos < MAX_INTENTOS_PIEDRA_PAPEL_TIJERA
+                AIML.Hablar("piedra papel tijera", False)
+                AI = Generator.Next(0, 2)
+                picInfo.Image = System.Drawing.Image.FromFile("images/" + Ficheros(AI))
+                EleccionIA = SeleccionarEleccion(AI)
+                picVideoD.Image.Save("images/frame.jpg")
+                Dim Salida As String = AIML.EjecutarComandoPython("leer_jugada(""images/frame.jpg"")", False)
+                If Salida <> "NO_DETEC" Then
+                    EleccionHumano = SeleccionarEleccion(Convert.ToInt16(Salida))
+                    If picFrame.Image IsNot Nothing Then picFrame.Image.Dispose()
+                    picFrame.Image = Nothing
+                    picFrame.Refresh()
+                    File.Delete(Fichero1)
+                    File.Copy(Fichero, Fichero1)
+                    picFrame.Image = System.Drawing.Image.FromFile(Fichero1)
+
+                    If EleccionIA = EleccionHumano Then
+                        AIML.Hablar("Hemos empatado esta jugada")
+                        Continue While
+                    ElseIf (EleccionIA = TipoJugada.Tijera And EleccionHumano = TipoJugada.Papel) Or
+                            (EleccionIA = TipoJugada.Piedra And EleccionHumano = TipoJugada.Tijera) Or
+                            (EleccionIA = TipoJugada.Papel And EleccionHumano = TipoJugada.Piedra) Then
+                        Inc(JuegosGanadosIA)
+                        AIML.Hablar("He ganado esta jugada")
+                    Else
+                        AIML.Hablar("Has ganado esta jugada")
+                    End If
+                    If jugada < JuegosPiedraPapelTijera Then
+                        AIML.Hablar("Comenzamos el juego " + (jugada + 1).ToString)
+                    End If
+                    Exit While
+                Else
+                    Inc(Reintentos)
+                End If
+            End While
+            If Reintentos = MAX_INTENTOS_PIEDRA_PAPEL_TIJERA Then
+                AIML.Hablar("Tenemos un problema, no he podido ver la jugada en tu mano por lo que dejo de jugar")
+                Return
+            End If
+        Next
+        If (JuegosGanadosIA > JuegosPiedraPapelTijera \ 2) Then
+            AIML.Hablar("He ganado la partida, eres un paquete")
+        Else
+            AIML.Hablar("Has tenido suerte, has ganado la partida")
+        End If
+    End Sub
+    Function SeleccionarEleccion(opcion As Integer) As TipoJugada
+        Select Case opcion
+            Case 0
+                Return TipoJugada.Piedra
+            Case 1
+                Return TipoJugada.Papel
+            Case 0
+                Return TipoJugada.Tijera
+        End Select
+        Return TipoJugada.Vacio
+    End Function
+
+    Private Sub cmdFd_Click(sender As Object, e As EventArgs) Handles cmdFd.Click
+        SacarFoto("I")
+    End Sub
+
+    Private Sub _tbMenos_0_Click_1(sender As Object, e As EventArgs) Handles _tbMenos_0.Click
+
+    End Sub
+
+    Private Sub _tbMas_0_Click(sender As Object, e As EventArgs) Handles _tbMas_0.Click
+
+    End Sub
+
+    Private Sub _tbParar_0_Click(sender As Object, e As EventArgs) Handles _tbParar_0.Click
+
+    End Sub
+
+    Private Sub KinectAltura_ValueChanged(sender As Object, e As EventArgs) Handles KinectAltura.ValueChanged
+        Try
+            If Not Me.sensor Is Nothing Then
+                Me.sensor.ElevationAngle = KinectAltura.Value
+            End If
+        Catch ex As Exception
+
+        End Try
+        Thread.Sleep(200)
+    End Sub
+
+    Private Sub KinectAltura_Scroll(sender As Object, e As ScrollEventArgs) Handles KinectAltura.Scroll
+
+    End Sub
+
+    Private Sub chkKinect_CheckedChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub cbKinect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbKinect.SelectedIndexChanged
+        InicializarKinect(cbKinect.Text)
+    End Sub
+    Private Sub Aviso()
+        Beep()
+        Application.DoEvents()
+    End Sub
+
+    Private Function TiempoEspera(ByRef ms As Long, ByRef una_ejec As Boolean, espera As Integer) As Boolean
+        Dim now As DateTimeOffset = DateTimeOffset.UtcNow
+        Dim ms_actual As Long = now.ToUnixTimeMilliseconds()
+
+        If (Math.Abs(ms_actual - ms) < espera) Then
+            Return False
+        Else
+            ms = ms_actual
+            una_ejec = True
+            Return True
+        End If
+    End Function
+
+    Private Sub cmdSensorLineaR_Click(sender As Object, e As EventArgs) Handles cmdSensorLineaR.Click
+
+    End Sub
+
+    Private Sub cmdOff_Click(sender As Object, e As EventArgs) Handles cmdOff.Click
+        AIML.DesactivarKinect(sensor)
+        frmServerWEB.CerrarServidor()
+        AIML.EjecutarComandoPython("quit()", True)
+        Thread.Sleep(500)
+        AIML.CerrarDANI()
+        Application.DoEvents()
+        Application.Exit()
     End Sub
 End Class

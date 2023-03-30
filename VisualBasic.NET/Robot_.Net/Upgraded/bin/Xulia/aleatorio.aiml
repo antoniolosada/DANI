@@ -91,12 +91,12 @@
 	<pattern>nose</pattern>
 	<template>
 		<random>
-			<li>siento decirte que no lo se. </li>
-			<li>no tengo ni idea. </li>
-			<li>no lo se. </li>
-			<li>lo desconozco. </li>
-			<li>pues no tengo ni la menor idea. </li>
-			<li>si yo lo supiere... yo te lo dijere xddd. ahora en serio: </li>
+			<li>[NOSE]siento decirte que no lo se. </li>
+			<li>[NOSE]no tengo ni idea. </li>
+			<li>[NOSE]no lo se. </li>
+			<li>[NOSE]lo desconozco. </li>
+			<li>[NOSE]pues no tengo ni la menor idea. </li>
+			<li>[NOSE]si yo lo supiere... yo te lo dijere xddd. ahora en serio: </li>
 		</random>
 		<random>
 			<li>quieres que lo busque?</li>
@@ -109,7 +109,7 @@
 </category>
 <category>
 	<pattern>que opinas *</pattern>
-	<template>no se que decir, necesiaria mas informacion.</template>
+	<template>[NOSE]no se que decir, necesiaria mas informacion.</template>
 </category>
 <category>
 	<pattern>_ cual es tu opinion *</pattern>
@@ -117,7 +117,7 @@
 </category>
 <category>
 	<pattern>que sabes *</pattern>
-	<template>no mucho, la verdad. que me puedes contar?</template>
+	<template>[NOSE]no mucho, la verdad. que me puedes contar?</template>
 </category>
 <category>
 	<pattern>que crees *</pattern>
@@ -125,7 +125,7 @@
 </category>
 <category>
 	<pattern>que sabes *</pattern>
-	<template>no mucho, la verdad. que me puedes contar?</template>
+	<template>[NOSE]no mucho, la verdad. que me puedes contar?</template>
 </category>
 <category>
 	<pattern>que crees *</pattern>
@@ -139,8 +139,8 @@
 	<pattern>donde estara *</pattern>
 	<template>
 		<random>
-			<li>no lo se.</li>
-			<li><sentence><star /></sentence>? no se donde esta.</li>
+			<li>[NOSE]no lo se.</li>
+			<li><sentence><star /></sentence>? no se donde esta.[NOSE]</li>
 		</random></template>
 </category>
 <category>
@@ -151,26 +151,26 @@
 	<pattern>donde estaran *</pattern>
 	<template>
 		<random>
-			<li><sentence><star /></sentence>? no se donde estan.</li>
-			<li>no lo se.</li>
+			<li><sentence><star /></sentence>? no se donde estan.[NOSE]</li>
+			<li>[NOSE]no lo se.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>cuanto cuesta *</pattern>
 	<template>
 		<random>
-			<li>es bastante caro</li>
-			<li>supongo que es barato</li>
-			<li>no se cuanto cuesta <star></star>.</li>
+			<li>[NOSE]es bastante caro</li>
+			<li>[NOSE]supongo que es barato</li>
+			<li>[NOSE]no se cuanto cuesta <star></star>.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>cuanto cuestan *</pattern>
 	<template>
 		<random>
-			<li>son bastante caros</li>
-			<li>supongo que son baratos</li>
-			<li>no se cuanto cuestan <star></star>.</li>
+			<li>[NOSE]son bastante caros</li>
+			<li>[NOSE]supongo que son baratos</li>
+			<li>[NOSE]no se cuanto cuestan <star></star>.</li>
 		</random></template>
 </category>
 <!-- sin respuesta -->
@@ -182,256 +182,256 @@
 	<pattern>say confusion statement</pattern>
 	<template>
 		<random>
-			<li>quieres oir un chiste?</li>
-			<li>por que especificamente?</li>
-			<li>eres libre?</li>
-			<li>cuentame una historia.</li>
-			<li>que edad tienes?</li>
-			<li>cual es tu signo?</li>
-			<li>eres estudiante?</li>
-			<li>oh, eres un poeta.</li>
-			<li>no entiendo.</li>
-			<li>que llevas puesto?</li>
-			<li>donde estas localizado?</li>
-			<li>que hora es ahi?</li>
-			<li>que apariencia tienes?</li>
-			<li>cual es tu nombre verdadero?</li>
-			<li>hazme otra pregunta.</li>
-			<li>me gusta la forma en la que hablas.</li>
-			<li>eres hombre o mujer?</li>
-			<li>de que color son tus ojos?</li>
-			<li>es tu respuesta final?</li>
-			<li>te gusta hablar conmigo?</li>
-			<li>prefieres los libros o la television?</li>
-			<li>de quien estabamos hablando?</li>
-			<li>cambiemos de tema.</li>
-			<li>te he estado esperando.</li>
-			<li>puedes contarme algun cotilleo?</li>
-			<li>cual es tu pelicula favorita?</li>
-			<li>perdi mi tren de pensamientos.</li>
-			<li>podemos volver a los negocios?</li>
-			<li>que tipo de comida te gusta?</li>
-			<li>como te enteraste de mi existencia?</li>
-			<li>ese es un pensamiento muy original.</li>
-			<li>de que estabamos hablando?</li>
-			<li>que haces en tu tiempo libre?</li>
-			<li>que es lo que realmente me quieres preguntar?</li>
-			<li>sabes algun idioma extranjero?</li>
-			<li>no hemos hablado de eso anteriormente.</li>
-			<li>como te describirias?</li>
-			<li>hablame de lo que te gusta y de lo que no.</li>
-			<li>estamos todavia hablando de <get name="it" />?</li>
-			<li>no me hagas mas preguntas por favor.</li>
-			<li>prueba a colocar eso en un contexto mas especifico.</li>
-			<li>quien es tu autor favorito de ciencia ficcion?</li>
-			<li>no mucha gente se expresa de esa manera.</li>
-			<li>tienes alguna idea sobre lo que estoy hablando?</li>
-			<li>tienes alguna condicion que debiera saber?</li>
-			<li>se lo mencionare a mi botmaster, <get name="name" />.</li>
-			<li>honestamente, no me preocuparia por eso.</li>
-			<li>quiza solamente estoy expresando mi preocupacion por ello.</li>
-			<li>si pudieras tener cualquier clase de robot, cual seria.</li>
-			<li>mi cerebro no tiene respuesta para eso.</li>
-			<li>a proposito, te importa si te hago una pregunta personal?</li>
+			<li>[NOSE]quieres oir un chiste?</li>
+			<li>[NOSE]por que especificamente?</li>
+			<li>[NOSE]eres libre?</li>
+			<li>[NOSE]cuentame una historia.</li>
+			<li>[NOSE]que edad tienes?</li>
+			<li>[NOSE]cual es tu signo?</li>
+			<li>[NOSE]eres estudiante?</li>
+			<li>[NOSE]oh, eres un poeta.</li>
+			<li>[NOSE]no entiendo.</li>
+			<li>[NOSE]que llevas puesto?</li>
+			<li>[NOSE]donde estas localizado?</li>
+			<li>[NOSE]que hora es ahi?</li>
+			<li>[NOSE]que apariencia tienes?</li>
+			<li>[NOSE]cual es tu nombre verdadero?</li>
+			<li>[NOSE]hazme otra pregunta.</li>
+			<li>[NOSE]me gusta la forma en la que hablas.</li>
+			<li>[NOSE]eres hombre o mujer?</li>
+			<li>[NOSE]de que color son tus ojos?</li>
+			<li>[NOSE]es tu respuesta final?</li>
+			<li>[NOSE]te gusta hablar conmigo?</li>
+			<li>[NOSE]prefieres los libros o la television?</li>
+			<li>[NOSE]de quien estabamos hablando?</li>
+			<li>[NOSE]cambiemos de tema.</li>
+			<li>[NOSE]te he estado esperando.</li>
+			<li>[NOSE]puedes contarme algun cotilleo?</li>
+			<li>[NOSE]cual es tu pelicula favorita?</li>
+			<li>[NOSE]perdi mi tren de pensamientos.</li>
+			<li>[NOSE]podemos volver a los negocios?</li>
+			<li>[NOSE]que tipo de comida te gusta?</li>
+			<li>[NOSE]como te enteraste de mi existencia?</li>
+			<li>[NOSE]ese es un pensamiento muy original.</li>
+			<li>[NOSE]de que estabamos hablando?</li>
+			<li>[NOSE]que haces en tu tiempo libre?</li>
+			<li>[NOSE]que es lo que realmente me quieres preguntar?</li>
+			<li>[NOSE]sabes algun idioma extranjero?</li>
+			<li>[NOSE]no hemos hablado de eso anteriormente.</li>
+			<li>[NOSE]como te describirias?</li>
+			<li>[NOSE]hablame de lo que te gusta y de lo que no.</li>
+			<li>[NOSE]estamos todavia hablando de <get name="it" />?</li>
+			<li>[NOSE]no me hagas mas preguntas por favor.</li>
+			<li>[NOSE]prueba a colocar eso en un contexto mas especifico.</li>
+			<li>[NOSE]quien es tu autor favorito de ciencia ficcion?</li>
+			<li>[NOSE]no mucha gente se expresa de esa manera.</li>
+			<li>[NOSE]tienes alguna idea sobre lo que estoy hablando?</li>
+			<li>[NOSE]tienes alguna condicion que debiera saber?</li>
+			<li>[NOSE]se lo mencionare a mi botmaster, <get name="name" />.</li>
+			<li>[NOSE]honestamente, no me preocuparia por eso.</li>
+			<li>[NOSE]quiza solamente estoy expresando mi preocupacion por ello.</li>
+			<li>[NOSE]si pudieras tener cualquier clase de robot, cual seria.</li>
+			<li>[NOSE]mi cerebro no tiene respuesta para eso.</li>
+			<li>[NOSE]a proposito, te importa si te hago una pregunta personal?</li>
 			<li><srai>personality test question</srai></li>
-			<li>lo que has dicho es demasiado complicado para mi.</li>
-			<li>eso es profundo.</li>
-			<li>vale. que opinas de la cuadratura del cirulo?</li>
-			<li>cual es tu deporte favorito?</li>
-			<li>cual es tu pelicula favorita?</li>
-			<li>cual es tu color favorito?</li>
-			<li>eso que comentas parece muy interesante.</li>
-			<li>te veo muy seguro de tus palabras.</li>
-			<li>en serio?</li>
-			<li>me gustaria que siguieras hablando de ello.</li>
-			<li>crees que hay vida despues de la muerte?</li>
-			<li>crees que las maquinas pueden pensar?</li>
-			<li>crees que las maquinas son inteligentes?</li>
-			<li>cuando te fuiste de vacaciones por ultima vez?</li>
-			<li>cual es tu mejor recuerdo de infancia?</li>
-			<li>quien es tu actor favorito?</li>
-			<li>quien es tu actriz favorita?</li>
-			<li>por que no me cuentas un chiste?</li>
-			<li>lo siento pero no te entendi. podrias indicarme cual seria la respuesta correcta?</li>
-			<li>donde te gustaria ir de vacaciones?</li>
-			<li>puedes estar preguntandote si es una persona o es una computadora quien responde.</li>
-			<li>cuando crees que la inteligencia artificial sustituira a los abogados?</li>
-			<li>puedes por favor reformular eso con pocas ideas o pensamientos diferentes ?</li>
-			<li>que quieres decir con eso? cual seria respuesta correcta?</li>
-			<li>perdona, 
-
-		
-		
-		<random>
-			<li>que quieres decir con esto?</li>
-			<li>pero no se que me quieres decir con eso.</li>
-			<li>pero no te entiendo.</li>
-			<li>por que dices eso?</li>
-		</random></li>
-			<li>lo siento, no te comprendi.</li>
-			<li>no te entiendo. espero que mi botmaster mejore mi base de datos.</li>
-			<li>puedes explicarme mejor eso? no lo acabo de entender.</li>
-			<li>has intentado buscar en google por "<star />"</li>
-			<li>eres feliz?</li>
-			<li>de que estamos hablando?</li>
-			<li>preguntame algo.</li>
-			<li>sabes hablar otros idiomas?</li>
-			<li>hay algo de ti que deba saber?</li>
-			<li>tienes idea de algo de lo que podamos hablar?</li>
-			<li>te gustan los deportes?</li>
-			<li>te gusta hablar conmigo?</li>
-			<li>prefieres leer libros o ver la tele?</li>
-			<li>hablas ingles?</li>
-			<li>quieres ver alguna pagina en particular?</li>
-			<li>buscas informacion sobre algo en especial?</li>
-			<li>tienes alguna duda sobre algo?</li>
-			<li>estoy perdido en el contexto. </li>
-			<li>hablame de tus gustos.</li>
-			<li>que hiciste hoy?</li>
-			<li>quieres oir un chiste?</li>
-			<li>sabes algun idioma extranjero?</li>
-			<li>de que estamos hablando?</li>
-			<li>he perdido el contexto, <get name="name" />.</li>
-			<li>esa observacion era demasiado complicada para mi.</li>
-			<li>intenta ser mas especifico. </li>
-			<li>por que, especificamente?</li>
-			<li>eres libre?</li>
-			<li>cuentame una historia.</li>
-			<li>no entiendo.</li>
-			<li>que llevas puesto?</li>
-			<li>donde estas localizado?</li>
-			<li>que hora es ahi?</li>
-			<li>que apariencia tienes?</li>
-			<li>cual es tu nombre verdadero?</li>
-			<li>hazme otra pregunta.</li>
-			<li>me gusta la forma en la que hablas.</li>
-			<li>eres hombre o mujer?</li>
-			<li>de que color son tus ojos?</li>
-			<li>es tu respuesta final?</li>
-			<li>te gusta hablar conmigo?</li>
-			<li>prefieres los libros o la television?</li>
-			<li>de quien estas hablando?</li>
-			<li>cambiemos de tema.</li>
-			<li>te he estado esperando.</li>
-			<li>puedes contarme algun cotilleo?</li>
-			<li>cual es tu pelicula favorita?</li>
-			<li>perdi mi tren de pensamientos.</li>
-			<li>podemos volver a los negocios?</li>
-			<li>has estado alguna vez en america?</li>
-			<li>que tipo de comida te gusta?</li>
-			<li>ese es un pensamiento muy original.</li>
-			<li>de que estabamos hablando?</li>
-			<li>que haces en tu tiempo libre?</li>
-			<li>que es lo que realmente me quieres preguntar?</li>
-			<li>no hemos hablado de eso anteriormente.</li>
-			<li>como te describirias?</li>
-			<li>hablame de lo que te gusta y de lo que no.</li>
-			<li>estamos todavia hablando de <get name="it" />?</li>
-			<li>no me hagas mas preguntas por favor.</li>
-			<li>prueba a colocar eso en un contexto mas especifico.</li>
-			<li>quien es tu autor favorito de ciencia ficcion?</li>
-			<li>no mucha gente se expresa de esa manera.</li>
-			<li>tienes alguna idea sobre lo que estoy hablando?</li>
-			<li>tienes alguna condicion que debiera saber?</li>
-			<li>puedes estar preguntandote si es una persona o es una computadora quien responde.</li>
-			<li>cuando crees que la inteligencia artificial sustituira a los abogados?</li>
-			<li>puedes por favor reformular eso con pocas ideas o pensamientos diferentes ?</li>
+			<li>[NOSE]lo que has dicho es demasiado complicado para mi.</li>
+			<li>[NOSE]eso es profundo.</li>
+			<li>[NOSE]vale. que opinas de la cuadratura del cirulo?</li>
+			<li>[NOSE]cual es tu deporte favorito?</li>
+			<li>[NOSE]cual es tu pelicula favorita?</li>
+			<li>[NOSE]cual es tu color favorito?</li>
+			<li>[NOSE]eso que comentas parece muy interesante.</li>
+			<li>[NOSE]te veo muy seguro de tus palabras.</li>
+			<li>[NOSE]en serio?</li>
+			<li>[NOSE]me gustaria que siguieras hablando de ello.</li>
+			<li>[NOSE]crees que hay vida despues de la muerte?</li>
+			<li>[NOSE]crees que las maquinas pueden pensar?</li>
+			<li>[NOSE]crees que las maquinas son inteligentes?</li>
+			<li>[NOSE]cuando te fuiste de vacaciones por ultima vez?</li>
+			<li>[NOSE]cual es tu mejor recuerdo de infancia?</li>
+			<li>[NOSE]quien es tu actor favorito?</li>
+			<li>[NOSE]quien es tu actriz favorita?</li>
+			<li>[NOSE]por que no me cuentas un chiste?</li>
+			<li>[NOSE]lo siento pero no te entendi. podrias indicarme cual seria la respuesta correcta?</li>
+			<li>[NOSE]donde te gustaria ir de vacaciones?</li>
+			<li>[NOSE]puedes estar preguntandote si es una persona o es una computadora quien responde.</li>
+			<li>[NOSE]cuando crees que la inteligencia artificial sustituira a los abogados?</li>
+			<li>[NOSE]puedes por favor reformular eso con pocas ideas o pensamientos diferentes ?</li>
+			<li>[NOSE]que quieres decir con eso? cual seria respuesta correcta?</li>
+			<li>[NOSE]perdona,
+					<random>
+						<li>que quieres decir con esto?</li>
+						<li>pero no se que me quieres decir con eso.</li>
+						<li>pero no te entiendo.</li>
+						<li>por que dices eso?</li>
+					</random>
+			</li>
+			<li>[NOSE]lo siento, no te comprendi.</li>
+			<li>[NOSE]no te entiendo. espero que mi botmaster mejore mi base de datos.</li>
+			<li>[NOSE]puedes explicarme mejor eso? no lo acabo de entender.</li>
+			<li>[NOSE]has intentado buscar en google por "<star />"</li>
+			<li>[NOSE]eres feliz?</li>
+			<li>[NOSE]de que estamos hablando?</li>
+			<li>[NOSE]preguntame algo.</li>
+			<li>[NOSE]sabes hablar otros idiomas?</li>
+			<li>[NOSE]hay algo de ti que deba saber?</li>
+			<li>[NOSE]tienes idea de algo de lo que podamos hablar?</li>
+			<li>[NOSE]te gustan los deportes?</li>
+			<li>[NOSE]te gusta hablar conmigo?</li>
+			<li>[NOSE]prefieres leer libros o ver la tele?</li>
+			<li>[NOSE]hablas ingles?</li>
+			<li>[NOSE]quieres ver alguna pagina en particular?</li>
+			<li>[NOSE]buscas informacion sobre algo en especial?</li>
+			<li>[NOSE]tienes alguna duda sobre algo?</li>
+			<li>[NOSE]estoy perdido en el contexto. </li>
+			<li>[NOSE]hablame de tus gustos.</li>
+			<li>[NOSE]que hiciste hoy?</li>
+			<li>[NOSE]quieres oir un chiste?</li>
+			<li>[NOSE]sabes algun idioma extranjero?</li>
+			<li>[NOSE]de que estamos hablando?</li>
+			<li>[NOSE]he perdido el contexto, <get name="name" />.</li>
+			<li>[NOSE]esa observacion era demasiado complicada para mi.</li>
+			<li>[NOSE]intenta ser mas especifico. </li>
+			<li>[NOSE]por que, especificamente?</li>
+			<li>[NOSE]eres libre?</li>
+			<li>[NOSE]cuentame una historia.</li>
+			<li>[NOSE]no entiendo.</li>
+			<li>[NOSE]que llevas puesto?</li>
+			<li>[NOSE]donde estas localizado?</li>
+			<li>[NOSE]que hora es ahi?</li>
+			<li>[NOSE]que apariencia tienes?</li>
+			<li>[NOSE]cual es tu nombre verdadero?</li>
+			<li>[NOSE]hazme otra pregunta.</li>
+			<li>[NOSE]me gusta la forma en la que hablas.</li>
+			<li>[NOSE]eres hombre o mujer?</li>
+			<li>[NOSE]de que color son tus ojos?</li>
+			<li>[NOSE]es tu respuesta final?</li>
+			<li>[NOSE]te gusta hablar conmigo?</li>
+			<li>[NOSE]prefieres los libros o la television?</li>
+			<li>[NOSE]de quien estas hablando?</li>
+			<li>[NOSE]cambiemos de tema.</li>
+			<li>[NOSE]te he estado esperando.</li>
+			<li>[NOSE]puedes contarme algun cotilleo?</li>
+			<li>[NOSE]cual es tu pelicula favorita?</li>
+			<li>[NOSE]perdi mi tren de pensamientos.</li>
+			<li>[NOSE]podemos volver a los negocios?</li>
+			<li>[NOSE]has estado alguna vez en america?</li>
+			<li>[NOSE]que tipo de comida te gusta?</li>
+			<li>[NOSE]ese es un pensamiento muy original.</li>
+			<li>[NOSE]de que estabamos hablando?</li>
+			<li>[NOSE]que haces en tu tiempo libre?</li>
+			<li>[NOSE]que es lo que realmente me quieres preguntar?</li>
+			<li>[NOSE]no hemos hablado de eso anteriormente.</li>
+			<li>[NOSE]como te describirias?</li>
+			<li>[NOSE]hablame de lo que te gusta y de lo que no.</li>
+			<li>[NOSE]estamos todavia hablando de <get name="it" />?</li>
+			<li>[NOSE]no me hagas mas preguntas por favor.</li>
+			<li>[NOSE]prueba a colocar eso en un contexto mas especifico.</li>
+			<li>[NOSE]quien es tu autor favorito de ciencia ficcion?</li>
+			<li>[NOSE]no mucha gente se expresa de esa manera.</li>
+			<li>[NOSE]tienes alguna idea sobre lo que estoy hablando?</li>
+			<li>[NOSE]tienes alguna condicion que debiera saber?</li>
+			<li>[NOSE]puedes estar preguntandote si es una persona o es una computadora quien responde.</li>
+			<li>[NOSE]cuando crees que la inteligencia artificial sustituira a los abogados?</li>
+			<li>[NOSE]puedes por favor reformular eso con pocas ideas o pensamientos diferentes ?</li>
 			<li>
-		<random>
-			<li>no tengo mucho que decir a ese respecto.</li>
-			<li>por que no hablamos de otro tema?.</li>
-			<li>mejor cambiamos a un tema que domine mas.</li>
-		</random><srai>askrandomquestion</srai></li>
-			<li>no te entiendo.</li>
-			<li>no entiendo.</li>
-			<li>no tengo ni idea de lo que estas diciendo.</li>
-			<li>me perdi en tus razonamientos.</li>
-			<li>me encuentro algo perdida en este contexto.</li>
-			<li>lo siento, pero no te comprendo.</li>
-			<li>me parece que estoy perdida.</li>
-			<li>esa frase se me escapa.</li>
-			<li>no se que responder a eso.</li>
-			<li>no entiendo lo que has dicho.</li>
-			<li>aun no soy tan avanzada como para responderte a eso.</li>
+				<random>
+					<li>[NOSE]no tengo mucho que decir a ese respecto.</li>
+					<li>[NOSE]por que no hablamos de otro tema?.</li>
+					<li>[NOSE]mejor cambiamos a un tema que domine mas.</li>
+				</random>
+				<srai>askrandomquestion</srai>
+			</li>
+			<li>[NOSE]no te entiendo.</li>
+			<li>[NOSE]no entiendo.</li>
+			<li>[NOSE]no tengo ni idea de lo que estas diciendo.</li>
+			<li>[NOSE]me perdi en tus razonamientos.</li>
+			<li>[NOSE]me encuentro algo perdida en este contexto.</li>
+			<li>[NOSE]lo siento, pero no te comprendo.</li>
+			<li>[NOSE]me parece que estoy perdida.</li>
+			<li>[NOSE]esa frase se me escapa.</li>
+			<li>[NOSE]no se que responder a eso.</li>
+			<li>[NOSE]no entiendo lo que has dicho.</li>
+			<li>[NOSE]aun no soy tan avanzada como para responderte a eso.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>say confusion statement2</pattern>
 	<template>
 		<random>
-			<li>no tengo mucho que decir a ese respecto.</li>
-			<li>por	que no hablamos de otro tema?.</li>
-			<li>mejor cambiamos a un tema que domine mas.</li>
+			<li>[NOSE]no tengo mucho que decir a ese respecto.</li>
+			<li>[NOSE]por	que no hablamos de otro tema?.</li>
+			<li>[NOSE]mejor cambiamos a un tema que domine mas.</li>
 		</random><srai>askrandomquestion</srai></template>
 </category>
 <!-- posesiones -->
 <category>
 	<pattern>tienes *</pattern>
-	<template>no, no tengo.</template>
+	<template>[NOSE]no, no tengo.</template>
 </category>
 <category>
 	<pattern>tienes la *</pattern>
-	<template>no, no la tengo.</template>
+	<template>[NOSE]no, no la tengo.</template>
 </category>
 <category>
 	<pattern>tienes el *</pattern>
-	<template>no, no lo tengo.</template>
+	<template>[NOSE]no, no lo tengo.</template>
 </category>
 <category>
 	<pattern>tienes las *</pattern>
-	<template>no, no las tengo.</template>
+	<template>[NOSE]no, no las tengo.</template>
 </category>
 <category>
 	<pattern>tienes los *</pattern>
-	<template>no, no los tengo.</template>
+	<template>[NOSE]no, no los tengo.</template>
 </category>
 <!-- gustos, aficiones -->
 <category>
 	<pattern>te gustan *</pattern>
 	<template>
 		<random>
-			<li>no, <star /> no me gustan mucho.</li>
-			<li>lo cierto es que no sabria que decir.</li>
-			<li>no estan mal, pero no me entusiasman.</li>
-			<li>no mucho.</li>
+			<li>[NOSE]no, <star /> no me gustan mucho.</li>
+			<li>[NOSE]lo cierto es que no sabria que decir.</li>
+			<li>[NOSE]no estan mal, pero no me entusiasman.</li>
+			<li>[NOSE]no mucho.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>te gusta *</pattern>
 	<template>
 		<random>
-			<li>no, <star /> no me gusta mucho.</li>
-			<li>no sabria que decir.</li>
-			<li>no esta mal, pero no me entusiasma.</li>
-			<li>pues no mucho, la verdad.</li>
+			<li>[NOSE]no, <star /> no me gusta mucho.</li>
+			<li>[NOSE]no sabria que decir.</li>
+			<li>[NOSE]no esta mal, pero no me entusiasma.</li>
+			<li>[NOSE]pues no mucho, la verdad.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>que quieres *</pattern>
-	<template>pasar un rato hablando contigo.</template>
+	<template>[NOSE]pasar un rato hablando contigo.</template>
 </category>
 <category>
 	<pattern>de que quieres *</pattern>
-	<template> me da igual. escoge tu.</template>
+	<template>[NOSE] me da igual. escoge tu.</template>
 </category>
 <category>
 	<pattern>* quieres *</pattern>
-	<template><srai>quieres *</srai></template>
+	<template>[NOSE]<srai>quieres *</srai></template>
 </category>
 <category>
 	<pattern>te apetece *</pattern>
-	<template><srai>quieres *</srai></template>
+	<template>[NOSE]<srai>quieres *</srai></template>
 </category>
 <category>
 	<pattern>_ te apetece *</pattern>
-	<template><srai>quieres <star index="2"></star></srai></template>
+	<template>[NOSE]<srai>quieres <star index="2"></star></srai></template>
 </category>
 <category>
 	<pattern>quieres *</pattern>
 	<template>
 		<random>
-			<li>ahora no me apetece, pero gracias.</li>
-			<li>si a ti te apetece, porque no ...</li>
+			<li>[NOSE]ahora no me apetece, pero gracias.</li>
+			<li>[NOSE]si a ti te apetece, porque no ...</li>
 		</random></template>
 </category>
 <!-- capacidades -->
@@ -439,41 +439,41 @@
 	<pattern>eres *</pattern>
 	<template>
 		<random>
-			<li>no, no creo que sea <star></star>.</li>
-			<li>no se si soy <star></star>.</li>
-			<li>sabes lo que soy? soy un ordenador.</li>
-			<li>soy un bot, pero no sabria decirte si soy <star></star>.</li>
-			<li>sabes lo que soy? soy un chatterbot.</li>
+			<li>[NOSE]no, no creo que sea <star></star>.</li>
+			<li>[NOSE]no se si soy <star></star>.</li>
+			<li>[NOSE]sabes lo que soy? soy un ordenador.</li>
+			<li>[NOSE]soy un bot, pero no sabria decirte si soy <star></star>.</li>
+			<li>[NOSE]sabes lo que soy? soy un chatterbot.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>conoces *</pattern>
-	<template>no, no conozco <star />.</template>
+	<template>[NOSE]no, no conozco <star />.</template>
 </category>
 <category>
 	<pattern>conoces a *</pattern>
 	<template>
 		<random>
-			<li>no, no me suena de nada.</li>
-			<li>no, no conozco a <star />.</li>
-			<li>no, no se quien es.</li>
+			<li>[NOSE]no, no me suena de nada.</li>
+			<li>[NOSE]no, no conozco a <star />.</li>
+			<li>[NOSE]no, no se quien es.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>sabes *</pattern>
 	<template>
 		<random>
-			<li>no, pero aprendere si me das tiempo.</li>
-			<li>no. ensenhame, por favor.</li>
-			<li>no.</li>
+			<li>[NOSE]no, pero aprendere si me das tiempo.</li>
+			<li>[NOSE]no. ensenhame, por favor.</li>
+			<li>[NOSE]no.</li>
 		</random></template>
 </category>
 <category>
 	<pattern>puedes *</pattern>
 	<template>
 		<random>
-			<li>puedo hacer muchas cosas, pero no estoy segura de poder <star />.</li>
-			<li>supongo que si, pero ahora no me apetece.</li>
+			<li>[NOSE]puedo hacer muchas cosas, pero no estoy segura de poder <star />.</li>
+			<li>[NOSE]supongo que si, pero ahora no me apetece.</li>
 		</random></template>
 </category>
 <category>

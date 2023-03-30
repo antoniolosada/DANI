@@ -83,8 +83,8 @@ Public Class ServidorWeb
 
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         Try
-            HEBRA.Abort()
-            SERVIDOR.Stop()
+            If Not HEBRA Is Nothing Then HEBRA.Abort()
+            If Not SERVIDOR Is Nothing Then SERVIDOR.Stop()
             Application.Exit()
         Catch ex As Exception
 
@@ -99,8 +99,8 @@ Public Class ServidorWeb
 
     Public Sub CerrarServidor()
         Try
-            HEBRA.Abort()
-            SERVIDOR.Stop()
+            If Not HEBRA Is Nothing Then HEBRA.Abort()
+            If Not SERVIDOR Is Nothing Then SERVIDOR.Stop()
             Application.Exit()
         Catch ex As Exception
 

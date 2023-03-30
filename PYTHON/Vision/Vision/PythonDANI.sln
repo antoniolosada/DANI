@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RecObj", "Vision\RecObj.pyproj", "{5FD47311-1C42-41B4-A151-E3B90E8A60BF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "VisionStereo", "VisionStereo\VisionStereo.pyproj", "{B9D64380-3704-4B9E-A691-CA54106A7B90}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RecRostros", "RecRostros\RecRostros.pyproj", "{CEDBCA6D-7347-41B7-B725-50CD13782BF9}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ExtraerRostros", "ExtraerRostros\ExtraerRostros.pyproj", "{4B422519-F118-4358-AFF8-66BEB383AB8C}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ChatGPT3", "ChatGPT3\ChatGPT3.pyproj", "{7828BE7D-5BB6-4294-B3FC-F3F059899ECF}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonDANI", "PythonDANI\PythonDANI.pyproj", "{43B0DD01-3C20-47D0-BB73-C8B09752B8E9}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PiedraPapelTijera", "PiedraPapelTijera\PiedraPapelTijera.pyproj", "{C2453CB7-7BD1-4F34-9CA6-3F9867ABC468}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DeepFace", "DeepFace\DeepFace.pyproj", "{909C8436-6222-4719-8A0C-12DC33EC4ED5}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PiedraPapelTijeraOmes", "PiedraPapelTijeraOmes\PiedraPapelTijeraOmes.pyproj", "{DA74E848-85EE-49BD-8D3C-F1FF4EC76FE1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FD47311-1C42-41B4-A151-E3B90E8A60BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FD47311-1C42-41B4-A151-E3B90E8A60BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D64380-3704-4B9E-A691-CA54106A7B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D64380-3704-4B9E-A691-CA54106A7B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEDBCA6D-7347-41B7-B725-50CD13782BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEDBCA6D-7347-41B7-B725-50CD13782BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B422519-F118-4358-AFF8-66BEB383AB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B422519-F118-4358-AFF8-66BEB383AB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7828BE7D-5BB6-4294-B3FC-F3F059899ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7828BE7D-5BB6-4294-B3FC-F3F059899ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B0DD01-3C20-47D0-BB73-C8B09752B8E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B0DD01-3C20-47D0-BB73-C8B09752B8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2453CB7-7BD1-4F34-9CA6-3F9867ABC468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2453CB7-7BD1-4F34-9CA6-3F9867ABC468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{909C8436-6222-4719-8A0C-12DC33EC4ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{909C8436-6222-4719-8A0C-12DC33EC4ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA74E848-85EE-49BD-8D3C-F1FF4EC76FE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA74E848-85EE-49BD-8D3C-F1FF4EC76FE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBA12043-C16D-4203-BDEB-2E738F981B09}
+	EndGlobalSection
+EndGlobal

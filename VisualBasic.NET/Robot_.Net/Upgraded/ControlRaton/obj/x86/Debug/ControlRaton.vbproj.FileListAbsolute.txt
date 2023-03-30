@@ -143,3 +143,25 @@ C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.CopyComplete
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Proyecto1.exe
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Proyecto1.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.AssemblyReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.SuggestedBindingRedirects.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.ResolveComReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Proyecto1.frmControlRaton.resources
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.GenerateResource.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.CoreCompileInputs.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Proyecto1.exe
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Proyecto1.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Proyecto1.exe.config
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Proyecto1.exe
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Proyecto1.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Artinsoft.VB6.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\RobotSupport.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\stdole.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Microsoft.StdFormat.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\RobotSupport.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Artinsoft.VB6.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\Interop.MSCommLib.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\bin\AxInterop.MSCommLib.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\Interop.MSCommLib.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\AxInterop.MSCommLib.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\ControlRaton\obj\x86\Debug\ControlRaton.vbproj.CopyComplete

@@ -53,6 +53,7 @@
 #define MIN_POS_SERVO 18
 #define MAX_POS_SERVO 24
 #define ESPERA_DISTANCIA_uS 4058 //0.7 metros
+#define TIMEOUT_INIT_US			5000 //us
 
 #define MIN_SERVO_POS   16
 #define MAX_SERVO_POS	25

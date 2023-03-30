@@ -373,8 +373,8 @@ void ProcesarCadena(char *Cadena)
       }
       case 'T':
       {
+    	  //Programar movimiento de servos
     	  int iGradosSeg;
-		  //Cambiamos el valor de la posicion del potenciometros de parada *************************************
 		  cCar = Cadena[p];
 
 		  iNumServo = RecValor(Cadena, p, ',', &iPosFin);

@@ -6,7 +6,7 @@
 
 #ifndef SAPPO_H
 	#include "DANI.h"
-	#include "SoftwareServo.h"
+	#include <SoftwareServo.h>
 	#include <RF24.h>
 	#include <RF24_config.h>
 	#include <VirtualWire.h>
@@ -196,8 +196,6 @@ bool ActivarMedirDistancia = true;
 void loop() 
 { 
 	//return;
-	//PruebaMovimientoCabeza();
-
  SoftwareServo::refresh();
 
  if (LeerCadena(&iPosCad, Cadena) == LECTURA_FIN)
@@ -222,8 +220,9 @@ void loop()
 	  ActivarMedirDistancia = !ActivarMedirDistancia;
 	  if (ActivarMedirDistancia) //10 veces/s
 	  { //Reducimos la frecuencia de las medidas (cada una puede tardar 1,4 ms)
-		  MedirDistanciaSensor(SensorDistancia);
-		  SensorDistancia = (SensorDistancia < MAX_SENSOR_DISTANCIA-1?SensorDistancia+1:0);
+		  MedirDistanciaTodosSensores();
+//		  MedirDistanciaSensor(SensorDistancia);
+//		  SensorDistancia = (SensorDistancia < MAX_SENSOR_DISTANCIA-1?SensorDistancia+1:0);
 	  }
 
 	  if (ControlPosicionActivo) ControlPosicion();
@@ -306,6 +305,64 @@ void MedirDistanciaSensor(byte sensor)
 	distancia = tiempo / 58;
 	//manda la distancia al monitor serie
 	DistanciaCm[sensor] = distancia;
+}
+
+void MedirDistanciaTodosSensores()
+{
+	long Contador_us;
+	int sensor = 0;
+	long tiempo, distancia, medidas = 0;
+	int i;
+
+	for (i=0; i<MAX_SENSOR_DISTANCIA; i++)
+	{
+		DistanciaCm[i] = 0;
+		digitalWrite(DistanciaTriger[i], LOW);
+	}
+	delayMicroseconds(4);
+	for (i=0; i<MAX_SENSOR_DISTANCIA; i++)
+		digitalWrite(DistanciaTriger[i], HIGH);
+	delayMicroseconds(10);
+	for (i=0; i<MAX_SENSOR_DISTANCIA; i++)
+	{
+		digitalWrite(DistanciaTriger[i], LOW);
+		DistanciaCm[i] = -1;
+	}
+	//Esperamos a que el pulso de ECHO pase a nivel HIGH
+	Contador_us = micros();
+	medidas = 0;
+	sensor = 0;
+
+	while((medidas < MAX_SENSOR_DISTANCIA))
+	{
+		if ((DistanciaCm[sensor] != 0) && (digitalRead(DistanciaEcho[sensor]) != LOW))
+		{
+			DistanciaCm[sensor] = 0;
+			medidas++;
+		}
+		sensor = (sensor < MAX_SENSOR_DISTANCIA-1?sensor+1:0);
+
+		if ((micros() - Contador_us) > TIMEOUT_INIT_US)
+		{
+			Serial.println("E->Error inicializando ultrasonidos;");
+			return;
+		}
+	}
+
+	// Calcula la distancia midiendo el tiempo del estado alto del pin ECHO
+	medidas = 0;
+	sensor = 0;
+	while((medidas < MAX_SENSOR_DISTANCIA) && (micros()-Contador_us < ESPERA_DISTANCIA_uS))
+	{
+		if ((digitalRead((unsigned char)DistanciaEcho[sensor]) == LOW) && (DistanciaCm[sensor] == 0))
+		{
+			tiempo = micros() - Contador_us;
+			distancia = tiempo / 58;
+			DistanciaCm[sensor] = distancia;
+			medidas++;
+		}
+		sensor = (sensor == MAX_SENSOR_DISTANCIA-1?0:sensor+1);
+	}
 }
 
 void ComprobarControlColision()

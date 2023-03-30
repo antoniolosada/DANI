@@ -43,3 +43,11 @@ C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.csproj.CoreCompileInputs.cache
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.dll
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\bin\Debug\x64\myo.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\bin\Debug\x86\myo.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\bin\Debug\MyoSharp.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\bin\Debug\MyoSharp.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.csproj.AssemblyReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.csproj.CoreCompileInputs.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\C_SHARP\MyoSharp\obj\Debug\MyoSharp.pdb

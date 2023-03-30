@@ -82,3 +82,16 @@ C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.vbproj.CopyComplete
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.dll
 C:\GOOGLE_DRIVE\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\RobotSupport.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\RobotSupport.pdb
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\Artinsoft.VB6.DB.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\Artinsoft.VB6.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\stdole.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\Microsoft.StdFormat.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\Artinsoft.VB6.DB.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\bin\Debug\Artinsoft.VB6.xml
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.vbproj.AssemblyReference.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.vbproj.CoreCompileInputs.cache
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.vbproj.CopyComplete
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.dll
+W:\Mi unidad\GDRIVE\TONI\PROY\GITHUB\DANI\VisualBasic.NET\Robot_.Net\Upgraded\RobotSupport\obj\x86\Debug\RobotSupport.pdb

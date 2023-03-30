@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2022-11-04 19:25:58
+//This file has been generated on 2023-02-17 15:49:32
 
 #include "Arduino.h"
 #include "pines.h"
@@ -13,7 +13,7 @@
 #include <Arduino.h>
 #include "pines.h"
 #include "DANI.h"
-#include "SoftwareServo.h"
+#include <SoftwareServo.h>
 #include <RF24.h>
 #include <RF24_config.h>
 #include <VirtualWire.h>
@@ -43,6 +43,7 @@ void loop()  ;
 void ControlDesconexionServos() ;
 void MovimientoTemporizado() ;
 void MedirDistanciaSensor(byte sensor) ;
+void MedirDistanciaTodosSensores() ;
 void ComprobarControlColision() ;
 void ContadorVelocidad() ;
 void DistanciaD() ;

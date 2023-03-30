@@ -3,6 +3,10 @@ Para compilar el proyecto Robot ha que emplear el botón derecho (menú contextual
 El proyecto principal está en .\TONI\PROY\DANI\VisualBasic.NET\Robot_.Net\Upgraded
 
 Si error en espacio de nombres Ascomm:
-Copiar y registras en sysWOW64 los ficheros de install\ficheros
+Copiar y registras en sysWOW64 los ficheros de install\ficheros. Los componentes .OCX
 
-Descomprimir arduino\libraries en Documentos del usuario
+Descomprimir arduino\libraries en Documentos\arduino\libraries del usuario
+\DANI\Arduino\Librerias -> \ECLIPSE_SLOEBER\DANI\DANI\Release\libraries
+
+ERROR: No recognizer of the required ID found.Nombre del parámetro: culture' -> Instalar: D:\INSTALL\INSTALACION\Speech SDK\v11 -> El SDK de 64bits y el módulo SR y TTS
+
